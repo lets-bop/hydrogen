@@ -10,6 +10,7 @@ namespace LC_FB_Easy
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hi");
         }
     }
 }
