@@ -11,6 +11,8 @@ namespace LC_FB_Easy
         static void Main(string[] args)
         {
             Console.WriteLine("Hi");
+            int[] arr = new int[] {-2, 3, -6, 4, -11 };
+            TwoSum.Find(arr, 7);
         }
     }
 }
