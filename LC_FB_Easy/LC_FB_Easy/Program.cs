@@ -40,9 +40,38 @@ namespace LC_FB_Easy
             // Console.WriteLine("{0}{1}{2}", "Wild card matching run for Pattern 'a?b', Str 'ab'. Actual: ", WildCardPatternMatching.Match("a?b", "ab"), " Expected: False");
 
             // ---- MergeSortedArrays.cs ----
-            int[] arr1 = new int[13];
-            arr1[0] = 4; arr1[1] = 4; arr1[2] = 8; arr1[3] = 10; arr1[4] = 14; arr1[5] = 15; arr1[6] = 16; arr1[7] = 22;
-            MergeSortedArrays.Merge(arr1, new int[] {1, 2, 5, 7, 20}, 8, 5);
+            // int[] arr1 = new int[13];
+            // arr1[0] = 4; arr1[1] = 4; arr1[2] = 8; arr1[3] = 10; arr1[4] = 14; arr1[5] = 15; arr1[6] = 16; arr1[7] = 22;
+            // MergeSortedArrays.Merge(arr1, new int[] {1, 2, 5, 7, 20}, 8, 5);
+
+            // ---- BestTimeToBuySellStocks.cs ----
+            // Console.WriteLine(
+            //     "{0}. Actual:{1}, Expected:5", "Input 7,1,5,3,6,4", 
+            //     BestTimeToBuySellStocks.FindMax(new int[] {7,1,5,3,6,4}));
+            // Console.WriteLine(
+            //     "{0}. Actual:{1}, Expected:0", "Input 7,6,5,4,3,2,1", 
+            //     BestTimeToBuySellStocks.FindMax(new int[] {7,6,5,4,3,2,1}));
+
+            // ---- Reverse a linked list ----
+            // LinkedList.ListNode head = LinkedList.Build(new int[] {1,2,3,4,5});
+            // Console.WriteLine("Input is \t {0}", LinkedList.Print(head));
+            // head = LinkedList.Reverse(head);
+            // Console.WriteLine("Reversed list is {0}", LinkedList.Print(head));
+            // head = LinkedList.Reverse(head);
+            // Console.WriteLine("Reversed list is {0}", LinkedList.Print(head));
+
+            // ---- Lowest common ancestor for a BST ----
+            // BST.TreeNode root = BST.Build("6C2,8;2C0,4;8C7,9;4C3,5");
+            // Console.WriteLine("LCA of 2, 8 is {0}", LCAInBST.Find(root, 2, 8));
+            // Console.WriteLine("LCA of 2, 4 is {0}", LCAInBST.Find(root, 2, 4));
+
+            // ---- Missing number ----
+            // Console.WriteLine("Missing number in 3,0,1 is {0}", MissingNumber.Find(new int[] {3,0,1}));
+            // Console.WriteLine("Missing number in 9,6,4,2,3,5,7,0,1 is {0}", MissingNumber.Find(new int[] {9,6,4,2,3,5,7,0,1}));
+
+            // ---- Move zeros ----
+            Console.WriteLine("Input 0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {0,1,0,3,12}));
+            Console.WriteLine("Input 4,5,6,0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {4,5,6,0,1,0,3,12}));
         }
     }
 }
