@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <!-- <StartupObject>LC_FB_Easy.Program</StartupObject> -->
+    <!-- <StartupObject>LC_FB_Medium.Program</StartupObject> -->
+    <StartupObject>LC_FB_Hard.Program</StartupObject>
   </PropertyGroup>
 
 </Project>

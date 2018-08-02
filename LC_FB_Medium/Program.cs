@@ -48,6 +48,8 @@ namespace LC_FB_Medium
             // Test_EPI_Strings.Run();
 
             // Test_EPI_Lists.Run();
+
+            Test_EPI_Trees.Run();
         }
     }
 }
