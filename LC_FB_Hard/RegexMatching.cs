@@ -74,7 +74,7 @@ namespace LC_FB_Hard
                         {
                             dp[row, col] = 
                                 dp[row, col - 2] || 
-                                (str[row - 1] == pattern[col - 2] || pattern[col - 2] == '.')?dp[row-1,col]:false;
+                                ((str[row - 1] == pattern[col - 2] || pattern[col - 2] == '.')?dp[row-1,col]:false);
                         }
                     }
                 }
