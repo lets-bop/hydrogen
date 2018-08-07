@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LC_FB_Hard
 {
@@ -9,7 +10,13 @@ namespace LC_FB_Hard
             // TestRegexMatching();
             // TestMinWindowSubstring();
             // TestMaximalRectangle();
-            TestLRUCache();
+            // TestLRUCache();
+            // TestBinarySearchWithTwist();
+            // TestMinPQ_FixedSize();
+            // TestLargestRectangleInHist();
+            // TestWildcardMatching();
+            // TestReversePairs();
+            TestWordLadder();
         }
 
         public static void TestRegexMatching()
@@ -116,5 +123,90 @@ namespace LC_FB_Hard
             Console.WriteLine(cache.Get(2));
             cache.Print();           
         }
+
+        private static void TestBinarySearchWithTwist()
+        {
+            Console.WriteLine("Expected: 8 Actual: ", BinarySearchWithTwist.Find(4, new int[] {1,1,1,1,2,3,4,4,4,4,5,6,7,7,8,8,9}));
+            Console.WriteLine("Expected: 0 Actual: ", BinarySearchWithTwist.Find(0, new int[] {1,1,1,1,2,3,4,4,4,4,5,6,7,7,8,8,9}));
+            Console.WriteLine("Expected: 10 Actual: ", BinarySearchWithTwist.Find(5, new int[] {1,1,1,1,2,3,4,4,4,4,6,6,7,7,8,8,9}));
+            Console.WriteLine("Expected: 0 Actual: ", BinarySearchWithTwist.Find(5, new int[] {}));
+            Console.WriteLine("Expected: 1 Actual: ", BinarySearchWithTwist.Find(5, new int[] {1}));
+        }
+
+        private static void TestMinPQ_FixedSize()
+        {
+            MinPQ_FixedSize pq = new MinPQ_FixedSize(20);
+            pq.Insert(10);
+            pq.Insert(100);
+            pq.Insert(5);
+            pq.Insert(7);
+            pq.Insert(3);
+            pq.Insert(1);
+            pq.Insert(4);
+            pq.Insert(11);
+            pq.Print();
+            pq.Delete(7); // element at index 7 = 100
+            pq.Print();
+            pq.Insert(100);
+            pq.Print();
+            pq.Delete(2);
+            pq.Print();
+            pq.Insert(3);
+            pq.Print();
+            pq.Delete(1);
+            pq.Print();
+        }
+
+        private static void TestLargestRectangleInHist()
+        {
+            Console.WriteLine("Expected: 10. Actual: " + LargestRectangleInHist.Execute(new int[] {2,1,5,6,2,3}));
+        }
+
+        private static void TestWildcardMatching()
+        {
+            Console.WriteLine("Expected: True. Actual: " + WildcardMatching.IsMatch("hi there", "*"));
+            Console.WriteLine("Expected: True. Actual: " + WildcardMatching.IsMatch("hi there", "hi*"));
+            Console.WriteLine("Expected: False. Actual: " + WildcardMatching.IsMatch("hi there", "his*"));
+            Console.WriteLine("Expected: False. Actual: " + WildcardMatching.IsMatch("hi there", "hi*s*"));
+            Console.WriteLine("Expected: True. Actual: " + WildcardMatching.IsMatch("hi there", "hi*t*"));
+            Console.WriteLine("Expected: True. Actual: " + WildcardMatching.IsMatch("hi there", "hi?t*"));
+            Console.WriteLine("Expected: True. Actual: " + WildcardMatching.IsMatch("adceb", "*a*b"));
+            Console.WriteLine("Expected: True. Actual: " + WildcardMatching.IsMatch("", "*"));
+        }
+
+        private static void TestReversePairs()
+        {
+            Console.WriteLine("Expected: 2. Actual: " + ImpReversePairs.Execute(new int[] {1,3,2,3,1}));
+            Console.WriteLine("Expected: 3. Actual: " + ImpReversePairs.Execute(new int[] {2,4,3,5,1}));
+            Console.WriteLine("Expected: 0. Actual: " + ImpReversePairs.Execute(new int[] {2147483647,2147483647,2147483647,2147483647,2147483647,2147483647}));
+            Console.WriteLine("Expected: 40. Actual: " + ImpReversePairs.Execute(new int[] {233,2000000001,234,2000000006,235,2000000003,236,2000000007,237,2000000002,2000000005,233,233,233,233,233,2000000004}));
+        }
+
+        private static void TestWordLadder()
+        {
+            WordLadder wl = new WordLadder();
+            IList<IList<string>> ladders = wl.FindLadders("hit", "cog", new List<string>() {"hot","dot","dog","lot","log","cog"});
+            foreach (IList<string> ladder in ladders)
+            {
+                foreach(string s in ladder) Console.Write(s + " ");
+                Console.WriteLine();
+            }
+
+            wl = new WordLadder();
+            ladders = wl.FindLadders("a", "c", new List<string>() {"a","b","c"});
+            foreach (IList<string> ladder in ladders)
+            {
+                foreach(string s in ladder) Console.Write(s + " ");
+                Console.WriteLine();
+            }   
+
+            wl = new WordLadder();
+            ladders = wl.FindLadders("red", "tax", new List<string>() {"ted","tex","red","tax","tad","den","rex","pee"});
+            foreach (IList<string> ladder in ladders)
+            {
+                foreach(string s in ladder) Console.Write(s + " ");
+                Console.WriteLine();
+            }                       
+        }  
     }
 }
