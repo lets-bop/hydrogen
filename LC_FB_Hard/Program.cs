@@ -16,7 +16,11 @@ namespace LC_FB_Hard
             // TestLargestRectangleInHist();
             // TestWildcardMatching();
             // TestReversePairs();
-            TestWordLadder();
+            // TestWordLadder();
+            // TestLongestConsecutiveSequence();
+            // TestNumberToEnglish();
+            // TestSubstringWithConcat();
+            TestAlientDictionary();
         }
 
         public static void TestRegexMatching()
@@ -208,5 +212,37 @@ namespace LC_FB_Hard
                 Console.WriteLine();
             }                       
         }  
+
+        private static void TestLongestConsecutiveSequence()
+        {
+            LongestConsecutiveSequence lcs = new LongestConsecutiveSequence();
+            Console.WriteLine(lcs.LongestConsecutive(new int[] {100, 4, 200, 1, 3, 2}));
+        }
+
+        private static void TestNumberToEnglish()
+        {
+            NumberToEnglish n = new NumberToEnglish();
+            n.NumberToWords(99);
+        }
+
+        private static void TestSubstringWithConcat()
+        {
+            SubstringWithConcat sub = new SubstringWithConcat();
+            sub.FindSubstring("foosbarfoo", new string[] {"bar", "foo", "foo"});
+            sub.FindSubstring("barfoofoo", new string[] {"bar", "foo", "foo"});
+            sub.FindSubstring("foofoobar", new string[] {"bar", "foo", "foo"});
+            sub.FindSubstring("barfoothefoobarman", new string[] {"foo", "bar"});
+            sub.FindSubstring("wordgoodstudentgoodword", new string[] {"word", "student"});
+            sub.FindSubstring("barfoofoobarthefoobarman", new string[] {"bar","foo","the"});
+            sub.FindSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", new string[] {"fooo","barr","wing","ding","wing"});
+            sub.FindSubstring("ababaab", new string[] {"ab","ba","ba"});        
+            sub.FindSubstring("aaaaaa", new string[] {"aa","aa"});  
+        }
+
+        private static void TestAlientDictionary()
+        {
+            AlienDictionary dic = new AlienDictionary();
+            Console.WriteLine(dic.AlienOrder(new string[] {  "wrt", "wrf", "er", "ett", "rftt"}));
+        }
     }
 }
