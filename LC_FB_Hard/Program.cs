@@ -20,7 +20,8 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence();
             // TestNumberToEnglish();
             // TestSubstringWithConcat();
-            TestAlientDictionary();
+            // TestAlientDictionary();
+            TestLongestValidParenthesis();
         }
 
         public static void TestRegexMatching()
@@ -244,5 +245,19 @@ namespace LC_FB_Hard
             AlienDictionary dic = new AlienDictionary();
             Console.WriteLine(dic.AlienOrder(new string[] {  "wrt", "wrf", "er", "ett", "rftt"}));
         }
+
+        private static void TestLongestValidParenthesis()
+        {
+            LongestValidParenthesis valid = new LongestValidParenthesis();
+            // Console.WriteLine("Expected: 2. Actual: " + valid.Find("(((()"));
+            // Console.WriteLine("Expected: 4. Actual: " + valid.Find(")()())"));
+            // Console.WriteLine("Expected: 4. Actual: " + valid.Find("())((())"));
+            // Console.WriteLine("Expected: 2. Actual: " + valid.Find("()(()"));
+
+            Console.WriteLine("Expected: 2. Actual: " + valid.FindWithoutExtraSpace("(()"));
+            Console.WriteLine("Expected: 4. Actual: " + valid.FindWithoutExtraSpace(")()())"));
+            Console.WriteLine("Expected: 4. Actual: " + valid.FindWithoutExtraSpace("())((())"));
+            Console.WriteLine("Expected: 2. Actual: " + valid.FindWithoutExtraSpace("()(()"));
+        }        
     }
 }
