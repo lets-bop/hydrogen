@@ -16,7 +16,6 @@ Explanation: The longest valid parentheses substring is "()()"
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LC_FB_Hard
 {

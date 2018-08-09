@@ -53,6 +53,25 @@ namespace LC_FB_Hard
 {
     public class RegexMatching
     {
+        /*
+            Logic: Uses dynamic programming (2D array). 
+            Time complexity is O(n * m), n & m are lengths of string and pattern.
+            Regex pattern on x-axis (cols) and the string on y-axis (rows).
+            First row and col correspond to empty string and pattern.
+            Prepopulate the array:
+                - An empty regex pattern and empty string satisfy (true). 
+                - Empty regex and a non-empty string don't satisfy.
+            Working logic:
+                - If current char in pattern and string match or if pattern contains '.', 
+                use value computed without the current char. i.e from dp[currentrow - 1, currentcol - 1]
+                - Else if the chars dont match,
+                    - If the current pattern char is '*', one of the 2 is possible
+                        - the pattern char before the * has 0 occurrence, in which case use value computed at dp[currentrow, currentcol - 2].
+                        - or pattern char before the * and string match or the pattern char before * is a '.'
+                
+                    Special case: if row == 0, it is a empty string. So we dont need to consider the char prior to current char.
+
+        */
         public static bool Execute(string str, string pattern)
         {
             if (str == null || pattern == null) return false;
