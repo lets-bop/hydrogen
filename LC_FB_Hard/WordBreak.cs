@@ -39,54 +39,92 @@ namespace LC_FB_Hard
 {
     public class WordBreak
     {
+        public class Node
+        {
+            public int StartIndex;
+            public int CurrentLength;
+            public bool IsIterationRequired;
+
+            public Node(int startIndex, int length, bool isIterationRequired = true)
+            {
+                this.StartIndex = startIndex;
+                this.CurrentLength = length;
+                this.IsIterationRequired = isIterationRequired;
+            }
+        }
+
         private Dictionary<int, List<string>> lookup = new Dictionary<int, List<string>>();
+        private Stack<Node> stack = new Stack<Node>();
 
         public IList<string> Execute(string s, IList<string> wordDict)
         {
             if (s == null || s.Length == 0) return new List<string>();
             Dictionary<string, string> dict = new Dictionary<string, string>();
             foreach (string word in wordDict) dict[word] = word;
-            ExecuteWithMemo(s, dict, 0);
-            if (this.lookup.ContainsKey(0)) return this.lookup[0];
+            // ExecuteWithMemo(s, dict, 0);
+            this.stack.Push(new Node(0, 1));
+            this.ExecuteWithMemoAndStack1(s, dict);
+            if (this.lookup.ContainsKey(0) && this.lookup[0] != null) return this.lookup[0];
             else return new List<string>();
         }
 
-        private void ExecuteWithMemo(string s, Dictionary<string, string> dict, int startIndex)
+        private void AddToLookup(string strToAdd, int currentIndex, int indexToAdd)
         {
-            if (startIndex == s.Length){
-                lookup[startIndex] = new List<string>();
-                return;
-            }
-
-            if (this.lookup.ContainsKey(startIndex)) return;
-
-            int i = startIndex;
-            for (int length = 1; length + i <= s.Length; length++)
+            if (this.lookup.ContainsKey(indexToAdd) && this.lookup[indexToAdd] != null)
             {
-                string strToSearch = s.Substring(i, length);
-                if (dict.ContainsKey(strToSearch))
-                {
-                    if (!this.lookup.ContainsKey(i + length))
-                        ExecuteWithMemo(s, dict, i + length);
-                                              
-                    if (this.lookup.ContainsKey(i + length))
+                if (this.lookup[indexToAdd].Count == 0){
+                    if (this.lookup.ContainsKey(currentIndex)) {
+                        if (this.lookup[currentIndex] == null) this.lookup[currentIndex] = new List<string>() {strToAdd};
+                        else this.lookup[currentIndex].Add(strToAdd);
+                    }
+                    else this.lookup[currentIndex] = new List<string>() {strToAdd};
+                }
+                else{
+                    List<string> list = new List<string>();
+                    foreach (string str in this.lookup[indexToAdd]) list.Add(strToAdd + " " + str);
+                    if (this.lookup.ContainsKey(currentIndex))
                     {
-                        if (this.lookup[i + length].Count == 0)
-                        {
-                            if (lookup.ContainsKey(i))
-                                lookup[i].Add(strToSearch);
-                            else lookup[i] =  new List<string>() {strToSearch};
+                        if (this.lookup[currentIndex] == null) this.lookup[currentIndex] = list;
+                        else this.lookup[currentIndex].AddRange(list);
+                    }
+                    else this.lookup[currentIndex] = list;
+                }
+            }
+            else if (!this.lookup.ContainsKey(currentIndex)) this.lookup[currentIndex] = null;
+        }
+
+        private void ExecuteWithMemoAndStack1(string s, Dictionary<string, string> dict)
+        {
+            while (this.stack.Count != 0)
+            {
+                Node currNode = stack.Peek();
+                int startIndex = currNode.StartIndex;
+                int currentLength = currNode.CurrentLength;
+
+                if (startIndex == s.Length){
+                    this.stack.Pop(); //done processing
+                    this.lookup[startIndex] = new List<string>();
+                    continue;
+                }
+
+                for (int length = currentLength; length + startIndex <= s.Length; length++){
+                    string strToSearch = s.Substring(startIndex, length);
+                    this.stack.Peek().CurrentLength = length;
+
+                    if (dict.ContainsKey(strToSearch)){
+                        if (!this.lookup.ContainsKey(startIndex + length)) {
+                            this.stack.Push(new Node(startIndex + length, 1)); // next node
+                            break;
                         }
-                        else{
-                            List<string> newList = new List<string>();
-                            foreach (string str in this.lookup[i + length]) newList.Add(strToSearch + " " + str);
-                            if (lookup.ContainsKey(i))
-                                lookup[i].AddRange(newList);
-                            else lookup[i] = newList;                                
-                        }
+                        else this.AddToLookup(strToSearch, startIndex, startIndex + length);
                     }
                 }
-            }            
-        }
+
+                if (this.stack.Peek() == currNode && currNode.StartIndex + currNode.CurrentLength >= s.Length){
+                    this.stack.Pop();
+                    if(!this.lookup.ContainsKey(startIndex)) this.lookup[startIndex] = null;
+                }
+            }
+        }        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LC_FB_Hard
 {
@@ -292,23 +293,37 @@ namespace LC_FB_Hard
             list = wb.Execute("catsandog", new List<string>() {"cat", "sand", "dog", "and", "cats"});
             foreach (string s in list) Console.WriteLine(s);
 
-            // wb = new WordBreak();
-            // list = wb.Execute("cofjdnfdnjbejdhbkhechoeindgmkeloaibeffoacbieekebbfimhdehmncdcajhknidl", new List<string>() {"khjhhagijlickgjob","ajhknidl","khech","kjigndmcl","mbmodglgbahcmdcdoea","lnllaflae","enhakibofef","gjhegnfhlibiog","ajlfkmccbahbbggn","inbanhdomnnghdj","ghigcndibhmeojchbbogkgb","cdebhjjifcnmmmccoj","majcemhhdg","ccfhclceoh","ljfjlaghjehk","mljn","anifljijkdhociken","fogabkbbd","cjahcbienajcgakjjig","kkfffg","jchelakgio","mkkaklj","obehecobkolile","eejne","ndoeic","fbfnkehm","e","mam","hdbibbfijcnlomabemombog","lo","egbklbihgangemjb","jmckjbkbodfknffbchfgie","hldlkfclidhfalmlonfj","diabnkcbadjfmncenihfhk","lamnnbhbaak","cgjmekgfkogclha","nifaifhkbl","eimgallmelmi","mchglmn","fladoo","admmdklfogkafedhnkikell","nfceebenebjgffillm","bacnnmhilkfkffflhdjkhb","fdmbgmckefhenhn","cofjdnfdnjbej","lcmooada","iikimdf","aoloadmajamljdcbfeo","jhoebchekagjlellllm","dh","agk","nlgb","ldihehjafnkcakofebgloam","cbgkafkljdaea","jillnbnglddhdjaf","bjnhobhaalaanijcblhfjfj","difdoaj","mfmcgmaekia","dofkioedciimljhdeehd","kegnobengjbbiko","aamlocelnmib","oeemgcnfamlmdljfdmflfjj","eff","klblolckacndmangjm","kieec","ldljcjchn","blbeg","minibhaoegameolbchfdmd","aahofmcngcdle","lgihd","mmmkj","eoajcgncdafj","ehgkknkefkgkmfbnkfgn","jnniindkohgjdnbjj","mjgkooiklknbnohbn","cddhoglffhikhf","hkojnkclkfjdkno","bhamagfa","cclfechbhkkbikjnfiam","caihcen","ddo","cndgo","mmecggd","k","cnccdoiflnincgacakdoffkdg","eadblmgaioccedaabjfli","jielegjn","kmcnckacoifjamh","ljladkigjjcklnfjagdbbm","na","nblkbmcmmlible","aobkbkeljbhm","jinalibnjhghkdegejfkhojmb","eahacl","chefiggjndcnmlhfelbffea","nbekmjcgjhbnm","hkgabejjogecnlnollhdmc","kc","lhifcackehclg","c","fcna","docgijgankik","b","kfmnoenngjhbkjdbbdb","fmajfjg","imaalcbeibmondaen","loaibeffoacbieekebhmncdc","mchdeedmhmimjeg","oebgcilngjfalebeonbgjmhb","igaieibkhklncikm","lkmhimcj","ahfehlfbimgbgc","hemaimhfnigmfnabco","l","jahkbcdonia","i","bfimhde","ciekchnoolgkjnijekjehcagl","iob","gjldfmnaldnclofg","bbghhfbmknflddiabgj","gholddmbmnhii","iodn","cckkmijgcdjkglfd","njmdahlgbloimibfdco","cjdekg","oeindgmke","mbdcgebgdk","jlddkmoe","oegbiannddkmhibjokkm","loaejecbcondlgaeenbjlokjg","dlchahdimcdjobkfoce","haamgab","fkbj","aggodojjglicnf","gahadoafofdbeieihklfg","aembllfaiggee","ljnjfhknfjf","lhkobdkmnkmaf","ilgcde","nghclbilaiombcidj","igamidcjibblokkmjkhnha","ceiikahhicgbdlhlo","hdcfnig","fbbignkajdjgn","ogjkbcccdldmea","ihnoenlokk","blk","aifhjmimhnggogajflkgc","jfoiif"});
-            // foreach (string s in list) Console.WriteLine(s);
+            wb = new WordBreak();
+            list = wb.Execute("cofjdnfdnjbejdhbkhechoeindgmkeloaibeffoacbieekebbfimhdehmncdcajhknidl", new List<string>() {"khjhhagijlickgjob","ajhknidl","khech","kjigndmcl","mbmodglgbahcmdcdoea","lnllaflae","enhakibofef","gjhegnfhlibiog","ajlfkmccbahbbggn","inbanhdomnnghdj","ghigcndibhmeojchbbogkgb","cdebhjjifcnmmmccoj","majcemhhdg","ccfhclceoh","ljfjlaghjehk","mljn","anifljijkdhociken","fogabkbbd","cjahcbienajcgakjjig","kkfffg","jchelakgio","mkkaklj","obehecobkolile","eejne","ndoeic","fbfnkehm","e","mam","hdbibbfijcnlomabemombog","lo","egbklbihgangemjb","jmckjbkbodfknffbchfgie","hldlkfclidhfalmlonfj","diabnkcbadjfmncenihfhk","lamnnbhbaak","cgjmekgfkogclha","nifaifhkbl","eimgallmelmi","mchglmn","fladoo","admmdklfogkafedhnkikell","nfceebenebjgffillm","bacnnmhilkfkffflhdjkhb","fdmbgmckefhenhn","cofjdnfdnjbej","lcmooada","iikimdf","aoloadmajamljdcbfeo","jhoebchekagjlellllm","dh","agk","nlgb","ldihehjafnkcakofebgloam","cbgkafkljdaea","jillnbnglddhdjaf","bjnhobhaalaanijcblhfjfj","difdoaj","mfmcgmaekia","dofkioedciimljhdeehd","kegnobengjbbiko","aamlocelnmib","oeemgcnfamlmdljfdmflfjj","eff","klblolckacndmangjm","kieec","ldljcjchn","blbeg","minibhaoegameolbchfdmd","aahofmcngcdle","lgihd","mmmkj","eoajcgncdafj","ehgkknkefkgkmfbnkfgn","jnniindkohgjdnbjj","mjgkooiklknbnohbn","cddhoglffhikhf","hkojnkclkfjdkno","bhamagfa","cclfechbhkkbikjnfiam","caihcen","ddo","cndgo","mmecggd","k","cnccdoiflnincgacakdoffkdg","eadblmgaioccedaabjfli","jielegjn","kmcnckacoifjamh","ljladkigjjcklnfjagdbbm","na","nblkbmcmmlible","aobkbkeljbhm","jinalibnjhghkdegejfkhojmb","eahacl","chefiggjndcnmlhfelbffea","nbekmjcgjhbnm","hkgabejjogecnlnollhdmc","kc","lhifcackehclg","c","fcna","docgijgankik","b","kfmnoenngjhbkjdbbdb","fmajfjg","imaalcbeibmondaen","loaibeffoacbieekebhmncdc","mchdeedmhmimjeg","oebgcilngjfalebeonbgjmhb","igaieibkhklncikm","lkmhimcj","ahfehlfbimgbgc","hemaimhfnigmfnabco","l","jahkbcdonia","i","bfimhde","ciekchnoolgkjnijekjehcagl","iob","gjldfmnaldnclofg","bbghhfbmknflddiabgj","gholddmbmnhii","iodn","cckkmijgcdjkglfd","njmdahlgbloimibfdco","cjdekg","oeindgmke","mbdcgebgdk","jlddkmoe","oegbiannddkmhibjokkm","loaejecbcondlgaeenbjlokjg","dlchahdimcdjobkfoce","haamgab","fkbj","aggodojjglicnf","gahadoafofdbeieihklfg","aembllfaiggee","ljnjfhknfjf","lhkobdkmnkmaf","ilgcde","nghclbilaiombcidj","igamidcjibblokkmjkhnha","ceiikahhicgbdlhlo","hdcfnig","fbbignkajdjgn","ogjkbcccdldmea","ihnoenlokk","blk","aifhjmimhnggogajflkgc","jfoiif"});
+            foreach (string s in list) Console.WriteLine(s);
+
+            wb = new WordBreak();
+            list = wb.Execute("aaaaaaa", new List<string>() {"aaaa","aaa"});
+            foreach (string s in list) Console.WriteLine(s);
+
+            wb = new WordBreak();
+            list = wb.Execute("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new List<string>() {"a", "aa", "aaa", "aaaa", "aaaaa"});
+            foreach (string s in list) Console.WriteLine(s);
+
+            wb = new WordBreak();
+            list = wb.Execute("abcd", new List<string>() {"a", "abc", "b", "cd"});
+            foreach (string s in list) Console.WriteLine(s);            
 
             // wb = new WordBreak();
-            // list = wb.Execute("aaaaa", new List<string>() {"a", "aa", "aaa", "aaaa", "aaaaa"});
+            // list = wb.Execute("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
             // foreach (string s in list) Console.WriteLine(s);
-
-            // wb = new WordBreak();
-            // list = wb.Execute("aaaaaaaaaa", new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
-            // foreach (string s in list) Console.WriteLine(s);         
 
             wb = new WordBreak();
             list = wb.Execute("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
             foreach (string s in list) Console.WriteLine(s);
 
-
+            StringBuilder sb = new StringBuilder();
+            sb.Append('k');
+            sb.Append('a');
+            sb.Append('r');
+            sb.Append('t');
+            sb.Remove(sb.Length - 1, 1);
+            Console.WriteLine(sb.ToString());
         }
     }
 }
