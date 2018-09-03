@@ -67,16 +67,27 @@ namespace LC_FB_Hard
                 Node node = new Node(beginWord, new List<string>(), 0);
                 queue.Enqueue(node);
                 wordList.Remove(beginWord);
-                return Find(endWord, new List<string>(wordList), queue);        
+                HashSet<string> set = new HashSet<string>();
+                foreach (string word in wordList) set.Add(word);
+                return Find(endWord, set, queue);        
         }
     
-        private IList<IList<string>> Find(string endWord, IList<string> wordList, Queue<Node> queue)
+        private IList<IList<string>> Find(string endWord, HashSet<string> wordList, Queue<Node> queue)
         {
             IList<IList<string>> finalList = new List<IList<string>>();
+            int prevDepth = 0;
+            HashSet<string> wordsToRemoveFromWordList = new HashSet<string>();
 
             while(queue.Count > 0)
             {
                 Node node = queue.Dequeue();
+                if (node.Depth != prevDepth)
+                {
+                    prevDepth = node.Depth;
+                    foreach (string s in wordsToRemoveFromWordList) wordList.Remove(s);
+                    wordsToRemoveFromWordList.Clear();
+                }
+
                 string word = node.Word;
                 if (word == endWord)
                 {
@@ -100,11 +111,10 @@ namespace LC_FB_Hard
                         string s = new string(wordArray);
                         if (wordList.Contains(s))
                         {
-                            if (!node.Ladder.Contains(s))
-                            {
-                                Node newNode = new Node(s, node.Ladder, node.Depth + 1);
-                                queue.Enqueue(newNode);
-                            }
+                            if (node.Depth > this.minDepthSoFar) continue;
+                            wordsToRemoveFromWordList.Add(s);
+                            Node newNode = new Node(s, node.Ladder, node.Depth + 1);
+                            queue.Enqueue(newNode);
                         }
                     }
 
@@ -113,6 +123,6 @@ namespace LC_FB_Hard
             }
 
             return finalList;
-        }             
+        }           
     }
 }

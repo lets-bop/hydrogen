@@ -79,5 +79,55 @@ namespace LC_FB_Hard
 
             return total;
         }
+
+        public static int Execute2(int[] nums)
+        {
+            if (nums == null || nums.Length <= 1) return 0;
+            return MergeSortForReversePairs(nums, 0, nums.Length - 1);
+        }
+
+        private static int MergeSortForReversePairs(int[] nums, int lo, int hi)
+        {
+            if (lo == hi) return 0;
+            int mid = lo + (hi - lo) / 2;
+            int left = MergeSortForReversePairs(nums, lo, mid);
+            int right = MergeSortForReversePairs(nums, mid + 1, hi);
+            int count = left + right;
+            
+            // Add up the inversions before merge sorting
+            for (int i = lo; i <= mid; i++){
+                int j = mid + 1;
+                while(j <= hi){
+                    if ((long)nums[i] > (long)2 * nums[j]) j++;   
+                    else break;              
+                }
+
+                count += (j - mid - 1);
+            }
+
+            Merge(nums, lo, mid, hi);
+            return count;
+        }
+
+        private static void Merge(int[] nums, int lo, int mid, int hi)
+        {
+            // create left and right sub arrays
+            int[] left = new int[mid - lo + 1];
+            int[] right = new int[hi - mid];
+            for (int i = lo, k = 0; i <= mid; i++, k++) left[k] = nums[i];
+            for (int i = mid + 1, k = 0; i <= hi; i++, k++) right[k] = nums[i];
+
+            // merge left and right
+            int p = 0;
+            int q = 0;
+            int r = lo;
+            while (p < left.Length && q < right.Length){
+                if (left[p] < right[q]) nums[r++] = left[p++];
+                else nums[r++] = right[q++];
+            }
+
+            while (p < left.Length) nums[r++] = left[p++];
+            while (q < right.Length) nums[r++] = right[q++];
+        }
     }
 }
