@@ -26,7 +26,10 @@ namespace LC_FB_Hard
             // TestMedianOfSortedArrays();
             // TestWordBreak();
             // TestWordSearch();
-            TestInsertInterval();
+            // TestInsertInterval();
+            // TestDeque();
+            // TestSlidingWindowMax();
+            TestRemoveInvalidParentheses();
         }
 
         public static void TestRegexMatching()
@@ -374,6 +377,47 @@ namespace LC_FB_Hard
             foreach (InsertInterval.Interval inter in intervals){
                 Console.WriteLine("[{0}, {1}]", inter.Start, inter.End);
             }
+        }
+
+        private static void TestDeque()
+        {
+            Deque q = new Deque();
+            q.AddFirst(5); 
+            q.AddFirst(4);
+            Console.WriteLine(q.PeekLast());
+            Console.WriteLine(q.PeekFirst());
+            Console.WriteLine(q.PollFirst());
+            Console.WriteLine(q.PollLast());
+            try{
+                Console.WriteLine(q.PollFirst());
+            }
+            catch{
+                Console.WriteLine("Expected an exception for Console.WriteLine(q.PollFirst())");
+            }     
+        }
+
+        private static void TestSlidingWindowMax()
+        {
+            SlidingWindowMax swm = new SlidingWindowMax();
+            int[] result = swm.MaxSlidingWindow(new int[] {1,3,-1,-3,5,3,6,7}, 3);
+            foreach (int r in result) Console.Write(r + ",");
+            Console.WriteLine();
+
+            result = swm.MaxSlidingWindow(new int[] {7,2,4}, 2);
+            foreach (int r in result) Console.Write(r + ",");
+            Console.WriteLine();       
+
+            result = swm.MaxSlidingWindow(new int[] {7,10,20,65,-18,7,4,3}, 3);
+            foreach (int r in result) Console.Write(r + ",");
+            Console.WriteLine();            
+        }
+
+        private static void TestRemoveInvalidParentheses()
+        {
+            string s = "()())()";
+            RemoveInvalidParentheses rm = new RemoveInvalidParentheses();
+            IList<string> result = rm.Remove(s);
+            foreach (string r in result) Console.WriteLine(r);
         }
     }
 }
