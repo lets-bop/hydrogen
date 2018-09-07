@@ -26,6 +26,8 @@ namespace LC_FB_Hard
 {
     public class RemoveInvalidParentheses
     {
+        int maxLengthSoFar = -1;
+
         public IList<string> Remove(string input) {
             IList<string> result = new List<string>();
             Queue<string> q = new Queue<string>();
@@ -36,11 +38,13 @@ namespace LC_FB_Hard
                 string s = q.Dequeue();
                 
                 if (this.IsValidParantheses(s)){
+                    maxLengthSoFar = s.Length;
                     result.Add(s);
                     continue;
                 }
 
                 for (int i = 0; i < s.Length; i++){
+                    if (s.Length < maxLengthSoFar) break;
                     if (s[i] == '(' || s[i] == ')'){
                         string stringWithoutParenthesis = s.Substring(0, i) + s.Substring(i + 1);
                         if (!visisted.Contains(stringWithoutParenthesis)){

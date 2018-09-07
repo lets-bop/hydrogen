@@ -29,7 +29,8 @@ namespace LC_FB_Hard
             // TestInsertInterval();
             // TestDeque();
             // TestSlidingWindowMax();
-            TestRemoveInvalidParentheses();
+            // TestRemoveInvalidParentheses();
+            TestTrappingRainWater();
         }
 
         public static void TestRegexMatching()
@@ -418,6 +419,13 @@ namespace LC_FB_Hard
             RemoveInvalidParentheses rm = new RemoveInvalidParentheses();
             IList<string> result = rm.Remove(s);
             foreach (string r in result) Console.WriteLine(r);
+        }
+
+        private static void TestTrappingRainWater()
+        {
+            int[] input = new int[] {0,1,0,2,1,0,1,3,2,1,2,1};
+            TrappingRainWater t = new TrappingRainWater();
+            Console.WriteLine("Expected: 6. Actual: {0}", t.Trap(input));
         }
     }
 }
