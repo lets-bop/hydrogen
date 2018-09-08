@@ -30,7 +30,8 @@ namespace LC_FB_Hard
             // TestDeque();
             // TestSlidingWindowMax();
             // TestRemoveInvalidParentheses();
-            TestTrappingRainWater();
+            // TestTrappingRainWater();
+            TestBinarySearchTree();
         }
 
         public static void TestRegexMatching()
@@ -426,6 +427,51 @@ namespace LC_FB_Hard
             int[] input = new int[] {0,1,0,2,1,0,1,3,2,1,2,1};
             TrappingRainWater t = new TrappingRainWater();
             Console.WriteLine("Expected: 6. Actual: {0}", t.Trap(input));
+        }
+
+        private static void TestBinarySearchTree()
+        {
+            Console.WriteLine("Q1");
+            BinarySearchTree bst = new BinarySearchTree(new string[] {"3","1","4",null,null,"2"});
+            RecoverBST recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);
+            Console.WriteLine("Expected: Swapping 3 and 2");
+
+            Console.WriteLine("Q2");
+            bst = new BinarySearchTree(new string[] {"1","3",null,null,"2"});
+            recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);
+            Console.WriteLine("Expected: Swapping 3 and 1");
+
+            Console.WriteLine("Q3");
+            bst = new BinarySearchTree(new string[] {"2","3","1"});
+            recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);
+            Console.WriteLine("Expected: Swapping 3 and 1");
+
+            Console.WriteLine("Q4");
+            bst = new BinarySearchTree(new string[] {"1","3",null,"2",null,null,null,"4"});
+            recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);            
+            Console.WriteLine("Expected: Swapping 1 and 4");
+
+            Console.WriteLine("Q5");
+            bst = new BinarySearchTree(new string[] {"2","3",null,"1",null,null,null,null,"4"});
+            recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);            
+            Console.WriteLine("Expected: Swapping 4 and 2");
+
+            Console.WriteLine("Q6");
+            bst = new BinarySearchTree(new string[] {"146","71","-13","55",null,"231","399","321",null,null,null,null,null,"-33"});
+            recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);
+            Console.WriteLine("Expected: Swapping 321 and -13");
+
+            Console.WriteLine("Q7");
+            bst = new BinarySearchTree(new string[] {"3","4","1",null,"2"});
+            recover = new RecoverBST();
+            recover.RecoverTree(bst.Root);
+            Console.WriteLine("Expected: Swapping 1 and 4");            
         }
     }
 }
