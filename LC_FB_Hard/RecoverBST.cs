@@ -6,40 +6,27 @@ namespace LC_FB_Hard
 {
     public class RecoverBST
     {
-        BinarySearchTree.TreeNode node1 = null;
-        BinarySearchTree.TreeNode node1Pair = null;
-
-        BinarySearchTree.TreeNode node2 = null;
-        BinarySearchTree.TreeNode node2Pair = null;        
+        HashSet<BinarySearchTree.TreeNode> nodes = new HashSet<BinarySearchTree.TreeNode>();
 
         public void RecoverTree(BinarySearchTree.TreeNode root) {
             this.IsBst(root, null, null, null);
+            BinarySearchTree.TreeNode minNode = null;
+            BinarySearchTree.TreeNode maxNode = null;
 
-            if (node1 != null && node2 != null){
-                // Swap the min and max nodes
-                BinarySearchTree.TreeNode minNode = node1;
-                BinarySearchTree.TreeNode maxNode = node1;
-                if (node1Pair != null && node1Pair.val < minNode.val) minNode = node1Pair;
-                if (node2.val < minNode.val) minNode = node2;
-                if (node2Pair != null && node2Pair.val < minNode.val) minNode = node2Pair;
-
-                if (node1Pair != null && node1Pair.val > maxNode.val) maxNode = node1Pair;
-                if (node2.val > maxNode.val) maxNode = node2;
-                if (node2Pair != null && node2Pair.val > maxNode.val) maxNode = node2Pair;
-
-                node1 = minNode;
-                node2 = maxNode;                
-            }
-            else{
-                node2 = node1Pair;
-            }
+            foreach (BinarySearchTree.TreeNode node in this.nodes){
+                if (minNode == null && maxNode == null){
+                    minNode = maxNode = node;
+                }
+                if (node.val < minNode.val) minNode = node;
+                if (node.val > maxNode.val) maxNode = node;
+            }            
 
             // Swap
-            int temp = node1.val;
-            node1.val = node2.val;
-            node2.val = temp;
+            int temp = minNode.val;
+            minNode.val = maxNode.val;
+            maxNode.val = temp;
 
-            Console.WriteLine("Swapping {0} and {1}", node1.val, node2.val);
+            Console.WriteLine("Swapping {0} and {1}", minNode.val, maxNode.val);
         }
 
         private void IsBst(
@@ -52,26 +39,14 @@ namespace LC_FB_Hard
 
             if (minNode != null){
                 if (node.val < minNode.val){
-                    if (this.node1 == null){
-                        this.node1Pair = minNode;
-                        this.node1 = node;
-                    }
-                    else if (this.node2 == null){
-                        this.node2Pair = minNode;
-                        this.node2 = node;
-                    }
+                    this.nodes.Add(node);
+                    this.nodes.Add(minNode);
                 }
             }
             if (maxNode != null){
                 if (node.val > maxNode.val){
-                    if (this.node1 == null){
-                        this.node1Pair = maxNode;
-                        this.node1 = node;
-                    }
-                    else if (this.node2 == null){
-                        this.node2Pair = maxNode;
-                        this.node2 = node;
-                    }
+                    this.nodes.Add(node);
+                    this.nodes.Add(maxNode);
                 }                 
             }      
 

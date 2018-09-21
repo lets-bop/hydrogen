@@ -31,7 +31,8 @@ namespace LC_FB_Hard
             // TestSlidingWindowMax();
             // TestRemoveInvalidParentheses();
             // TestTrappingRainWater();
-            TestBinarySearchTree();
+            // TestRecoverBST();
+            TestFrogJump();
         }
 
         public static void TestRegexMatching()
@@ -429,7 +430,7 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 6. Actual: {0}", t.Trap(input));
         }
 
-        private static void TestBinarySearchTree()
+        private static void TestRecoverBST()
         {
             Console.WriteLine("Q1");
             BinarySearchTree bst = new BinarySearchTree(new string[] {"3","1","4",null,null,"2"});
@@ -465,13 +466,19 @@ namespace LC_FB_Hard
             bst = new BinarySearchTree(new string[] {"146","71","-13","55",null,"231","399","321",null,null,null,null,null,"-33"});
             recover = new RecoverBST();
             recover.RecoverTree(bst.Root);
-            Console.WriteLine("Expected: Swapping 321 and -13");
+            Console.WriteLine("Expected: Swapping 321 and -33");
 
             Console.WriteLine("Q7");
             bst = new BinarySearchTree(new string[] {"3","4","1",null,"2"});
             recover = new RecoverBST();
             recover.RecoverTree(bst.Root);
             Console.WriteLine("Expected: Swapping 1 and 4");            
+        }
+
+        public static void TestFrogJump()
+        {
+            FrogJump fj = new FrogJump();
+            Console.WriteLine("Expected: True. Actual: {0}", fj.CanCross(new int[]{0,1,3,5,6,8,12,17}));
         }
     }
 }
