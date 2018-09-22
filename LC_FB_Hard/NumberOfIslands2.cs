@@ -66,10 +66,10 @@ namespace LC_FB_Hard
                 int myRoot = uf.Find(elementId);
                 this.connectedLandIds.Add(myRoot);
 
-                neighbors.Add((row+1) * n + col);
-                neighbors.Add((row-1) * n + col);
-                neighbors.Add(row * n + (col+1));
-                neighbors.Add(row * n + (col-1));
+                if (this.IsValid(row + 1, col, m , n)) neighbors.Add((row+1) * n + col);
+                if (this.IsValid(row - 1, col, m , n)) neighbors.Add((row-1) * n + col);
+                if (this.IsValid(row, col + 1, m , n)) neighbors.Add(row * n + (col+1));
+                if (this.IsValid(row, col - 1, m , n)) neighbors.Add(row * n + (col-1));
 
                 foreach(int neighborId in neighbors){
                     if(this.landIds.Contains(neighborId)){
@@ -90,6 +90,12 @@ namespace LC_FB_Hard
             }
 
             return result;
+        }
+
+        private bool IsValid(int row, int col, int maxRows, int maxCols)
+        {
+            if (row >= 0 && row < maxRows && col >= 0 && col < maxCols) return true;
+            return false;
         }     
     }    
 }
