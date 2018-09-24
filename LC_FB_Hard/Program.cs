@@ -34,7 +34,9 @@ namespace LC_FB_Hard
             // TestRecoverBST();
             // TestFrogJump();
             // TestUnionFind();
-            TestNumberOfIslands2();
+            // TestNumberOfIslands2();
+            // TestSplitArrayWithSameAverage();
+            TestCandyProblem();
         }
 
         public static void TestRegexMatching()
@@ -524,8 +526,23 @@ namespace LC_FB_Hard
             islands.NumIslands2(3,3, new int[,] {{0,0}, {0,1}, {1,2}, {2,1}});
             Console.WriteLine("Problem 2");
             islands = new NumberOfIslands2();
-            islands.NumIslands2(3,3, new int[,] {{0,1},{1,2},{2,1},{1,0},{0,2},{0,0},{1,1}});    
-            
+            islands.NumIslands2(3,3, new int[,] {{0,1},{1,2},{2,1},{1,0},{0,2},{0,0},{1,1}});
+        }
+
+        public static void TestSplitArrayWithSameAverage()
+        {
+            SplitArrayWithSameAverage split = new SplitArrayWithSameAverage();
+            Console.WriteLine("Expected: True, returned: " + split.SplitArraySameAverage(new int[] {2, 4, 5, 7, 10 ,14}));
+            Console.WriteLine("Expected: False, returned: " + split.SplitArraySameAverage(new int[] {18, 10, 5, 3}));
+        }
+
+        public static void TestCandyProblem()
+        {
+            CandyProblem cp = new CandyProblem();
+            Console.WriteLine("Expected: 5. Output: " + cp.Candy(new int[]{1,0,2}));
+            Console.WriteLine("Expected: 4. Output: " + cp.Candy(new int[]{1,2,2}));
+            Console.WriteLine("Expected: 13. Output: " + cp.Candy(new int[]{1,2,87,87,87,2,1}));
+
         }
     }
 }
