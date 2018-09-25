@@ -36,7 +36,8 @@ namespace LC_FB_Hard
             // TestUnionFind();
             // TestNumberOfIslands2();
             // TestSplitArrayWithSameAverage();
-            TestCandyProblem();
+            //TestCandyProblem();
+            TestBasicCalculator();
         }
 
         public static void TestRegexMatching()
@@ -542,7 +543,27 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 5. Output: " + cp.Candy(new int[]{1,0,2}));
             Console.WriteLine("Expected: 4. Output: " + cp.Candy(new int[]{1,2,2}));
             Console.WriteLine("Expected: 13. Output: " + cp.Candy(new int[]{1,2,87,87,87,2,1}));
+        }
 
+        public static void TestBasicCalculator()
+        {
+            BasicCalculator bc = new BasicCalculator();
+            Console.WriteLine("Expected: 6. Actual: " + bc.Calculate("2*3"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 5. Actual: " + bc.Calculate("2   +  3"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: -1. Actual: " + bc.Calculate("2 - 3"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 10. Actual: " + bc.Calculate("2* (3   +2)"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 3. Actual: " + bc.Calculate(" 2-1 + 2 "));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 23. Actual: " + bc.Calculate("(1+(4+5+2)-3)+(6+8)"));
         }
     }
 }
