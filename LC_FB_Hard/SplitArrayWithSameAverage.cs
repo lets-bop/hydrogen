@@ -44,15 +44,6 @@ namespace LC_FB_Hard
                 // 11      13      14      16      17      19      21      22      20      23      25      26      28      29      31                                                
                 List<HashSet<int>> subSetSum = new List<HashSet<int>>();
 
-                // calculate the possible sums with 1, 2 .. n -1 elements
-                // HashSet<int> possibleSums = new HashSet<int>();
-                // for (int i = 1; i < A.Length; i++){
-                //     if((sum * i) % A.Length == 0){
-                //          possibleSums.Add((sum * i) / A.Length);
-                //          Console.WriteLine("Possible sum " + (sum * i) / A.Length);
-                //     }
-                // }
-
                 // Prepoulate first row
                 HashSet<int> set = new HashSet<int>();
                 set.Add(0);
