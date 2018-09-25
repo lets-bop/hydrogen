@@ -37,7 +37,8 @@ namespace LC_FB_Hard
             // TestNumberOfIslands2();
             // TestSplitArrayWithSameAverage();
             //TestCandyProblem();
-            TestBasicCalculator();
+            // TestBasicCalculator();
+            TestFirstMissingPositiveNum();
         }
 
         public static void TestRegexMatching()
@@ -564,6 +565,28 @@ namespace LC_FB_Hard
 
             bc = new BasicCalculator();
             Console.WriteLine("Expected: 23. Actual: " + bc.Calculate("(1+(4+5+2)-3)+(6+8)"));
+        }
+
+        public static void TestFirstMissingPositiveNum()
+        {
+            FirstMissingPositiveNum missing = new FirstMissingPositiveNum();
+            Console.WriteLine("Expected: 3. Actual: " + missing.FirstMissingPositive(new int[] {1,2,0}));
+            
+            int result = missing.FirstMissingPositive(new int[] {1});
+            Console.WriteLine("Expected: 2. Actual: " + result);
+            
+            result = missing.FirstMissingPositive(new int[] {1,1});
+            Console.WriteLine("Expected: 2. Actual: " + result);
+
+            result = missing.FirstMissingPositive(new int[] {3,4,-1,1});
+            Console.WriteLine("Expected: 2. Actual: " + result);
+            
+            result = missing.FirstMissingPositive(new int[] {7,8,9,11,12});
+            Console.WriteLine("Expected: 1. Actual: " + result);
+
+            result = missing.FirstMissingPositive(new int[] {2,1});
+            Console.WriteLine("Expected: 3. Actual: " + result);                              
+
         }
     }
 }
