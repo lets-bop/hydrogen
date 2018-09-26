@@ -38,7 +38,8 @@ namespace LC_FB_Hard
             // TestSplitArrayWithSameAverage();
             //TestCandyProblem();
             // TestBasicCalculator();
-            TestFirstMissingPositiveNum();
+            // TestFirstMissingPositiveNum();
+            TestRussianDolls();
         }
 
         public static void TestRegexMatching()
@@ -585,8 +586,26 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 1. Actual: " + result);
 
             result = missing.FirstMissingPositive(new int[] {2,1});
-            Console.WriteLine("Expected: 3. Actual: " + result);                              
+            Console.WriteLine("Expected: 3. Actual: " + result);
+        }
 
+        public static void TestRussianDolls()
+        {
+            int[,] input = new int[,]{{5,4},{6,4},{6,7},{2,3}};
+            RussianDolls rd = new RussianDolls();
+            rd.MaxEnvelopes(input);
+
+            // input = new int[,]{{4,19},{6,16},{7,19},{9,2},{2,14},{9,8},{6,7},{9,19},{6,3},{5,1},{7,14},{20,2},{19,11},{10,12},{16,20},{12,4},{7,16},{10,10},{10,11},{18,1}};
+            // rd = new RussianDolls();
+            // rd.MaxEnvelopes(input);
+
+            // input = new int[,]{{4,5},{4,6},{6,7},{2,3},{1,1}};
+            // rd = new RussianDolls();
+            // rd.MaxEnvelopes(input);
+
+            input = new int[,]{{30,50},{12,2},{3,4},{12,15}};
+            rd = new RussianDolls();
+            rd.MaxEnvelopes(input);
         }
     }
 }
