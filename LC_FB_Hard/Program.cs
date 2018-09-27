@@ -39,6 +39,7 @@ namespace LC_FB_Hard
             //TestCandyProblem();
             // TestBasicCalculator();
             // TestFirstMissingPositiveNum();
+            // TestLongestIncreasingSubsequence();
             TestRussianDolls();
         }
 
@@ -589,23 +590,51 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 3. Actual: " + result);
         }
 
+        public static void TestLongestIncreasingSubsequence()
+        {
+            int[] nums = new int[]{9,1,3,7,5,6,20};
+            Console.WriteLine("Expected: 5. Actual: " + (new LongestIncreasingSubsequence()).LIS(nums));
+
+            nums = new int[]{9, 1, 10, 2, 3, 4};
+            Console.WriteLine("Expected: 4. Actual: " + (new LongestIncreasingSubsequence()).LIS(nums));
+
+            nums = new int[]{1,1,1,1,1};
+            Console.WriteLine("Expected: 1. Actual: " + (new LongestIncreasingSubsequence()).LIS(nums));
+
+            nums = new int[]{10, 9, 2, 5, 3, 7, 101, 18};
+            Console.WriteLine("Expected: 4. Actual: " + (new LongestIncreasingSubsequence()).LIS(nums));                   
+        }        
+
         public static void TestRussianDolls()
         {
             int[,] input = new int[,]{{5,4},{6,4},{6,7},{2,3}};
             RussianDolls rd = new RussianDolls();
-            rd.MaxEnvelopes(input);
+            Console.WriteLine("Expected: 3. Actual: " + rd.MaxEnvelopes(input));
 
-            // input = new int[,]{{4,19},{6,16},{7,19},{9,2},{2,14},{9,8},{6,7},{9,19},{6,3},{5,1},{7,14},{20,2},{19,11},{10,12},{16,20},{12,4},{7,16},{10,10},{10,11},{18,1}};
-            // rd = new RussianDolls();
-            // rd.MaxEnvelopes(input);
+            input = new int[,]{{4,19},{6,16},{7,19},{9,2},{2,14},{9,8},{6,7},{9,19},{6,3},{5,1},{7,14},{20,2},{19,11},{10,12},{16,20},{12,4},{7,16},{10,10},{10,11},{18,1}};
+            rd = new RussianDolls();
+            Console.WriteLine("Expected: 8. Actual: " + rd.MaxEnvelopes(input));
 
-            // input = new int[,]{{4,5},{4,6},{6,7},{2,3},{1,1}};
-            // rd = new RussianDolls();
-            // rd.MaxEnvelopes(input);
+            input = new int[,]{{4,5},{4,6},{6,7},{2,3},{1,1}};
+            rd = new RussianDolls();
+            Console.WriteLine("Expected: 4. Actual: " + rd.MaxEnvelopes(input));
 
             input = new int[,]{{30,50},{12,2},{3,4},{12,15}};
             rd = new RussianDolls();
-            rd.MaxEnvelopes(input);
+            Console.WriteLine("Expected: 3. Actual: " + rd.MaxEnvelopes(input));
+
+            input = new int[,]{{1,3},{3,10},{6,12},{6,11},{8,4},{9,5},{10,6}};
+            rd = new RussianDolls();
+            Console.WriteLine("Expected: 4. Actual: " + rd.MaxEnvelopes(input));    
+
+            input = new int[,]{{1,3},{3,10},{6,12},{6,11},{8,4},{9,13}};
+            rd = new RussianDolls();
+            Console.WriteLine("Expected: 4. Actual: " + rd.MaxEnvelopes(input));
+
+            input = new int[,]{{15,8},{2,20},{2,14},{4,17},{8,19},{8,9},{5,7},{11,19},{8,11},{13,11},{2,13},{11,19},{8,11},{13,11},{2,13},{11,19},{16,1},{18,13},{14,17},{18,19}};
+            rd = new RussianDolls();
+            Console.WriteLine("Expected: 5. Actual: " + rd.MaxEnvelopes(input));            
+
         }
     }
 }
