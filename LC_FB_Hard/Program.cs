@@ -40,7 +40,8 @@ namespace LC_FB_Hard
             // TestBasicCalculator();
             // TestFirstMissingPositiveNum();
             // TestLongestIncreasingSubsequence();
-            TestRussianDolls();
+            //TestRussianDolls();
+            TestLongestIncreasingPathMatrix();
         }
 
         public static void TestRegexMatching()
@@ -633,8 +634,14 @@ namespace LC_FB_Hard
 
             input = new int[,]{{15,8},{2,20},{2,14},{4,17},{8,19},{8,9},{5,7},{11,19},{8,11},{13,11},{2,13},{11,19},{8,11},{13,11},{2,13},{11,19},{16,1},{18,13},{14,17},{18,19}};
             rd = new RussianDolls();
-            Console.WriteLine("Expected: 5. Actual: " + rd.MaxEnvelopes(input));            
+            Console.WriteLine("Expected: 5. Actual: " + rd.MaxEnvelopes(input));
+        }
 
+        public static void TestLongestIncreasingPathMatrix()
+        {
+            int[,] matrix = new int[,] {{1,2,3,4},{-1,-1,6,5},{-1,-1,-1,-1}};
+            LongestIncreasingPathMatrix longestIncreasingPathMatrix = new LongestIncreasingPathMatrix();
+            Console.WriteLine("Expected: 6, Actual: " + longestIncreasingPathMatrix.LongestIncreasingPath(matrix)); 
         }
     }
 }
