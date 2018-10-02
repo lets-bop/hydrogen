@@ -13,31 +13,34 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-class MinSizeSubarraySum
+namespace LC_FB_Medium
 {
-    public static int Find(int[] arr, int s)
+    class MinSizeSubarraySum
     {
-        int minSize = int.MaxValue;
-        int start = 0;
-        int end = 0;
-        int sum = 0;
-
-        while(true)
+        public static int Find(int[] arr, int s)
         {
-            if (start == end && start == arr.Length) break;
+            int minSize = int.MaxValue;
+            int start = 0;
+            int end = 0;
+            int sum = 0;
 
-            if (sum <= s){
-                if (end == arr.Length) sum -= arr[start++]; // corner case
-                else sum += arr[end++];
+            while(true)
+            {
+                if (start == end && start == arr.Length) break;
+
+                if (sum <= s){
+                    if (end == arr.Length) sum -= arr[start++]; // corner case
+                    else sum += arr[end++];
+                }
+                else if (sum > s) sum -= arr[start++];
+                
+                if (sum >= s) minSize = Math.Min(minSize, end == start ? 1 : end - start);
+                
+                if (start > end) end = start;
             }
-            else if (sum > s) sum -= arr[start++];
-            
-            if (sum >= s) minSize = Math.Min(minSize, end == start ? 1 : end - start);
-            
-            if (start > end) end = start;
-        }
 
-        if (minSize == int.MaxValue) return 0;
-        return minSize;
+            if (minSize == int.MaxValue) return 0;
+            return minSize;
+        }
     }
 }

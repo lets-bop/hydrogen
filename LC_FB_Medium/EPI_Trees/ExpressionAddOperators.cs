@@ -29,27 +29,27 @@ using System.Text;
 
 public class ExpressionAddOperators
 {
-    public IList<string> AddOperators(string num, int target) {        
-    }
+    // public IList<string> AddOperators(string num, int target) {        
+    // }
 
-    public Dictionary<int, IList<string>> SplitAndProcess(
-        string num, 
-        int target,
-        int start,
-        int end)
-    {
-        Dictionary<int, IList<string>> result = new Dictionary<int, IList<string>>();
+    // public Dictionary<int, IList<string>> SplitAndProcess(
+    //     string num, 
+    //     int target,
+    //     int start,
+    //     int end)
+    // {
+    //     Dictionary<int, IList<string>> result = new Dictionary<int, IList<string>>();
 
-        for (int i = start; i < end; i++)
-        {
-            string partOne = num.Substring(start, i + 1);
-            string partTwo = num.Substring(i + 1);
-            int partOneNum = int.Parse(partOne);
-            int partTwoNum = int.Parse(partTwo);
+    //     for (int i = start; i < end; i++)
+    //     {
+    //         string partOne = num.Substring(start, i + 1);
+    //         string partTwo = num.Substring(i + 1);
+    //         int partOneNum = int.Parse(partOne);
+    //         int partTwoNum = int.Parse(partTwo);
 
-            int tempCalc = partOneNum + partTwoNum;
-            if (result.ContainsKey(tempCalc))
-                result[tempCalc].Add(partOne + "+" + partTwo);
-        }
-    }
+    //         int tempCalc = partOneNum + partTwoNum;
+    //         if (result.ContainsKey(tempCalc))
+    //             result[tempCalc].Add(partOne + "+" + partTwo);
+    //     }
+    // }
 }
