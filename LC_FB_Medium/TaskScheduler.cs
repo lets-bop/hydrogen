@@ -19,10 +19,11 @@ namespace LC_FB_Medium
             int time = 0;
             while(taskMap[25] > 0){
                 int i = 0;
-                while(i < n){
+                while(i <= n){
                     if (taskMap[25] <= 0) break;
-                    if (taskMap[25 - i] > 0) taskMap[25 - i]--;
+                    if (i < 26 && taskMap[25 - i] > 0) taskMap[25 - i]--;
                     time++;
+                    i++;
                 }
 
                 Array.Sort(taskMap);
