@@ -3,42 +3,24 @@ using System.Collections.Generic;
 
 namespace LC_FB_Medium
 {
-    class Interval : IComparable
-    {
-        public int Start;
-        public int End;
-
-        public Interval(int start, int end)
-        {
-            this.Start = start;
-            this.End = end;
-        }
-
-        public int CompareTo(object obj)
-        {
-            Interval other = (Interval) obj;
-            if (this.Start == other.Start && this.End == other.End)
-                return 0;
-            if (this.Start < other.Start)
-                return -1;
-            else if (this.Start == other.Start && this.End < other.End)
-                return -1;
-            return 1;
-        }
+    public class Interval {
+        public int start;
+        public int end;
+        public Interval() { start = 0; end = 0; }
+        public Interval(int s, int e) { start = s; end = e; }
     }
 
     class MergeIntervals
     {
-        public static List<Interval> Merge(List<Interval> intervals)
+        public IList<Interval> Merge(IList<Interval> intervals1)
         {
-            if (intervals == null)
-                return null;
+            IList<Interval> merged = new List<Interval>();
+            if (intervals1 == null || intervals1.Count == 0) return merged;
+            
+            List<Interval> intervals = new List<Interval>(intervals1);
+            intervals.Sort(CompareIntervals);
 
-            intervals.Sort();
-
-            List<Interval> merged = new List<Interval>();
             Interval prevInterval = null;
-
             foreach (Interval interval in intervals)
             {
                 if (prevInterval == null)
@@ -47,9 +29,8 @@ namespace LC_FB_Medium
                     continue;
                 }
 
-                if(prevInterval.End >= interval.Start)
-                {
-                    prevInterval.End = interval.End;
+                if(prevInterval.end >= interval.start){
+                    if (prevInterval.end < interval.end) prevInterval.end = interval.end;
                 }
                 else
                 {
@@ -61,6 +42,11 @@ namespace LC_FB_Medium
             merged.Add(prevInterval);
 
             return merged;
+        }
+
+        public static int CompareIntervals(Interval i1, Interval i2){
+            if (i1.start != i2.start) return i1.start - i2.start;
+            return i1.end - i2.end;
         }
     }
 }

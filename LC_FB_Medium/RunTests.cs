@@ -13,7 +13,8 @@ namespace LC_FB_Medium
             // ExclusiveTimeFunctionsTest();
             // NumberOfIslandsTest();
             // GenerateParenthesisTest();
-            MinMeetingRoomsTest();
+            // MinMeetingRoomsTest();
+            MergeIntervalsTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -155,6 +156,23 @@ namespace LC_FB_Medium
             int1 = new MinMeetingRooms.Interval(3,19);
             intervals[5] = int1;
             Console.WriteLine("Expected: 4. Actual " + mr.FindMinimum(intervals));            
+        }
+
+        public static void MergeIntervalsTest(){
+            IList<Interval> intervals = new List<Interval>();
+            Interval i1 = new Interval(2, 6);
+            intervals.Add(i1);
+            i1 = new Interval(5, 10);
+            intervals.Add(i1);
+            i1 = new Interval(1, 4);
+            intervals.Add(i1);
+            i1 = new Interval(12, 15);
+            intervals.Add(i1);
+            MergeIntervals merge = new MergeIntervals();
+            IList<Interval> merged = merge.Merge(intervals);
+            foreach (Interval i in merged)
+                Console.Write("[{0}, {1}]\t", i.start, i.end);
+            Console.WriteLine();
         }
     }    
 }
