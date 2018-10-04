@@ -9,9 +9,11 @@ namespace LC_FB_Medium
         public static void Run()
         {
             // MinSizeSubarraySumTest();
-            //TaskSchedulerTest();
-            ExclusiveTimeFunctionsTest();
-            NumberOfIslandsTest();
+            // TaskSchedulerTest();
+            // ExclusiveTimeFunctionsTest();
+            // NumberOfIslandsTest();
+            // GenerateParenthesisTest();
+            MinMeetingRoomsTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -107,10 +109,52 @@ namespace LC_FB_Medium
                 {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'}};
 
             Console.WriteLine("Expected: 3. Actual: " + n.NumIslands(grid));
+        }
 
+        public static void GenerateParenthesisTest()
+        {
+            GenerateParenthesis gp = new GenerateParenthesis();
+            Console.WriteLine("Generate for 2");
+            IList<string> result = gp.Generate(2);
+            foreach(string r in result) Console.WriteLine(r);
 
+            Console.WriteLine("Generate for 3");
+            result = gp.Generate(3);
+            foreach(string r in result) Console.WriteLine(r);
 
+            Console.WriteLine("Generate for 4");
+            result = gp.Generate(4);
+            foreach(string r in result) Console.WriteLine(r);
+        }
 
+        public static void MinMeetingRoomsTest(){
+            MinMeetingRooms mr = new MinMeetingRooms();
+            MinMeetingRooms.Interval[] intervals = new MinMeetingRooms.Interval[3];
+            MinMeetingRooms.Interval int1 = new MinMeetingRooms.Interval(5,10);
+            intervals[0] = int1;
+            int1 = new MinMeetingRooms.Interval(15,20);
+            intervals[1] = int1;
+            int1 = new MinMeetingRooms.Interval(0,30);
+            intervals[2] = int1;
+            Console.WriteLine("Expected: 2. Actual " + mr.FindMinimum(intervals));
+
+            // (1, 10), (2, 7), (3, 19), (8, 12), (10, 20)
+            mr = new MinMeetingRooms();
+            intervals = new MinMeetingRooms.Interval[6];
+            
+            int1 = new MinMeetingRooms.Interval(10,20);
+            intervals[0] = int1;
+            int1 = new MinMeetingRooms.Interval(2,7);
+            intervals[1] = int1;
+            int1 = new MinMeetingRooms.Interval(11,30);
+            intervals[2] = int1;
+            int1 = new MinMeetingRooms.Interval(8,12);
+            intervals[3] = int1;
+            int1 = new MinMeetingRooms.Interval(1,10);
+            intervals[4] = int1;
+            int1 = new MinMeetingRooms.Interval(3,19);
+            intervals[5] = int1;
+            Console.WriteLine("Expected: 4. Actual " + mr.FindMinimum(intervals));            
         }
     }    
 }
