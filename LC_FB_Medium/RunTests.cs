@@ -14,7 +14,9 @@ namespace LC_FB_Medium
             // NumberOfIslandsTest();
             // GenerateParenthesisTest();
             // MinMeetingRoomsTest();
-            MergeIntervalsTest();
+            // MergeIntervalsTest();
+            // WordSearchTest();
+            BasicCalculatorTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -173,6 +175,30 @@ namespace LC_FB_Medium
             foreach (Interval i in merged)
                 Console.Write("[{0}, {1}]\t", i.start, i.end);
             Console.WriteLine();
+        }
+
+        public static void WordSearchTest()
+        {
+            WordSearch wordSearch = new WordSearch();
+            char[,] board = new char[,]
+                    {{'A','B','C','E'},
+                    {'S','F','C','S'},
+                    {'A','D','E','E'}};
+            Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "ABCCED"));
+
+            board = new char[,] {{'C','A','A'},{'A','A','A'},{'B','C','D'}};
+            Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "AAB"));
+
+        }
+
+        public static void BasicCalculatorTest()
+        {
+            BasicCalculator bc = new BasicCalculator();
+            Console.WriteLine("Expected: 7. Actual " + bc.Calculate("3 + 2 * 2"));
+            Console.WriteLine("Expected: 10. Actual " + bc.Calculate(" 2 + 2 + 2 * 3"));
+            Console.WriteLine("Expected: 5. Actual " + bc.Calculate(" 3+5 / 2 "));
+            Console.WriteLine("Expected: 28. Actual: " + bc.Calculate("1*2-3/4+5*6-7*8+9/10"));
+            Console.WriteLine("Expected: 27. Actual: " + bc.Calculate("100000000/1/2/3/4/5/6/7/8/9/10"));
         }
     }    
 }
