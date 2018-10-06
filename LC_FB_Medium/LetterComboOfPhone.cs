@@ -1,30 +1,37 @@
 /*
-Write a program that takes as input a phone number as a string of digits, 
-and returns all possible character sequences that correspond to the phone 
-number. The character sequences need not be legal words or phrases.
+Given a string containing digits from 2-9 inclusive, return all possible letter 
+combinations that the number could represent.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. 
+Note that 1 does not map to any letters.
+
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 */
-
-
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LC_FB_Medium
 {
-    class PhoneMnemonics
+    public class LetterComboOfPhone
     {
-        public static List<string> Execute(string number)
+        public IList<string> LetterCombinations(string number)
         {
-            Dictionary<char, List<string>> numberToLettersMap = GetMap();
+            Dictionary<char, List<string>> numberToLettersMap = this.GetMap();
             List<string> finalList = new List<string>();
             if (string.IsNullOrEmpty(number)) return finalList;
             StringBuilder sb = new StringBuilder();
-            RecHelper(number, sb, 0, numberToLettersMap, finalList);
-            foreach (string s in finalList) Console.WriteLine(s);
+            this.RecHelper(number, sb, 0, numberToLettersMap, finalList);
             return finalList;
         }
 
-        public static void RecHelper(string number, StringBuilder sb, int startIndex, Dictionary<char, List<string>> numberToLettersMap, List<string> finalList)
+        public void RecHelper(
+            string number, 
+            StringBuilder sb, 
+            int startIndex, 
+            Dictionary<char, List<string>> numberToLettersMap, 
+            List<string> finalList)
         {
             if (startIndex == number.Length)
             {
@@ -50,7 +57,7 @@ namespace LC_FB_Medium
             }     
         }
 
-        private static Dictionary<char, List<string>> GetMap()
+        private Dictionary<char, List<string>> GetMap()
         {
             Dictionary<char, List<string>> numberToLettersMap = new Dictionary<char, List<string>>();
             numberToLettersMap.Add('2', new List<string>() {"a","b","c"});
@@ -62,6 +69,6 @@ namespace LC_FB_Medium
             numberToLettersMap.Add('8', new List<string>() {"t","u","v"});
             numberToLettersMap.Add('9', new List<string>() {"w","x","y","z"});
             return numberToLettersMap;
-        }
+        }        
     }
 }

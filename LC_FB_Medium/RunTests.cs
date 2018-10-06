@@ -16,7 +16,10 @@ namespace LC_FB_Medium
             // MinMeetingRoomsTest();
             // MergeIntervalsTest();
             // WordSearchTest();
-            BasicCalculatorTest();
+            // BasicCalculatorTest();
+            // PalindromePermutationTest();
+            // LetterComboOfPhoneTest();
+            ReorganizeStringTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -199,6 +202,29 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 5. Actual " + bc.Calculate(" 3+5 / 2 "));
             Console.WriteLine("Expected: 28. Actual: " + bc.Calculate("1*2-3/4+5*6-7*8+9/10"));
             Console.WriteLine("Expected: 27. Actual: " + bc.Calculate("100000000/1/2/3/4/5/6/7/8/9/10"));
+        }
+
+        public static void PalindromePermutationTest()
+        {
+            PalindromePermutation pp = new PalindromePermutation();
+            pp.GeneratePalindromes("malayyyalam");
+            pp.GeneratePalindromes("malayalams");
+        }
+
+        public static void LetterComboOfPhoneTest()
+        {
+            LetterComboOfPhone lcp = new LetterComboOfPhone();
+            IList<string> result = lcp.LetterCombinations("23");
+            Console.Write("Expected: ad ae af bd be bf cd ce cf. Actual: ");
+            foreach (string s in result) Console.Write(s + " ");
+            Console.WriteLine();
+        }
+
+        public static void ReorganizeStringTest()
+        {
+            ReorganizeString rs = new ReorganizeString();
+            Console.WriteLine("Expected: aba. Actual: " + rs.Reorganize("aab"));
+            Console.WriteLine("Expected: ''. Actual: " + rs.Reorganize("aaab"));
         }
     }    
 }
