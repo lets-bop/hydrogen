@@ -225,6 +225,8 @@ namespace LC_FB_Medium
             ReorganizeString rs = new ReorganizeString();
             Console.WriteLine("Expected: aba. Actual: " + rs.Reorganize("aab"));
             Console.WriteLine("Expected: ''. Actual: " + rs.Reorganize("aaab"));
+            Console.WriteLine("Expected: 'vovlv'. Actual: " + rs.Reorganize("vvvlo"));
+            Console.WriteLine("Expected: 'rsrbrxrirararbrxrlrirzryrgrprorsrvrkrhrernrdr'. Actual: " + rs.Reorganize("rvhrlpiesrrryrbrrrrrxrkirranrrrrbdrrzgasoxrrr"));
         }
     }    
 }

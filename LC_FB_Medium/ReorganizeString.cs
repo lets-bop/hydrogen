@@ -48,16 +48,19 @@ namespace LC_FB_Medium
                 Node node = new Node(key, value);
                 this.pq[currentLength] = node;
                 this.currentLength++;
+                this.Swim();
+                if (!this.IsMaxHeap()) 
+                    throw new Exception(string.Format("MaxHeapPropertyFailed:{0}, {1}", key, value));
             }
 
             internal Tuple<int, char> DeleteMax(){
                 Tuple<int, char> tup = new Tuple<int, char>(this.pq[0].key, this.pq[0].val);
                 this.currentLength--;
-                if (this.currentLength != 0){
-                    this.pq[0] = this.pq[currentLength];
-                    this.Sink();
-                }
-
+                this.Swap(this.currentLength, 0);
+                this.Sink();
+                this.pq[this.currentLength] = null;
+                if (!this.IsMaxHeap()) 
+                    throw new Exception("MaxHeapPropertyFailed in deletemax");                
                 return tup;
             }
 
@@ -68,26 +71,25 @@ namespace LC_FB_Medium
 
             internal void Swim(){
                 int n = this.currentLength - 1;
-                while(n > 0 && this.pq[((n+1) / 2) - 1].key < this.pq[n].key){
-                    this.Swap(n, n /2);
-                    n /= 2;
+                while(n > 0 && this.pq[(n-1) / 2].key < this.pq[n].key){
+                    this.Swap(n, (n-1) / 2);
+                    n = (n-1) / 2;
                 }
             }
 
             internal void Sink(){
                 int n = 0;
-                int largestChildIndex = n * 2 + 1;
-                while (n < this.currentLength && largestChildIndex < this.currentLength){
-                    int otherChildIndex = n * 2 + 2;
-                    if (otherChildIndex < this.currentLength){
-                        if (this.pq[largestChildIndex].key < this.pq[otherChildIndex].key)
-                            largestChildIndex = otherChildIndex;
+                while (2 * n + 1 < this.currentLength){
+                    int largestChildIndex = n * 2 + 1;
+                    if (largestChildIndex + 1 < this.currentLength){
+                        if (this.pq[largestChildIndex].key < this.pq[largestChildIndex + 1].key)
+                            largestChildIndex++;
                     }
                     if (this.pq[n].key < this.pq[largestChildIndex].key){
                         this.Swap(n, largestChildIndex);
                         n = largestChildIndex;
-                        largestChildIndex = n * 2 + 1;
                     }
+                    else break;
                 }
             }
 
@@ -97,11 +99,20 @@ namespace LC_FB_Medium
                 this.pq[j] = temp;
             }
 
+            internal bool IsMaxHeap(){
+                int n = 0;
+                while(n < this.currentLength){
+                    if (2*n+1 < this.currentLength && this.pq[n].key < this.pq[2*n+1].key) return false;
+                    if (2*n+2 < this.currentLength && this.pq[n].key < this.pq[2*n+2].key) return false;
+                    n++;
+                }
+
+                return true;
+            }
+
         }
 
         public string Reorganize(string s) {
-            MaxPQ pq = new MaxPQ(s.Length);
-
             Dictionary<char, int> charCount = new Dictionary<char, int>();
             for(int i = 0; i < s.Length; i++){
                 if(charCount.ContainsKey(s[i])) charCount[s[i]]++;
@@ -114,6 +125,8 @@ namespace LC_FB_Medium
                     if (charCount[key] > 1) return "";
                 }
             }
+
+            MaxPQ pq = new MaxPQ(charCount.Count);
 
             foreach(char key in charCount.Keys){
                 pq.Add(charCount[key], key);
