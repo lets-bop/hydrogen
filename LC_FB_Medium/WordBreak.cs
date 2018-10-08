@@ -23,3 +23,33 @@ Example 3:
 Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
 */
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace LC_FB_Medium
+{
+    public class WordBreak
+    {
+        public bool Check(string word, IList<string> wordDict){
+            HashSet<string> dict = new HashSet<string>(wordDict);
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(0);
+
+            while(queue.Count > 0){
+                int start = queue.Dequeue();
+                if (start == word.Length) return true;
+                StringBuilder sb = new StringBuilder();
+                sb.Append(word[start]);
+                if (dict.Contains(sb.ToString())) queue.Enqueue(start + 1);
+                for (int end = start + 1; end - start < 10 && end < word.Length; end++){
+                    sb.Append(word[end]);
+                    if (dict.Contains(sb.ToString())) queue.Enqueue(end + 1);
+                }
+            }
+
+            return false;
+        }
+    }
+}
