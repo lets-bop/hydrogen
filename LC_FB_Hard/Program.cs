@@ -43,6 +43,7 @@ namespace LC_FB_Hard
             //TestRussianDolls();
             // TestLongestIncreasingPathMatrix();
             TestSurroundedRegion();
+            // TestInterleavingString();
         }
 
         public static void TestRegexMatching()
@@ -702,17 +703,35 @@ namespace LC_FB_Hard
             //     Console.WriteLine();
             // }
 
-            matrix = new char[,] {{'X','X','X','X','O','O','X','X','O'},{'O','O','O','O','X','X','O','O','X'},{'X','O','X','O','O','X','X','O','X'},{'O','O','X','X','X','O','O','O','O'},{'X','O','O','X','X','X','X','X','O'},{'O','O','X','O','X','O','X','O','X'},{'O','O','O','X','X','O','X','O','X'},{'O','O','O','X','O','O','O','X','O'},{'O','X','O','O','O','X','O','X','O'}};
+            matrix = new char[,] {{'X','O','X','O','X','O','O','O','X','O'},{'X','O','O','X','X','X','O','O','O','X'},{'O','O','O','O','O','O','O','O','X','X'},{'O','O','O','O','O','O','X','O','O','X'},{'O','O','X','X','O','X','X','O','O','O'},{'X','O','O','X','X','X','O','X','X','O'},{'X','O','X','O','O','X','X','O','X','O'},{'X','X','O','X','X','O','X','O','O','X'},{'O','O','O','O','X','O','X','O','X','O'},{'X','X','O','X','X','X','X','O','O','O'}};
             sr.Solve(matrix);
             for(int i = 0; i < matrix.GetLength(0); i++){
                 for (int j = 0; j < matrix.GetLength(1); j++){
                     Console.Write(matrix[i,j]);
                 }
                 Console.WriteLine();
-            }            
+            }
 
-            
+            // matrix = new char[,] {{'X','X','X','X','O','O','X','X','O'},{'O','O','O','O','X','X','O','O','X'},{'X','O','X','O','O','X','X','O','X'},{'O','O','X','X','X','O','O','O','O'},{'X','O','O','X','X','X','X','X','O'},{'O','O','X','O','X','O','X','O','X'},{'O','O','O','X','X','O','X','O','X'},{'O','O','O','X','O','O','O','X','O'},{'O','X','O','O','O','X','O','X','O'}};
+            // sr.Solve(matrix);
+            // for(int i = 0; i < matrix.GetLength(0); i++){
+            //     for (int j = 0; j < matrix.GetLength(1); j++){
+            //         Console.Write(matrix[i,j]);
+            //     }
+            //     Console.WriteLine();
+            // }
 
+        }
+
+        public static void TestInterleavingString()
+        {
+            InterleavingString intS = new InterleavingString();
+            Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("","",""));
+            Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aabcc","dbbca","aadbbcbcac"));
+            Console.WriteLine("Expected: False. Actual {0}", intS.IsInterleave("aabcc","dbbca","aadbbbaccc"));
+            Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aa","ab","aaba"));
+            Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aab","axy","aaxaby"));
+            Console.WriteLine("Expected: False. Actual {0}", intS.IsInterleave("aab","axy","abaaxy"));
         }
     }
 }

@@ -230,11 +230,25 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 'rsrbrxrirararbrxrlrirzryrgrprorsrvrkrhrernrdr'. Actual: " + rs.Reorganize("rvhrlpiesrrryrbrrrrrxrkirranrrrrbdrrzgasoxrrr"));
         }
 
+<<<<<<< HEAD
         public static void PartitionToKEqualSumSubsetsTest()
         {
             int[] input = new int[] {4, 3, 2, 3, 5, 2, 1};
             PartitionToKEqualSumSubsets part = new PartitionToKEqualSumSubsets();
             Console.WriteLine(part.CanPartitionKSubsets(input, 4));
         }
+=======
+        public static void WordBreakTest()
+        {
+            WordBreak wordBreak = new WordBreak();
+            bool result = wordBreak.Check("catsanddog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
+            Console.WriteLine("Expected: True. Actual: " + result);
+
+            // result = wordBreak.Check(
+            //     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+            //     new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
+            // Console.WriteLine("Expected: True. Actual: " + result);
+        }        
+>>>>>>> More probs
     }    
 }
