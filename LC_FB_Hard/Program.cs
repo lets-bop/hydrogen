@@ -41,7 +41,8 @@ namespace LC_FB_Hard
             // TestFirstMissingPositiveNum();
             // TestLongestIncreasingSubsequence();
             //TestRussianDolls();
-            TestLongestIncreasingPathMatrix();
+            // TestLongestIncreasingPathMatrix();
+            TestSurroundedRegion();
         }
 
         public static void TestRegexMatching()
@@ -642,6 +643,76 @@ namespace LC_FB_Hard
             int[,] matrix = new int[,] {{1,2,3,4},{-1,-1,6,5},{-1,-1,-1,-1}};
             LongestIncreasingPathMatrix longestIncreasingPathMatrix = new LongestIncreasingPathMatrix();
             Console.WriteLine("Expected: 6, Actual: " + longestIncreasingPathMatrix.LongestIncreasingPath(matrix)); 
+        }
+
+        public static void TestSurroundedRegion()
+        {
+            char[,] matrix = new char[,] {{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
+            SurroundedRegion sr = new SurroundedRegion();
+            sr.Solve(matrix);
+            for(int i = 0; i < matrix.GetLength(0); i++){
+                for (int j = 0; j < matrix.GetLength(1); j++){
+                    Console.Write(matrix[i,j]);
+                }
+                Console.WriteLine();
+            }
+
+            matrix = new char[,] {{'O','X','O'},{'X','O','X'},{'O','X','O'}};
+            sr.Solve(matrix);
+            for(int i = 0; i < matrix.GetLength(0); i++){
+                for (int j = 0; j < matrix.GetLength(1); j++){
+                    Console.Write(matrix[i,j]);
+                }
+                Console.WriteLine();
+            }            
+
+            // matrix = new char[,] {{'O','X','X','O','X'},{'X','O','O','X','O'},{'X','O','X','O','X'},{'O','X','O','O','O'},{'X','X','O','X','O'}};
+            // sr.Solve(matrix);
+            // for(int i = 0; i < matrix.GetLength(0); i++){
+            //     for (int j = 0; j < matrix.GetLength(1); j++){
+            //         Console.Write(matrix[i,j]);
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            // matrix = new char[,] {{'O','O','O','O','X','X'},{'O','O','O','O','O','O'},{'O','X','O','X','O','O'},{'O','X','O','O','X','O'},{'O','X','O','X','O','O'},{'O','X','O','O','O','O'}};
+            // sr.Solve(matrix);
+            // for(int i = 0; i < matrix.GetLength(0); i++){
+            //     for (int j = 0; j < matrix.GetLength(1); j++){
+            //         Console.Write(matrix[i,j]);
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            // matrix = new char[,] {{'O','X','O','O','O','X'},{'O','O','X','X','X','O'},{'X','X','X','X','X','O'},{'O','O','O','O','X','X'},{'X','X','O','O','X','O'},{'O','O','X','X','X','X'}};
+            // sr.Solve(matrix);
+            // for(int i = 0; i < matrix.GetLength(0); i++){
+            //     for (int j = 0; j < matrix.GetLength(1); j++){
+            //         Console.Write(matrix[i,j]);
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            // matrix = new char[,] {{'X','X','X','X','O','X'},{'O','X','X','O','O','X'},{'X','O','X','O','O','O'},{'X','O','O','O','X','O'},{'O','O','X','X','O','X'},{'X','O','X','O','X','X'}};
+            // sr.Solve(matrix);
+            // for(int i = 0; i < matrix.GetLength(0); i++){
+            //     for (int j = 0; j < matrix.GetLength(1); j++){
+            //         Console.Write(matrix[i,j]);
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            matrix = new char[,] {{'X','X','X','X','O','O','X','X','O'},{'O','O','O','O','X','X','O','O','X'},{'X','O','X','O','O','X','X','O','X'},{'O','O','X','X','X','O','O','O','O'},{'X','O','O','X','X','X','X','X','O'},{'O','O','X','O','X','O','X','O','X'},{'O','O','O','X','X','O','X','O','X'},{'O','O','O','X','O','O','O','X','O'},{'O','X','O','O','O','X','O','X','O'}};
+            sr.Solve(matrix);
+            for(int i = 0; i < matrix.GetLength(0); i++){
+                for (int j = 0; j < matrix.GetLength(1); j++){
+                    Console.Write(matrix[i,j]);
+                }
+                Console.WriteLine();
+            }            
+
+            
+
         }
     }
 }

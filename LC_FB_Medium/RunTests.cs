@@ -19,7 +19,8 @@ namespace LC_FB_Medium
             // BasicCalculatorTest();
             // PalindromePermutationTest();
             // LetterComboOfPhoneTest();
-            ReorganizeStringTest();
+            // ReorganizeStringTest();
+            PartitionToKEqualSumSubsetsTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -227,6 +228,13 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: ''. Actual: " + rs.Reorganize("aaab"));
             Console.WriteLine("Expected: 'vovlv'. Actual: " + rs.Reorganize("vvvlo"));
             Console.WriteLine("Expected: 'rsrbrxrirararbrxrlrirzryrgrprorsrvrkrhrernrdr'. Actual: " + rs.Reorganize("rvhrlpiesrrryrbrrrrrxrkirranrrrrbdrrzgasoxrrr"));
+        }
+
+        public static void PartitionToKEqualSumSubsetsTest()
+        {
+            int[] input = new int[] {4, 3, 2, 3, 5, 2, 1};
+            PartitionToKEqualSumSubsets part = new PartitionToKEqualSumSubsets();
+            Console.WriteLine(part.CanPartitionKSubsets(input, 4));
         }
     }    
 }
