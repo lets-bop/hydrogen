@@ -42,8 +42,9 @@ namespace LC_FB_Hard
             // TestLongestIncreasingSubsequence();
             //TestRussianDolls();
             // TestLongestIncreasingPathMatrix();
-            TestSurroundedRegion();
+            // TestSurroundedRegion();
             // TestInterleavingString();
+            TestRangeSumQuery();
         }
 
         public static void TestRegexMatching()
@@ -732,6 +733,21 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aa","ab","aaba"));
             Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aab","axy","aaxaby"));
             Console.WriteLine("Expected: False. Actual {0}", intS.IsInterleave("aab","axy","abaaxy"));
+        }
+
+        public static void TestRangeSumQuery()
+        {
+            int[,] matrix = new int[,] {
+                {3, 0, 1, 4, 2},
+                {5, 6, 3, 2, 1},
+                {1, 2, 0, 1, 5},
+                {4, 1, 0, 1, 7},
+                {1, 0, 3, 0, 5}
+            };
+            RangeSumQuery rangeSumQuery = new RangeSumQuery(matrix);
+            rangeSumQuery.Print();
+            rangeSumQuery.Update(3,2,2);
+            rangeSumQuery.Print();
         }
     }
 }
