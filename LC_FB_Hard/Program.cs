@@ -748,6 +748,18 @@ namespace LC_FB_Hard
             rangeSumQuery.Print();
             rangeSumQuery.Update(3,2,2);
             rangeSumQuery.Print();
+
+            matrix = new int[,] {{0,-3,-8,3},{-9,3,5,3},{2,3,-5,3}};
+            rangeSumQuery = new RangeSumQuery(matrix);
+            rangeSumQuery.Update(0,1,9);
+            rangeSumQuery.Update(1,0,-7);
+            Console.WriteLine("Expected: -2. Actual " + rangeSumQuery.SumRegion(2,2,2,3));
+            Console.WriteLine("Expected: 3. Actual " + rangeSumQuery.SumRegion(1,3,1,3));
+            Console.WriteLine("Expected: 3. Actual " + rangeSumQuery.SumRegion(2,3,2,3));
+            rangeSumQuery.Update(0,3,-3);
+            Console.WriteLine("Expected: 3. Actual " + rangeSumQuery.SumRegion(2,3,2,3));
+            Console.WriteLine("Expected: -3. Actual " + rangeSumQuery.SumRegion(0,3,0,3));
+            Console.WriteLine("Expected: 8. Actual " + rangeSumQuery.SumRegion(1,2,1,3));
         }
     }
 }
