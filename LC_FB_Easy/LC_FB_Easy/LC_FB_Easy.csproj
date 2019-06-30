@@ -42,7 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestTimeToBuySellStock.cs" />
+    <Compile Include="BST.cs" />
+    <Compile Include="Execute_LC_FB_Easy.cs" />
+    <Compile Include="LCAInBST.cs" />
+    <Compile Include="LinkedList.cs" />
+    <Compile Include="MergeSortedArrays.cs" />
+    <Compile Include="MissingNumber.cs" />
+    <Compile Include="MoveZeros.cs" />
+    <Compile Include="PlusOne.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="RemoveDuplicates.cs" />
+    <Compile Include="RomanToInteger.cs" />
+    <Compile Include="TwoSum.cs" />
+    <Compile Include="ValidParenthesis.cs" />
+    <Compile Include="WildCardPatternMatching.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

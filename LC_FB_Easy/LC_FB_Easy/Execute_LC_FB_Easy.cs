@@ -67,8 +67,13 @@ namespace LC_FB_Easy
             // Console.WriteLine("Missing number in 9,6,4,2,3,5,7,0,1 is {0}", MissingNumber.Find(new int[] {9,6,4,2,3,5,7,0,1}));
 
             // ---- Move zeros ----
-            Console.WriteLine("Input 0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {0,1,0,3,12}));
-            Console.WriteLine("Input 4,5,6,0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {4,5,6,0,1,0,3,12}));            
+            //Console.WriteLine("Input 0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {0,1,0,3,12}));
+            //Console.WriteLine("Input 4,5,6,0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {4,5,6,0,1,0,3,12}));
+
+            // --- Plus one ---
+            PlusOne plusOne = new PlusOne();
+            int[] result = plusOne.Execute(new int [] {9,9});
+            foreach (int i in result) Console.Write(i + "\t");
         }
     }
 }

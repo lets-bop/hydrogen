@@ -39,6 +39,5 @@ namespace LC_FB_Easy
 
             return sb.ToString();
         }
-
     }
 }

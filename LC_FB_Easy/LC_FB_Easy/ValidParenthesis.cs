@@ -28,24 +28,30 @@ namespace LC_FB_Easy
         public static bool Validate(string input)
         {
             Stack<char> stack = new Stack<char>();
-            foreach (char c in input.ToCharArray())
+            
+            foreach (char currChar in input.ToCharArray())
             {
-                if (c == '{' || c == '[' || c == '(')
+                if (currChar == '{' || currChar == '[' || currChar == '(')
                 {
-                    stack.Push(c);
+                    stack.Push(currChar);
                 }
-                else if (c == '}' || c == ']' || c == ')')
+                else if (currChar == '}' || currChar == ']' || currChar == ')')
                 {
-                    char top = stack.Pop();
-                    if (c == '}' && top != '{')
+                    if (stack.Count == 0) {
+                        return false;
+                    }
+
+                    char prevChar = stack.Pop();
+
+                    if (currChar == '}' && prevChar != '{')
                     {
                         return false;
                     }
-                    if (c == ']' && top != '[')
+                    if (currChar == ']' && prevChar != '[')
                     {
                         return false;
                     }
-                    if (c == ')' && top != '(')
+                    if (currChar == ')' && prevChar != '(')
                     {
                         return false;
                     }                                        
