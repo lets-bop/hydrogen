@@ -24,6 +24,44 @@ namespace LC_FB_Easy
 */
     class UniqueEmailAddresses
     {
+        // if @, copy rest of string
+        // if +, skip all chars until @
+        // if ., skip
+        public int NumUniqueEmails(string[] emails)
+        {
+            HashSet<string> output = new HashSet<string>();
 
+            for (int i = 0; i < emails.Length; i++)
+            {
+                string emailAddress = emails[i];
+                StringBuilder sb = new StringBuilder();
+                bool skipUntilAt = false;
+
+                for (int j = 0; j < emailAddress.Length; j++)
+                {
+                    if (emailAddress[j] == '@')
+                    {
+                        sb.Append(emailAddress.Substring(j));
+                        break;
+                    }
+                    if (skipUntilAt)
+                    {
+                        continue;
+                    }
+                    else if (emailAddress[j] == '+')
+                    {
+                        skipUntilAt = true;
+                    }
+                    else if (emailAddress[j] != '.')
+                    {
+                        sb.Append(emailAddress[j]);
+                    }
+                }
+
+                output.Add(sb.ToString());
+            }
+
+            return output.Count;
+        }
     }
 }

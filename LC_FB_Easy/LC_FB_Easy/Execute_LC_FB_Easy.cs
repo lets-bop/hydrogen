@@ -71,9 +71,15 @@ namespace LC_FB_Easy
             //Console.WriteLine("Input 4,5,6,0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {4,5,6,0,1,0,3,12}));
 
             // --- Plus one ---
-            PlusOne plusOne = new PlusOne();
-            int[] result = plusOne.Execute(new int [] {9,9});
-            foreach (int i in result) Console.Write(i + "\t");
+            //PlusOne plusOne = new PlusOne();
+            //int[] result = plusOne.Execute(new int [] {9,9});
+            //foreach (int i in result) Console.Write(i + "\t");
+
+            //UniqueEmailAddresses uea = new UniqueEmailAddresses();            
+            //Console.WriteLine(uea.NumUniqueEmails(new string[] { "test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com" })); // expected output = 2
+
+            FirstUniqueCharInString unique = new FirstUniqueCharInString();
+            Console.WriteLine(unique.FirstUniqChar("leetcode"));
         }
     }
 }

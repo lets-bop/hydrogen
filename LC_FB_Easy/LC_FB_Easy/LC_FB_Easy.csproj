@@ -45,16 +45,21 @@
     <Compile Include="BestTimeToBuySellStock.cs" />
     <Compile Include="BST.cs" />
     <Compile Include="Execute_LC_FB_Easy.cs" />
+    <Compile Include="FirstUniqueCharInString.cs" />
     <Compile Include="LCAInBST.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="MergeSortedArrays.cs" />
+    <Compile Include="MinStack.cs" />
     <Compile Include="MissingNumber.cs" />
     <Compile Include="MoveZeros.cs" />
     <Compile Include="PlusOne.cs" />
+    <Compile Include="PowerOf3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RemoveDuplicates.cs" />
+    <Compile Include="ReverseVowels.cs" />
     <Compile Include="RomanToInteger.cs" />
     <Compile Include="TwoSum.cs" />
+    <Compile Include="UniqueEmailAddresses.cs" />
     <Compile Include="ValidParenthesis.cs" />
     <Compile Include="WildCardPatternMatching.cs" />
   </ItemGroup>
