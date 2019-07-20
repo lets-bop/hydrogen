@@ -78,8 +78,16 @@ namespace LC_FB_Easy
             //UniqueEmailAddresses uea = new UniqueEmailAddresses();            
             //Console.WriteLine(uea.NumUniqueEmails(new string[] { "test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com" })); // expected output = 2
 
-            FirstUniqueCharInString unique = new FirstUniqueCharInString();
-            Console.WriteLine(unique.FirstUniqChar("leetcode"));
+            //FirstUniqueCharInString unique = new FirstUniqueCharInString();
+            //Console.WriteLine(unique.FirstUniqChar("leetcode"));
+
+            //FlippingAnImage flippingAnImage = new FlippingAnImage();
+            //int[][] image = { new int[] { 1, 1, 0 }, new int[] { 1, 0, 1 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };
+            //flippingAnImage.FlipAndInvertImage(image);
+
+            RobotOrigin robotOrigin = new RobotOrigin();
+            Console.WriteLine(robotOrigin.JudgeCircle("UD"));
+            Console.WriteLine(robotOrigin.JudgeCircle("LL"));
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="BST.cs" />
     <Compile Include="Execute_LC_FB_Easy.cs" />
     <Compile Include="FirstUniqueCharInString.cs" />
+    <Compile Include="FlippingAnImage.cs" />
     <Compile Include="LCAInBST.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="MergeSortedArrays.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="RemoveDuplicates.cs" />
     <Compile Include="ReverseVowels.cs" />
+    <Compile Include="RobotOrigin.cs" />
     <Compile Include="RomanToInteger.cs" />
     <Compile Include="TwoSum.cs" />
     <Compile Include="UniqueEmailAddresses.cs" />
