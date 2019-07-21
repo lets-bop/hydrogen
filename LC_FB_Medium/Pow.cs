@@ -14,8 +14,11 @@ namespace LC_FB_Medium
         }
         private static double CalculateRecursively(float x, int n)
         {
+            // https://www.youtube.com/watch?v=rBVU8wq_NLM
             if (n == 0)
                 return (double) 1.0;
+            if (n == 1)
+                return x;
             
             double half = CalculateRecursively(x, n/2);
             if (n % 2 == 0)

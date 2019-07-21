@@ -47,6 +47,7 @@
     <Compile Include="Execute_LC_FB_Easy.cs" />
     <Compile Include="FirstUniqueCharInString.cs" />
     <Compile Include="FlippingAnImage.cs" />
+    <Compile Include="IslandPerimeter.cs" />
     <Compile Include="LCAInBST.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="MergeSortedArrays.cs" />

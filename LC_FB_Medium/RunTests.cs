@@ -20,7 +20,9 @@ namespace LC_FB_Medium
             // PalindromePermutationTest();
             // LetterComboOfPhoneTest();
             // ReorganizeStringTest();
-            PartitionToKEqualSumSubsetsTest();
+            // PartitionToKEqualSumSubsetsTest();
+            // DailyTemperaturesTest();
+            QueueReconstructionTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -230,14 +232,12 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 'rsrbrxrirararbrxrlrirzryrgrprorsrvrkrhrernrdr'. Actual: " + rs.Reorganize("rvhrlpiesrrryrbrrrrrxrkirranrrrrbdrrzgasoxrrr"));
         }
 
-<<<<<<< HEAD
         public static void PartitionToKEqualSumSubsetsTest()
         {
             int[] input = new int[] {4, 3, 2, 3, 5, 2, 1};
             PartitionToKEqualSumSubsets part = new PartitionToKEqualSumSubsets();
             Console.WriteLine(part.CanPartitionKSubsets(input, 4));
         }
-=======
         public static void WordBreakTest()
         {
             WordBreak wordBreak = new WordBreak();
@@ -248,7 +248,25 @@ namespace LC_FB_Medium
             //     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
             //     new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
             // Console.WriteLine("Expected: True. Actual: " + result);
-        }        
->>>>>>> More probs
+        }
+
+        public static void DailyTemperaturesTest()
+        {
+            DailyTemperatures dt = new DailyTemperatures();
+            int[] result = dt.CalculateDailyTemperatures(new int[] { 74, 69, 70, 70, 75});
+            foreach (int i in result) Console.Write(i + "\t");
+            Console.WriteLine();
+        }
+
+        public static void QueueReconstructionTest()
+        {
+            QueueReconstruction qr = new QueueReconstruction();
+            int[][] result = qr.ReconstructQueue(new int[][] { new int[] { 7,0 }, new int[] { 4, 4 }, new int[] { 7, 1 }, new int[] { 5, 0 }, new int[] { 6, 1 }, new int[] { 5, 2 } });
+            foreach (int[] arr in result)
+            {
+                foreach (int k in arr) Console.Write(k + "\t");
+                Console.WriteLine();
+            }
+        }
     }    
 }
