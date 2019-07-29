@@ -23,8 +23,8 @@ namespace LC_FB_Medium
             var result = new List<int[]>();
 
             /* 
-            Let's start from the simplest case, when all guys (h, k) in the queue are of the same height h, and differ by their k values only 
-            (the number of people in front who have a greater or the same height). Then the solution is simple: each guy's index is equal to his k value. 
+            Let's start from the simplest case, when all guys (h, k) in the queue are of the same height h, and differ by their k values only, then 
+            the solution is simple: each guy's index is equal to his k value. 
             The guy with zero people in front takes the place number 0, the guy with 1 person in front takes the place number 1, and so on and so forth.
             This strategy could be used even in the case when not all people are of the same height. 
             The smaller persons are "invisible" for the taller ones, and hence one could first arrange the tallest guys as if there was no one else.
