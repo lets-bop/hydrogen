@@ -6,6 +6,9 @@
     <!-- <StartupObject>LC_FB_Easy.Program</StartupObject> -->
     <StartupObject>LC_FB_Medium.Program</StartupObject>
     <!-- <StartupObject>LC_FB_Hard.Program</StartupObject> -->
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>    
   </PropertyGroup>
 
 </Project>
