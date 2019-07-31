@@ -5,7 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>    
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <EnableDefaultRazorTargetAssemblyInfoAttributes>false</EnableDefaultRazorTargetAssemblyInfoAttributes>
   </PropertyGroup>
 
 </Project>

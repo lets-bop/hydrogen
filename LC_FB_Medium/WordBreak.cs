@@ -32,22 +32,85 @@ namespace LC_FB_Medium
 {
     public class WordBreak
     {
-        public bool Check(string word, IList<string> wordDict){
-            HashSet<string> dict = new HashSet<string>(wordDict);
-            Queue<int> queue = new Queue<int>();
-            queue.Enqueue(0);
+        public class MatchedWord
+        {
+            public string word; // the matching word
+            public int start; // the start index in the provided word
+            public int end;   // the end index in the provided word
 
-            while(queue.Count > 0){
-                int start = queue.Dequeue();
-                if (start == word.Length) return true;
-                StringBuilder sb = new StringBuilder();
-                sb.Append(word[start]);
-                if (dict.Contains(sb.ToString())) queue.Enqueue(start + 1);
-                for (int end = start + 1; end - start < 10 && end < word.Length; end++){
-                    sb.Append(word[end]);
-                    if (dict.Contains(sb.ToString())) queue.Enqueue(end + 1);
-                }
+            public MatchedWord(string word, int start, int end)
+            {
+                this.word = word;
+                this.start = start;
+                this.end = end;
             }
+        }
+
+        public bool Check2(string word, IList<string> wordDict)
+        {
+            HashSet<string> dict = new HashSet<string>(wordDict);
+            Stack<MatchedWord> stack = new Stack<MatchedWord>();
+            Dictionary<int, bool> mem = new Dictionary<int, bool>();
+            int maxWordLengthInDic = 0;
+
+            foreach (string w in wordDict)
+            {
+                if (w.Length > maxWordLengthInDic) maxWordLengthInDic = w.Length;
+            }
+
+            int start = 0;
+            int end = word.Length - 1;
+
+            // Find the first match
+            do
+            {
+                StringBuilder sb = new StringBuilder();
+                Queue<MatchedWord> queue = new Queue<MatchedWord>(); // collect the words that could lead to the split.
+                for (int i = start; i <= end && i < start + maxWordLengthInDic; i++)
+                {
+                    sb.Append(word[i]);
+                    if (wordDict.Contains(sb.ToString()))
+                    {
+                        if (i <= end)
+                        {
+                            if (i == end) {
+                                // we can short circuit here as we'd be here only if the word prior to this was found. 
+                                return true;
+                            }
+
+                            // Collect the word in the queue only if we can satisfy the split from the end of this word
+                            // or we don't know as yet if we can satisfy the split.
+                            if (!mem.ContainsKey(i + 1) || (mem.ContainsKey(i+1) && mem[i+1]))
+                            {
+                                queue.Enqueue(new MatchedWord(sb.ToString(), start, i));
+                            }
+                        }
+                    }
+                }
+
+                if (queue.Count > 0)
+                {
+                    foreach (MatchedWord item in queue)
+                    {
+                        stack.Push(item);
+                        if (item.end < end && mem.ContainsKey(item.end + 1) && mem[item.end + 1]) {
+                            mem[item.start] = true;
+                        }
+                    }
+                }
+                else {
+                    // the queue being empty means that no split starting at the index was satisfactory.
+                    mem[start] = false;
+                }
+
+                if (stack.Count == 0) {
+                    return false;
+                }
+                
+                MatchedWord mw = stack.Pop();
+                start = mw.end + 1;
+
+            } while (stack.Count >= 0);
 
             return false;
         }

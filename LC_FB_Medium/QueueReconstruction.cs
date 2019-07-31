@@ -36,6 +36,8 @@ namespace LC_FB_Medium
                 Sort the tallest guys in the ascending order by k-values and then insert them one by one into output queue at the indexes equal to their k-values.
                 Take the next height in the descending order. Sort the guys of that height in the ascending order by k-values and then insert them one by one into output queue at the indexes equal to their k-values.
                 And so on and so forth.
+            
+            The worst case of the algorithm is O(n^2).
              */
             // Sort [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
             // To   [[7,0], [7,1], [6,1], [5,0], [5,2], [4,4]]

@@ -8,7 +8,8 @@
     <!-- <StartupObject>LC_FB_Hard.Program</StartupObject> -->
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>    
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <EnableDefaultRazorTargetAssemblyInfoAttributes>false</EnableDefaultRazorTargetAssemblyInfoAttributes>
   </PropertyGroup>
 
 </Project>

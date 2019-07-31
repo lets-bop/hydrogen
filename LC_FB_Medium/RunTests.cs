@@ -22,7 +22,10 @@ namespace LC_FB_Medium
             // ReorganizeStringTest();
             // PartitionToKEqualSumSubsetsTest();
             // DailyTemperaturesTest();
-            QueueReconstructionTest();
+            // QueueReconstructionTest();
+            // WordBreakTest();
+            // SpiralOrderTest();
+            SummaryRangesTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -241,13 +244,23 @@ namespace LC_FB_Medium
         public static void WordBreakTest()
         {
             WordBreak wordBreak = new WordBreak();
-            bool result = wordBreak.Check("catsanddog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
+            bool result = wordBreak.Check2("catsanddog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
             Console.WriteLine("Expected: True. Actual: " + result);
 
-            // result = wordBreak.Check(
-            //     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
-            //     new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
-            // Console.WriteLine("Expected: True. Actual: " + result);
+            result = wordBreak.Check2(
+                "leetcode",
+                new List<string>() {"leet","code"});
+            Console.WriteLine("Expected: True. Actual: " + result);            
+
+            result = wordBreak.Check2(
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
+            Console.WriteLine("Expected: True. Actual: " + result);
+
+            result = wordBreak.Check2(
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+                new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
+            Console.WriteLine("Expected: False. Actual: " + result);            
         }
 
         public static void DailyTemperaturesTest()
@@ -267,6 +280,34 @@ namespace LC_FB_Medium
                 foreach (int k in arr) Console.Write(k + "\t");
                 Console.WriteLine();
             }
+        }
+
+        public static void SpiralOrderTest()
+        {
+            SpiralOrder_New sp = new SpiralOrder_New();
+            IList<int> result = sp.FindSpiralOrder(new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } });
+            Console.WriteLine("Expected output is 1 2 3 6 9 8 7 4 5");
+            foreach (int r in result) Console.Write(r + "\t");
+            Console.WriteLine();
+
+            result = sp.FindSpiralOrder(new int[][] { new int[] { 1, 2, 3, 4 }, new int[] { 5, 6, 7, 8 }, new int[] { 9, 10, 11, 12 } });
+            Console.WriteLine("Expected output is 1 2 3 4 8 12 11 10 9 5 6 7");
+            foreach (int r in result) Console.Write(r + "\t");
+            Console.WriteLine();
+        }
+
+        public static void SummaryRangesTest()
+        {
+            SummaryRanges sr = new SummaryRanges();
+            IList<string> result = sr.FindSummaryRanges(new int[] {0,1,2,4,5,7});
+            Console.WriteLine("Expected result 0->2, 4->5, 7");
+            foreach (string r in result) Console.Write(r + "\t");
+            Console.WriteLine();
+
+            result = sr.FindSummaryRanges(new int[] {0,2,3,4,6,8,9});
+            Console.WriteLine("Expected result 0, 2->4, 6, 8->9");
+            foreach (string r in result) Console.Write(r + "\t");
+            Console.WriteLine();
         }
     }    
 }
