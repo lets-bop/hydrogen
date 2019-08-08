@@ -25,7 +25,9 @@ namespace LC_FB_Medium
             // QueueReconstructionTest();
             // WordBreakTest();
             // SpiralOrderTest();
-            SummaryRangesTest();
+            // SummaryRangesTest();
+            // SubArraySumOfKTest();
+            BraceExpansionTest();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -308,6 +310,23 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected result 0, 2->4, 6, 8->9");
             foreach (string r in result) Console.Write(r + "\t");
             Console.WriteLine();
+        }
+
+        public static void SubArraySumOfKTest()
+        {
+            SubArraySumOfK sumK = new SubArraySumOfK();
+            int[] num = new int[] {1, 1, 1};
+            Console.WriteLine("Expected = 2. Actual = " + sumK.SubarraySum(num, 2));
+
+            num = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            Console.WriteLine("Expected = 55. Actual = " + sumK.SubarraySum(num, 0));
+        }
+
+        public static void BraceExpansionTest()
+        {
+            BraceExpansion br = new BraceExpansion();
+            // br.Expand("{a,b,c,d}e{f,g}");
+            br.Expand("{a,b}c{d,e}f");
         }
     }    
 }

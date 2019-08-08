@@ -85,9 +85,21 @@ namespace LC_FB_Easy
             //int[][] image = { new int[] { 1, 1, 0 }, new int[] { 1, 0, 1 }, new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 } };
             //flippingAnImage.FlipAndInvertImage(image);
 
-            RobotOrigin robotOrigin = new RobotOrigin();
-            Console.WriteLine(robotOrigin.JudgeCircle("UD"));
-            Console.WriteLine(robotOrigin.JudgeCircle("LL"));
+            // RobotOrigin robotOrigin = new RobotOrigin();
+            // Console.WriteLine(robotOrigin.JudgeCircle("UD"));
+            // Console.WriteLine(robotOrigin.JudgeCircle("LL"));
+
+            // BackspaceStringCompare back = new BackspaceStringCompare();
+            // Console.WriteLine("Expected: true. Actual: " + back.BackspaceCompare("ab#c", "ad#c"));
+            // Console.WriteLine("Expected: true. Actual: " + back.BackspaceCompare("ab##", "c#d#"));
+            // Console.WriteLine("Expected: true. Actual: " + back.BackspaceCompare("a##c", "#a#c"));
+            // Console.WriteLine("Expected: false. Actual: " + back.BackspaceCompare("a#c", "b"));
+            // Console.WriteLine("Expected: true. Actual: " + back.BackspaceCompare("nzp#o#g", "b#nzp#o#g"));
+
+            BullsAndCows cb = new BullsAndCows();
+            Console.WriteLine("Expected: 1A3B. Actual: " + cb.GetHint("1807", "7810"));
+            Console.WriteLine("Expected: 1A1B. Actual: " + cb.GetHint("1123", "0111"));
+            Console.WriteLine("Expected: 3A0B. Actual: " + cb.GetHint("1122", "1222"));
         }
     }
 }
