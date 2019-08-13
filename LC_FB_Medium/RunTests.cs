@@ -27,7 +27,13 @@ namespace LC_FB_Medium
             // SpiralOrderTest();
             // SummaryRangesTest();
             // SubArraySumOfKTest();
-            BraceExpansionTest();
+            // BraceExpansionTest();
+            // ThreeSumTest();
+            // TestCountCompleteBinaryTreeNodes();
+            // TestFruitIntoBasket();
+            // TestNetworkDelayTime();
+            TestLongestWordInDicThroughDeleting();
+            // TestExpressiveWords();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -328,5 +334,84 @@ namespace LC_FB_Medium
             // br.Expand("{a,b,c,d}e{f,g}");
             br.Expand("{a,b}c{d,e}f");
         }
-    }    
+
+        public static void ThreeSumTest()
+        {
+            Sum3 sum = new Sum3();
+            IList<IList<int>> result = sum.ThreeSum(new int[] {-1, 0, 1, 2, -1, -4});
+            foreach (IList<int> r in result){
+                foreach (int n in r){
+                    Console.Write(n + ",");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void TestCountCompleteBinaryTreeNodes()
+        {
+            /*
+                Input: 
+                      1
+                    /   \
+                    2    3
+                    / \  /
+                    4  5 6
+
+                Output: 6             
+            */
+            CountCompleteBinaryTreeNodes.TreeNode t1 = new CountCompleteBinaryTreeNodes.TreeNode(1);
+            t1.left = new CountCompleteBinaryTreeNodes.TreeNode(2);
+            t1.left.left = new CountCompleteBinaryTreeNodes.TreeNode(4);
+            t1.left.right = new CountCompleteBinaryTreeNodes.TreeNode(5);
+            t1.right = new CountCompleteBinaryTreeNodes.TreeNode(3);
+            t1.right.left = new CountCompleteBinaryTreeNodes.TreeNode(6);
+
+            CountCompleteBinaryTreeNodes c = new CountCompleteBinaryTreeNodes();
+            Console.WriteLine(c.CountNodes(t1));
+        }
+
+        public static void TestFruitIntoBasket()
+        {
+            FruitIntoBaskets fib = new FruitIntoBaskets();
+            Console.WriteLine("Expected: 3. Output: " + fib.TotalFruit(new int[] {1,2,1}));
+            Console.WriteLine("Expected: 3. Output: " +fib.TotalFruit(new int[] {0,1,2,2}));
+            Console.WriteLine("Expected: 4. Output: " +fib.TotalFruit(new int[] {1,2,3,2,2}));
+            Console.WriteLine("Expected: 19. Output: " +fib.TotalFruit(new int[] {1,2,1,2,1,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3}));
+            Console.WriteLine("Expected: 5. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1}));
+            Console.WriteLine("Expected: 6. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1,2}));            
+            Console.WriteLine("Expected: 7. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1,2,2}));
+            Console.WriteLine("Expected: 12. Output: " +fib.TotalFruit(new int[] {1,0,29,29,29,29,29,29,0,0,29,8,8,29,8,29,8,8,15,8,8,15,15,8,15,15,8,8,7,5}));
+            Console.WriteLine("Expected: 3. Output: " + fib.TotalFruit(new int[] {6,2,1,1,3,6,6}));
+        }
+
+        public static void TestNetworkDelayTime()
+        {
+            NetworkDelayTime ndt = new NetworkDelayTime();
+            Console.WriteLine("Expected: 2. Output: " + ndt.CalculateDelay(new int[][] {new int[] {2,1,1}, new int[] {2,3,1}, new int[] {3,4,1}}, 4, 2));
+
+            ndt = new NetworkDelayTime();
+            Console.WriteLine("Expected: 2. Output: " + ndt.CalculateDelay(new int[][] {new int[] {1,2,1}, new int[] {1,3,3}, new int[] {2,3,1}}, 3, 1));
+
+            ndt = new NetworkDelayTime();
+            Console.WriteLine("Expected: 4. Output: " + ndt.CalculateDelay(new int[][] {new int[] {1,2,1}, new int[] {1,3,5}, new int[] {2,3,4}, new int[] {2,4,1}, new int[] {4,3,3}, new int[] {4,5,1}, new int[] {5,3,1}}, 5, 1));
+        }
+
+        public static void TestLongestWordInDicThroughDeleting()
+        {
+            LongestWordInDicThroughDeleting lwid = new LongestWordInDicThroughDeleting();
+            Console.WriteLine("Expected: apple, output: " + lwid.FindLongestWord("abpcplea", new List<string>() {"ale","apple","monkey","plea"}));
+            Console.WriteLine("Expected: a, output: " + lwid.FindLongestWord("abpcplea", new List<string>() {"a","b","c"}));
+            Console.WriteLine("Expected: ab, output: " + lwid.FindLongestWord("bab", new List<string>() {"ba","ab","a","b"}));
+        }
+
+        public static void TestExpressiveWords()
+        {
+            ExpressiveWords ew = new ExpressiveWords();
+            // Console.WriteLine("Expected: 2. Output: " + ew.CountExpressiveWords("hellllllooo", new string[] {"hello", "helo", "hi"}));
+            // Console.WriteLine("Expected: 1. Output: " + ew.CountExpressiveWords("hiiiii", new string[] {"hi", "hii", ""}));
+            // Console.WriteLine("Expected: 1. Output: " + ew.CountExpressiveWords("heeellooo", new string[] {"hello", "helo", "hi"}));
+            Console.WriteLine("Expected: 3. Output: " + ew.CountExpressiveWords("zzzzzzyyyyyy", new string[] {"zzyy", "zy", "zyy"}));
+
+        }
+    }
 }
