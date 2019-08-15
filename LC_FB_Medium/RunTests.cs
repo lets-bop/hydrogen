@@ -32,8 +32,12 @@ namespace LC_FB_Medium
             // TestCountCompleteBinaryTreeNodes();
             // TestFruitIntoBasket();
             // TestNetworkDelayTime();
-            TestLongestWordInDicThroughDeleting();
+            // TestLongestWordInDicThroughDeleting();
             // TestExpressiveWords();
+            // TestTimeBasedKeyValueStore();
+            // TestShipCapacity();
+            // TestDifferentWaysToAddParenthesis();
+            TestMinDominoRotations();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -412,6 +416,58 @@ namespace LC_FB_Medium
             // Console.WriteLine("Expected: 1. Output: " + ew.CountExpressiveWords("heeellooo", new string[] {"hello", "helo", "hi"}));
             Console.WriteLine("Expected: 3. Output: " + ew.CountExpressiveWords("zzzzzzyyyyyy", new string[] {"zzyy", "zy", "zyy"}));
 
+        }
+
+        public static void TestTimeBasedKeyValueStore()
+        {
+            TimeBasedKeyValueStore time = new TimeBasedKeyValueStore();
+            time.Set("foo", "bar1", 1);
+            time.Set("foo", "bar21", 21);
+            time.Set("foo", "bar31", 31);
+            time.Set("foo", "bar41", 41);
+            time.Set("foo", "bar61", 61);
+            time.Set("foo", "bar71", 71);
+            time.Set("foo", "bar81", 81);
+            time.Set("foo", "bar91", 91);
+            time.Set("foo", "bar101", 101);
+            time.Set("foo", "bar111", 111);
+
+            Console.WriteLine("Expected: . Actual: " + time.Get("foo", 0));
+            Console.WriteLine("Expected: bar1. Actual: " + time.Get("foo", 11));
+            Console.WriteLine("Expected: bar21. Actual: " + time.Get("foo", 25));
+            Console.WriteLine("Expected: bar41. Actual: " + time.Get("foo", 45));
+            Console.WriteLine("Expected: bar71. Actual: " + time.Get("foo", 75));
+        }
+
+        public static void TestShipCapacity()
+        {
+            ShipCapacity sc = new ShipCapacity();
+            Console.WriteLine("Expected: 15. Actual: " + sc.ShipWithinDays(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 5));
+            Console.WriteLine("Expected: 3. Actual: " + sc.ShipWithinDays(new int[] {1, 2, 3, 1, 1}, 4));
+        }
+
+        public static void TestDifferentWaysToAddParenthesis()
+        {
+            DifferentWaysToAddParenthesis dp = new DifferentWaysToAddParenthesis();
+            dp.DiffWaysToCompute("2*3-4*5");
+            dp.DiffWaysToCompute("21*20-3");
+        }
+
+        public static void TestMinDominoRotations()
+        {
+            MinDominoRotations minDominoRotations = new MinDominoRotations();
+            // Console.WriteLine("Expected: 2. Actual: " + 
+            //     minDominoRotations.CalcMinDominoRotations(new int[] {2,1,2,4,2,2}, new int[] {5,2,6,2,3,2}));
+            // Console.WriteLine("Expected: 2. Actual: " + 
+            //     minDominoRotations.CalcMinDominoRotations(new int[] {5,2,6,2,3,2}, new int[] {2,1,2,4,2,2}));
+            // Console.WriteLine("Expected: -1. Actual: " + 
+            //     minDominoRotations.CalcMinDominoRotations(new int[] {3,5,1,2,3}, new int[] {3,6,3,3,4}));
+            // Console.WriteLine("Expected: 0. Actual: " + 
+            //     minDominoRotations.CalcMinDominoRotations(new int[] {2}, new int[] {2}));
+            // Console.WriteLine("Expected: 1. Actual: " + 
+            //     minDominoRotations.CalcMinDominoRotations(new int[] {1,2,3,4,5,6}, new int[] {6,6,6,6,6,5}));
+            Console.WriteLine("Expected: 1. Actual: " + 
+                minDominoRotations.CalcMinDominoRotations(new int[] {1,2,1,1,1,2,2,2}, new int[] {2,1,2,2,2,2,2,2}));
         }
     }
 }
