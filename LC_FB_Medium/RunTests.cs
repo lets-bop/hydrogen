@@ -37,7 +37,12 @@ namespace LC_FB_Medium
             // TestTimeBasedKeyValueStore();
             // TestShipCapacity();
             // TestDifferentWaysToAddParenthesis();
-            TestMinDominoRotations();
+            // TestMinDominoRotations();
+            // TestDecodeString();
+            // TestMissingRanges();
+            // TestIncreasingTripletSubsequence();
+            // TestShortestWayToFormString();
+            TestStonesRemoved();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -456,18 +461,88 @@ namespace LC_FB_Medium
         public static void TestMinDominoRotations()
         {
             MinDominoRotations minDominoRotations = new MinDominoRotations();
-            // Console.WriteLine("Expected: 2. Actual: " + 
-            //     minDominoRotations.CalcMinDominoRotations(new int[] {2,1,2,4,2,2}, new int[] {5,2,6,2,3,2}));
-            // Console.WriteLine("Expected: 2. Actual: " + 
-            //     minDominoRotations.CalcMinDominoRotations(new int[] {5,2,6,2,3,2}, new int[] {2,1,2,4,2,2}));
-            // Console.WriteLine("Expected: -1. Actual: " + 
-            //     minDominoRotations.CalcMinDominoRotations(new int[] {3,5,1,2,3}, new int[] {3,6,3,3,4}));
-            // Console.WriteLine("Expected: 0. Actual: " + 
-            //     minDominoRotations.CalcMinDominoRotations(new int[] {2}, new int[] {2}));
-            // Console.WriteLine("Expected: 1. Actual: " + 
-            //     minDominoRotations.CalcMinDominoRotations(new int[] {1,2,3,4,5,6}, new int[] {6,6,6,6,6,5}));
+            Console.WriteLine("Expected: 2. Actual: " + 
+                minDominoRotations.CalcMinDominoRotations(new int[] {2,1,2,4,2,2}, new int[] {5,2,6,2,3,2}));
+            Console.WriteLine("Expected: 2. Actual: " + 
+                minDominoRotations.CalcMinDominoRotations(new int[] {5,2,6,2,3,2}, new int[] {2,1,2,4,2,2}));
+            Console.WriteLine("Expected: -1. Actual: " + 
+                minDominoRotations.CalcMinDominoRotations(new int[] {3,5,1,2,3}, new int[] {3,6,3,3,4}));
+            Console.WriteLine("Expected: 0. Actual: " + 
+                minDominoRotations.CalcMinDominoRotations(new int[] {2}, new int[] {2}));
+            Console.WriteLine("Expected: 1. Actual: " + 
+                minDominoRotations.CalcMinDominoRotations(new int[] {1,2,3,4,5,6}, new int[] {6,6,6,6,6,5}));
             Console.WriteLine("Expected: 1. Actual: " + 
                 minDominoRotations.CalcMinDominoRotations(new int[] {1,2,1,1,1,2,2,2}, new int[] {2,1,2,2,2,2,2,2}));
+        }
+
+        public static void TestDecodeString()
+        {
+            DecodeString decode = new DecodeString();
+            Console.WriteLine("Expected: ababaaaa. Actual: " + decode.Decode("2[ab]4[a]"));
+            Console.WriteLine("Expected: ababayzyzayzyz. Actual: " + decode.Decode("2[ab]2[a2[yz]]"));
+            Console.WriteLine("Expected: aaabcbc. Actual: " + decode.Decode("3[a]2[bc]"));
+            Console.WriteLine("Expected: accaccacc. Actual: " + decode.Decode("3[a2[c]]"));
+            Console.WriteLine("Expected: abcabccdcdcdef. Actual: " + decode.Decode("2[abc]3[cd]ef"));
+            Console.WriteLine("Expected: sdfeegfeegi. Actual: " + decode.Decode("sd2[f2[e]g]i"));
+        }
+
+        public static void TestMissingRanges()
+        {
+            MissingRanges missingRanges = new MissingRanges();
+            IList<string> result;
+            Console.WriteLine("Expected: " + "2, 4->49, 51->74, 76->99.");
+            result = missingRanges.FindMissingRanges(new int[] {0, 1, 3, 50, 75}, 0, 99);
+            Console.Write("Actual: ");
+            foreach (string r in result) Console.Write(r + "\t"); Console.WriteLine();
+
+            Console.WriteLine("Expected: " + "0->22, 24->99.");
+            result = missingRanges.FindMissingRanges(new int[] {23}, 0, 99);
+            Console.Write("Actual: ");
+            foreach (string r in result) Console.Write(r + "\t"); Console.WriteLine();
+
+            Console.WriteLine("Expected: " + "0->2147483646");
+            result = missingRanges.FindMissingRanges(new int[] {2147483647}, 0, 2147483647);
+            Console.Write("Actual: ");
+            foreach (string r in result) Console.Write(r + "\t"); Console.WriteLine();
+
+            Console.WriteLine("Expected: " + "");
+            result = missingRanges.FindMissingRanges(new int[] {-1}, -1, -1);
+            Console.Write("Actual: ");
+            foreach (string r in result) Console.Write(r + "\t"); Console.WriteLine();
+
+            Console.WriteLine("Expected: " + "-2147483647->-1, 1->2147483646");
+            result = missingRanges.FindMissingRanges(new int[] {-2147483648,-2147483648,0,2147483647,2147483647}, -2147483648, 2147483647);
+            Console.Write("Actual: ");
+            foreach (string r in result) Console.Write(r + "\t"); Console.WriteLine();
+
+            Console.WriteLine("Expected: " + "-2147483647->2147483647");
+            result = missingRanges.FindMissingRanges(new int[] {-2147483648}, -2147483648, 2147483647);
+            Console.Write("Actual: ");
+            foreach (string r in result) Console.Write(r + "\t"); Console.WriteLine();
+        }
+
+        public static void TestIncreasingTripletSubsequence() {
+            IncreasingTripletSubsequence trip = new IncreasingTripletSubsequence();
+            Console.WriteLine("Expected: True. Actual: " + trip.IncreasingTriplet(new int[] {1,2,3,4,5}));
+            Console.WriteLine("Expected: True. Actual: " + trip.IncreasingTriplet(new int[] {1,2,-1,2,1}));
+            Console.WriteLine("Expected: False. Actual: " + trip.IncreasingTriplet(new int[] {1,2,-1,2,-1}));
+        }
+
+        public static void TestShortestWayToFormString()
+        {
+            ShortestWayToFormString shortestWayToFormString = new ShortestWayToFormString();
+            Console.WriteLine("Expected: 2. Actual: " + shortestWayToFormString.ShortestWay("abc", "abcbc"));
+            Console.WriteLine("Expected: -1. Actual: " + shortestWayToFormString.ShortestWay("abc", "acdbc"));
+            Console.WriteLine("Expected: 3. Actual: " + shortestWayToFormString.ShortestWay("xyz", "xzyxz"));
+            Console.WriteLine("Expected: 7. Actual: " + shortestWayToFormString.ShortestWay("xyz", "xxxxxxx"));
+            Console.WriteLine("Expected: 4. Actual: " + shortestWayToFormString.ShortestWay("xyz", "xzzyzz"));
+        }
+
+        public static void TestStonesRemoved()
+        {
+            StonesRemoved stonesRemoved = new StonesRemoved();
+            int[][] stones = new int[][]{new int[] {0,0}, new int[] {0,1}, new int[] {1,0}, new int[] {1,2}, new int[] {2,1}, new int[] {2,2}};
+            Console.WriteLine("Expected 5. Actual: " + stonesRemoved.RemoveStones(stones));
         }
     }
 }
