@@ -8,41 +8,45 @@ namespace LC_FB_Medium
     {
         public static void Run()
         {
-            // MinSizeSubarraySumTest();
-            // TaskSchedulerTest();
-            // ExclusiveTimeFunctionsTest();
-            // NumberOfIslandsTest();
-            // GenerateParenthesisTest();
-            // MinMeetingRoomsTest();
-            // MergeIntervalsTest();
-            // WordSearchTest();
-            // BasicCalculatorTest();
-            // PalindromePermutationTest();
-            // LetterComboOfPhoneTest();
-            // ReorganizeStringTest();
-            // PartitionToKEqualSumSubsetsTest();
-            // DailyTemperaturesTest();
-            // QueueReconstructionTest();
-            // WordBreakTest();
-            // SpiralOrderTest();
-            // SummaryRangesTest();
-            // SubArraySumOfKTest();
-            // BraceExpansionTest();
-            // ThreeSumTest();
-            // TestCountCompleteBinaryTreeNodes();
-            // TestFruitIntoBasket();
-            // TestNetworkDelayTime();
-            // TestLongestWordInDicThroughDeleting();
-            // TestExpressiveWords();
-            // TestTimeBasedKeyValueStore();
-            // TestShipCapacity();
-            // TestDifferentWaysToAddParenthesis();
-            // TestMinDominoRotations();
-            // TestDecodeString();
-            // TestMissingRanges();
-            // TestIncreasingTripletSubsequence();
-            // TestShortestWayToFormString();
-            TestStonesRemoved();
+            // MinSizeSubarraySumTest(); // 1
+            // TaskSchedulerTest(); // 2
+            // ExclusiveTimeFunctionsTest(); // 3
+            // NumberOfIslandsTest(); // 4
+            // GenerateParenthesisTest(); // 5
+            // MinMeetingRoomsTest(); // 6
+            // MergeIntervalsTest(); // 7
+            // WordSearchTest(); // 8
+            // BasicCalculatorTest(); // 9
+            // PalindromePermutationTest(); // 10
+            // LetterComboOfPhoneTest(); // 11
+            // ReorganizeStringTest(); // 12
+            // PartitionToKEqualSumSubsetsTest(); // 13
+            // DailyTemperaturesTest(); // 14
+            // QueueReconstructionTest(); // 15
+            // WordBreakTest(); // 16
+            // SpiralOrderTest(); // 17
+            // SummaryRangesTest(); // 18
+            // SubArraySumOfKTest(); // 19
+            // BraceExpansionTest(); // 20
+            // ThreeSumTest(); // 21
+            // TestCountCompleteBinaryTreeNodes(); // 22
+            // TestFruitIntoBasket(); // 23
+            // TestNetworkDelayTime(); // 24
+            // TestLongestWordInDicThroughDeleting(); // 25
+            // TestExpressiveWords(); // 26
+            // TestTimeBasedKeyValueStore(); // 27
+            // TestShipCapacity(); // 28
+            // TestDifferentWaysToAddParenthesis(); // 29
+            // TestMinDominoRotations(); // 30
+            // TestDecodeString(); // 31
+            // TestMissingRanges(); // 32
+            // TestIncreasingTripletSubsequence(); // 33
+            // TestShortestWayToFormString(); // 34
+            // TestStonesRemoved(); // 35
+            // TestIntervalListInterections(); // 36
+            // TestKClosestToOrigin(); // 37
+            // TestProductExceptSelf(); // 38
+            TestBSTDoublyList(); // 39
         }
 
         public static void MinSizeSubarraySumTest()
@@ -544,5 +548,76 @@ namespace LC_FB_Medium
             int[][] stones = new int[][]{new int[] {0,0}, new int[] {0,1}, new int[] {1,0}, new int[] {1,2}, new int[] {2,1}, new int[] {2,2}};
             Console.WriteLine("Expected 5. Actual: " + stonesRemoved.RemoveStones(stones));
         }
+
+        public static void TestIntervalListInterections()
+        {
+            IntervalListIntersection intervalListIntersection = new IntervalListIntersection();
+            int[][] A = new int[] []{new int[] {0,2}, new int[] {5,10}, new int[] {13,23}, new int[] {24,25}};
+            int[][] B = new int[] []{new int[] {1,5}, new int[] {8,12}, new int[] {15,24}, new int[] {25,26}};
+            Console.WriteLine("Expected output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]");
+            Console.WriteLine("Actual: ");
+            int[][] result = intervalListIntersection.IntervalIntersection(A, B);
+            for (int i = 0; i < result.Length; i++) Console.Write("[{0},{1}],", result[i][0], result[i][1]);
+            Console.WriteLine();
+        }
+
+        public static void TestKClosestToOrigin()
+        {
+            KClosestToOrigin kClosest;
+            int[][] input;
+            int[][] result;
+            // input = new int[][] {new int[] {1,3}, new int[] {-2, 2}};
+            // Console.WriteLine("Expected: [-2, 2]");
+            // Console.Write("Actual: ");
+            // kClosest = new KClosestToOrigin();
+            // result = kClosest.KClosest(input, 1);
+            // foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);
+            // Console.WriteLine();
+
+            // input = new int[][] {new int[] {3,3}, new int[] {5, -1}, new int[] {-2, 4}};
+            // Console.WriteLine("Expected: [3, 3], [-2, 4]");
+            // Console.Write("Actual");
+            // kClosest = new KClosestToOrigin();
+            // result = kClosest.KClosest(input, 2);
+            // foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);
+            // Console.WriteLine();
+
+            // input = new int[][] {new int[] {-2, 10}, new int[] {-4, -8}, new int[] {10, 7}, new int[] {-4, -7}};
+            // Console.WriteLine("Expected: [-4, -7], [-4, -8], [-2, 10]");
+            // Console.Write("Actual");
+            // kClosest = new KClosestToOrigin();
+            // result = kClosest.KClosest(input, 3);
+            // foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);
+            // Console.WriteLine();
+
+            // input = new int[][] {new int[] {2, 2}, new int[] {2, 2}, new int[] {2, 2}, new int[] {2, 2}, new int[] {2, 2}, new int[] {2, 2}, new int[] {1, 1}};
+            // Console.WriteLine("Expected: [1, 1]");
+            // Console.Write("Actual");
+            // kClosest = new KClosestToOrigin();
+            // result = kClosest.KClosest(input, 1);
+            // foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);
+            
+            input = new int[][] {new int[] {89,6}, new int[] {-39,-4}, new int[] {-13,91}, new int[] {97,-61}, new int[] {1,7}, new int[] {-66,69}, new int[] {-51,68}, new int[] {82,-6}, new int[] {-21,44}, new int[] {-58,-83}, new int[] {-40,73}, new int[] {-88,-24}};
+            Console.WriteLine("Expected: [1,7],[-39,-4],[-21,44],[82,-6],[-40,73],[-51,68],[89,6],[-88,-24]");
+            Console.Write("Actual");
+            kClosest = new KClosestToOrigin();
+            result = kClosest.KClosest(input, 8);
+            foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);            
+        }
+
+        public static void TestProductExceptSelf()
+        {
+            ProductExceptSelf product = new ProductExceptSelf();
+            int[] nums = product.Calculate(new int[] {1,2,3,4});
+            foreach (int n in nums) Console.Write(n + "\t");
+            Console.WriteLine();
+        }
+
+        public static void TestBSTDoublyList()
+        {
+            // do nothing
+        }
+
+        
     }
 }
