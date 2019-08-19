@@ -25,65 +25,55 @@ namespace LC_FB_Medium
     */
     class KClosestToOrigin
     {
-        int[][] points;
         Random random = new Random();
 
         public int[][] KClosest(int[][] points, int K) {
-            List<int[]> result = new List<int[]>();
-            if (points == null || points.Length == 0 || K <= 0) return result.ToArray();
-            if (K >= points.Length) return points;
+            int toFindIndex = K - 1;
+            int pivotIndex = -1;
+            int i = 0;
+            int j = points.Length - 1;
 
-            this.points = points;
-            this.Sort(0, points.Length - 1, K);
+            while (i <= j) {
+                pivotIndex = this.QuickSelect(points, i, j);
+                if (pivotIndex == toFindIndex) break;
+                if (toFindIndex < pivotIndex) j = pivotIndex - 1;
+                else i = pivotIndex + 1;
+            }
 
             // Copy k elements
-            for (int i = 0; i < K; i++) {
+            List<int[]> result = new List<int[]>();
+            for (i = 0; i <= pivotIndex; i++) {
                 result.Add(new int[] {points[i][0], points[i][1]});
             }
 
             return result.ToArray();
         }
 
-        private void Sort(int i, int j, int k) {
-            if (i >= j) return;
-            
-            // swap i with some random element between i and j.
-            // i is used as pivot and we want to randomize it
-            int randIndex = this.random.Next(i, j + 1);
-            this.Swap(i, randIndex);
+        private int QuickSelect(int[][] points, int i, int j) {
+            int pivot = i;
 
-            // Partition and calculate the left length.
-            int mid = this.Partition(i, j);
-            int leftLength = i - mid + 1;
-            if (leftLength == k) return;
-            if (k < leftLength) this.Sort(i, mid - 1, k);
-            else this.Sort(mid + 1, j, k - leftLength);
-        }
-
-        private int Partition(int i, int j)
-        {
-            int i_mem = i;
-            int pivot = Dist(i);
+            // exchange pivot with any # between i and j
+            this.Swap(points, i, random.Next(i, j + 1));
+            int pivotDist = this.Dist(points, i);
             i++;
 
             while (true) {
-                while (i < j && this.Dist(i) <= pivot) i++;
-                while (i <= j && this.Dist(j) >= pivot) j--;
+                while (i < j && this.Dist(points, i) <= pivotDist) i++;
+                while (i <= j && this.Dist(points, j) > pivotDist) j--;
                 if (i >= j) break;
-                this.Swap(i, j);
+                this.Swap(points, i, j);
             }
 
-            // j will be pointing to an element less than pivot.
-            this.Swap(i_mem, j);
+            this.Swap(points, pivot, j);
             return j;
         }
 
-        private int Dist(int i) {
+        private int Dist(int[][] points, int i) {
             // euclidean distance of point i from origin[0,0] = sqrt((points[i][0] - 0)^2 + (points[i][1] - 0)^2)
             return points[i][0] * points[i][0] + points[i][1] * points[i][1];
         }
 
-        private void Swap(int i, int j) {
+        private void Swap(int[][] points, int i, int j) {
             // swap the values
             int tempi0 = points[i][0];
             int tempi1 = points[i][1];

@@ -44,9 +44,13 @@ namespace LC_FB_Medium
             // TestShortestWayToFormString(); // 34
             // TestStonesRemoved(); // 35
             // TestIntervalListInterections(); // 36
-            // TestKClosestToOrigin(); // 37
+            TestKClosestToOrigin(); // 37
             // TestProductExceptSelf(); // 38
-            TestBSTDoublyList(); // 39
+            // TestBSTDoublyList(); // 39
+            // TestContinuousSubarraySum(); // 40
+            // TestOneEditDistance(); // 41
+            // TestNextPermutation(); // 42
+            // TestKthLargest(); // 43
         }
 
         public static void MinSizeSubarraySumTest()
@@ -618,6 +622,62 @@ namespace LC_FB_Medium
             // do nothing
         }
 
-        
+        public static void TestContinuousSubarraySum()
+        {
+            ContinuousSubarraySum c = new ContinuousSubarraySum();
+            Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum2(new int[] {23, 2, 4, 6, 7}, 6));
+            Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum2(new int[] {23, 2, 4, 6, 8}, 6));
+            Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum2(new int[] {22, 2, 5, 5, 9}, 6));
+            Console.WriteLine("Expected: False. Actual: " + c.CheckSubarraySum2(new int[] {20, 2, 5, 4, 10}, 6));
+            Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum2(new int[] {20, 2, 5, 4, 11}, 6));
+            Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum2(new int[] {20, 2, 5, 4, 10, 0, 8, 0, 0}, 6));
+            Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum2(new int[] {0, 0}, 0));
+
+            // Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum(new int[] {23, 2, 4, 6, 7}, 6));
+            // Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum(new int[] {23, 2, 4, 6, 8}, 6));
+            // Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum(new int[] {22, 2, 5, 5, 9}, 6));
+            // Console.WriteLine("Expected: False. Actual: " + c.CheckSubarraySum(new int[] {20, 2, 5, 4, 10}, 6));
+            // Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum(new int[] {20, 2, 5, 4, 11}, 6));
+            // Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum(new int[] {20, 2, 5, 4, 10, 0, 8, 0, 0}, 6));
+            // Console.WriteLine("Expected: True. Actual: " + c.CheckSubarraySum(new int[] {0, 0}, 0));
+        }
+
+        public static void TestOneEditDistance()
+        {
+            OneEditDistance one = new OneEditDistance();
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance(null, "s"));
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance("t", null));
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance("ta", "ts"));
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance("taa", "ta"));
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance("tat", "tst"));
+            Console.WriteLine("Expected: False. Actual: " + one.IsOneEditDistance("taa", "tst"));
+            Console.WriteLine("Expected: False. Actual: " + one.IsOneEditDistance("taa", "t"));
+            Console.WriteLine("Expected: False. Actual: " + one.IsOneEditDistance("taa", "taa"));
+            Console.WriteLine("Expected: False. Actual: " + one.IsOneEditDistance("", ""));
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance("ca", "c"));
+            Console.WriteLine("Expected: True. Actual: " + one.IsOneEditDistance("", "c"));
+        }
+
+        public static void TestNextPermutation()
+        {
+            NextPermutation nextPermutation = new NextPermutation();
+            Console.WriteLine("Expected: 1 3 2 4. Actual: ");
+            int[] nums = new int[] {1, 2, 4, 3};
+            nextPermutation.Next(nums);
+            foreach (int n in nums) Console.Write(n + " "); Console.WriteLine();
+
+            Console.WriteLine("Expected: 1 2 3 4. Actual: ");
+            nums = new int[] {4, 3, 2, 1};
+            nextPermutation.Next(nums);
+            foreach (int n in nums) Console.Write(n + " "); Console.WriteLine();            
+        }
+
+        public static void TestKthLargest()
+        {
+            KthLargetst kthLargetst = new KthLargetst();
+            Console.WriteLine("Expected: 5. Actual: " + kthLargetst.FindKthLargest(new int[] {3,2,1,5,6,4}, 2));
+            Console.WriteLine("Expected: 4. Actual: " + kthLargetst.FindKthLargest(new int[] {3,2,3,1,2,4,5,5,6}, 4));
+            Console.WriteLine("Expected: 3. Actual: " + kthLargetst.FindKthLargest(new int[] {3,3,3,3,3,3,3,3,3}, 1));
+        }
     }
 }
