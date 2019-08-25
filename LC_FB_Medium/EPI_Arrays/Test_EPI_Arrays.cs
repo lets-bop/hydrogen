@@ -18,9 +18,10 @@ namespace LC_FB_Medium
 
         private static void TestDutchFlag()
         {
-            List<int> balls = new List<int>() {2,2,2,0,0,0,1,1,1,0,2,1,1,1,0,2,2,0,1,0,0};
+            int[] balls = new int[] {2,2,2,0,0,0,1,1,1,0,2,1,1,1,0,2,2,0,1,0,0};
+            DutchFlag df = new DutchFlag();
 
-            DutchFlag.Sort(balls);
+            df.Sort(balls);
             Console.WriteLine("Sorted list is ");
             foreach (int ball in balls) Console.Write(ball + "\t");
             Console.WriteLine();

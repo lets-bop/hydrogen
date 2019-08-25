@@ -44,13 +44,21 @@ namespace LC_FB_Medium
             // TestShortestWayToFormString(); // 34
             // TestStonesRemoved(); // 35
             // TestIntervalListInterections(); // 36
-            TestKClosestToOrigin(); // 37
+            // TestKClosestToOrigin(); // 37
             // TestProductExceptSelf(); // 38
             // TestBSTDoublyList(); // 39
             // TestContinuousSubarraySum(); // 40
             // TestOneEditDistance(); // 41
             // TestNextPermutation(); // 42
             // TestKthLargest(); // 43
+            // TestTopKFrequent(); // 44
+            // TestBinaryTreeRightSideView(); // 45
+            // TestAccountsMerge(); // 46
+            // TestLongestSubstringKDistinctChars(); // 47
+            // TestLongestRepeatingChar(); // 48
+            // TestLongestWithoutRepeatingChars(); //49
+            // TestMaxOnes(); // 50
+            TestDuctchFlag(); // 51
         }
 
         public static void MinSizeSubarraySumTest()
@@ -678,6 +686,93 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 5. Actual: " + kthLargetst.FindKthLargest(new int[] {3,2,1,5,6,4}, 2));
             Console.WriteLine("Expected: 4. Actual: " + kthLargetst.FindKthLargest(new int[] {3,2,3,1,2,4,5,5,6}, 4));
             Console.WriteLine("Expected: 3. Actual: " + kthLargetst.FindKthLargest(new int[] {3,3,3,3,3,3,3,3,3}, 1));
+        }
+
+        public static void TestTopKFrequent()
+        {
+            // placeholder.
+        }
+
+        public static void TestBinaryTreeRightSideView() {
+            // placeholder
+        }
+
+        public static void TestAccountsMerge() {
+            // IList<IList<string>> accounts = new List<IList<string>>();
+            // accounts.Add(new List<string> {"John", "johnsmith@mail.com", "john00@mail.com"});
+            // accounts.Add(new List<string>() {"John", "johnnybravo@mail.com"});
+            // accounts.Add(new List<string>() {"John", "johnsmith@mail.com", "john_newyork@mail.com"});
+            // accounts.Add(new List<string>() {"Mary", "mary@mail.com"});
+            // AccountsMerge acc = new AccountsMerge();
+            // IList<IList<string>> result = acc.Merge(accounts);
+            // foreach (List<string> r in result) {
+            //     foreach (string s in r) {
+            //         Console.Write(s + ", ");
+            //     }
+            //     Console.WriteLine();
+            // }
+
+            List<string> k = new List<string>();
+            k.Add("n00");
+            k.Add("n_0");
+            k.Add("n11");
+            k.Add("n_1");
+            k.Sort();
+            foreach (string s in k) Console.WriteLine(s);
+
+        }
+
+        public static void TestLongestSubstringKDistinctChars()
+        {
+            LongestSubstringKDistinctChars l = new LongestSubstringKDistinctChars();
+            Console.WriteLine("Expected 16. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabbbbbbaaaaacccccaa", 2));
+            Console.WriteLine("Expected 12. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabaaaaacccccaa", 2));
+            Console.WriteLine("Expected 11. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabaaaaacccccbb", 2));
+            Console.WriteLine("Expected 18. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabaaaaacccccbb", 3));
+            Console.WriteLine("Expected 12. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaaaaaaaaab", 1));
+            Console.WriteLine("Expected 12. Actual: " + l.LengthOfLongestSubstringKDistinct("baaaaaaaaaaaab", 1));
+        }
+
+        public static void TestLongestRepeatingChar()
+        {
+            LongestRepeatingChar l = new LongestRepeatingChar();
+            Console.WriteLine("Expected: 7. Actual: " + l.CharacterReplacement("aabbabcccbcc", 2));
+            Console.WriteLine("Expected: 7. Actual: " + l.CharacterReplacement("aabaaaab", 1));
+            Console.WriteLine("Expected: 2. Actual: " + l.CharacterReplacement("abcdefghijklmnopqrstuvwxyz", 1));
+            Console.WriteLine("Expected: 8. Actual: " + l.CharacterReplacement("aaaaaaaabbb", 0));
+            Console.WriteLine("Expected: 4. Actual: " + l.CharacterReplacement("abab", 2));
+            Console.WriteLine("Expected: 4. Actual: " + l.CharacterReplacement("AABABBA", 1));
+            Console.WriteLine("Expected: 2. Actual: " + l.CharacterReplacement("ABAA", 0));
+            Console.WriteLine("Expected: 4. Actual: " + l.CharacterReplacement("ABBB", 2)); // important test case
+            Console.WriteLine("Expected: 5. Actual: " + l.CharacterReplacement("BAAAB", 2)); // important test case
+        }
+
+        public static void TestLongestWithoutRepeatingChars()
+        {
+            LongestWithoutRepeatingChars l = new LongestWithoutRepeatingChars();
+            Console.WriteLine("Expected: 3. Actual: " + l.LengthOfLongestSubstring("abcabcbb"));
+            Console.WriteLine("Expected: 1. Actual: " + l.LengthOfLongestSubstring("bbbbbbbbb"));
+            Console.WriteLine("Expected: 3. Actual: " + l.LengthOfLongestSubstring("pwwkew"));
+            Console.WriteLine("Expected: 5. Actual: " + l.LengthOfLongestSubstring("tmmzuxt"));
+        }
+
+        public static void TestMaxOnes()
+        {
+            MaxOnes max = new MaxOnes();
+            Console.WriteLine("Expected: 6. Actual: " + max.LongestOnes(new int[] {1,1,1,0,0,0,1,1,1,1,0}, 2));
+            Console.WriteLine("Expected: 10. Actual: " + max.LongestOnes(new int[] {0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1}, 3));
+        }
+
+        public static void TestDuctchFlag()
+        {
+            DutchFlag df = new DutchFlag();
+            int[] result;
+            result = df.Sort(new int[] {2,2,2,0,0,0,1,1});
+            foreach (int r in result) Console.Write(r + " "); Console.WriteLine();
+            result = df.Sort(new int[] {0,2,1,0,0,0,2,1});
+            foreach (int r in result) Console.Write(r + " "); Console.WriteLine();
+            result = df.Sort(new int[] {2,2,2,0,0,0,1,1,1,0,2,1,1,1,0,2,2,0,1,0,0});
+            foreach (int r in result) Console.Write(r + " "); Console.WriteLine();
         }
     }
 }
