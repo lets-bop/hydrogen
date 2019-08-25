@@ -18,9 +18,9 @@ namespace LC_FB_Medium
                 [-1, -1, 2]
             ]
     */
-    class Sum3
+    class ThreeSum
     {
-        public IList<IList<int>> ThreeSum(int[] nums) 
+        public IList<IList<int>> Calculate(int[] nums) 
         {
             IList<IList<int>> result = new List<IList<int>>();
             if (nums == null || nums.Length < 3) return result;
