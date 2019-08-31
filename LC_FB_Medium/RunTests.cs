@@ -63,7 +63,10 @@ namespace LC_FB_Medium
             // TestSortedSquares(); // 53
             // TestThreeSumSmaller(); // 54
             // TestThreeSumMulti(); // 55
-            TestSubArrayProductLessThanK(); // 56
+            // TestSubArrayProductLessThanK(); // 56
+            // TestSubarraySubDivisibleByK(); // 57
+            // TestLinkedListCycle(); //58
+            TestHappyNumber(); //59
         }
 
         public static void MinSizeSubarraySumTest()
@@ -819,6 +822,27 @@ namespace LC_FB_Medium
             SubArrayProductLessThanK s = new SubArrayProductLessThanK();
             Console.WriteLine("Expected: 0. Actual: " + s.Calculate(new int[] {1, 2, 3}, 0));
             Console.WriteLine("Expected: 8. Actual: " + s.Calculate(new int[] {10, 5, 2, 6}, 100));
+        }
+
+        public static void TestSubarraySubDivisibleByK()
+        {
+            SubarraySumDivisibleByK div = new SubarraySumDivisibleByK();
+            Console.WriteLine("Expected: 7. Actual: " + div.Calculate(new int[] {4,5,0,-2,-3,1}, 5));
+        }
+
+        public static void TestLinkedListCycle()
+        {
+            // dummy, but passed online judge
+            LinkedListCycle cycle = new LinkedListCycle();
+            cycle.HasCycle(null);
+        }
+
+        public static void TestHappyNumber()
+        {
+            // dummy, but passed online judge
+            HappyNumber h = new HappyNumber();
+            Console.WriteLine("Expected: True. Actual: " + h.IsHappy(19));
+            Console.WriteLine("Expected: False. Actual: " + h.IsHappy(24));
         }
     }
 }

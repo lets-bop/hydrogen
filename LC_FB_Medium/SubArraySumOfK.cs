@@ -18,28 +18,7 @@ namespace LC_FB_Medium
      */
     class SubArraySumOfK
     {
-        // Time O(n^2). Space O(1)
-        // We can choose a start point and while iterating over the end points, 
-        // we can add the element corresponding to the end point to the sum formed until now.
-        // If the sum = k, we increment a counter. We do so while iterating over all possible end indices
-        // for a given start index. When we reset the start index, we need to reset the sum as well.
-        public int SubarraySum1(int[] nums, int k)
-        {
-            int count = 0;
-            int sum = 0;
-            for (int start = 0; start < nums.Length; start++)
-            {
-                sum = 0;
-                for (int end = start; end < nums.Length; end++)
-                {
-                    sum += nums[end];
-                    if (sum == k) count++;
-                }
-            }
 
-            return count;
-        }
-        
         // If sum[i] represents the sum upto (including) index i 
         // and sum[j] represents the sum upto (including) index j,
         // and if sum[i] == sum[j], then the sum of the elements between i & j = 0.
@@ -69,6 +48,28 @@ namespace LC_FB_Medium
                 if (sumToCountMap.ContainsKey(rollingSum)) 
                     sumToCountMap[rollingSum] = sumToCountMap[rollingSum] + 1;
                 else sumToCountMap[rollingSum] = 1;
+            }
+
+            return count;
+        }
+        
+        // Time O(n^2). Space O(1)
+        // We can choose a start point and while iterating over the end points, 
+        // we can add the element corresponding to the end point to the sum formed until now.
+        // If the sum = k, we increment a counter. We do so while iterating over all possible end indices
+        // for a given start index. When we reset the start index, we need to reset the sum as well.
+        public int SubarraySum1(int[] nums, int k)
+        {
+            int count = 0;
+            int sum = 0;
+            for (int start = 0; start < nums.Length; start++)
+            {
+                sum = 0;
+                for (int end = start; end < nums.Length; end++)
+                {
+                    sum += nums[end];
+                    if (sum == k) count++;
+                }
             }
 
             return count;

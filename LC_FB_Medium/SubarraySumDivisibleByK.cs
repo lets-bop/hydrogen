@@ -17,6 +17,18 @@ namespace LC_FB_Medium
         public int Calculate(int[] A, int K)
         {
             int result = 0;
+            int k = K == 0 ? 1 : K;
+            int[] sumCount = new int[k];
+            sumCount[0] = 1;    // if number % K == 0
+            int runningSumModK = 0;
+
+            foreach (int a in A) {
+                runningSumModK = (runningSumModK + a) % K;
+                if (runningSumModK < 0) runningSumModK += K;    // -4 % 5 = -4. Instead, this converts it to (-4 + 5) % 5 = 1
+                result += sumCount[runningSumModK];
+                sumCount[runningSumModK]++;
+            }
+
             return result;
         }
     }
