@@ -7,10 +7,6 @@ namespace LC_FB_Medium
     {
         static void Main(string[] args)
         {
-            // ---- Search in a sorted rotated array ----
-            // Console.WriteLine(SearchInRotatedArray.GetIndex(new int[] {6,7,0,1,2,3,4,5}, 0));
-            // Console.WriteLine(SearchInRotatedArray.GetIndex(new int[] {4,5,6,7,0,1,2,3}, 0));
-
             // ---- Group anagrams ----
             // GroupAnagrams.Process(new string[] {"bat","iceman","are","ear","tab","cinema","era"});
 

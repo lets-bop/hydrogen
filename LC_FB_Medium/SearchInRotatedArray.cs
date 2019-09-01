@@ -30,9 +30,11 @@ namespace LC_FB_Medium
             {
                 int mid = start + (end - start) / 2;
 
-                if (itemToSearch == array[mid])
-                    return mid;
+                if (itemToSearch == array[mid]) return mid;
+                if (itemToSearch == array[start]) return start;
+                if (itemToSearch == array[end]) return end;
 
+                // check if the array range is regularly sorted
                 if (array[start] <= array[end] && itemToSearch >= array[start] && itemToSearch <= array[end])
                 {
                     // Perform a regular binary search
@@ -41,16 +43,26 @@ namespace LC_FB_Medium
                     else
                         start = mid + 1;
                 }
-                else if (array[mid] <= array[start])
+                else if (array[mid] < array[start])
                 {
-                    if (itemToSearch <= array[start] && itemToSearch < array[mid])
-                        end = mid - 1;
-                    else
+                    /* 
+                    Index       => 0 1 2 3 4 5 6 7 8 9
+                    Contents    => 7 8 9 0 1 2 3 4 5 6
+                    */
+                    // check the part you are certain about. i.e. the part that is properly ordered
+                    if (itemToSearch > array[mid] && itemToSearch < array[end])
                         start = mid + 1;
+                    else
+                        end = mid - 1;
                 }
                 else
                 {
-                    if (itemToSearch >= array[start] && itemToSearch < array[mid])
+                    /* 
+                    Index       => 0 1 2 3 4 5 6 7 8 9
+                    Contents    => 2 3 4 5 6 7 8 9 0 1
+                    */
+                    // check the part you are certain about. i.e. the part that is properly ordered
+                    if (itemToSearch > array[start] && itemToSearch < array[mid])
                         end = mid - 1;
                     else
                         start = mid + 1;

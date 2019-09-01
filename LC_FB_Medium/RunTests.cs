@@ -66,7 +66,11 @@ namespace LC_FB_Medium
             // TestSubArrayProductLessThanK(); // 56
             // TestSubarraySubDivisibleByK(); // 57
             // TestLinkedListCycle(); //58
-            TestHappyNumber(); //59
+            // TestHappyNumber(); //59
+            // TestNonoverlappingIntervals(); // 60
+            // TestDuplicateNumber(); // 61
+            // TestReverseLinkedList2(); // 62
+            TestSearchInRotatedArray(); // 63
         }
 
         public static void MinSizeSubarraySumTest()
@@ -843,6 +847,42 @@ namespace LC_FB_Medium
             HappyNumber h = new HappyNumber();
             Console.WriteLine("Expected: True. Actual: " + h.IsHappy(19));
             Console.WriteLine("Expected: False. Actual: " + h.IsHappy(24));
+        }
+
+        public static void TestNonoverlappingIntervals() {
+            NonoverlappingIntervals n = new NonoverlappingIntervals();
+            int[][] input;
+            input = new int[][] {new int[] {1,2}, new int[] {3,4}, new int[] {2,3}, new int[] {1,3}};
+            Console.WriteLine("Expected: 1. Actual: " + n.EraseOverlapIntervals(input));
+            input = new int[][] {new int[] {1,2}, new int[] {1,2}, new int[] {1,2}, new int[] {1,2}};
+            Console.WriteLine("Expected: 3. Actual: " + n.EraseOverlapIntervals(input));
+            input = new int[][] {new int[] {1,2}, new int[] {3,4}};
+            Console.WriteLine("Expected: 0. Actual: " + n.EraseOverlapIntervals(input));
+        }
+
+        public static void TestDuplicateNumber()
+        {
+            DuplicateNumber d = new DuplicateNumber();
+            Console.WriteLine("Expected: 2. Actual: " + d.FindDuplicate(new int[] {2, 2, 2, 2, 2 ,2}));
+            Console.WriteLine("Expected: 2. Actual: " + d.FindDuplicate(new int[] {1, 3, 2, 4, 5, 2}));
+        }
+
+        public static void TestReverseLinkedList2()
+        {
+            ReverseLinkedList2 rev = new ReverseLinkedList2();
+            rev.ReverseBetween(null, 0, 0);
+        }
+
+        public static void TestSearchInRotatedArray()
+        {
+            Console.WriteLine("Expected: 2. Actual: " + SearchInRotatedArray.GetIndex(new int[] {6,7,0,1,2,3,4,5}, 0));
+            Console.WriteLine("Expected: 4. Actual: " + SearchInRotatedArray.GetIndex(new int[] {4,5,6,7,0,1,2,3}, 0));
+            Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {4,1}, 1));
+            Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {4,1}, 4));
+            Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {1,3}, 1));
+            Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {1,3}, 3));
+            Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {4,1,3}, 4));
+            Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {8,9,2,3,4}, 9));
         }
     }
 }

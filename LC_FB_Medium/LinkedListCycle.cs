@@ -30,5 +30,30 @@ namespace LC_FB_Medium
             return false;
             
         }
+
+        public ListNode CycleStart(ListNode head) {
+            if (head == null) return head;
+
+            // determine if there is a cycle
+            ListNode slow = head;
+            ListNode fast = head;
+
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) {
+                    // found cycle
+                    slow = head;
+                    while (slow != fast) {
+                        slow = slow.next;
+                        fast = fast.next;
+                    }
+                    
+                    return fast;
+                }
+            }
+
+            return null;
+        }
     }
 }
