@@ -70,7 +70,9 @@ namespace LC_FB_Medium
             // TestNonoverlappingIntervals(); // 60
             // TestDuplicateNumber(); // 61
             // TestReverseLinkedList2(); // 62
-            TestSearchInRotatedArray(); // 63
+            // TestSearchInRotatedArray(); // 63
+            // TestContainerWithMostWater(); // 64
+            TestFriendsOfAppropriateAges();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -883,6 +885,24 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {1,3}, 3));
             Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {4,1,3}, 4));
             Console.WriteLine("Expected: 1. Actual: " + SearchInRotatedArray.GetIndex(new int[] {8,9,2,3,4}, 9));
+        }
+
+        public static void TestContainerWithMostWater(){
+            ContainerWithMostWater water = new ContainerWithMostWater();
+            Console.WriteLine("Expected: 1. Actual: " + water.MaxArea(new int[] {1,2}));
+            Console.WriteLine("Expected: 2. Actual: " + water.MaxArea(new int[] {1,2,1}));
+            Console.WriteLine("Expected: 49. Actual: " + water.MaxArea(new int[] {1,8,6,2,5,4,8,3,7}));
+            Console.WriteLine("Expected: 20. Actual: " + water.MaxArea(new int[] {10,8,7,6,5,3}));
+            Console.WriteLine("Expected: 45. Actual: " + water.MaxArea(new int[] {10,6,8,5,4,9,6,5,3}));
+            Console.WriteLine("Expected: 72. Actual: " + water.MaxArea(new int[] {10,6,8,5,4,7,6,5,9}));
+        }
+
+        public static void TestFriendsOfAppropriateAges()
+        {
+            FriendsOfAppropriateAges friends = new FriendsOfAppropriateAges();
+            Console.WriteLine("Expected: 2. Actual: " + friends.NumFriendRequests(new int[] {16,16}));
+            Console.WriteLine("Expected: 2. Actual: " + friends.NumFriendRequests(new int[] {16,17,18}));
+            Console.WriteLine("Expected: 3. Actual: " + friends.NumFriendRequests(new int[] {20,30,100,110,120}));
         }
     }
 }
