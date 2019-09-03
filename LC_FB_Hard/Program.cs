@@ -46,7 +46,9 @@ namespace LC_FB_Hard
             // TestInterleavingString(); //36
             // TestRangeSumQuery();  //37
             // TestMaxPointsOnLine(); //38
-            TestShortestSubArraySumAtleastK(); //39
+            // TestShortestSubArraySumAtleastK(); //39
+            // TestLongestDuplicateString(); //40
+            TestIntegerToEnglish(); //41
         }
 
         public static void TestRegexMatching()
@@ -784,6 +786,36 @@ namespace LC_FB_Hard
         {
             ShortestSubArraySumAtleastK shortest= new ShortestSubArraySumAtleastK();
             Console.WriteLine("Expected: 3. Actual: " + shortest.ShortestSubarray(new int[] {-28,81,-20,28,-29}, 89));
+        }
+
+        public static void TestLongestDuplicateString()
+        {
+            LongestDuplicateString longest = new LongestDuplicateString();
+            Console.WriteLine("Expected: ana. Actual: " + longest.LongestDupSubstring("banana"));
+            Console.WriteLine("Expected: ''. Actual: " + longest.LongestDupSubstring("abcd"));
+            Console.WriteLine("Expected: ''. Actual: " + longest.LongestDupSubstring("abcd"));
+        }
+
+        public static void TestIntegerToEnglish()
+        {
+            IntegerToEnglish i = new IntegerToEnglish();
+            Console.WriteLine("Expected: Zero. Actual: " +i.NumberToWords(0));
+            Console.WriteLine("Expected: Ten. Actual: " +i.NumberToWords(10));
+            Console.WriteLine("Expected: Eleven. Actual: " +i.NumberToWords(11));
+            Console.WriteLine("Expected: Fifteen. Actual: " +i.NumberToWords(15));
+            Console.WriteLine("Expected: Twenty One. Actual: " +i.NumberToWords(21));
+            Console.WriteLine("Expected: One Hundred. Actual: " +i.NumberToWords(100));
+            Console.WriteLine("Expected: One Hundred One. Actual: " +i.NumberToWords(101));
+            Console.WriteLine("Expected: Four Hundred Forty. Actual: " +i.NumberToWords(440));
+            Console.WriteLine("Expected: One Thousand. Actual: " +i.NumberToWords(1000));
+            Console.WriteLine("Expected: Seven Thousand Four Hundred Sixty One. Actual: " +i.NumberToWords(7461));
+            Console.WriteLine("Expected: One Hundred Thousand. Actual: " +i.NumberToWords(100000));
+            Console.WriteLine("Expected: One Million. Actual: " +i.NumberToWords(1000000));
+            Console.WriteLine("Expected: One Million Ten. Actual: " +i.NumberToWords(1000010));
+            Console.WriteLine("Expected: Four Hundred Eighty Four Thousand Three Hundred Ninety. Actual: " +i.NumberToWords(484390));
+            Console.WriteLine("Expected: One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven. Actual: " +i.NumberToWords(1234567));
+            Console.WriteLine("Expected: Two Billion. Actual: " +i.NumberToWords(2000000000));
+            Console.WriteLine("Expected: One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One. Actual: " +i.NumberToWords(1234567891));
         }
     }
 }
