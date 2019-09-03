@@ -72,7 +72,9 @@ namespace LC_FB_Medium
             // TestReverseLinkedList2(); // 62
             // TestSearchInRotatedArray(); // 63
             // TestContainerWithMostWater(); // 64
-            TestFriendsOfAppropriateAges();
+            // TestFriendsOfAppropriateAges(); //65
+            // TestLongestRepeatedSubstring(); // 66
+            TestRestoreIpAddress(); //67
         }
 
         public static void MinSizeSubarraySumTest()
@@ -903,6 +905,31 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 2. Actual: " + friends.NumFriendRequests(new int[] {16,16}));
             Console.WriteLine("Expected: 2. Actual: " + friends.NumFriendRequests(new int[] {16,17,18}));
             Console.WriteLine("Expected: 3. Actual: " + friends.NumFriendRequests(new int[] {20,30,100,110,120}));
+        }
+
+        public static void TestLongestRepeatedSubstring()
+        {
+            LongestRepeatedSubstring lrs = new LongestRepeatedSubstring();
+            Console.WriteLine("Expected: 3. Actual: " + lrs.LongestRepeatingSubstring("aabcaabdaab"));
+            Console.WriteLine("Expected: 2. Actual: " + lrs.LongestRepeatingSubstring("abbaba"));
+            Console.WriteLine("Expected: 4. Actual: " + lrs.LongestRepeatingSubstring("aaaaa"));
+        }
+
+        public static void TestRestoreIpAddress()
+        {
+            RestoreIpAddress restore = new RestoreIpAddress();
+            IList<string> restored;
+            restored = restore.RestoreIpAddresses("25525511135"); // Expected ["255.255.11.135","255.255.111.35"]
+            foreach (string r in restored) Console.Write(r + " ");
+            Console.WriteLine();
+
+            restored = restore.RestoreIpAddresses("13112"); // expected ["1.3.1.12", "1.3.11.2", "1.31.1.2", "13.1.1.2"]
+            foreach (string r in restored) Console.Write(r + " ");
+            Console.WriteLine();
+
+            restored = restore.RestoreIpAddresses("010010"); //expected: ["0.10.0.10", "0.100.1.0"]
+            foreach (string r in restored) Console.Write(r + " ");
+            Console.WriteLine();
         }
     }
 }

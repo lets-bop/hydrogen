@@ -17,30 +17,23 @@ namespace LC_FB_Medium
 {
     class MinSizeSubarraySum
     {
-        public static int Find(int[] arr, int s)
+        public static int Find(int[] a, int s)
         {
-            int minSize = int.MaxValue;
-            int start = 0;
-            int end = 0;
-            int sum = 0;
+            int left = 0;
+            int runningSum = 0;
+            int minLength = int.MaxValue;
 
-            while(true)
-            {
-                if (start == end && start == arr.Length) break;
-
-                if (sum <= s){
-                    if (end == arr.Length) sum -= arr[start++]; // corner case
-                    else sum += arr[end++];
+            for (int i = 0; i < a.Length; i++) {
+                runningSum += a[i];
+                while (runningSum >= s){
+                    minLength = Math.Min(minLength, i - left + 1);
+                    runningSum -= a[left];
+                    left++;
                 }
-                else if (sum > s) sum -= arr[start++];
-                
-                if (sum >= s) minSize = Math.Min(minSize, end == start ? 1 : end - start);
-                
-                if (start > end) end = start;
             }
-
-            if (minSize == int.MaxValue) return 0;
-            return minSize;
+        
+            if (minLength == int.MaxValue) return 0;
+            return minLength;
         }
     }
 }
