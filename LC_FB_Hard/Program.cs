@@ -48,7 +48,8 @@ namespace LC_FB_Hard
             // TestMaxPointsOnLine(); //38
             // TestShortestSubArraySumAtleastK(); //39
             // TestLongestDuplicateString(); //40
-            TestIntegerToEnglish(); //41
+            // TestIntegerToEnglish(); //41
+            TestTextJustification(); //42
         }
 
         public static void TestRegexMatching()
@@ -816,6 +817,28 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven. Actual: " +i.NumberToWords(1234567));
             Console.WriteLine("Expected: Two Billion. Actual: " +i.NumberToWords(2000000000));
             Console.WriteLine("Expected: One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One. Actual: " +i.NumberToWords(1234567891));
+        }
+
+        public static void TestTextJustification()
+        {
+            TextJustification text = new TextJustification();
+            string[] input;
+            IList<string> result;
+            input = new string[] {"This", "is", "an", "example", "of", "text", "justification."};
+            result = text.FullJustify(input, 16);
+            foreach (string r in result) Console.WriteLine(r);
+
+            input = new string[] {"What","must","be","acknowledgment","shall","be"};
+            result = text.FullJustify(input, 16);
+            foreach (string r in result) Console.WriteLine(r);
+
+            input = new string[] {"Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"};
+            result = text.FullJustify(input, 20);
+            foreach (string r in result) Console.WriteLine(r);
+
+            input = new string[] {"Listen","to","many,","speak","to","a","few."};
+            result = text.FullJustify(input, 6);
+            foreach (string r in result) Console.WriteLine(r);
         }
     }
 }

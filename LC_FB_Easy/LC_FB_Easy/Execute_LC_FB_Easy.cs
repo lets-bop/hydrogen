@@ -96,10 +96,28 @@ namespace LC_FB_Easy
             // Console.WriteLine("Expected: false. Actual: " + back.BackspaceCompare("a#c", "b"));
             // Console.WriteLine("Expected: true. Actual: " + back.BackspaceCompare("nzp#o#g", "b#nzp#o#g"));
 
-            BullsAndCows cb = new BullsAndCows();
-            Console.WriteLine("Expected: 1A3B. Actual: " + cb.GetHint("1807", "7810"));
-            Console.WriteLine("Expected: 1A1B. Actual: " + cb.GetHint("1123", "0111"));
-            Console.WriteLine("Expected: 3A0B. Actual: " + cb.GetHint("1122", "1222"));
+            // BullsAndCows cb = new BullsAndCows();
+            // Console.WriteLine("Expected: 1A3B. Actual: " + cb.GetHint("1807", "7810"));
+            // Console.WriteLine("Expected: 1A1B. Actual: " + cb.GetHint("1123", "0111"));
+            // Console.WriteLine("Expected: 3A0B. Actual: " + cb.GetHint("1122", "1222"));
+
+            // TestSingleRowKeyboard();
+            TestAddStrings();
+        }
+
+        public static void TestSingleRowKeyboard()
+        {
+            SingleRowKeyboard s = new SingleRowKeyboard();
+            Console.WriteLine("Expected: 4. Actual: " + s.CalculateTime("abcdefghijklmnopqrstuvwxyz", "cba"));
+            Console.WriteLine("Expected: 73. Actual: " + s.CalculateTime("pqrstuvwxyzabcdefghijklmno", "leetcode"));
+        }
+
+        public static void TestAddStrings()
+        {
+            AddStrings a = new AddStrings();
+            Console.WriteLine("Expected: 77. Actual: " + a.Add("44", "33"));
+            Console.WriteLine("Expected: 1110. Actual: " + a.Add("444", "666"));
+            Console.WriteLine("Expected: 670. Actual: " + a.Add("4", "666"));
         }
     }
 }
