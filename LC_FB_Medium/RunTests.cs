@@ -74,7 +74,8 @@ namespace LC_FB_Medium
             // TestContainerWithMostWater(); // 64
             // TestFriendsOfAppropriateAges(); //65
             // TestLongestRepeatedSubstring(); // 66
-            TestRestoreIpAddress(); //67
+            // TestRestoreIpAddress(); // 67
+            TestLongestArithmeticSequence(); // 68
         }
 
         public static void MinSizeSubarraySumTest()
@@ -930,6 +931,15 @@ namespace LC_FB_Medium
             restored = restore.RestoreIpAddresses("010010"); //expected: ["0.10.0.10", "0.100.1.0"]
             foreach (string r in restored) Console.Write(r + " ");
             Console.WriteLine();
+        }
+
+        public static void TestLongestArithmeticSequence()
+        {
+            LongestArithmeticSequence las = new LongestArithmeticSequence();
+            Console.WriteLine("Expected: 4. Actual: " + las.LongestArithmeticSequenceLen(new int[] {3,6,9,12}));
+            Console.WriteLine("Expected: 3. Actual: " + las.LongestArithmeticSequenceLen(new int[] {9,4,7,2,10}));
+            Console.WriteLine("Expected: 4. Actual: " + las.LongestArithmeticSequenceLen(new int[] {20,1,15,3,10,5,8}));
+            Console.WriteLine("Expected: 4. Actual: " + las.LongestArithmeticSequenceLen(new int[] {12,28,13,6,34,36,53,24,29,2,23,0,22,25,53,34,23,50,35,43,53,11,48,56,44,53,31,6,31,57,46,6,17,42,48,28,5,24,0,14,43,12,21,6,30,37,16,56,19,45,51,10,22,38,39,23,8,29,60,18}));
         }
     }
 }
