@@ -52,10 +52,13 @@ namespace LC_FB_Medium
             int j, len, diff, max = 0;
             for (int i = 1; i < A.Length; i++) {
                 j = 0;
-                len = 2; // min length for every pair is 2
                 while (j < i) {
+                    len = 2; // min length for every pair is 2
                     diff = A[i] - A[j];
+
+                    // if the dic at index j has the difference, we just add 1 to it. Else we take 0
                     len = Math.Max(len, differenceToLengthMapAtIndex[j].GetValueOrDefault(diff, -1) + 1);
+                    
                     if (!differenceToLengthMapAtIndex[i].ContainsKey(diff)) differenceToLengthMapAtIndex[i][diff] = len;
                     else differenceToLengthMapAtIndex[i][diff] = Math.Max(differenceToLengthMapAtIndex[i][diff], len);
 
