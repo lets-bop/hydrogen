@@ -21,7 +21,7 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence(); //11
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
-            // TestAlientDictionary(); //14
+            TestAlientDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
@@ -49,7 +49,8 @@ namespace LC_FB_Hard
             // TestShortestSubArraySumAtleastK(); //39
             // TestLongestDuplicateString(); //40
             // TestIntegerToEnglish(); //41
-            TestTextJustification(); //42
+            // TestTextJustification(); //42
+            // TestArithmeticSlices2();
         }
 
         public static void TestRegexMatching()
@@ -278,14 +279,20 @@ namespace LC_FB_Hard
             sub.FindSubstring("wordgoodstudentgoodword", new string[] {"word", "student"});
             sub.FindSubstring("barfoofoobarthefoobarman", new string[] {"bar","foo","the"});
             sub.FindSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", new string[] {"fooo","barr","wing","ding","wing"});
-            sub.FindSubstring("ababaab", new string[] {"ab","ba","ba"});        
+            sub.FindSubstring("ababaab", new string[] {"ab","ba","ba"});
             sub.FindSubstring("aaaaaa", new string[] {"aa","aa"});  
         }
 
         private static void TestAlientDictionary()
         {
             AlienDictionary dic = new AlienDictionary();
-            Console.WriteLine(dic.AlienOrder(new string[] {  "wrt", "wrf", "er", "ett", "rftt"}));
+            // Console.WriteLine("Expected: wertf. Actual: " + dic.AlienOrder(new string[] {  "wrt", "wrf", "er", "ett", "rftt"}));
+            // Console.WriteLine("Expected: wars. Actual: " + dic.AlienOrder(new string[] {  "war", "was", "ar", "raw", "saw"}));
+            // Console.WriteLine("Expected: z. Actual: " + dic.AlienOrder(new string[] {  "z", "z"}));
+            // Console.WriteLine("Expected: zx. Actual: " + dic.AlienOrder(new string[] {  "z", "x"}));
+            // Console.WriteLine("Expected: . Actual: " + dic.AlienOrder(new string[] {  "z", "x", "z"}));
+            // Console.WriteLine("Expected: . Actual: " + dic.AlienOrder(new string[] {  "war", "was", "saw", "raw"}));
+            Console.WriteLine("Expected: vlxpwiqbsgc. Actual: " + dic.AlienOrder(new string[] {"vlxpwiqbsg","cpwqwqcd"}));
         }
 
         private static void TestLongestValidParenthesis()
@@ -839,6 +846,14 @@ namespace LC_FB_Hard
             input = new string[] {"Listen","to","many,","speak","to","a","few."};
             result = text.FullJustify(input, 6);
             foreach (string r in result) Console.WriteLine(r);
+        }
+
+        public static void TestArithmeticSlices2()
+        {
+            ArithmeticSlices2 ar = new ArithmeticSlices2();
+            Console.WriteLine("Expected: 7. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,4,6,8,10}));
+            Console.WriteLine("Expected: 16. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,2,2,2,4,4,4,6}));
+            Console.WriteLine("Expected: 0. Actual: " + ar.NumberOfArithmeticSlices(new int[] {0,2000000000,-294967296}));
         }
     }
 }

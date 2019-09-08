@@ -75,7 +75,8 @@ namespace LC_FB_Medium
             // TestFriendsOfAppropriateAges(); //65
             // TestLongestRepeatedSubstring(); // 66
             // TestRestoreIpAddress(); // 67
-            TestLongestArithmeticSequence(); // 68
+            // TestLongestArithmeticSequence(); // 68
+            TestArithmeticSlices(); // 69
         }
 
         public static void MinSizeSubarraySumTest()
@@ -940,6 +941,13 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 3. Actual: " + las.LongestArithmeticSequenceLen(new int[] {9,4,7,2,10}));
             Console.WriteLine("Expected: 4. Actual: " + las.LongestArithmeticSequenceLen(new int[] {20,1,15,3,10,5,8}));
             Console.WriteLine("Expected: 4. Actual: " + las.LongestArithmeticSequenceLen(new int[] {12,28,13,6,34,36,53,24,29,2,23,0,22,25,53,34,23,50,35,43,53,11,48,56,44,53,31,6,31,57,46,6,17,42,48,28,5,24,0,14,43,12,21,6,30,37,16,56,19,45,51,10,22,38,39,23,8,29,60,18}));
+        }
+
+        public static void TestArithmeticSlices()
+        {
+            ArithmeticSlices ar = new ArithmeticSlices();
+            Console.WriteLine("Expected: 3. Actual: " + ar.CountSlices(new int[] {3,6,9,12}));
+            Console.WriteLine("Expected: 10. Actual: " + ar.CountSlices(new int[] {1,2,3,4,5,6}));
         }
     }
 }
