@@ -21,7 +21,7 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence(); //11
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
-            TestAlientDictionary(); //14
+            // TestAlientDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
@@ -36,11 +36,11 @@ namespace LC_FB_Hard
             // TestUnionFind(); //26
             // TestNumberOfIslands2(); //27
             // TestSplitArrayWithSameAverage(); //29
-            //TestCandyProblem(); //30
+            // TestCandyProblem(); //30
             // TestBasicCalculator(); //31
             // TestFirstMissingPositiveNum(); //32
             // TestLongestIncreasingSubsequence(); //33
-            //TestRussianDolls(); //33
+            // TestRussianDolls(); //33
             // TestLongestIncreasingPathMatrix(); //34
             // TestSurroundedRegion(); //35
             // TestInterleavingString(); //36
@@ -50,7 +50,9 @@ namespace LC_FB_Hard
             // TestLongestDuplicateString(); //40
             // TestIntegerToEnglish(); //41
             // TestTextJustification(); //42
-            // TestArithmeticSlices2();
+            // TestArithmeticSlices2(); // 43
+            // TestDistinctSubsequence(); // 44
+            TestBestMeetingPoint();
         }
 
         public static void TestRegexMatching()
@@ -583,6 +585,21 @@ namespace LC_FB_Hard
 
             bc = new BasicCalculator();
             Console.WriteLine("Expected: 23. Actual: " + bc.Calculate("(1+(4+5+2)-3)+(6+8)"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 2. Actual: " + bc.Calculate("1+4*3/3/3"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 0. Actual: " + bc.Calculate("-1+4*3/3/3"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 4. Actual: " + bc.Calculate(" 6-4 / 2 "));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 21. Actual: " + bc.Calculate("2*(5+5*2)/3+(6/2+8)"));
+
+            bc = new BasicCalculator();
+            Console.WriteLine("Expected: 8. Actual: " + bc.Calculate("1 - (-7)"));
         }
 
         public static void TestFirstMissingPositiveNum()
@@ -854,6 +871,21 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 7. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,4,6,8,10}));
             Console.WriteLine("Expected: 16. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,2,2,2,4,4,4,6}));
             Console.WriteLine("Expected: 0. Actual: " + ar.NumberOfArithmeticSlices(new int[] {0,2000000000,-294967296}));
+        }
+
+        public static void TestDistinctSubsequence()
+        {
+            DistinctSubsequence ds = new DistinctSubsequence();
+            Console.WriteLine("Expected: 3. Actual: " + ds.NumDistinct("rabbbit", "rabbit"));
+            Console.WriteLine("Expected: 1. Actual: " + ds.NumDistinct("rabbit", ""));
+            Console.WriteLine("Expected: 0. Actual: " + ds.NumDistinct("", "rabbit"));
+        }
+
+        public static void TestBestMeetingPoint()
+        {
+            BestMeetingPoint bmp = new BestMeetingPoint();
+            int[][] grid = new int[][] { new int[] {1,0,0,0,1}, new int[] {0,0,0,0,0}, new int[] {0,0,1,0,0} };
+            Console.WriteLine("Expected: 6. Actual: " + bmp.MinTotalDistance(grid));
         }
     }
 }
