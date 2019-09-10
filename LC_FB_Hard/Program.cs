@@ -52,7 +52,9 @@ namespace LC_FB_Hard
             // TestTextJustification(); //42
             // TestArithmeticSlices2(); // 43
             // TestDistinctSubsequence(); // 44
-            TestBestMeetingPoint();
+            // TestBestMeetingPoint(); //45
+            // TestBinaryTreeMaximumPathSum(); // 46
+            TestBinaryTreeCameras(); // 47
         }
 
         public static void TestRegexMatching()
@@ -886,6 +888,145 @@ namespace LC_FB_Hard
             BestMeetingPoint bmp = new BestMeetingPoint();
             int[][] grid = new int[][] { new int[] {1,0,0,0,1}, new int[] {0,0,0,0,0}, new int[] {0,0,1,0,0} };
             Console.WriteLine("Expected: 6. Actual: " + bmp.MinTotalDistance(grid));
+        }
+
+        public static void TestBinaryTreeMaximumPathSum()
+        {
+            BinaryTreeMaximumPathSum bt = new BinaryTreeMaximumPathSum();
+            BinaryTreeMaximumPathSum.TreeNode n = new BinaryTreeMaximumPathSum.TreeNode(2);
+            n.left = new BinaryTreeMaximumPathSum.TreeNode(1);
+            n.right = new BinaryTreeMaximumPathSum.TreeNode(3);
+            Console.WriteLine("Expected: 6. Actual: " + bt.MaxPathSum(n));
+
+            /*
+            Input: [-10,9,20,null,null,15,7]
+
+            -10
+            / \
+            9  20
+                /  \
+               15   7
+
+            Output: 42
+            */
+            bt = new BinaryTreeMaximumPathSum();
+            n = new BinaryTreeMaximumPathSum.TreeNode(-10);
+            n.left = new BinaryTreeMaximumPathSum.TreeNode(9);
+            BinaryTreeMaximumPathSum.TreeNode n1 = new BinaryTreeMaximumPathSum.TreeNode(20);
+            n1.left = new BinaryTreeMaximumPathSum.TreeNode(15);
+            n1.right = new BinaryTreeMaximumPathSum.TreeNode(7);
+            n.right = n1;
+            Console.WriteLine("Expected: 42. Actual: " + bt.MaxPathSum(n));
+
+            /* 
+            [5,4,8,11,null,13,4,7,2,null,null,null,1] 
+                        5
+                      /    \
+                     4      8
+                    /      / \
+                   11     13  4
+                  / \          \
+                 7   2          1
+            */
+            bt = new BinaryTreeMaximumPathSum();
+            n = new BinaryTreeMaximumPathSum.TreeNode(5);
+            n1 = new BinaryTreeMaximumPathSum.TreeNode(4);
+            BinaryTreeMaximumPathSum.TreeNode n2 = new BinaryTreeMaximumPathSum.TreeNode(8);
+            BinaryTreeMaximumPathSum.TreeNode n3 = new BinaryTreeMaximumPathSum.TreeNode(11);
+            n3.left = new BinaryTreeMaximumPathSum.TreeNode(7);
+            n3.right = new BinaryTreeMaximumPathSum.TreeNode(2);
+            n1.left = n3;
+            BinaryTreeMaximumPathSum.TreeNode n4 = new BinaryTreeMaximumPathSum.TreeNode(4);
+            n2.left = new BinaryTreeMaximumPathSum.TreeNode(13);
+            n2.right = n4;
+            n.left = n1;
+            n.right = n2;
+            Console.WriteLine("Expected: 48. Actual: " + bt.MaxPathSum(n));
+        }
+
+        public static void TestBinaryTreeCameras()
+        {
+            BinaryTreeCameras bc = new BinaryTreeCameras();
+            /*
+                    0
+                   / \
+                  0   0
+                       \
+                        0
+            */
+            BinaryTreeCameras.TreeNode n1, n2, n3, n4;
+            n1 = new BinaryTreeCameras.TreeNode(0);
+            n2 = new BinaryTreeCameras.TreeNode(0);
+            n1.left = new BinaryTreeCameras.TreeNode(0);
+            n1.right = n2;
+            n2.right = new BinaryTreeCameras.TreeNode(0);
+            Console.WriteLine("Expected: 2. Actual: " + bc.MinCameraCover(n1));
+
+            /*
+                    0
+                   /
+                  1
+                 /
+                2
+               /
+              3
+               \
+                4
+            */
+            bc = new BinaryTreeCameras();
+            n1 = new BinaryTreeCameras.TreeNode(0);
+            n2 = new BinaryTreeCameras.TreeNode(1);
+            n3 = new BinaryTreeCameras.TreeNode(2);
+            n4 = new BinaryTreeCameras.TreeNode(3);
+            n4.right = new BinaryTreeCameras.TreeNode(4);
+            n3.left = n4;
+            n2.left = n3;
+            n1.left = n2;
+            Console.WriteLine("Expected: 2. Actual: " + bc.MinCameraCover(n1));
+
+            /*
+                    6
+                   /  \
+                  2    7
+                 / \
+                1   5
+                   /
+                  3
+                   \
+                    4
+            */
+            bc = new BinaryTreeCameras();
+            n1 = new BinaryTreeCameras.TreeNode(6);
+            n2 = new BinaryTreeCameras.TreeNode(2);
+            n2.left = new BinaryTreeCameras.TreeNode(1);
+            n3 = new BinaryTreeCameras.TreeNode(5);
+            n4 = new BinaryTreeCameras.TreeNode(3);
+            n4.right = new BinaryTreeCameras.TreeNode(4);
+            n3.left = n4;
+            n2.right = n3;
+            n1.left = n2;
+            n1.right = new BinaryTreeCameras.TreeNode(7);
+            Console.WriteLine("Expected: 3. Actual: " + bc.MinCameraCover(n1));
+
+            /*
+            [0,null,0,0,0,null,0]
+                    1
+                     \
+                      2
+                     / \
+                    3   4
+                     \
+                      5
+            */
+            bc = new BinaryTreeCameras();
+            n1 = new BinaryTreeCameras.TreeNode(1);
+            n2 = new BinaryTreeCameras.TreeNode(2);
+            n2.right = new BinaryTreeCameras.TreeNode(4);
+            n3 = new BinaryTreeCameras.TreeNode(3);
+            n3.right = new BinaryTreeCameras.TreeNode(5);
+            n2.left = n3;
+            n1.right = n2;
+            Console.WriteLine("Expected: 2. Actual: " + bc.MinCameraCover(n1));
         }
     }
 }
