@@ -54,7 +54,8 @@ namespace LC_FB_Hard
             // TestDistinctSubsequence(); // 44
             // TestBestMeetingPoint(); //45
             // TestBinaryTreeMaximumPathSum(); // 46
-            TestBinaryTreeCameras(); // 47
+            // TestBinaryTreeCameras(); // 47
+            TestBricksFallingWhenHit(); // 48
         }
 
         public static void TestRegexMatching()
@@ -954,7 +955,7 @@ namespace LC_FB_Hard
                        \
                         0
             */
-            BinaryTreeCameras.TreeNode n1, n2, n3, n4;
+            BinaryTreeCameras.TreeNode n1, n2, n3, n4, n5;
             n1 = new BinaryTreeCameras.TreeNode(0);
             n2 = new BinaryTreeCameras.TreeNode(0);
             n1.left = new BinaryTreeCameras.TreeNode(0);
@@ -1027,6 +1028,59 @@ namespace LC_FB_Hard
             n2.left = n3;
             n1.right = n2;
             Console.WriteLine("Expected: 2. Actual: " + bc.MinCameraCover(n1));
+
+            /*
+            [0,1,null,null,2,3,null,null,4,5]
+                    0
+                   /
+                  1 (c)
+                   \
+                    2
+                   /
+                  3
+                   \
+                    4 (c)
+                    /
+                   5
+            */
+            bc = new BinaryTreeCameras();
+            n1 = new BinaryTreeCameras.TreeNode(0);
+            n2 = new BinaryTreeCameras.TreeNode(1);
+            n1.left = n2;
+            n3 = new BinaryTreeCameras.TreeNode(2);
+            n2.right = n3;
+            n4 = new BinaryTreeCameras.TreeNode(3);
+            n3.left = n4;
+            n5 = new BinaryTreeCameras.TreeNode(4);
+            n4.right = n5;
+            n5.right = new BinaryTreeCameras.TreeNode(5);
+            Console.WriteLine("Expected: 2. Actual: " + bc.MinCameraCover(n1));
+        }
+
+        public static void TestBricksFallingWhenHit()
+        {
+            BricksFallingWhenHit bricks = new BricksFallingWhenHit();
+            int[][] grid;
+            int[][] hits;
+            int[] result;
+            StringBuilder sb = new StringBuilder();
+            grid = new int[][] {new int[] {1,0,0,0}, new int[] {1,1,1,0}};
+            hits = new int[][] {new int[] {1,0}};
+            result = bricks.HitBricks(grid, hits);
+            sb.Append("[");
+            foreach (int r in result) sb.Append(r.ToString() + ",");
+            sb.Append("]");
+            Console.WriteLine("Expected: [2]. Actual: " + sb.ToString());
+            sb.Clear();
+
+            grid = new int[][] {new int[] {1,0,0,0}, new int[] {1,1,0,0}};
+            hits = new int[][] {new int[] {1,1}, new int[] {1,0}};
+            result = bricks.HitBricks(grid, hits);
+            sb.Append("[");
+            foreach (int r in result) sb.Append(r.ToString() + ",");
+            sb.Append("]");
+            Console.WriteLine("Expected: [2]. Actual: " + sb.ToString());
+            sb.Clear();
         }
     }
 }

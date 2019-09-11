@@ -102,7 +102,8 @@ namespace LC_FB_Easy
             // Console.WriteLine("Expected: 3A0B. Actual: " + cb.GetHint("1122", "1222"));
 
             // TestSingleRowKeyboard();
-            TestAddStrings();
+            // TestAddStrings();
+            TestIsValidPalindrome();
         }
 
         public static void TestSingleRowKeyboard()
@@ -118,6 +119,14 @@ namespace LC_FB_Easy
             Console.WriteLine("Expected: 77. Actual: " + a.Add("44", "33"));
             Console.WriteLine("Expected: 1110. Actual: " + a.Add("444", "666"));
             Console.WriteLine("Expected: 670. Actual: " + a.Add("4", "666"));
+        }
+
+        public static void TestIsValidPalindrome()
+        {
+            IsValidPalindrome pal = new IsValidPalindrome();
+            Console.WriteLine("Expected: True. Actual: " + pal.IsPalindrome("A man, a plan, a canal: Panama"));
+            Console.WriteLine("Expected: False. Actual: " + pal.IsPalindrome("race a car"));
+            Console.WriteLine("Expected: False. Actual: " + pal.IsPalindrome("0P"));
         }
     }
 }
