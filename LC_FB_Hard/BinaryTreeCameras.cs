@@ -51,10 +51,13 @@ namespace LC_FB_Hard
         }
         
         private void DoDFS(TreeNode node, TreeNode parent) {
+            // do a post order traversal
             if (node == null) return;
             if (node.left != null) this.DoDFS(node.left, node);
             if (node.right != null) this.DoDFS(node.right, node);
 
+            // we need a camera if the parent is null and we are not yet covered or 
+            // if either the left child or the right child is not yet covered.
             bool needCamera = false;
             if (parent == null && !this.covered.Contains(node)) needCamera = true;
             else if (node.left != null && !this.covered.Contains(node.left)) needCamera = true;

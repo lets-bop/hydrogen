@@ -43,10 +43,9 @@ namespace LC_FB_Hard
 
                 3. Going in the reverse order of the hits, we start placing the bricks in the hits back in the grid.
                  If the hit point in the grid had a 0, we have nothing to do.
-                 If hit point had a 1, then we need to see if the hit point is connected to the connected component.
-                 If it is connected, then removal of this brick will not cause any other bricks to fall.
-                 If not, we calculat the size of the connected component again and subtract the initial size of the connected 
-                 component from it.
+                 If hit point had a 1, then we need to see if the hit point is connected to the connected component (roof).
+                 If it is connected, then we need to mark that brick to be connected to the roof.
+                 Else, we'll leave that cell as is with 1 and could get cleaned up (hit) by other earlier hits.
             */
 
             // Step 1

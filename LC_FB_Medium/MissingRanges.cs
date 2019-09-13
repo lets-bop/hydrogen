@@ -14,46 +14,39 @@ namespace LC_FB_Medium
     {
         public IList<string> FindMissingRanges(int[] nums, int lower, int upper)
         {
+            IList<string> result = new List<string>();
+            int rangeStart, rangeEnd;
             if (nums == null || nums.Length == 0) {
-                if (lower == upper) return new List<string>() {lower.ToString()};
-                return new List<string>() {lower.ToString() + "->" + upper.ToString()};
-            }
-
-            int missingRangeStart = -1;
-            int missingRangeEnd = -1;
-            int i = lower;
-            int numsIndex = 0;
-            List<string> result = new List<string>();
-
-            while (i <= upper && numsIndex < nums.Length) {
-                if (numsIndex < nums.Length - 1 && nums[numsIndex] == nums[numsIndex + 1]) {
-                    // handle duplicates in the input
-                    numsIndex++;
-                    continue;
-                }
-
-                if (nums[numsIndex] != i) {
-                    if (missingRangeStart == -1) missingRangeStart = i;
-                    missingRangeEnd = nums[numsIndex] - 1;
-                    if (missingRangeStart == missingRangeEnd) result.Add(missingRangeEnd.ToString());
-                    else result.Add(missingRangeStart.ToString() + "->" + missingRangeEnd.ToString());
-                    missingRangeStart = missingRangeEnd = -1;
-                }
-
-                i = nums[numsIndex] + 1; // can cause integer overflow and will become negative
-                numsIndex++;
-            }
-
-            if (i < nums[nums.Length - 1]) {
-                // this ideally would not be the case. Will happen only when there is an overflow
+                rangeStart = lower;
+                rangeEnd = upper;                
+                if (rangeStart != rangeEnd) result.Add(lower.ToString() + "->" + upper.ToString());
+                else result.Add(lower.ToString());
                 return result;
             }
 
-            if (i <= upper) { // not using i as i might have overflown
-                missingRangeStart = nums[nums.Length - 1] + 1;
-                missingRangeEnd = upper;
-                if (missingRangeStart == missingRangeEnd) result.Add(missingRangeEnd.ToString());
-                else result.Add(missingRangeStart.ToString() + "->" + missingRangeEnd.ToString());
+            int i = 0;
+            if (nums[i] > lower) {
+                rangeStart = lower;
+                rangeEnd = nums[i] - 1;
+                if (rangeStart != rangeEnd) result.Add(lower.ToString() + "->" + (nums[i] - 1).ToString());
+                else result.Add(lower.ToString());
+            }
+
+            while (++i < nums.Length) {
+                if (nums[i] != nums[i - 1] && nums[i] != nums[i - 1] + 1) {
+                    rangeStart = nums[i - 1] + 1;
+                    rangeEnd = nums[i] - 1;
+                    if (rangeStart != rangeEnd) result.Add((nums[i - 1] + 1).ToString() + "->" + (nums[i] - 1).ToString());
+                    else result.Add((nums[i - 1] + 1).ToString());
+                }
+            }
+
+            
+            if (nums[i - 1] != upper) {
+                rangeStart = nums[i - 1] + 1;
+                rangeEnd = upper;
+                if (rangeStart != rangeEnd) result.Add((nums[i - 1] + 1).ToString() + "->" + upper.ToString());
+                else result.Add(upper.ToString());
             }
 
             return result;

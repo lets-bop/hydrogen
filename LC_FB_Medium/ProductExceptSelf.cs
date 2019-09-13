@@ -19,8 +19,24 @@ namespace LC_FB_Medium
     class ProductExceptSelf
     {
         public int[] Calculate(int[] nums) {
-            this.GetRightProduct(nums, 0, 1);
-            return nums;
+            
+            int[] result = new int[nums.Length];
+            result[result.Length - 1] = 1;
+
+            for (int i = nums.Length - 2; i >= 0; i--) {
+                result[i] = result[i + 1] * nums[i + 1]; // i.e. value at i = product of elements to its right
+            }
+
+            int left = 1;
+            for (int i = 0; i < nums.Length; i++) {
+                result[i] *= left; 
+                left *= nums[i];
+            }
+
+            return result;
+
+            // this.GetRightProduct(nums, 0, 1);
+            // return nums;
         }
 
         // Solves it with no extra space and O(n) time.
@@ -30,6 +46,23 @@ namespace LC_FB_Medium
             int rightProduct = GetRightProduct(nums, i + 1, leftProduct * nums[i]);
             nums[i] = leftProduct * rightProduct;
             return rightProduct * temp;
+        }
+
+        public int[] Product(int[] nums) {
+            int[] result = new int[nums.Length];
+            result[result.Length - 1] = 1;
+
+            for (int i = nums.Length - 2; i >= 0; i--) {
+                result[i] = result[i + 1] * nums[i + 1]; // i.e. value at i = product of elements to its right
+            }
+
+            int left = 1;
+            for (int i = 0; i < nums.Length; i++) {
+                result[i] *= left; 
+                left *= nums[i];
+            }
+
+            return result;
         }
     }
 }

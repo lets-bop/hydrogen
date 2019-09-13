@@ -39,7 +39,7 @@ namespace LC_FB_Medium
             // TestDifferentWaysToAddParenthesis(); // 29
             // TestMinDominoRotations(); // 30
             // TestDecodeString(); // 31
-            // TestMissingRanges(); // 32
+            TestMissingRanges(); // 32
             // TestIncreasingTripletSubsequence(); // 33
             // TestShortestWayToFormString(); // 34
             // TestStonesRemoved(); // 35
@@ -76,7 +76,7 @@ namespace LC_FB_Medium
             // TestLongestRepeatedSubstring(); // 66
             // TestRestoreIpAddress(); // 67
             // TestLongestArithmeticSequence(); // 68
-            TestArithmeticSlices(); // 69
+            // TestArithmeticSlices(); // 69
         }
 
         public static void MinSizeSubarraySumTest()
