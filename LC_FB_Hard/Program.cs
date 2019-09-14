@@ -8,6 +8,8 @@ namespace LC_FB_Hard
     {
         public static void Main(string[] args)
         {
+            DateTime startTime = DateTime.Now;
+
             // TestRegexMatching(); //1
             // TestMinWindowSubstring(); //2
             // TestMaximalRectangle(); //3
@@ -55,7 +57,9 @@ namespace LC_FB_Hard
             // TestBestMeetingPoint(); //45
             // TestBinaryTreeMaximumPathSum(); // 46
             // TestBinaryTreeCameras(); // 47
-            TestBricksFallingWhenHit(); // 48
+            // TestBricksFallingWhenHit(); // 48
+
+            Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
 
         public static void TestRegexMatching()
@@ -317,17 +321,19 @@ namespace LC_FB_Hard
         private static void TestMedianOfSortedArrays()
         {
             MedianOfTwoSortedArrays median = new MedianOfTwoSortedArrays();
-            // Console.WriteLine("Expected: 3. Actual: " + median.Find(new int[] {}, new int[] {1,2,3,4,5}));
-            // Console.WriteLine("Expected 3. Actual: " + median.Find(new int[] {1,2,3,4,5}, new int[] {}));
-            // Console.WriteLine("Expected: 3.5. Actual: " + median.Find(new int[] {}, new int[] {1,2,3,4,5,6}));
-            // Console.WriteLine("Expected 3.5. Actual: " + median.Find(new int[] {1,2,3,4,5,6}, new int[] {})); 
+            Console.WriteLine("Expected: 3. Actual: " + median.Find(new int[] {}, new int[] {1,2,3,4,5}));
+            Console.WriteLine("Expected 3. Actual: " + median.Find(new int[] {1,2,3,4,5}, new int[] {}));
+            Console.WriteLine("Expected: 3.5. Actual: " + median.Find(new int[] {}, new int[] {1,2,3,4,5,6}));
+            Console.WriteLine("Expected 3.5. Actual: " + median.Find(new int[] {1,2,3,4,5,6}, new int[] {})); 
             Console.WriteLine("Expected: 2. Actual: " + median.Find(new int[] {1,3}, new int[] {2}));
+            Console.WriteLine("Expected: 2.5. Actual: " + median.Find(new int[] {1,3}, new int[] {2,4}));
+            Console.WriteLine("Expected: 3. Actual: " + median.Find(new int[] {1,3,5}, new int[] {2,4}));
             Console.WriteLine("Expected: 4. Actual: " + median.Find(new int[] {1,3}, new int[] {2,4,5,6,7}));
             Console.WriteLine("Expected: 9. Actual: " + median.Find(new int[] {1,3}, new int[] {2,4,5,6,7,8,9,10,11,12,13,14,15,16,17}));
             Console.WriteLine("Expected: 9. Actual: " + median.Find(new int[] {1}, new int[] {2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}));
             Console.WriteLine("Expected: 4. Actual: " + median.Find(new int[] {1,3,4,6}, new int[] {2,5,7}));
             Console.WriteLine("Expected: 4. Actual: " + median.Find(new int[] {2,5,7}, new int[] {1,3,4,6}));
-            // Console.WriteLine("Expected: 3.5. Actual: " + median.Find(new int[] {1,4,5}, new int[] {2,3,6}));
+            Console.WriteLine("Expected: 3.5. Actual: " + median.Find(new int[] {1,4,5}, new int[] {2,3,6}));
         }
 
         private static void TestWordBreak()

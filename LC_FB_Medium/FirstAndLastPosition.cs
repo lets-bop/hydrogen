@@ -34,7 +34,7 @@ namespace LC_FB_Medium
                 else high = mid - 1;
             }
             
-            return result;        
+            return result;
         }        
     }
 }

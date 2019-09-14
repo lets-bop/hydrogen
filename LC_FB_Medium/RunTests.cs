@@ -8,6 +8,8 @@ namespace LC_FB_Medium
     {
         public static void Run()
         {
+            DateTime startTime = DateTime.Now;
+
             // MinSizeSubarraySumTest(); // 1
             // TaskSchedulerTest(); // 2
             // ExclusiveTimeFunctionsTest(); // 3
@@ -77,7 +79,12 @@ namespace LC_FB_Medium
             // TestRestoreIpAddress(); // 67
             // TestLongestArithmeticSequence(); // 68
             // TestArithmeticSlices(); // 69
-            TestPartitionLabels();
+            // TestPartitionLabels(); // 70
+            // TestSentenceScreenFitting(); // 71
+            // TestFindMinimumInSortedArray(); // 72
+            TestLongestIncreasingSubsequence(); // 73
+
+            Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
 
         public static void MinSizeSubarraySumTest()
@@ -965,6 +972,45 @@ namespace LC_FB_Medium
             foreach (int r in result) sb.Append(r + " ");
             Console.WriteLine("Expected: 9 7 8. Actual: " + sb.ToString());
             sb.Clear();
+        }
+
+        public static void TestSentenceScreenFitting()
+        {
+            SentenceScreenFitting s = new SentenceScreenFitting();
+            Console.WriteLine("Expected: 1. Actual: " + s.WordsTyping(new string[] {"hello", "world"}, 2, 8));
+            Console.WriteLine("Expected: 2. Actual: " + s.WordsTyping(new string[] {"a", "bcd", "e"}, 3, 6));
+            Console.WriteLine("Expected: 1. Actual: " + s.WordsTyping(new string[] {"I", "had", "apple", "pie"}, 4, 5));
+            Console.WriteLine("Expected: 80000000. Actual: " + s.WordsTyping(new string[] {"a", "bc"}, 20000, 20000));
+            Console.WriteLine("Expected: 848587. Actual: " + s.WordsTyping(new string[] {"abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r","abcdef","ghijkl","mnop","qrs","tuv","wxyz","asdf","ogfd","df","r"}, 19948, 19994));
+            Console.WriteLine("Expected: 363600. Actual: " + s.WordsTyping(new string[] {"aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa","aaaaaaaaaa"}, 20000, 20000));
+            Console.WriteLine("Expected: 10. Actual: " + s.WordsTyping(new string[] {"f", "p", "a"}, 8, 7));
+        }
+
+        public static void TestFindMinimumInSortedArray()
+        {
+            FindMinimumInSortedRotatedArray f = new FindMinimumInSortedRotatedArray();
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {0,1,2,3,4,5,6}));
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {6,0,1,2,3,4,5}));
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {5,6,0,1,2,3,4}));
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {4,5,6,0,1,2,3}));
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {3,4,5,6,0,1,2}));
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {2,3,4,5,6,0,1}));
+            Console.WriteLine("Expected: 0. Actual: "+ f.Find(new int[] {1,2,3,4,5,6,0}));
+            // with duplicates
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {1,2,3,3,3,3,3}));
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {3,1,2,3,3,3,3}));
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {3,3,1,2,3,3,3}));
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {3,3,3,1,2,3,3}));
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {3,3,3,3,1,2,3}));
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {3,3,3,3,3,1,2}));
+            Console.WriteLine("Expected: 1. Actual: "+ f.Find(new int[] {2,3,3,3,3,3,1}));
+        }
+
+        public static void TestLongestIncreasingSubsequence()
+        {
+            LongestIncreasingSubsequence lis = new LongestIncreasingSubsequence();
+            Console.WriteLine("Expected: 5. Actual: " + lis.LengthOfLIS(new int[] {9,1,5,8,9,3,4,5,6}));
+            Console.WriteLine("Expected: 5. Actual: " + lis.LengthOfLIS(new int[] {9,1,5,1,8,9,3,3,3,4,5,6}));
         }
     }
 }
