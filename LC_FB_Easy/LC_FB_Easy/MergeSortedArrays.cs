@@ -10,32 +10,15 @@ namespace LC_FB_Easy
 {
     class MergeSortedArrays
     {
-        public static void Merge(int[] arr1, int[] arr2, int m, int n)
-        {
-            int insertIndex = m + n - 1;
-            m = m - 1;
-            n = n - 1;
-            while (insertIndex >= 0)
-            {
-                while (m >= 0 && n >= 0)
-                {
-                    if (arr1[m] > arr2[n])
-                        arr1[insertIndex--] = arr1[m--];
-                    else
-                        arr1[insertIndex--] = arr2[n--];
-                }
-
-                while(m >= 0)
-                    arr1[insertIndex--] = arr1[m--];
-
-                while(n >= 0)
-                    arr1[insertIndex--] = arr2[n--];
+        public static void Merge(int[] nums1, int m, int[] nums2, int n) {
+            int i = m - 1;
+            int j = n - 1;
+            int k = m + n - 1;
+            
+            while (k >= 0) {
+                if (j < 0 || (i >=0 && nums1[i] > nums2[j])) nums1[k--] = nums1[i--];
+                else nums1[k--] = nums2[j--];
             }
-
-            for (int i = 0; i < arr1.Length; i++)
-                Console.Write(arr1[i] + "\t");
-
-            Console.WriteLine("\n");
         }
     }
 }

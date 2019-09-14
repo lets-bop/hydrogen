@@ -103,7 +103,8 @@ namespace LC_FB_Easy
 
             // TestSingleRowKeyboard();
             // TestAddStrings();
-            TestIsValidPalindrome();
+            // TestIsValidPalindrome();
+            TestRepeatedStringMatch();
         }
 
         public static void TestSingleRowKeyboard()
@@ -127,6 +128,15 @@ namespace LC_FB_Easy
             Console.WriteLine("Expected: True. Actual: " + pal.IsPalindrome("A man, a plan, a canal: Panama"));
             Console.WriteLine("Expected: False. Actual: " + pal.IsPalindrome("race a car"));
             Console.WriteLine("Expected: False. Actual: " + pal.IsPalindrome("0P"));
+        }
+
+        public static void TestRepeatedStringMatch()
+        {
+            RepeatedStringMatch r = new RepeatedStringMatch();
+            Console.WriteLine("Expected: 3. Actual: " + r.Match("abcd", "cdabcdab"));
+            Console.WriteLine("Expected: -1. Actual: " + r.Match("abcde", "cdabcdab"));
+            Console.WriteLine("Expected: 4. Actual: " + r.Match("abcde", "cdeabcdeabcdea"));
+            Console.WriteLine("Expected: 2. Actual: " + r.Match("aaaa", "aaaaa"));
         }
     }
 }

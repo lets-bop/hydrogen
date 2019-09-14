@@ -39,7 +39,7 @@ namespace LC_FB_Medium
             // TestDifferentWaysToAddParenthesis(); // 29
             // TestMinDominoRotations(); // 30
             // TestDecodeString(); // 31
-            TestMissingRanges(); // 32
+            // TestMissingRanges(); // 32
             // TestIncreasingTripletSubsequence(); // 33
             // TestShortestWayToFormString(); // 34
             // TestStonesRemoved(); // 35
@@ -77,6 +77,7 @@ namespace LC_FB_Medium
             // TestRestoreIpAddress(); // 67
             // TestLongestArithmeticSequence(); // 68
             // TestArithmeticSlices(); // 69
+            TestPartitionLabels();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -948,6 +949,22 @@ namespace LC_FB_Medium
             ArithmeticSlices ar = new ArithmeticSlices();
             Console.WriteLine("Expected: 3. Actual: " + ar.CountSlices(new int[] {3,6,9,12}));
             Console.WriteLine("Expected: 10. Actual: " + ar.CountSlices(new int[] {1,2,3,4,5,6}));
+        }
+
+        public static void TestPartitionLabels()
+        {
+            PartitionLabels p = new PartitionLabels();
+            IList<int> result;
+            StringBuilder sb = new StringBuilder();
+            result = p.Partition("ababfeefhijkh");
+            foreach (int r in result) sb.Append(r + " ");
+            Console.WriteLine("Expected: 4 4 5. Actual: " + sb.ToString());
+            sb.Clear();
+
+            result = p.Partition("ababcbacadefegdehijhklij");
+            foreach (int r in result) sb.Append(r + " ");
+            Console.WriteLine("Expected: 9 7 8. Actual: " + sb.ToString());
+            sb.Clear();
         }
     }
 }

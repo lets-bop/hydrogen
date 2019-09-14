@@ -43,6 +43,7 @@ namespace LC_FB_Medium
 
         public bool Book(int start, int end) 
         {
+            // NOTE: Overlap between 2 intervals exist if max(starts) < min(ends)
             foreach(Booking booking in overlaps) {
                 if (Math.Max(booking.start, start) < Math.Min(booking.end, end)) {
                     return false;
