@@ -42,7 +42,7 @@ namespace LC_FB_Hard
             // TestBasicCalculator(); //31
             // TestFirstMissingPositiveNum(); //32
             // TestLongestIncreasingSubsequence(); //33
-            // TestRussianDolls(); //33
+            TestRussianDolls(); //33
             // TestLongestIncreasingPathMatrix(); //34
             // TestSurroundedRegion(); //35
             // TestInterleavingString(); //36
@@ -58,7 +58,7 @@ namespace LC_FB_Hard
             // TestBinaryTreeMaximumPathSum(); // 46
             // TestBinaryTreeCameras(); // 47
             // TestBricksFallingWhenHit(); // 48
-            TestCountOfSmallerNumbersAfterSelf(); // 49
+            // TestCountOfSmallerNumbersAfterSelf(); // 49
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -668,7 +668,7 @@ namespace LC_FB_Hard
 
             input = new int[,]{{4,19},{6,16},{7,19},{9,2},{2,14},{9,8},{6,7},{9,19},{6,3},{5,1},{7,14},{20,2},{19,11},{10,12},{16,20},{12,4},{7,16},{10,10},{10,11},{18,1}};
             rd = new RussianDolls();
-            Console.WriteLine("Expected: 8. Actual: " + rd.MaxEnvelopes(input));
+            Console.WriteLine("Expected: 5. Actual: " + rd.MaxEnvelopes(input));
 
             input = new int[,]{{4,5},{4,6},{6,7},{2,3},{1,1}};
             rd = new RussianDolls();

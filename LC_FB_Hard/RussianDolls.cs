@@ -38,36 +38,34 @@ namespace LC_FB_Hard
 
             }
         }
-        public int MaxEnvelopes(int[,] envelopes)
-        {
+        public int MaxEnvelopes(int[][] envelopes) {
+
             List<Envelope> envs =  new List<Envelope>();
-            for(int i = 0; i < envelopes.GetLength(0); i++) {
-                envs.Add(new Envelope(envelopes[i,0], envelopes[i,1]));
-            }
+            for(int i = 0; i < envelopes.GetLength(0); i++) envs.Add(new Envelope(envelopes[i][0], envelopes[i][1]));
 
-            // Idea: We sort the envelopes in ascending order of Width and descending order of Hieght
+            // Idea: We sort the envelopes in ascending order of Width and descending order of Height.
+            // Then look at the heights and find the longest increasing subsequence.
             // As we walk the sorted list (left to right), we will use binary search to evict envelopes that are of shorter heights.
-            // The reason: We know that the length of envelope (i + 1) is atleast as much as envelope i when scanning left to right.
-            // being an envelope with shorter height could be the start of a new increasing subsequence
-
+            // The reason: We know that the width of envelope (i + 1) is atleast as much as envelope i when scanning left to right.
+            // Therefore, being an envelope with shorter height could be the start of a new increasing subsequence
             envs.Sort();
-
             
-            // Idea: We will only consider the widths as the envelopes are already sorted in ascending order by length.
-            // Since we have sorted the envelopes in descending order of their widths, we will evict the envelopse
+            // Idea: We will only consider the height as the envelopes are already sorted in ascending order by width.
+            // Since we have sorted the envelopes in descending order of their heights, we will evict the envelopes
+            // Basically, we form a Longest increasing subsequence of heights
             List<int> lis = new List<int>(); 
             for (int i = 0; i < envs.Count; i++){
-                if (lis.Count == 0 || lis[lis.Count - 1] < envs[i].Width) lis.Add(envs[i].Width);
+                if (lis.Count == 0 || lis[lis.Count - 1] < envs[i].Height) lis.Add(envs[i].Height);
                 else{
-                    // binary search to find the smallest envelope that is greater than envs[i]
+                    // binary search to find the smallest envelope that is greater than or equal to envs[i]
                     int low = 0, high = lis.Count - 1, mid = 0;
                     while(low < high){
                         mid = low + (high - low) / 2;
-                        if (lis[mid] < envs[i].Width) low = mid + 1;
+                        if (lis[mid] < envs[i].Height) low = mid + 1;
                         else high = mid;
                     }
 
-                    lis[high] = envs[i].Width;
+                    lis[high] = envs[i].Height;
                 }
             }
 
