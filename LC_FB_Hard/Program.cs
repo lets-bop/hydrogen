@@ -58,8 +58,21 @@ namespace LC_FB_Hard
             // TestBinaryTreeMaximumPathSum(); // 46
             // TestBinaryTreeCameras(); // 47
             // TestBricksFallingWhenHit(); // 48
+            TestCountOfSmallerNumbersAfterSelf(); // 49
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
+        }
+
+        public static string GetIntListContentsAsString(IList<int> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
         }
 
         public static void TestRegexMatching()
@@ -1087,6 +1100,15 @@ namespace LC_FB_Hard
             sb.Append("]");
             Console.WriteLine("Expected: [2]. Actual: " + sb.ToString());
             sb.Clear();
+        }
+
+        public static void TestCountOfSmallerNumbersAfterSelf()
+        {
+            CountOfSmallerNumbersAfterSelf count = new CountOfSmallerNumbersAfterSelf();
+
+            Console.WriteLine("Expected: [2,0,0]. Actual: " + GetIntListContentsAsString(count.CountSmaller(new int[] {2,0,1})));
+            Console.WriteLine("Expected: [2,1,1,0]. Actual: " + GetIntListContentsAsString(count.CountSmaller(new int[] {5,2,6,1})));
+            Console.WriteLine("Expected: [10,0,6,2,6,5,4,2,1,1,0]. Actual: " + GetIntListContentsAsString(count.CountSmaller(new int[] {15,0,12,3,14,12,11,5,2,6,1})));
         }
     }
 }
