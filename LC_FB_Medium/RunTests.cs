@@ -82,7 +82,9 @@ namespace LC_FB_Medium
             // TestPartitionLabels(); // 70
             // TestSentenceScreenFitting(); // 71
             // TestFindMinimumInSortedArray(); // 72
-            TestLongestIncreasingSubsequence(); // 73
+            // TestLongestIncreasingSubsequence(); // 73
+            // TestHIndex(); // 74
+            TestIsomorphicStrings(); // 75
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1011,6 +1013,27 @@ namespace LC_FB_Medium
             LongestIncreasingSubsequence lis = new LongestIncreasingSubsequence();
             Console.WriteLine("Expected: 5. Actual: " + lis.LengthOfLIS(new int[] {9,1,5,8,9,3,4,5,6}));
             Console.WriteLine("Expected: 5. Actual: " + lis.LengthOfLIS(new int[] {9,1,5,1,8,9,3,3,3,4,5,6}));
+        }
+
+        public static void TestHIndex() {
+            HIndex h = new HIndex();
+            Console.WriteLine("Expected: 3. Actual: " + h.Find(new int[] {3,0,6,1,5}));
+            Console.WriteLine("Expected: 5. Actual: " + h.Find(new int[] {2,2,4,4,4,4,5,6,7,8,9}));
+            Console.WriteLine("Expected: 2. Actual: " + h.Find(new int[] {3,3}));
+            Console.WriteLine("Expected: 0. Actual: " + h.Find(new int[] {}));
+            Console.WriteLine("Expected: 0. Actual: " + h.Find(new int[] {0}));
+            Console.WriteLine("Expected: 1. Actual: " + h.Find(new int[] {0,1}));
+            Console.WriteLine("Expected: 5. Actual: " + h.Find(new int[] {2,2,4,4,4,4,5,6,7,8,9}));
+        }
+
+        public static void TestIsomorphicStrings()
+        {
+            IsomorphicStrings iso = new IsomorphicStrings();
+            Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("egg", "ebb"));
+            Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("egg", "taa"));
+            Console.WriteLine("Expected: False. Actual: " + iso.IsIsomorphic("ego", "ebb"));
+            Console.WriteLine("Expected: False. Actual: " + iso.IsIsomorphic("foo", "bar"));
+            Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("title", "paper"));
         }
     }
 }

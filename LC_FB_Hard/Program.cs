@@ -42,7 +42,7 @@ namespace LC_FB_Hard
             // TestBasicCalculator(); //31
             // TestFirstMissingPositiveNum(); //32
             // TestLongestIncreasingSubsequence(); //33
-            TestRussianDolls(); //33
+            // TestRussianDolls(); //33
             // TestLongestIncreasingPathMatrix(); //34
             // TestSurroundedRegion(); //35
             // TestInterleavingString(); //36
@@ -59,16 +59,34 @@ namespace LC_FB_Hard
             // TestBinaryTreeCameras(); // 47
             // TestBricksFallingWhenHit(); // 48
             // TestCountOfSmallerNumbersAfterSelf(); // 49
+            TestPalindromePairs(); // 50
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
 
-        public static string GetIntListContentsAsString(IList<int> list) {
+        public static string GetListOfIntAsString(IList<int> list) {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
             for(int i = 0; i < list.Count; i++){  
                 if (i != 0) sb.Append(","); 
                 sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
+        }
+
+        public static string GetListOfListOfIntAsString(IList<IList<int>> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++) {
+                sb.Append("[");
+                for (int j = 0; j < list[i].Count; j++) {
+                    if (j != 0) sb.Append(","); 
+                    sb.Append(list[i][j].ToString());
+                }
+                sb.Append("]");
+                if (i < list.Count - 1) sb.Append(","); 
             }
 
             sb.Append("]");
@@ -662,31 +680,31 @@ namespace LC_FB_Hard
 
         public static void TestRussianDolls()
         {
-            int[,] input = new int[,]{{5,4},{6,4},{6,7},{2,3}};
+            int[][] input = new int[][]{new int[] {5,4},new int[]{6,4},new int[]{6,7},new int[]{2,3}};
             RussianDolls rd = new RussianDolls();
             Console.WriteLine("Expected: 3. Actual: " + rd.MaxEnvelopes(input));
 
-            input = new int[,]{{4,19},{6,16},{7,19},{9,2},{2,14},{9,8},{6,7},{9,19},{6,3},{5,1},{7,14},{20,2},{19,11},{10,12},{16,20},{12,4},{7,16},{10,10},{10,11},{18,1}};
+            input = new int[][]{new int[]{4,19},new int[]{6,16},new int[]{7,19},new int[]{9,2},new int[]{2,14},new int[]{9,8},new int[]{6,7},new int[]{9,19},new int[]{6,3},new int[]{5,1},new int[]{7,14},new int[]{20,2},new int[]{19,11},new int[]{10,12},new int[]{16,20},new int[]{12,4},new int[]{7,16},new int[]{10,10},new int[]{10,11},new int[]{18,1}};
             rd = new RussianDolls();
             Console.WriteLine("Expected: 5. Actual: " + rd.MaxEnvelopes(input));
 
-            input = new int[,]{{4,5},{4,6},{6,7},{2,3},{1,1}};
+            input = new int[][]{new int[]{4,5},new int[]{4,6},new int[]{6,7},new int[]{2,3},new int[]{1,1}};
             rd = new RussianDolls();
             Console.WriteLine("Expected: 4. Actual: " + rd.MaxEnvelopes(input));
 
-            input = new int[,]{{30,50},{12,2},{3,4},{12,15}};
+            input = new int[][]{new int[]{30,50},new int[]{12,2},new int[]{3,4},new int[]{12,15}};
             rd = new RussianDolls();
             Console.WriteLine("Expected: 3. Actual: " + rd.MaxEnvelopes(input));
 
-            input = new int[,]{{1,3},{3,10},{6,12},{6,11},{8,4},{9,5},{10,6}};
+            input = new int[][]{new int[]{1,3},new int[]{3,10},new int[]{6,12},new int[]{6,11},new int[]{8,4},new int[]{9,5},new int[]{10,6}};
             rd = new RussianDolls();
             Console.WriteLine("Expected: 4. Actual: " + rd.MaxEnvelopes(input));    
 
-            input = new int[,]{{1,3},{3,10},{6,12},{6,11},{8,4},{9,13}};
+            input = new int[][]{new int[]{1,3},new int[]{3,10},new int[]{6,12},new int[]{6,11},new int[]{8,4},new int[]{9,13}};
             rd = new RussianDolls();
             Console.WriteLine("Expected: 4. Actual: " + rd.MaxEnvelopes(input));
 
-            input = new int[,]{{15,8},{2,20},{2,14},{4,17},{8,19},{8,9},{5,7},{11,19},{8,11},{13,11},{2,13},{11,19},{8,11},{13,11},{2,13},{11,19},{16,1},{18,13},{14,17},{18,19}};
+            input = new int[][]{new int[]{15,8},new int[]{2,20},new int[]{2,14},new int[]{4,17},new int[]{8,19},new int[]{8,9},new int[]{5,7},new int[]{11,19},new int[]{8,11},new int[]{13,11},new int[]{2,13},new int[]{11,19},new int[]{8,11},new int[]{13,11},new int[]{2,13},new int[]{11,19},new int[]{16,1},new int[]{18,13},new int[]{14,17},new int[]{18,19}};
             rd = new RussianDolls();
             Console.WriteLine("Expected: 5. Actual: " + rd.MaxEnvelopes(input));
         }
@@ -1106,9 +1124,19 @@ namespace LC_FB_Hard
         {
             CountOfSmallerNumbersAfterSelf count = new CountOfSmallerNumbersAfterSelf();
 
-            Console.WriteLine("Expected: [2,0,0]. Actual: " + GetIntListContentsAsString(count.CountSmaller(new int[] {2,0,1})));
-            Console.WriteLine("Expected: [2,1,1,0]. Actual: " + GetIntListContentsAsString(count.CountSmaller(new int[] {5,2,6,1})));
-            Console.WriteLine("Expected: [10,0,6,2,6,5,4,2,1,1,0]. Actual: " + GetIntListContentsAsString(count.CountSmaller(new int[] {15,0,12,3,14,12,11,5,2,6,1})));
+            Console.WriteLine("Expected: [2,0,0]. Actual: " + GetListOfIntAsString(count.CountSmaller(new int[] {2,0,1})));
+            Console.WriteLine("Expected: [2,1,1,0]. Actual: " + GetListOfIntAsString(count.CountSmaller(new int[] {5,2,6,1})));
+            Console.WriteLine("Expected: [10,0,6,2,6,5,4,2,1,1,0]. Actual: " + GetListOfIntAsString(count.CountSmaller(new int[] {15,0,12,3,14,12,11,5,2,6,1})));
+        }
+
+        public static void TestPalindromePairs()
+        {
+            PalindromePairs p = new PalindromePairs();
+            IList<IList<int>> result;
+            result = p.Find(new string[] {"abcd","dcba","lls","s","sssll"});
+            Console.WriteLine("Expected: [[0,1],[1,0],[3,2],[2,4]]. Actual: " + GetListOfListOfIntAsString(result));
+            result = p.Find(new string[] {"bat","tab","cat"});
+            Console.WriteLine("Expected: [[0,1],[1,0]]. Actual: " + GetListOfListOfIntAsString(result));
         }
     }
 }

@@ -56,7 +56,7 @@ namespace LC_FB_Hard
             List<int> lis = new List<int>(); 
             for (int i = 0; i < envs.Count; i++){
                 if (lis.Count == 0 || lis[lis.Count - 1] < envs[i].Height) lis.Add(envs[i].Height);
-                else{
+                else {
                     // binary search to find the smallest envelope that is greater than or equal to envs[i]
                     int low = 0, high = lis.Count - 1, mid = 0;
                     while(low < high){
