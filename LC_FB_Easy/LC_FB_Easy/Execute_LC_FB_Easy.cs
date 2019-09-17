@@ -104,7 +104,8 @@ namespace LC_FB_Easy
             // TestSingleRowKeyboard();
             // TestAddStrings();
             // TestIsValidPalindrome();
-            TestRepeatedStringMatch();
+            // TestRepeatedStringMatch();
+            TestMajorityElememt();
         }
 
         public static void TestSingleRowKeyboard()
@@ -137,6 +138,13 @@ namespace LC_FB_Easy
             Console.WriteLine("Expected: -1. Actual: " + r.Match("abcde", "cdabcdab"));
             Console.WriteLine("Expected: 4. Actual: " + r.Match("abcde", "cdeabcdeabcdea"));
             Console.WriteLine("Expected: 2. Actual: " + r.Match("aaaa", "aaaaa"));
+        }
+
+        public static void TestMajorityElememt()
+        {
+            MajorityElement m = new MajorityElement();
+            Console.WriteLine("Expected: 3. Actual: " + m.Find(new int[] {3, 2, 3}));
+            Console.WriteLine("Expected: 2. Actual: " + m.Find(new int[] {2,2,1,1,1,2,2}));
         }
     }
 }

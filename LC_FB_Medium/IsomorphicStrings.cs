@@ -6,7 +6,8 @@ namespace LC_FB_Medium
     /*
         Given two strings s and t, determine if they are isomorphic.
         Two strings are isomorphic if the characters in s can be replaced to get t.
-        All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+        All occurrences of a character must be replaced with another character while preserving the order of characters. 
+        No two characters may map to the same character but a character may map to itself.
 
         Example 1:
         Input: s = "egg", t = "add"
@@ -27,20 +28,15 @@ namespace LC_FB_Medium
             if (s == null && t == null) return true;
             if (s == null || t == null || s.Length != t.Length) return false;
 
-            Dictionary<char, char> replacements = new Dictionary<char, char>();
+            Dictionary<char, char> replacements1 = new Dictionary<char, char>();
+            Dictionary<char, char> replacements2 = new Dictionary<char, char>();
             for (int i = 0; i < s.Length; i++) {
-                if (s[i] == t[i]) continue;
-                if (replacements.ContainsKey(s[i]) && replacements.ContainsKey(t[i])) {
-                    if (s[i] != replacements[t[i]] || t[i] != replacements[s[i]]) return false;
-                    continue;
-                }
-                if (!replacements.ContainsKey(s[i]) && !replacements.ContainsKey(t[i])) {
-                    replacements[s[i]] = t[i];
-                    replacements[t[i]] = s[i];
-                    continue;
-                }
+                if (replacements1.ContainsKey(s[i])) {
+                    if (replacements1[s[i]] != t[i]) return false;
+                } else if (replacements2.ContainsKey(t[i])) return false;
 
-                return false;
+                replacements1[s[i]] = t[i];
+                replacements2[t[i]] = s[i];
             }
 
             return true;

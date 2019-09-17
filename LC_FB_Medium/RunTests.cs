@@ -84,9 +84,23 @@ namespace LC_FB_Medium
             // TestFindMinimumInSortedArray(); // 72
             // TestLongestIncreasingSubsequence(); // 73
             // TestHIndex(); // 74
-            TestIsomorphicStrings(); // 75
+            // TestIsomorphicStrings(); // 75
+            // TestMaximumSizeSubarraySumK(); // 76
+            TestMajorityElement2(); // 77
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
+        }
+
+        public static string GetListOfIntAsString(IList<int> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
         }
 
         public static void MinSizeSubarraySumTest()
@@ -1031,9 +1045,30 @@ namespace LC_FB_Medium
             IsomorphicStrings iso = new IsomorphicStrings();
             Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("egg", "ebb"));
             Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("egg", "taa"));
-            Console.WriteLine("Expected: False. Actual: " + iso.IsIsomorphic("ego", "ebb"));
+            Console.WriteLine("Expected: False. Actual: " + iso.IsIsomorphic("ebb", "ego"));
             Console.WriteLine("Expected: False. Actual: " + iso.IsIsomorphic("foo", "bar"));
-            Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("title", "paper"));
+            Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("paper", "title"));
+            Console.WriteLine("Expected: False. Actual: " + iso.IsIsomorphic("ab", "aa"));
+            Console.WriteLine("Expected: True. Actual: " + iso.IsIsomorphic("ab", "ca"));
+        }
+
+        public static void TestMaximumSizeSubarraySumK()
+        {
+            MaximumSizeSubarraySumK max = new MaximumSizeSubarraySumK();
+            Console.WriteLine("Expected: 4. Actual: " + max.MaxSubArrayLen(new int[] {-1, 1, 1, 1, 0, 3, 8}, 3));
+            Console.WriteLine("Expected: 4. Actual: " + max.MaxSubArrayLen(new int[] {1, -1, 5, -2, 3}, 3));
+            Console.WriteLine("Expected: 2. Actual: " + max.MaxSubArrayLen(new int[] {-2, -1, 2, 1}, 1));
+        }
+
+        public static void TestMajorityElement2()
+        {
+            MajorityElement2 m = new MajorityElement2();
+            Console.WriteLine("Expected: [3]. Actual: " + GetListOfIntAsString(m.Find(new int[] {3,2,3})));
+            Console.WriteLine("Expected: [2,3]. Actual: " + GetListOfIntAsString(m.Find(new int[] {2,2,2,1,1,3,3,3})));
+            Console.WriteLine("Expected: []. Actual: " + GetListOfIntAsString(m.Find(new int[] {2,2,2,1,1,1,3,3,3})));
+            Console.WriteLine("Expected: [3]. Actual: " + GetListOfIntAsString(m.Find(new int[] {2,2,2,1,1,1,3,3,3,3})));
+            Console.WriteLine("Expected: [2]. Actual: " + GetListOfIntAsString(m.Find(new int[] {2,2})));
+            Console.WriteLine("Expected: [2,1]. Actual: " + GetListOfIntAsString(m.Find(new int[] {1,2,2,3,2,1,1,3})));
         }
     }
 }

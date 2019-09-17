@@ -33,48 +33,48 @@ namespace LC_FB_Hard
             }
 
             int count = t.Length;
-            int windowStart = 0;
-            int windowEnd = 0;
+            int start = 0;
+            int end = 0;
             int minWindow = int.MaxValue;
             Dictionary<char, int> readMap = new Dictionary<char, int>();
 
-            while(windowEnd < s.Length || windowStart < s.Length)
+            while(end < s.Length || start < s.Length)
             {
-                if (count > 0 && windowEnd < s.Length)
+                if (count > 0 && end < s.Length)
                 {
-                    // Increase the window size as long as the count > 0. i.e. you increment the windowEnd
-                    if(dic.ContainsKey(s[windowEnd]))
+                    // Increase the window size as long as the count > 0. i.e. you increment the end
+                    if(dic.ContainsKey(s[end]))
                     {
-                        if (windowStart == -1) windowStart = windowEnd;
-                        if (readMap.ContainsKey(s[windowEnd])) readMap[s[windowEnd]]++;
-                        else readMap[s[windowEnd]] = 1;
+                        if (start == -1) start = end;
+                        if (readMap.ContainsKey(s[end])) readMap[s[end]]++;
+                        else readMap[s[end]] = 1;
 
                         // As long as the character that we are reading hasn't exceeded its expected count, we decrement the count of characters left to match.
-                        if (readMap[s[windowEnd]] <= dic[s[windowEnd]]) count--;
+                        if (readMap[s[end]] <= dic[s[end]]) count--;
                     }
 
-                    windowEnd++;
+                    end++;
                 }
-                else if (windowStart < s.Length)
+                else if (start < s.Length)
                 {
-                    // Otherwise, you decrease the window size by increasing windowStart
-                    if (dic.ContainsKey(s[windowStart]))
+                    // Otherwise, you decrease the window size by increasing start
+                    if (dic.ContainsKey(s[start]))
                     {
                         // While reducing the window size we need to ensure that the character being removed doesn't affect the expected counts in t.
-                        readMap[s[windowStart]]--;
-                        if (readMap[s[windowStart]] < dic[s[windowStart]]) count++;
+                        readMap[s[start]]--;
+                        if (readMap[s[start]] < dic[s[start]]) count++;
                     }
 
-                    windowStart++;
+                    start++;
                 }
 
                 if (count == 0)
                 {
-                    int windowSize = windowEnd - windowStart;
+                    int windowSize = end - start;
                     if(windowSize < minWindow)
                     {
                         minWindow = windowSize;
-                        output = s.Substring(windowStart, windowSize);
+                        output = s.Substring(start, windowSize);
                     }
                 }                
             }

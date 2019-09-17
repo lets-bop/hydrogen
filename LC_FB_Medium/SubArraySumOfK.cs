@@ -5,7 +5,8 @@ using System.Text;
 namespace LC_FB_Medium
 {
     /*
-        Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+        Given an array of integers and an integer k, 
+        you need to find the total number of continuous subarrays whose sum equals to k.
 
         Example 1:
 
@@ -36,18 +37,18 @@ namespace LC_FB_Medium
         public int SubarraySum(int[] nums, int k)
         {
             Dictionary<int, int> sumToCountMap = new Dictionary<int, int>();
-            int rollingSum = 0;
+            int prefixSum = 0;
             int count = 0;
             sumToCountMap.Add(0, 1); // if sum-upto-now - k == 0, then it means that we have found 1 match at least.
             for (int i = 0; i < nums.Length; i++)
             {
-                rollingSum += nums[i];
-                if (sumToCountMap.ContainsKey(rollingSum - k)) 
-                    count += sumToCountMap[rollingSum - k];
+                prefixSum += nums[i];
+                if (sumToCountMap.ContainsKey(prefixSum - k)) 
+                    count += sumToCountMap[prefixSum - k];
 
-                if (sumToCountMap.ContainsKey(rollingSum)) 
-                    sumToCountMap[rollingSum] = sumToCountMap[rollingSum] + 1;
-                else sumToCountMap[rollingSum] = 1;
+                if (sumToCountMap.ContainsKey(prefixSum)) 
+                    sumToCountMap[prefixSum]++; // add 1 to existing sum
+                else sumToCountMap[prefixSum] = 1; // we have 1 count for this sum
             }
 
             return count;

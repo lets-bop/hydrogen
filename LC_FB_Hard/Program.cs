@@ -59,7 +59,8 @@ namespace LC_FB_Hard
             // TestBinaryTreeCameras(); // 47
             // TestBricksFallingWhenHit(); // 48
             // TestCountOfSmallerNumbersAfterSelf(); // 49
-            TestPalindromePairs(); // 50
+            // TestPalindromePairs(); // 50
+            TestLongestSubstringWithAtMostKDistinct(); // 51
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1137,6 +1138,15 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: [[0,1],[1,0],[3,2],[2,4]]. Actual: " + GetListOfListOfIntAsString(result));
             result = p.Find(new string[] {"bat","tab","cat"});
             Console.WriteLine("Expected: [[0,1],[1,0]]. Actual: " + GetListOfListOfIntAsString(result));
+        }
+
+        public static void TestLongestSubstringWithAtMostKDistinct()
+        {
+            LongestSubstringWithAtMostKDistinct l = new LongestSubstringWithAtMostKDistinct();
+            Console.WriteLine("Expected: 3. Actual: " + l.Find("eceba", 2));
+            Console.WriteLine("Expected: 2. Actual: " + l.Find("aa", 1));
+            Console.WriteLine("Expected: 0. Actual: " + l.Find("aa", 0));
+            Console.WriteLine("Expected: 0. Actual: " + l.Find("", 4));
         }
     }
 }
