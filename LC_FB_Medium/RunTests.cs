@@ -86,7 +86,8 @@ namespace LC_FB_Medium
             // TestHIndex(); // 74
             // TestIsomorphicStrings(); // 75
             // TestMaximumSizeSubarraySumK(); // 76
-            TestMajorityElement2(); // 77
+            // TestMajorityElement2(); // 77
+            TestWordLadder(); // 78
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1069,6 +1070,15 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: [3]. Actual: " + GetListOfIntAsString(m.Find(new int[] {2,2,2,1,1,1,3,3,3,3})));
             Console.WriteLine("Expected: [2]. Actual: " + GetListOfIntAsString(m.Find(new int[] {2,2})));
             Console.WriteLine("Expected: [2,1]. Actual: " + GetListOfIntAsString(m.Find(new int[] {1,2,2,3,2,1,1,3})));
+        }
+
+        public static void TestWordLadder()
+        {
+            WordLadder w = new WordLadder();
+            Console.WriteLine("Expected: 5. Actual: " + w.LadderLength("hit", "cog", new List<string>() {"hot","dot","dog","lot","log","cog"}));
+            Console.WriteLine("Expected: 0. Actual: " + w.LadderLength("hit", "cog", new List<string>() {"hot","dot","dog","lot","log"}));
+            Console.WriteLine("Expected: 0. Actual: " + w.LadderLength("hot", "dog", new List<string>() {"hot","dog"}));
+            Console.WriteLine("Expected: 2. Actual: " + w.LadderLength("hot", "hog", new List<string>() {"hot","hog"}));
         }
     }
 }

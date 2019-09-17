@@ -105,7 +105,8 @@ namespace LC_FB_Easy
             // TestAddStrings();
             // TestIsValidPalindrome();
             // TestRepeatedStringMatch();
-            TestMajorityElememt();
+            // TestMajorityElememt();
+            TestMeetingRooms();
         }
 
         public static void TestSingleRowKeyboard()
@@ -145,6 +146,16 @@ namespace LC_FB_Easy
             MajorityElement m = new MajorityElement();
             Console.WriteLine("Expected: 3. Actual: " + m.Find(new int[] {3, 2, 3}));
             Console.WriteLine("Expected: 2. Actual: " + m.Find(new int[] {2,2,1,1,1,2,2}));
+        }
+
+        public static void TestMeetingRooms()
+        {
+            MeetingRooms m = new MeetingRooms();
+            int[][] intervals;
+            intervals = new int[][] {new int[]{0,30}, new int[]{5,10}, new int[]{15,20}};
+            Console.WriteLine("Expected: False. Actual: " + m.CanAttendMeetings(intervals));
+            intervals = new int[][] {new int[]{2,4}, new int[]{7,10}};
+            Console.WriteLine("Expected: True. Actual: " + m.CanAttendMeetings(intervals));
         }
     }
 }
