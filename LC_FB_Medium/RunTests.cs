@@ -15,7 +15,7 @@ namespace LC_FB_Medium
             // ExclusiveTimeFunctionsTest(); // 3
             // NumberOfIslandsTest(); // 4
             // GenerateParenthesisTest(); // 5
-            // MinMeetingRoomsTest(); // 6
+            MinMeetingRoomsTest(); // 6
             // MergeIntervalsTest(); // 7
             // WordSearchTest(); // 8
             // BasicCalculatorTest(); // 9
@@ -87,7 +87,7 @@ namespace LC_FB_Medium
             // TestIsomorphicStrings(); // 75
             // TestMaximumSizeSubarraySumK(); // 76
             // TestMajorityElement2(); // 77
-            TestWordLadder(); // 78
+            // TestWordLadder(); // 78
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }

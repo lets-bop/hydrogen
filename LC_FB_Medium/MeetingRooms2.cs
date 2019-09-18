@@ -27,6 +27,28 @@ namespace LC_FB_Medium
             public Interval(int s, int e) { start = s; end = e; }
         }
 
+        // We will first sort the intervals by their start time.
+        // We will use a MinPQ to hold the end time of the meetings.
+        // Why MinPQ - As we iterate through the intervals sorted by their start times,
+        // if the new interval's start time > Minimum end time, that room is available for 
+        // allocation. So we just update the end time value in the MinPQ.
+        // If not (i.e. new interval's start  time < min end time), we need to allocate a new room
+        // and we add its end time to the MinPQ.
+        public int FindMinimum(Interval[] intervals)
+        {
+            Array.Sort(intervals, CompareInts);
+            MinPQ pq = new MinPQ(intervals.Length);
+
+            foreach(Interval interval in intervals){
+                if(pq.currentItemCount == 0 || interval.start < pq.GetMin())
+                    pq.Add(interval.end);
+                else 
+                    pq.UpdateMin(interval.end);
+            }
+
+            return pq.currentItemCount;
+        }
+
         internal class MinPQ
         {
             int[] pq;
@@ -55,13 +77,13 @@ namespace LC_FB_Medium
 
             internal void Swim(){
                 int index = this.currentItemCount - 1;
-                int parentIndex = (index + 1) / 2 - 1;
+                int parentIndex = Math.Max(0, index / 2 - 1);
                 while(parentIndex >= 0 && this.pq[parentIndex] > this.pq[index]){
                     int temp = this.pq[index];
                     this.pq[index] = this.pq[parentIndex];
                     this.pq[parentIndex] = temp;
                     index = parentIndex;
-                    parentIndex = (parentIndex + 1) / 2 - 1;
+                    parentIndex = Math.Max(0, index / 2 - 1);
                 }
             }
 
@@ -85,31 +107,16 @@ namespace LC_FB_Medium
                         int temp = this.pq[index];
                         this.pq[index] = this.pq[childIndex];
                         this.pq[childIndex] = temp;
-                        index = childIndex;                
+                        index = childIndex;
                     }
                     else break;
-                }              
+                }
             }
-        }
-
-        public int FindMinimum(Interval[] intervals)
-        {
-            Array.Sort(intervals, CompareInts);
-            MinPQ pq = new MinPQ(intervals.Length);
-
-            foreach(Interval interval in intervals){
-                if(pq.currentItemCount == 0 || interval.start < pq.GetMin())
-                    pq.Add(interval.end);
-                else 
-                    pq.UpdateMin(interval.end);
-            }
-
-            return pq.currentItemCount;
         }
 
         public static int CompareInts(Interval s1, Interval s2)
         {
             return s1.start - s2.start;
-        }        
+        }
     }
 }
