@@ -60,7 +60,10 @@ namespace LC_FB_Hard
             // TestBricksFallingWhenHit(); // 48
             // TestCountOfSmallerNumbersAfterSelf(); // 49
             // TestPalindromePairs(); // 50
-            TestLongestSubstringWithAtMostKDistinct(); // 51
+            // TestLongestSubstringWithAtMostKDistinct(); // 51
+            // TestMergeKSortedArrays(); // 79
+            // TestMergeKSortedLists(); // 80
+            TestEmployeeFreeTime();
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1147,6 +1150,94 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 2. Actual: " + l.Find("aa", 1));
             Console.WriteLine("Expected: 0. Actual: " + l.Find("aa", 0));
             Console.WriteLine("Expected: 0. Actual: " + l.Find("", 4));
+        }
+
+        public static void TestMergeKSortedArrays()
+        {
+            MergeKSortedArrays m = new MergeKSortedArrays();
+            int[][] arrays;
+
+            arrays = new int[][] {new int[] {1,3,5,7}, new int[] {2,4,6,8}, new int[] {0,9,10,11}};
+            Console.WriteLine("Expected: [0,1,2,3,4,5,6,7,8,9,10,11]. Actual: " + GetListOfIntAsString(m.Merge(arrays)));
+            arrays = new int[][] {new int[] {1,3,5,7}, new int[] {2,4,6}, new int[] {0,8},new int[] {9,11,13},new int[] {10,12,17},new int[] {14,15,16,18,19,20},new int[] {0,8}};
+            Console.WriteLine("Expected: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]. Actual: " + GetListOfIntAsString(m.Merge(arrays)));
+        }
+
+        public static MergeKSortedLists.ListNode MakeListForMergeKSortedLists(int[] nums) {
+            MergeKSortedLists.ListNode head = null;
+            MergeKSortedLists.ListNode curr = null;
+            foreach (int n in nums) {
+                if (head == null) {
+                    head = new MergeKSortedLists.ListNode(n);
+                    curr = head;
+                } else {
+                    curr.next = new MergeKSortedLists.ListNode(n);
+                    curr = curr.next;
+                }
+            }
+            return head;
+        }
+
+        public static int[] ConvertResultListToArrayForMergeKSortedLists(MergeKSortedLists.ListNode node) {
+            List<int> ret = new List<int>();
+            while (node != null) {
+                ret.Add(node.val);
+                node = node.next;
+            }
+            return ret.ToArray();
+        }
+
+        public static void TestMergeKSortedLists()
+        {
+            MergeKSortedLists m = new MergeKSortedLists();
+            MergeKSortedLists.ListNode l1, l2, l3, l4, l5, l6, retNode;
+            l1 = MakeListForMergeKSortedLists(new int[] {1,3,5,7});
+            l2 = MakeListForMergeKSortedLists(new int[] {2,4,6,8});
+            l3 = MakeListForMergeKSortedLists(new int[] {0,9,10,11});
+            retNode = m.MergeKLists(new MergeKSortedLists.ListNode[] {l1,l2,l3});
+            Console.WriteLine("Expected: [0,1,2,3,4,5,6,7,8,9,10,11]. Actual: " + GetListOfIntAsString(ConvertResultListToArrayForMergeKSortedLists(retNode)));
+
+            l1 = MakeListForMergeKSortedLists(new int[] {1,3,5,7});
+            l2 = MakeListForMergeKSortedLists(new int[] {2,4,6});
+            l3 = MakeListForMergeKSortedLists(new int[] {0,8});
+            l4 = MakeListForMergeKSortedLists(new int[] {9,11,13});
+            l5 = MakeListForMergeKSortedLists(new int[] {10,12,17});
+            l6 = MakeListForMergeKSortedLists(new int[] {14,15,16,18,19,20});
+            retNode = m.MergeKLists(new MergeKSortedLists.ListNode[] {l1,l2,l3,l4,l5,l6});
+            Console.WriteLine("Expected: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]. Actual: " + GetListOfIntAsString(ConvertResultListToArrayForMergeKSortedLists(retNode)));
+
+            l1 = MakeListForMergeKSortedLists(new int[] {-3,2,2});
+            l2 = MakeListForMergeKSortedLists(new int[] {-9});
+            l3 = MakeListForMergeKSortedLists(new int[] {-10,-5,-4,-2,-1,1,3,4});
+            l4 = MakeListForMergeKSortedLists(new int[] {-10,-9,-8,3,4});
+            l5 = MakeListForMergeKSortedLists(new int[] {-5,-3,3,4});
+            l6 = MakeListForMergeKSortedLists(new int[] {-9,-8,-5,-4,-2,-1,3});
+            retNode = m.MergeKLists(new MergeKSortedLists.ListNode[] {l1,l2,l3,l4,l5,l6});
+            Console.WriteLine("Expected: [-10,-10,-9,-9,-9,-8,-8,-5,-5,-5,-4,-4,-3,-3,-2,-2,-1,-1,1,2,2,3,3,3,3,4,4,4]. Actual: " + GetListOfIntAsString(ConvertResultListToArrayForMergeKSortedLists(retNode)));
+        }
+
+        public static void TestEmployeeFreeTime()
+        {
+            EmployeeFreeTime e = new EmployeeFreeTime();
+            IList<IList<EmployeeFreeTime.Interval>> schedule = new List<IList<EmployeeFreeTime.Interval>>();
+            schedule.Add(new List<EmployeeFreeTime.Interval>() {new EmployeeFreeTime.Interval(1,2), new EmployeeFreeTime.Interval(5,6)});
+            schedule.Add(new List<EmployeeFreeTime.Interval>() {new EmployeeFreeTime.Interval(1,3)});
+            schedule.Add(new List<EmployeeFreeTime.Interval>() {new EmployeeFreeTime.Interval(4,10)});
+            IList<EmployeeFreeTime.Interval> result = e.FindFreeTime(schedule);
+            StringBuilder sb = new StringBuilder();
+            foreach (EmployeeFreeTime.Interval r in result) sb.Append("[" + r.start + "," + r.end + "], ");
+            sb.AppendLine();
+            Console.WriteLine("Expected: [3,4]. Actual: " + sb.ToString());
+
+            schedule = new List<IList<EmployeeFreeTime.Interval>>();
+            schedule.Add(new List<EmployeeFreeTime.Interval>() {new EmployeeFreeTime.Interval(1,3), new EmployeeFreeTime.Interval(6,7)});
+            schedule.Add(new List<EmployeeFreeTime.Interval>() {new EmployeeFreeTime.Interval(2,4)});
+            schedule.Add(new List<EmployeeFreeTime.Interval>() {new EmployeeFreeTime.Interval(2,5), new EmployeeFreeTime.Interval(9,12)});
+            result = e.FindFreeTime(schedule);
+            sb = new StringBuilder();
+            foreach (EmployeeFreeTime.Interval r in result) sb.Append("[" + r.start + "," + r.end + "], ");
+            sb.AppendLine();
+            Console.WriteLine("Expected: [5,6],[7,9]. Actual: " + sb.ToString());
         }
     }
 }

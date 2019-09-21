@@ -15,7 +15,7 @@ namespace LC_FB_Medium
             // ExclusiveTimeFunctionsTest(); // 3
             // NumberOfIslandsTest(); // 4
             // GenerateParenthesisTest(); // 5
-            MinMeetingRoomsTest(); // 6
+            // MinMeetingRoomsTest(); // 6
             // MergeIntervalsTest(); // 7
             // WordSearchTest(); // 8
             // BasicCalculatorTest(); // 9
@@ -88,6 +88,10 @@ namespace LC_FB_Medium
             // TestMaximumSizeSubarraySumK(); // 76
             // TestMajorityElement2(); // 77
             // TestWordLadder(); // 78
+            // TestRangeAddition(); // 79
+            // TestConcordance(); // 80
+            // TestUglyNumber2(); // 81
+            TestSearch2DMatrix(); // 82
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1079,6 +1083,46 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 0. Actual: " + w.LadderLength("hit", "cog", new List<string>() {"hot","dot","dog","lot","log"}));
             Console.WriteLine("Expected: 0. Actual: " + w.LadderLength("hot", "dog", new List<string>() {"hot","dog"}));
             Console.WriteLine("Expected: 2. Actual: " + w.LadderLength("hot", "hog", new List<string>() {"hot","hog"}));
+        }
+
+        public static void TestRangeAddition()
+        {
+            RangeAddition r = new RangeAddition();
+            int[][] input;
+            input = new int[][] {new int[] {1,3,2}, new int[] {2,4,3}, new int[] {0,2,-2}};
+            Console.WriteLine("Expected: [-2,0,3,5,3]. Actual: " + GetListOfIntAsString(r.GetModifiedArray(5, input)));
+        }
+
+        public static void TestConcordance()
+        {
+            List<string> inputLines = new List<string>();
+            // inputLines.Add("Wait a minute. Wait a minute, Doc.");
+            // inputLines.Add("Are you telling me that you built");
+            // inputLines.Add("a time machine out of a DeLorean?");
+            // Concordance.GenerateAndPrintConcordance(inputLines);
+
+            inputLines.Add("Given an arbitrary text document written in English, write a program that will generate a");
+            inputLines.Add("concordance, i.e. an alphabetical list of all word occurrences, labeled with word ");
+            inputLines.Add("frequencies.");
+            inputLines.Add("Bonus: label each word with the sentence numbers in which each occurrence appeared.");
+            Concordance.GenerateAndPrintConcordance(inputLines);
+        }
+
+        public static void TestUglyNumber2()
+        {
+            UglyNumber2 ugly = new UglyNumber2();
+            Console.WriteLine("Expected: 6. Actual: " + ugly.NthUglyNumber(6));
+            Console.WriteLine("Expected: 9. Actual: " + ugly.NthUglyNumber(8));
+            Console.WriteLine("Expected: 12. Actual: " + ugly.NthUglyNumber(10));
+        }
+
+        public static void TestSearch2DMatrix()
+        {
+            Search2DMatrix s = new Search2DMatrix();
+            int[][] matrix;
+            matrix = new int[][] {new int[] {1,3,5,7}, new int[] {10,11,16,20}, new int[] {23,30,34,50}};
+            Console.WriteLine("Expected: True. Actual: " + s.SearchMatrix(matrix, 3));
+            Console.WriteLine("Expected: False. Actual: " + s.SearchMatrix(matrix, 13));
         }
     }
 }
