@@ -35,7 +35,6 @@ namespace LC_FB_Hard
             // TestTrappingRainWater(); //23
             // TestRecoverBST(); //24
             // TestFrogJump(); //25
-            // TestUnionFind(); //26
             // TestNumberOfIslands2(); //27
             // TestSplitArrayWithSameAverage(); //29
             // TestCandyProblem(); //30
@@ -63,7 +62,7 @@ namespace LC_FB_Hard
             // TestLongestSubstringWithAtMostKDistinct(); // 51
             // TestMergeKSortedArrays(); // 79
             // TestMergeKSortedLists(); // 80
-            TestEmployeeFreeTime();
+            // TestEmployeeFreeTime(); // 81
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -551,48 +550,15 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: True. Actual: {0}", fj.CanCross(new int[]{0,1,3,5,6,8,12,17}));
         }
 
-        public static void TestUnionFind()
-        {
-            int[] data = new int[30] {10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,3,37,38,39};
-            UnionFind uf = new UnionFind(data);
-            Console.WriteLine("10's parent element id " + uf.Find(10));
-            uf.Union(10,10);
-            Console.WriteLine("10's parent element id " + uf.Find(10));
-            uf.Union(10,11);
-            Console.WriteLine("10's parent element id " + uf.Find(10));
-            Console.WriteLine("11's parent element id " + uf.Find(11));
-            uf.Union(11,12);
-            uf.Union(11,14);
-            Console.WriteLine("10's parent element id " + uf.Find(10));
-            Console.WriteLine("11's parent element id " + uf.Find(11));
-            Console.WriteLine("12's parent element id " + uf.Find(12));
-            Console.WriteLine("14's parent element id " + uf.Find(14));
-
-            uf.Union(20,21);
-            uf.Union(22,23);
-            Console.WriteLine("20's parent element id " + uf.Find(20));
-            Console.WriteLine("21's parent element id " + uf.Find(21));            
-            Console.WriteLine("22's parent element id " + uf.Find(22));            
-            Console.WriteLine("23's parent element id " + uf.Find(23));            
-            uf.Union(20,10);
-            Console.WriteLine("10's parent element id " + uf.Find(10));
-            Console.WriteLine("11's parent element id " + uf.Find(11));
-            Console.WriteLine("12's parent element id " + uf.Find(12));
-            Console.WriteLine("14's parent element id " + uf.Find(14));            
-            Console.WriteLine("20's parent element id " + uf.Find(20));
-            Console.WriteLine("21's parent element id " + uf.Find(21));            
-            Console.WriteLine("22's parent element id " + uf.Find(22));            
-            Console.WriteLine("23's parent element id " + uf.Find(23));                        
-        }
-
         public static void TestNumberOfIslands2()
         {
-            Console.WriteLine("Problem 1");
             NumberOfIslands2 islands = new NumberOfIslands2();
-            islands.NumIslands2(3,3, new int[,] {{0,0}, {0,1}, {1,2}, {2,1}});
-            Console.WriteLine("Problem 2");
-            islands = new NumberOfIslands2();
-            islands.NumIslands2(3,3, new int[,] {{0,1},{1,2},{2,1},{1,0},{0,2},{0,0},{1,1}});
+            IList<int> result = islands.NumIslands2(3,3, new int[][] {new int[] {0,0}, new int[] {0,1}, new int[] {1,2}, new int[] {2,1}});
+            Console.WriteLine("Expected: [1,1,2,3]. Actual: " + GetListOfIntAsString(result));
+            result = islands.NumIslands2(3,3, new int[][] {new int[]{0,1},new int[]{1,2},new int[]{2,1},new int[]{1,0},new int[]{0,2},new int[]{0,0},new int[]{1,1}});
+            Console.WriteLine("Expected: [1,2,3,4,3,2,1]. Actual: " + GetListOfIntAsString(result));
+            result = islands.NumIslands2(3,3, new int[][] {new int[] {0,0}, new int[] {0,1}, new int[] {1,2}, new int[] {1,2}});
+            Console.WriteLine("Expected: [1,2,3,4,3,2,1]. Actual: " + GetListOfIntAsString(result));
         }
 
         public static void TestSplitArrayWithSameAverage()

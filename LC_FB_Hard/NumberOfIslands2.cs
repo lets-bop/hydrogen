@@ -46,56 +46,39 @@ namespace LC_FB_Hard
 {
     public class NumberOfIslands2
     {
-        List<int> neighbors = new List<int>();
-        HashSet<int> landIds = new HashSet<int>();
-        HashSet<int> connectedLandIds = new HashSet<int>();
-        
-        public IList<int> NumIslands2(int m, int n, int[,] positions) 
+        public IList<int> NumIslands2(int m, int n, int[][] positions) 
         {
+            HashSet<int> landIds = new HashSet<int>();
             List<int> result = new List<int>();
-            UnionFind uf = new UnionFind(m * n);
-            List<int> neighbors = new List<int>();
+            UF uf = new UF(m * n);
+            int[] dr = new int[] {-1, 1, 0, 0};
+            int[] dc = new int[] {0, 0, -1, 1};
+            int count = 0;
 
-            for (int i = 0; i < positions.GetLength(0); i++)
+            foreach (int[] position in positions)
             {
-                int row = positions[i, 0];
-                int col = positions[i, 1];
+                int row = position[0];
+                int col = position[1];
+                int id = row * n + col;
+                if (!landIds.Contains(id)) count++;
+                landIds.Add(id);
 
-                int elementId = row * n + col;
-                this.landIds.Add(elementId);
-                int myRoot = uf.Find(elementId);
-                this.connectedLandIds.Add(myRoot);
-
-                if (this.IsValid(row + 1, col, m , n)) neighbors.Add((row+1) * n + col);
-                if (this.IsValid(row - 1, col, m , n)) neighbors.Add((row-1) * n + col);
-                if (this.IsValid(row, col + 1, m , n)) neighbors.Add(row * n + (col+1));
-                if (this.IsValid(row, col - 1, m , n)) neighbors.Add(row * n + (col-1));
-
-                foreach(int neighborId in neighbors){
-                    if(this.landIds.Contains(neighborId)){
-                        myRoot = uf.Find(elementId);
-                        int neighborRoot = uf.Find(neighborId);
-                        this.connectedLandIds.Add(myRoot);
-                        this.connectedLandIds.Add(neighborRoot);
-                        uf.Union(elementId, neighborId);
-
-                        if(uf.Find(elementId) != myRoot) this.connectedLandIds.Remove(myRoot);
-                        else if(uf.Find(neighborId) != neighborRoot) this.connectedLandIds.Remove(neighborRoot);
+                for(int k = 0; k < 4; k++) {
+                    int r =  dr[k] + row;
+                    int c =  dc[k] + col;
+                    int neighbor_id = r * n + c;
+                    if (r >= 0 && c >=0 && r < m && c < n && landIds.Contains(neighbor_id)) {
+                        if (uf.Root(id) != uf.Root(neighbor_id)) {
+                            count--;
+                            uf.Union(id, neighbor_id);
+                        }
                     }
                 }
 
-                result.Add(this.connectedLandIds.Count);
-                Console.WriteLine("Number of islands = " + this.connectedLandIds.Count);
-                neighbors.Clear();
+                result.Add(count);
             }
 
             return result;
         }
-
-        private bool IsValid(int row, int col, int maxRows, int maxCols)
-        {
-            if (row >= 0 && row < maxRows && col >= 0 && col < maxCols) return true;
-            return false;
-        }     
     }    
 }

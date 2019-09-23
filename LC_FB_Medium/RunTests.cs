@@ -91,7 +91,8 @@ namespace LC_FB_Medium
             // TestRangeAddition(); // 79
             // TestConcordance(); // 80
             // TestUglyNumber2(); // 81
-            TestSearch2DMatrix(); // 82
+            // TestSearch2DMatrix(); // 82
+            TestKthSmallestInSortedMatrix(); // 83
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1123,6 +1124,17 @@ namespace LC_FB_Medium
             matrix = new int[][] {new int[] {1,3,5,7}, new int[] {10,11,16,20}, new int[] {23,30,34,50}};
             Console.WriteLine("Expected: True. Actual: " + s.SearchMatrix(matrix, 3));
             Console.WriteLine("Expected: False. Actual: " + s.SearchMatrix(matrix, 13));
+        }
+
+        public static void TestKthSmallestInSortedMatrix()
+        {
+            KthSmallestInSortedMatrix s = new KthSmallestInSortedMatrix();
+            int[][] matrix;
+            matrix = new int[][] {new int[] {1,8,21}, new int[] {4,8,23}, new int[] {6,13,25}};
+            Console.WriteLine("Expected: 6. Actual: " + s.KthSmallest(matrix, 3));
+            Console.WriteLine("Expected: 8. Actual: " + s.KthSmallest(matrix, 5));
+            Console.WriteLine("Expected: 13. Actual: " + s.KthSmallest(matrix, 6));
+            Console.WriteLine("Expected: 23. Actual: " + s.KthSmallest(matrix, 8));
         }
     }
 }
