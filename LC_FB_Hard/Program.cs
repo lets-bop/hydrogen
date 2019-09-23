@@ -681,9 +681,13 @@ namespace LC_FB_Hard
 
         public static void TestLongestIncreasingPathMatrix()
         {
-            int[,] matrix = new int[,] {{1,2,3,4},{-1,-1,6,5},{-1,-1,-1,-1}};
+            int[][] matrix = new int[][] {new int[]{1,2,3,4},new int[]{-1,-1,6,5},new int[]{-1,-1,-1,-1}};
             LongestIncreasingPathMatrix longestIncreasingPathMatrix = new LongestIncreasingPathMatrix();
-            Console.WriteLine("Expected: 6, Actual: " + longestIncreasingPathMatrix.LongestIncreasingPath(matrix)); 
+            Console.WriteLine("Expected: 7, Actual: " + longestIncreasingPathMatrix.LongestIncreasingPath(matrix)); 
+            matrix = new int[][] {new int[]{9,9,4},new int[]{6,6,8},new int[]{2,1,1}};
+            Console.WriteLine("Expected: 4, Actual: " + longestIncreasingPathMatrix.LongestIncreasingPath(matrix));
+            matrix = new int[][] {new int[]{3,4,5},new int[]{3,2,6},new int[]{2,2,1}};
+            Console.WriteLine("Expected: 4, Actual: " + longestIncreasingPathMatrix.LongestIncreasingPath(matrix));
         }
 
         public static void TestSurroundedRegion()

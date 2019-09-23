@@ -44,7 +44,7 @@ namespace LC_FB_Medium
             // TestMissingRanges(); // 32
             // TestIncreasingTripletSubsequence(); // 33
             // TestShortestWayToFormString(); // 34
-            // TestStonesRemoved(); // 35
+            TestStonesRemoved(); // 35
             // TestIntervalListInterections(); // 36
             // TestKClosestToOrigin(); // 37
             // TestProductExceptSelf(); // 38
@@ -92,7 +92,8 @@ namespace LC_FB_Medium
             // TestConcordance(); // 80
             // TestUglyNumber2(); // 81
             // TestSearch2DMatrix(); // 82
-            TestKthSmallestInSortedMatrix(); // 83
+            // TestKthSmallestInSortedMatrix(); // 83
+            // TestNumberOfConnectedComponentsUG(); // 84
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -270,15 +271,14 @@ namespace LC_FB_Medium
         public static void WordSearchTest()
         {
             WordSearch wordSearch = new WordSearch();
-            char[,] board = new char[,]
-                    {{'A','B','C','E'},
-                    {'S','F','C','S'},
-                    {'A','D','E','E'}};
+            char[][] board = new char[][]
+                    {new char[]{'A','B','C','E'},
+                    new char[]{'S','F','C','S'},
+                    new char[]{'A','D','E','E'}};
             Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "ABCCED"));
 
-            board = new char[,] {{'C','A','A'},{'A','A','A'},{'B','C','D'}};
+            board = new char[][] {new char[]{'C','A','A'},new char[]{'A','A','A'},new char[]{'B','C','D'}};
             Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "AAB"));
-
         }
 
         public static void BasicCalculatorTest()
@@ -607,6 +607,10 @@ namespace LC_FB_Medium
             StonesRemoved stonesRemoved = new StonesRemoved();
             int[][] stones = new int[][]{new int[] {0,0}, new int[] {0,1}, new int[] {1,0}, new int[] {1,2}, new int[] {2,1}, new int[] {2,2}};
             Console.WriteLine("Expected 5. Actual: " + stonesRemoved.RemoveStones(stones));
+            stones = new int[][]{new int[] {0,0}, new int[] {0,2}, new int[] {1,1}, new int[] {2,0}, new int[] {2,2}};
+            Console.WriteLine("Expected 3. Actual: " + stonesRemoved.RemoveStones(stones));
+            stones = new int[][]{new int[] {0,0}};
+            Console.WriteLine("Expected 0. Actual: " + stonesRemoved.RemoveStones(stones));
         }
 
         public static void TestIntervalListInterections()
@@ -1135,6 +1139,15 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 8. Actual: " + s.KthSmallest(matrix, 5));
             Console.WriteLine("Expected: 13. Actual: " + s.KthSmallest(matrix, 6));
             Console.WriteLine("Expected: 23. Actual: " + s.KthSmallest(matrix, 8));
+        }
+        
+        public static void TestNumberOfConnectedComponentsUG()
+        {
+            NumberOfConnectedComponentsUG n = new NumberOfConnectedComponentsUG();
+            int[][] input = new int[][] {new int[]{0,1},new int[]{1,2},new int[]{3,4}};
+            Console.WriteLine("Expected: 2. Actual: " + n.CountComponents(5, input));
+            input = new int[][] {new int[]{0,1},new int[]{1,2},new int[]{2,3},new int[]{3,4}};
+            Console.WriteLine("Expected: 1. Actual: " +n.CountComponents(5, input));
         }
     }
 }

@@ -35,62 +35,45 @@ namespace LC_FB_Hard
 {
     public class LongestIncreasingPathMatrix
     {
-        Dictionary<int, int> mem = new Dictionary<int, int>();
-
-        public int LongestIncreasingPath(int[,] matrix)
-        {
-            int longest = 0;
-
-            if(matrix == null) return longest;
+        int[] dr = new int[] {-1, 1, 0, 0};
+        int[] dc = new int[] {0, 0, -1, 1};
+        Dictionary<int, int> indexToMaxPathLengthMap = new Dictionary<int, int>();
+        
+        public int LongestIncreasingPath(int[][] matrix) {
+            // validate input
+            if (matrix == null || matrix.Length == 0) return 0;
             
-            int rowSize = matrix.GetLength(0);
-            int colSize = matrix.GetLength(1);            
-
-            for(int i = 0; i < rowSize; i++){
-                for (int j = 0; j < colSize; j++){
-                    if(!this.mem.ContainsKey(i * colSize + j))
-                        longest = Math.Max(longest, this.DFS(matrix, i, j, 1));
-                    else longest = Math.Max(longest, this.mem[i * colSize + j]);
+            int rows = matrix.Length;
+            int cols = matrix[0].Length;
+            int result = 1;
+            indexToMaxPathLengthMap.Clear();
+            
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    result = Math.Max(result, this.DFS(matrix, r, c, rows, cols));
                 }
             }
-
-            return longest;           
+            
+            return result;
         }
-
-        private int DFS(int[,] matrix, int row, int col, int currentLength)
-        {
-            int rowSize = matrix.GetLength(0);
-            int colSize = matrix.GetLength(1);
-
-            if(this.mem.ContainsKey(row * colSize + col)) 
-                return this.mem[row * colSize + col];
+        
+        private int DFS(int[][] matrix, int r, int c, int maxR, int maxC) {
+            if (r < 0 || c < 0 || r >= maxR || c >= maxC) return 0;
+            
+            int result = 1;
+            for (int k = 0; k < 4; k++) {
+                int nr = r + dr[k]; // neighbor row
+                int nc = c + dc[k]; // neighbor col
                 
-            int maxLength = currentLength;
-            List<Tuple<int, int>> list = new List<Tuple<int, int>>();
-            list.Add(new Tuple<int, int>(row + 1, col));
-            list.Add(new Tuple<int, int>(row - 1, col));
-            list.Add(new Tuple<int, int>(row, col + 1));
-            list.Add(new Tuple<int, int>(row, col - 1));
-
-            foreach (Tuple<int, int> t in list){
-                if(this.IsRowColValid(matrix, t.Item1, t.Item2, rowSize, colSize) && matrix[row, col] < matrix[t.Item1, t.Item2]){
-                    int length;
-                    if(this.mem.ContainsKey(t.Item1 * colSize + t.Item2))
-                        length = mem[t.Item1 * colSize + t.Item2];
-                    else 
-                        length = this.DFS(matrix, t.Item1, t.Item2, 1);
-
-                    maxLength = Math.Max(maxLength, currentLength + length);
+                if (nr >= 0 && nc >= 0 && nr < maxR && nc < maxC && matrix[nr][nc] > matrix[r][c]) {
+                    if (!this.indexToMaxPathLengthMap.ContainsKey(r * maxC + c))
+                        result = Math.Max(this.DFS(matrix, nr, nc, maxR, maxC) + 1, result);
+                    else result = Math.Max(this.indexToMaxPathLengthMap[r * maxC + c], result);
                 }
             }
-
-            this.mem[row * matrix.GetLength(1) + col] = maxLength;
-            return maxLength;
-        }
-
-        private bool IsRowColValid(int[,] matrix, int row, int col, int rowSize, int colSize){
-            if(row < 0 || col < 0 ||row >= rowSize || col >= colSize) return false;
-            return true;
+            
+            this.indexToMaxPathLengthMap[r * maxC + c] = result;
+            return result;
         }
     }
 }
