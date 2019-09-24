@@ -27,7 +27,7 @@ namespace LC_FB_Hard
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
-            // TestWordSearch(); //18
+            TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
             // TestSlidingWindowMax(); //21
@@ -65,6 +65,18 @@ namespace LC_FB_Hard
             // TestEmployeeFreeTime(); // 81
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
+        }
+
+        public static string GetListOfStringsAsString(IList<string> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
         }
 
         public static string GetListOfIntAsString(IList<int> list) {
@@ -417,29 +429,32 @@ namespace LC_FB_Hard
             Console.WriteLine(sb.ToString());
         }
 
-        private static void TestWordSearch()
+        private static void TestWordSearch2()
         {
             string[] words = new string[] {"oath","pea","eat","rain"};
-            char[,] board = new char[,] {
-                {'o','a','a','n'},
-                {'e','t','a','e'},
-                {'i','h','k','r'},
-                {'i','f','l','v'}
+            char[][] board = new char[][] {
+                new char[]{'o','a','a','n'},
+                new char[]{'e','t','a','e'},
+                new char[]{'i','h','k','r'},
+                new char[]{'i','f','l','v'}
             };
 
-            WordSearch ws = new WordSearch();
-            foreach (string s in ws.FindWords(board, words))
-            {
-                Console.WriteLine(s);
-            }
+            WordSearch2 ws = new WordSearch2();
+            Console.WriteLine("Expected: [oath, eat]. Actual: " + GetListOfStringsAsString(ws.FindWords(board, words)));
 
-            board = new char[,] {{'s','e','e','n','e','w'},{'t','m','r','i','v','a'},{'o','b','s','i','b','d'},{'w','m','y','s','e','n'},{'l','t','s','n','s','a'},{'i','e','z','l','g','n'}};
+            board = new char[][] {
+                new char[]{'s','e','e','n','e','w'},
+                new char[]{'t','m','r','i','v','a'},
+                new char[]{'o','b','s','i','b','d'},
+                new char[]{'w','m','y','s','e','n'},
+                new char[]{'l','t','s','n','s','a'},
+                new char[]{'i','e','z','l','g','n'}};
             words = new string[] {"pluma","holm","lippen","trag","milla","bietle","upbind","waxy","knead","nickle","reem","skice","unde","hain","savant","tryt","ribose","niton","lysis","bedad","sindry","themis","blushy","cocket","tube","craps","clavel","towhee","ogeed","gloss","goes","bena","mayhap","shor","grief","agria","debosh","rimmed","unlent","whenas","planky","dormer","yati","rang","duer","yigh","deasil","diwata","indic","puerer","levers","fusser","verre","rutile","erical","batata","swager","pudgy","sputa","alite","bummer","velum","infamy","ngai","unfed","bulger","wharve","dipole","sorter","pily","chatty","yapok","womble","liana","parch","speltz","cyan","limose","noggin","proker","crayer","ration","tivy","moyite","beany","fils","riper","jixie","sink","quit","tupuna","jetton","genua","stanno","apace","busine","havers","bedrip","behorn","uncake","cystid","grinch","hexene","fratch","agama","relift","tillot","plaint","ropp","anna","chaos","cytoma","coost","fitted","kegler","twin","rimple","armory","uniced","tubig","trull","glumly","tutrix","rhamn","knelt","astely","colin","clawk","alar","tower","vealy","yearn","roter","prase","undub","toozoo","liter","omelet","taler","curium","bullet","yday","codol","elute","slight","boopis","lotto","nagara","riffle","bustic","shrug","gunk","syrma","wrocht","depose","tramal","tidley","prof","lacmus","copse","flosh","whelky","fifer","needy","wealth","joyant","uroxin","carlet","snarly","lunged","acetal","kibosh","unburn","slimer","elysia","teagle","chymic","erept","quince","shin","knoppy","picudo","chider","gaspy","stope","drawly","pigful","unwarp","sate","nautch","uphasp","fluted","pecht","torpid","childe","inclip","faints","stela","kuskus","arcked","repic","kojang","bigha","lipoid","owerby","anadem","lench","ortiga","astart","slinky","rubify","wootz","recure","natch","tiring","skimp","seck","decay","atria","borax","leeky","auncel","soary","loir","twinge","pinto","bemat","bepuff","odum","uptorn","frowy","fother","witful","erenow","cooker","maddle","okee","leek","hasky","owght","cnicin","togate","screve","abac","hustle","packly","tilt","oscule","nonary","uranic","sulka","urheen","rouncy","gaze","aril","dint","steep","samp","ferule","cakey","unlead","drummy","kelpy","adati","pawn","cyanic","corn","caudle","geyan","danaid","ayless","acre","secos","yeld","obole","finely","avowed","tetard","inflex","sloke","trice","chaise","nursle","aldime","whist","waggly","pilula","loppy","rignum","groff","rigsby","istoke","roughy","bardo","bijoux","junker","progne","ninny","wyss","unhook","lieve","tibey","rethaw","corke","stelar","tirade","earlet","dried","corach","caroli","decern","congee","stog","arake","braid","plasma","unwept","maund","kamahi","pool","local","region","sequa","cuneus","faster","tung","warly","bosket","museum","rule","basion","iodate","pommet","shat","cappy","trail","darbha","scroop","jarfly","sirdar","kulah","ziffs","thump","galee","melter","padder","odist","comber","apodia","widdy","priest","manuma","flob","biaxal","corbel","sodden","begash","duress","tenues","bayman","stases","claro","savage","korero","hurler","routh","civic","flaser","scurvy","lather","amla","male","tiara","salted","restir","soap","exhume","embole","keelie","tera","census","tete","folium","dade","quell","grower","phare","bullan","adrop","athrob","blurry","cerous","rosily","heed","finish","anguis","pizza","mesad","lief","bebait","matchy","impoor","needs","prana","tabret","hoga","gowk","potash","sileni","cumene","kahili","thigh","vortex","fogy","kuruma","teeny","naid","unface","linha","aizle","yender","wolf","deism","bousy","dink","unboy","toshly","hebete","ahura","bowed","porger","gaol","chasmy","karree","isopag","bloody","avail","pinax","slimy","gamba","arghel","strung","simmer","smiler","outlet","gangly","sialic","hemine","trophy","excite","tined","bandar","sprang","kiwi","winner","unsack","rupial","swum","censer","borg","retold","ovular","paal","sware","posh","evade","buffle","plagal","bottom","amend","swipy","siss","fixing","anuran","tinty","weapon","fogged","sampan","enring","suade","causey","ferri","upbrow","jing","rewove","shield","undaub","cingle","rebute","dodd","gaub","scry","cipo","mantra","huller","boller","baud","diem","rammer","ruiner","bardic","ethyl","pleion","path","burrow","nutlet","dital","saxten","assail","minute","berley","labefy","salema","praxis","entone","ipecac","holmic","shita","litas","bemoil","future","defuse","glom","tilpah","bisti","skater","typist","carene","nidget","amply","alveus","salty","crinet","gourde","saluki","sextic","xyrid","likin","refeed","couper","smaik","vestee","lactic","croche","figgle","thunge","tunner","hill","cooba","tucuma","casco","copus","beldam","johnin","soiled","framea","prose","yeard","sobeit","nanism","purply","helper","appeal","mitten","layery","salon","mitra","rusine","verser","beluga","moosa","orate","piemag","attune","rucker","purfly","freet","simmon","affine","mardy","stroam","chia","gynic","saple","serif","bocce","froze","pilot","arenae","laney","locum","casbah","awave","armil","escrow","tetra","unbelt","mehari","patten","mome","muscid","wrang","tundun","sepad","acetic","afresh","vealer","raglin","aloud","pickle","minuet","retort","murium","arched","punjum","baylet","brew","holder","slunk","killas","pomato","penta","hunger","epocha","damie","scrod","cannel","belly","monny","gaum","joker","portly","biurea","eosin","pint","bumper","koft","hyrax","sequin","turn","pilus","fant","advert","unorn","trolly","minded","toom","wander","unglad","tweest","elenge","magpie","agon","boatly","propyl","swelly","know","myal","pika","bewept","karamu","hemal","pigdom","averil","parker","mids","awash","cornea","icing","falsie","necked","darner","shrend","rondo","exequy","adlet","craze","sign","angry","salpa","stoper","percha","kartel","garsil","unfill","gunge","behind","revet","garava","faker","corded","sauf","poemet","whew","tolsey","sluer","trichi","devout","lung","skip","boreal","razzly","athing","atavus","moutan","steepy","whir","sucuri","sinful","turp","ramper","bassan","wheaty","vidry","upturn","gipon","ashlar","facund","liber","warful","geoid","palay","jammy","uptide","mural","gashes","silty","nunlet","tergum","form","soggy","aide","upwrap","fabled","kosin","claval","quail","rummy","junket","vility","treat","sniper","graham","cestus","koruna","corban","clerid","aimer","alada","wedge","trainy","eyedot","banker","plumb","xoanon","wankly","chello","cheet","uncalk","cutely","aurar","bilsh","unram","hart","beday","raser","babloh","ticken","troy","canto","bodhi","pavior","depone","pore","argosy","hanker","sexern","millet","pelean","resign","chaya","furred","tiling","titler","ionone","tinman","induce","forged","hamfat","incur","hammam","sannup","loungy","glib","fikie","evovae","fusure","modern","dinkey","lyric","hawer","sawney","wabeno","calx","troco","sexly","tosh","byhand","meek","unflat","amli","vocate","chamal","askant","fleche","repour","myitis","thwite","merism","pent","enolic","nomina","curney","rother","cooser","depas","thread","riden","pyosis","uparch","elding","cotoro","akpek","quern","rami","daggy","flawn","puller","colove","cage","exode","nignay","brooky","rocket","glar","quota","wiser","atony","nodi","utrubi","amass","yachan","patao","quag","slag","douser","arear","recut","corky","estre","thief","gloat","redia","pricky","ligas","chisel","defier","shower","repen","nakong","indane","tetric","action","redux","gally","suffer","sutler","croupe","metage","terap","bemud","smog","draggy","plyer","dolor","daggly","wiss","isopod","puzzle","deair","anole","bever","goyle","odored","duro","seity","abkari","kersey","spurry","ungaro","idiom","yercum","pugman","astern","ouabe","taenia","eneugh","doze","doily","mixy","floury","sadic","plummy","miter","zebra","rushen","photon","bespot","agnate","kados","tinner","outsin","aloid","dime","labba","arista","cuffy","synema","gainer","reader","skybal","dairi","cavort","wrote","blowth","vacoua","serum","gapo","spunk","melody","hymner","append","alacha","wreat","crenel","cawney","uncoy","soul","bidri","eigne","heaps","plodge","toper","aerugo","ungirt","ablach","domnei","cowl","sold","anneal","cruels","udell","necker","broch","clips","cern","rani","sory","neiper","adead","cashew","spanky","salep","prexy","togue","tedge","motion","troche","unlean","babu","rizzom","craber","tonga","hyssop","jessur","whealy","tashie","badian","refine","bondar","adept","runnet","jumby","latish","strone","topcap","ovarin","rerent","mustee","begin","oblong","lapon","vowed","downy","sept","tabled","racily","quench","shauri","monad","reword","stude","keup","tiding","boyla","blende","rusot","unwind","flioma","ductor","stealy","pedant","silane","swaggy","pulu","uneven","choky","eloge","earcap","descry","tyken","cubica","dregs","scye","chiton","murine","hinge","quatch","giller","screwy","clamb","flask","avijja","amobyr","sant","glossy","outgo","partly","wekeen","tiffle","lith","fulgid","knar","mucket","pundum","doucin","neurin","cost","hatred","alee","submit","uncite","shekel","seme","pyrex","scog","emery","dolose","skrike","fizzer","cephid","curtal","bunce","linden","dorser","valgus","ahem","ricker","wingle","morne","kmet","swinge","razoo","floey","tuik","reif","cohol","patrol","seek","berger","youd","ransom","chrism","coram","impel","glisk","phene","midge","palpi","leban","tactic","jotter","dasher","rouge","rough","owler","pinnet","cetene","noop","eyrir","griffe","murra","whone","caza","hoop","inrun","jerry","cowboy","swanny","deevey","scoke","feck","telfer","pinna","boglet","unrule","pipery","malati","poked","cyclar","shive","acrawl","brotan","linty","infare","bevel","ilia","gelada","skeet","jojoba","sposhy","angary","ghetto","inness","chitak","aint","natron","navew","adular","steri","altho","thyrse","palmy","notum","lift","arsis","insect","nifle","venner","flap","poleax","sarwan","halter","lily","seizer","ectal","bhikku","ahmadi","enure","mingle","shrewd","whilk","dodder","buaze","helmed","bilify","muscly","ungum","sophy","pilau","starky"};
 
             foreach (string s in ws.FindWords(board, words))
             {
                 Console.WriteLine(s);
-            }            
+            }
         }
 
         private static void TestInsertInterval()
