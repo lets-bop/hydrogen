@@ -44,7 +44,7 @@ namespace LC_FB_Medium
             // TestMissingRanges(); // 32
             // TestIncreasingTripletSubsequence(); // 33
             // TestShortestWayToFormString(); // 34
-            TestStonesRemoved(); // 35
+            // TestStonesRemoved(); // 35
             // TestIntervalListInterections(); // 36
             // TestKClosestToOrigin(); // 37
             // TestProductExceptSelf(); // 38
@@ -94,6 +94,7 @@ namespace LC_FB_Medium
             // TestSearch2DMatrix(); // 82
             // TestKthSmallestInSortedMatrix(); // 83
             // TestNumberOfConnectedComponentsUG(); // 84
+            TestWallsAndGates(); // 85
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1148,6 +1149,18 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 2. Actual: " + n.CountComponents(5, input));
             input = new int[][] {new int[]{0,1},new int[]{1,2},new int[]{2,3},new int[]{3,4}};
             Console.WriteLine("Expected: 1. Actual: " +n.CountComponents(5, input));
+        }
+
+        public static void TestWallsAndGates()
+        {
+            WallsAndGates wallsAndGates = new WallsAndGates();
+            int inf = int.MaxValue;
+            int[][] rooms = new int[][] {
+                new int[]{inf,-1,0,inf},
+                new int[]{inf,inf,inf,-1},
+                new int[]{inf,-1,inf,-1},
+                new int[]{0,-1,inf,inf}};
+            wallsAndGates.Find(rooms);
         }
     }
 }
