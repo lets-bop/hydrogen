@@ -63,6 +63,7 @@ namespace LC_FB_Hard
             // TestMergeKSortedArrays(); // 79
             // TestMergeKSortedLists(); // 80
             // TestEmployeeFreeTime(); // 81
+            TestShortestDistanceFromAllBuildings();
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1223,6 +1224,17 @@ namespace LC_FB_Hard
             foreach (EmployeeFreeTime.Interval r in result) sb.Append("[" + r.start + "," + r.end + "], ");
             sb.AppendLine();
             Console.WriteLine("Expected: [5,6],[7,9]. Actual: " + sb.ToString());
+        }
+
+        public static void TestShortestDistanceFromAllBuildings()
+        {
+            ShortestDistanceFromAllBuildings shortest = new ShortestDistanceFromAllBuildings();
+            int[][] grid;
+            grid = new int[][] {
+                new int[] {1,0,2,0,1},
+                new int[] {0,0,0,0,0},
+                new int[] {0,0,1,0,0}};
+            Console.WriteLine("Expected: 7. Actual: " + shortest.ShortestDistance(grid));
         }
     }
 }

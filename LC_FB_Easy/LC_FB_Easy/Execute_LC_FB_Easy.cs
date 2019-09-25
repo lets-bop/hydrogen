@@ -1,10 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LC_FB_Easy
 {
     class Execute_LC_FB_Easy
     {
+        public static string GetArrayOfIntAsString(int[] list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Length; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
+        }
+
         public static void Execute()
         {
             // ---- TwoSum.cs ----
@@ -67,8 +80,13 @@ namespace LC_FB_Easy
             // Console.WriteLine("Missing number in 9,6,4,2,3,5,7,0,1 is {0}", MissingNumber.Find(new int[] {9,6,4,2,3,5,7,0,1}));
 
             // ---- Move zeros ----
-            //Console.WriteLine("Input 0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {0,1,0,3,12}));
-            //Console.WriteLine("Input 4,5,6,0,1,0,3,12. Output is {0}", MoveZeros.Process(new int[] {4,5,6,0,1,0,3,12}));
+            // MoveZeros zeros = new MoveZeros();
+            // int[] input = new int[] {0,1,0,3,12};
+            // zeros.Move(input);
+            // Console.WriteLine("Expected: {1,3,12,0,0}. Actual:" + GetArrayOfIntAsString(input));
+            // input = new int[] {4,5,6,0,1,0,3,12};
+            // zeros.Move(input);
+            // Console.WriteLine("Expected: {4,5,6,1,3,12,0,0}. Actual: " + GetArrayOfIntAsString(input));
 
             // --- Plus one ---
             //PlusOne plusOne = new PlusOne();

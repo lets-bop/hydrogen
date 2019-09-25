@@ -32,61 +32,53 @@ namespace LC_FB_Medium
 {
     public class NumberOfIslands
     {
-        public int NumIslands(char[,] grid)
-        {
-            int result = 0;
-            int rows = grid.GetLength(0);
-            int cols = grid.GetLength(1);
+        public int NumIslands(char[][] grid) {
+            // validate the input
+            if (grid == null || grid.Length == 0) return 0;
 
-            for(int i = 0; i < rows; i++){
-                for(int j = 0; j < cols; j++){
-                    if(grid[i,j] == '0') 
-                        continue;
+            int islands = 0;
+            int rows = grid.Length;
+            int cols = grid[0].Length;
 
-                    result++;
-                    this.BFS(grid, i, j, rows, cols);
+            /*
+            Linear scan the 2d grid map, if a node contains a '1', 
+            then it is a root node that triggers a Breadth First Search. 
+            Put it into a queue and set its value as '0' to mark as visited node. 
+            Iteratively search the neighbors of enqueued nodes until the queue becomes empty.
+            */
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    Queue<int> queue = new Queue<int>();
+                    if (grid[r][c] == '1') {
+                        islands++;
+                        queue.Enqueue(r * cols + c);
+                        this.BFS(grid, queue, rows, cols);
+                    }
                 }
             }
 
-            return result;
+            return islands; 
         }
 
-        public void BFS(char[,] grid, int x, int y, int rows , int cols)
+        // time complexity is O(M*N). Space is O(Min(M,N))
+        public void BFS(char[][] grid, Queue<int> queue, int rows, int cols)
         {
-            Queue<int> queue = new Queue<int>();
-            queue.Enqueue(x * cols + y);
-            grid[x, y] = '0';
+            int[] dr = new int[] {-1,1,0,0};
+            int[] dc = new int[] {0,0,-1,1};
 
             while(queue.Count > 0){
                 int entry = queue.Dequeue();
-                int row = entry / cols;
-                int col = entry % cols;
+                int r = entry / cols;
+                int c = entry % cols;
+                grid[r][c] = '0';
 
-                if (this.IsValid(grid, row + 1, col, rows, cols)){
-                    grid[row + 1, col] = '0';
-                    queue.Enqueue((row + 1) * cols + col);
-                }
-                if (this.IsValid(grid, row - 1, col, rows, cols)){
-                    grid[row - 1, col] = '0';
-                    queue.Enqueue((row - 1) * cols + col);
-                }
-                if (this.IsValid(grid, row, col + 1, rows, cols)){
-                    grid[row, col + 1] = '0';
-                    queue.Enqueue(row * cols + col + 1);
-                }
-                if (this.IsValid(grid, row, col - 1, rows, cols)){
-                    grid[row, col - 1] = '0';
-                    queue.Enqueue(row * cols + col - 1);
+                for (int k = 0; k < 4; k++) {
+                    int nr = r + dr[k];
+                    int nc = c + dc[k];
+                    if (nr >= 0 && nc >=0 && nc < cols && nr < rows && grid[nr][nc] == '1')
+                    queue.Enqueue(nr * cols + nc);
                 }
             }
-        }
-
-        private bool IsValid(char[,] grid, int x, int y, int rows, int cols){
-            if(x >= 0 && x < rows &&
-                y >= 0 && y < cols && 
-                grid[x, y] == '1')
-                    return true;
-            return false;
         }
     }
 }

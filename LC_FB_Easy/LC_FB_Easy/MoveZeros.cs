@@ -11,33 +11,25 @@ namespace LC_FB_Easy
 {
     class MoveZeros
     {
-        public static string Process(int[] input)
-        {
-            if (input == null)
-                return null;
-
-            int zeroIndex = -1;
-            for(int i = 0; i < input.Length; i++)
-            {
-                if (input[i] == 0 && zeroIndex == -1)
-                    zeroIndex = i;
-                else if (zeroIndex != -1 && input[i] != 0)
-                    input[zeroIndex++] = input[i];
-            }
-
-            if (zeroIndex != -1)
-            {
-                for(int i = zeroIndex; i < input.Length; i++)
-                    input[i] = 0;
+        public void Move(int[] nums) {
+            // validate the input
+            if (nums == null || nums.Length == 0) return;
+            
+            int i = -1, j = 0;
+            while (j < nums.Length) {
+                if (nums[j] == 0) {
+                    if (i == -1) i = j;
+                } else if (i >=0 && i != j) {
+                    nums[i] = nums[j];
+                    i++;
+                }
+                j++;
             }
             
-            StringBuilder sb = new StringBuilder();
-            foreach (int i in input)
-                sb.AppendFormat("{0}\t", i);
-
-            sb.AppendLine();
-
-            return sb.ToString();
+            while (i >= 0 && i < nums.Length) {
+                nums[i] = 0;
+                i++;
+            }
         }
     }
 }
