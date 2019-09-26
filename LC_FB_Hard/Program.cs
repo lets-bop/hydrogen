@@ -63,7 +63,8 @@ namespace LC_FB_Hard
             // TestMergeKSortedArrays(); // 79
             // TestMergeKSortedLists(); // 80
             // TestEmployeeFreeTime(); // 81
-            TestShortestDistanceFromAllBuildings();
+            //TestShortestDistanceFromAllBuildings(); // 82
+            TestReverseNodesInKGroup(); // 83
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1235,6 +1236,70 @@ namespace LC_FB_Hard
                 new int[] {0,0,0,0,0},
                 new int[] {0,0,1,0,0}};
             Console.WriteLine("Expected: 7. Actual: " + shortest.ShortestDistance(grid));
+        }
+
+        public static void TestReverseNodesInKGroup() {
+            ReverseNodesInKGroup rev = new ReverseNodesInKGroup();
+            ReverseNodesInKGroup.ListNode n1, n2, n3, n4, n5, node;
+            n1 = new ReverseNodesInKGroup.ListNode(1);
+            n2 = new ReverseNodesInKGroup.ListNode(2);
+            n3 = new ReverseNodesInKGroup.ListNode(3);
+            n4 = new ReverseNodesInKGroup.ListNode(4);
+            n5 = new ReverseNodesInKGroup.ListNode(5);
+            n1.next = n2;
+            n2.next = n3;
+            n3.next = n4;
+            n4.next = n5;
+            node = rev.ReverseKGroup(n1, 2);
+            while (node != null) {
+                Console.Write(node.val + "\t");
+                node = node.next;
+            }
+            Console.WriteLine();
+
+            n1 = new ReverseNodesInKGroup.ListNode(1);
+            n2 = new ReverseNodesInKGroup.ListNode(2);
+            n3 = new ReverseNodesInKGroup.ListNode(3);
+            n4 = new ReverseNodesInKGroup.ListNode(4);
+            n5 = new ReverseNodesInKGroup.ListNode(5);
+            n1.next = n2;
+            n2.next = n3;
+            n3.next = n4;
+            n4.next = n5;
+            node = rev.ReverseKGroup(n1, 3);
+            while (node != null) {
+                Console.Write(node.val + "\t");
+                node = node.next;
+            }
+            Console.WriteLine();
+
+            n1 = new ReverseNodesInKGroup.ListNode(1);
+            n2 = new ReverseNodesInKGroup.ListNode(2);
+            n3 = new ReverseNodesInKGroup.ListNode(3);
+            n4 = new ReverseNodesInKGroup.ListNode(4);
+            n5 = new ReverseNodesInKGroup.ListNode(5);
+            n1.next = n2;
+            n2.next = n3;
+            n3.next = n4;
+            n4.next = n5;
+            node = rev.ReverseKGroup(n1, 1);
+            while (node != null) {
+                Console.Write(node.val + "\t");
+                node = node.next;
+            }
+            Console.WriteLine();
+
+            n1 = new ReverseNodesInKGroup.ListNode(1);
+            n2 = new ReverseNodesInKGroup.ListNode(2);
+            n3 = new ReverseNodesInKGroup.ListNode(3);
+            n1.next = n2;
+            n2.next = n3;
+            node = rev.ReverseKGroup(n1, 4);
+            while (node != null) {
+                Console.Write(node.val + "\t");
+                node = node.next;
+            }
+            Console.WriteLine();
         }
     }
 }
