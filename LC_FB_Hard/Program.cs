@@ -60,11 +60,11 @@ namespace LC_FB_Hard
             // TestCountOfSmallerNumbersAfterSelf(); // 49
             // TestPalindromePairs(); // 50
             // TestLongestSubstringWithAtMostKDistinct(); // 51
-            // TestMergeKSortedArrays(); // 79
-            // TestMergeKSortedLists(); // 80
-            // TestEmployeeFreeTime(); // 81
-            //TestShortestDistanceFromAllBuildings(); // 82
-            TestReverseNodesInKGroup(); // 83
+            // TestMergeKSortedArrays(); // 51
+            // TestMergeKSortedLists(); // 53
+            // TestEmployeeFreeTime(); // 54
+            //TestShortestDistanceFromAllBuildings(); // 55
+            // TestReverseNodesInKGroup(); // 56
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }

@@ -125,6 +125,7 @@ namespace LC_FB_Easy
             // TestRepeatedStringMatch();
             // TestMajorityElememt();
             TestMeetingRooms();
+            TestInvertBinaryTree();
         }
 
         public static void TestSingleRowKeyboard()
@@ -174,6 +175,16 @@ namespace LC_FB_Easy
             Console.WriteLine("Expected: False. Actual: " + m.CanAttendMeetings(intervals));
             intervals = new int[][] {new int[]{2,4}, new int[]{7,10}};
             Console.WriteLine("Expected: True. Actual: " + m.CanAttendMeetings(intervals));
+        }
+
+        public static void TestInvertBinaryTree()
+        {
+            // placeholder
+        }
+
+        public static void TestBinaryTreePathSum() 
+        {
+            // placeholder
         }
     }
 }

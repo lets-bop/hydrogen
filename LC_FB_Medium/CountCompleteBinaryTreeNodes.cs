@@ -44,11 +44,14 @@ namespace LC_FB_Medium
             // Therefore, overall time complexity is O(d) * O(log(2^d)) = O(d^2)
             // Last level nodes are enumerated from 0 to 2**d - 1 (left -> right).
             // Perform binary search to check how many nodes exist.
-            int low = 1; // since we know the left most node will exist (index 0), we start from the next node (index 1)
             int totalNodesUptoLastLevel = (int) Math.Pow(2, depth) - 1; // = indexOfMaxNodesPossibleInLastLevel
-            int high = totalNodesUptoLastLevel; // there will 2^d nodes in the last level, hence index is 2 ^ d -1
-            int mid;
 
+            // We check the nodes in the last level. last level can have upto 2^d nodes.
+            // index of nodes in the last level will be 2^d - 1
+            // since we know the left most node will exist (index 0), we start (low) from 1.
+            int low = 1; 
+            int high = totalNodesUptoLastLevel;
+            int mid;
             while (low <= high) {
                 mid = low + (high - low) / 2;
                 if (this.NodeExists(root, mid, totalNodesUptoLastLevel, depth)) {
@@ -73,13 +76,14 @@ namespace LC_FB_Medium
                     root = root.left;
                     high = mid;
                 }
-                else if (nodeIndex > mid) {
+                else {
                     root = root.right;
                     low = mid;
                 }
             }
 
-            return root != null; 
+            // we are at a node on the last level. If this is not null, then that node exists.
+            return root != null;
         }
 
         private int FindTreeDepth(TreeNode root)

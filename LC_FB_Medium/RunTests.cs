@@ -96,7 +96,9 @@ namespace LC_FB_Medium
             // TestNumberOfConnectedComponentsUG(); // 84
             // TestWallsAndGates(); // 85
             // TestRotateImage(); // 86
-            TestFriendCircles(); // 87
+            // TestFriendCircles(); // 87
+            // TestFlattenBinaryTree(); // 88
+            // TestBinaryTreePathSum2(); // 89
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1208,6 +1210,16 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 2. Actual: " + f.FindCircleNum(circles));
             circles = new int[][] {new int[]{1,1,0},new int[]{1,1,1},new int[]{0,1,1}};
             Console.WriteLine("Expected: 1. Actual: " + f.FindCircleNum(circles));
+        }
+
+        public static void TestFlattenBinaryTree()
+        {
+            // placeholder
+        }
+
+        public static void TestBinaryTreePathSum2()
+        {
+            // placeholder
         }
     }
 }
