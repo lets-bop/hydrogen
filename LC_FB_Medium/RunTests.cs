@@ -99,6 +99,8 @@ namespace LC_FB_Medium
             // TestFriendCircles(); // 87
             // TestFlattenBinaryTree(); // 88
             // TestBinaryTreePathSum2(); // 89
+            // TestBstInorderSuccessor(); // 90
+            // TestBstInorderSuccessor2(); // 91
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1218,6 +1220,16 @@ namespace LC_FB_Medium
         }
 
         public static void TestBinaryTreePathSum2()
+        {
+            // placeholder
+        }
+
+        public static void TestBstInorderSuccessor()
+        {
+            // placeholder
+        }
+
+        public static void TestBstInorderSuccessor2()
         {
             // placeholder
         }

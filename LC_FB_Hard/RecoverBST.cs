@@ -6,52 +6,43 @@ namespace LC_FB_Hard
 {
     public class RecoverBST
     {
-        HashSet<BinarySearchTree.TreeNode> nodes = new HashSet<BinarySearchTree.TreeNode>();
+        TreeNode first, second, prev;
 
-        public void RecoverTree(BinarySearchTree.TreeNode root) {
-            this.IsBst(root, null, null, null);
-            BinarySearchTree.TreeNode minNode = null;
-            BinarySearchTree.TreeNode maxNode = null;
-
-            foreach (BinarySearchTree.TreeNode node in this.nodes){
-                if (minNode == null && maxNode == null){
-                    minNode = maxNode = node;
-                }
-                if (node.val < minNode.val) minNode = node;
-                if (node.val > maxNode.val) maxNode = node;
-            }            
-
-            // Swap
-            int temp = minNode.val;
-            minNode.val = maxNode.val;
-            maxNode.val = temp;
-
-            Console.WriteLine("Swapping {0} and {1}", minNode.val, maxNode.val);
+        public void RecoverTree(TreeNode root) {
+            this.Inorder(root);
+            
+            if (this.first != null && this.second != null) {
+                // swap
+                int temp = first.val;
+                first.val = second.val;
+                second.val = temp;
+                Console.WriteLine("Swapped: " + first.val + "\t" + second.val);
+            }
         }
-
-        private void IsBst(
-            BinarySearchTree.TreeNode node,
-            BinarySearchTree.TreeNode parent, 
-            BinarySearchTree.TreeNode minNode, 
-            BinarySearchTree.TreeNode maxNode)
-        {
+        
+        public void Inorder(TreeNode node) {
+            // Inorder traversal will return values in an increasing order. 
+            // So if the current element < previous element,the previous element is a swapped node.
             if (node == null) return;
-
-            if (minNode != null){
-                if (node.val < minNode.val){
-                    this.nodes.Add(node);
-                    this.nodes.Add(minNode);
+            
+            this.Inorder(node.left);
+            if (this.prev != null) {
+                if (this.prev.val > node.val) {
+                    if (this.first == null) this.first = this.prev;
+                    this.second = node;
                 }
             }
-            if (maxNode != null){
-                if (node.val > maxNode.val){
-                    this.nodes.Add(node);
-                    this.nodes.Add(maxNode);
-                }                 
-            }      
+            
+            this.prev = node;
+            
+            Inorder(node.right);
+        }
 
-            this.IsBst(node.left, node, minNode, node);
-            this.IsBst(node.right, node, node, maxNode);
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int x) { val = x; }
         }
     }
 }

@@ -21,13 +21,7 @@ namespace LC_FB_Medium
         Output: 6
     */    
     class CountCompleteBinaryTreeNodes
-    {
-        public class TreeNode {
-            public int val;
-            public TreeNode left;
-            public TreeNode right;
-            public TreeNode(int x) { val = x; }
-        }        
+    {      
         public int CountNodes(TreeNode root) 
         {
             if (root == null) return 0;
@@ -96,5 +90,12 @@ namespace LC_FB_Medium
 
             return depth;
         }
+
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int x) { val = x; }
+        }  
     }
 }

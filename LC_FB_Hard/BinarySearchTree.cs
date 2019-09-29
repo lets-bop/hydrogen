@@ -41,6 +41,7 @@ namespace LC_FB_Hard
         */
 
         public BinarySearchTree(string[] values)
+
         {
             for (int i = 0; i < values.Length; i++){
                 if (values[i] == null) continue;

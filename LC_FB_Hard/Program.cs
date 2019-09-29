@@ -27,13 +27,13 @@ namespace LC_FB_Hard
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
-            TestWordSearch2(); //18
+            // TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
             // TestSlidingWindowMax(); //21
             // TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
-            // TestRecoverBST(); //24
+            TestRecoverBST(); //24
             // TestFrogJump(); //25
             // TestNumberOfIslands2(); //27
             // TestSplitArrayWithSameAverage(); //29
@@ -65,6 +65,7 @@ namespace LC_FB_Hard
             // TestEmployeeFreeTime(); // 54
             //TestShortestDistanceFromAllBuildings(); // 55
             // TestReverseNodesInKGroup(); // 56
+            // TestKClosestBstValues(); // 57
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -518,47 +519,49 @@ namespace LC_FB_Hard
 
         private static void TestRecoverBST()
         {
-            Console.WriteLine("Q1");
-            BinarySearchTree bst = new BinarySearchTree(new string[] {"3","1","4",null,null,"2"});
             RecoverBST recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);
+            RecoverBST.TreeNode n1 = new RecoverBST.TreeNode(3);
+            n1.left = new RecoverBST.TreeNode(1);
+            n1.right = new RecoverBST.TreeNode(4);
+            n1.right.left = new RecoverBST.TreeNode(2);
+            recover.RecoverTree(n1);
             Console.WriteLine("Expected: Swapping 3 and 2");
 
-            Console.WriteLine("Q2");
-            bst = new BinarySearchTree(new string[] {"1","3",null,null,"2"});
-            recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);
-            Console.WriteLine("Expected: Swapping 3 and 1");
+            // Console.WriteLine("Q2");
+            // bst = new BinarySearchTree(new string[] {"1","3",null,null,"2"});
+            // recover = new RecoverBST();
+            // recover.RecoverTree(bst.Root);
+            // Console.WriteLine("Expected: Swapping 3 and 1");
 
-            Console.WriteLine("Q3");
-            bst = new BinarySearchTree(new string[] {"2","3","1"});
-            recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);
-            Console.WriteLine("Expected: Swapping 3 and 1");
+            // Console.WriteLine("Q3");
+            // bst = new BinarySearchTree(new string[] {"2","3","1"});
+            // recover = new RecoverBST();
+            // recover.RecoverTree(bst.Root);
+            // Console.WriteLine("Expected: Swapping 3 and 1");
 
-            Console.WriteLine("Q4");
-            bst = new BinarySearchTree(new string[] {"1","3",null,"2",null,null,null,"4"});
-            recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);            
-            Console.WriteLine("Expected: Swapping 1 and 4");
+            // Console.WriteLine("Q4");
+            // bst = new BinarySearchTree(new string[] {"1","3",null,"2",null,null,null,"4"});
+            // recover = new RecoverBST();
+            // recover.RecoverTree(bst.Root);            
+            // Console.WriteLine("Expected: Swapping 1 and 4");
 
-            Console.WriteLine("Q5");
-            bst = new BinarySearchTree(new string[] {"2","3",null,"1",null,null,null,null,"4"});
-            recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);            
-            Console.WriteLine("Expected: Swapping 4 and 2");
+            // Console.WriteLine("Q5");
+            // bst = new BinarySearchTree(new string[] {"2","3",null,"1",null,null,null,null,"4"});
+            // recover = new RecoverBST();
+            // recover.RecoverTree(bst.Root);            
+            // Console.WriteLine("Expected: Swapping 4 and 2");
 
-            Console.WriteLine("Q6");
-            bst = new BinarySearchTree(new string[] {"146","71","-13","55",null,"231","399","321",null,null,null,null,null,"-33"});
-            recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);
-            Console.WriteLine("Expected: Swapping 321 and -33");
+            // Console.WriteLine("Q6");
+            // bst = new BinarySearchTree(new string[] {"146","71","-13","55",null,"231","399","321",null,null,null,null,null,"-33"});
+            // recover = new RecoverBST();
+            // recover.RecoverTree(bst.Root);
+            // Console.WriteLine("Expected: Swapping 321 and -33");
 
-            Console.WriteLine("Q7");
-            bst = new BinarySearchTree(new string[] {"3","4","1",null,"2"});
-            recover = new RecoverBST();
-            recover.RecoverTree(bst.Root);
-            Console.WriteLine("Expected: Swapping 1 and 4");            
+            // Console.WriteLine("Q7");
+            // bst = new BinarySearchTree(new string[] {"3","4","1",null,"2"});
+            // recover = new RecoverBST();
+            // recover.RecoverTree(bst.Root);
+            // Console.WriteLine("Expected: Swapping 1 and 4");
         }
 
         public static void TestFrogJump()
@@ -1300,6 +1303,34 @@ namespace LC_FB_Hard
                 node = node.next;
             }
             Console.WriteLine();
+        }
+
+        public static void TestKClosestBstValues()
+        {
+            /*
+                    25
+                  /   \
+                14     35
+               /  \    / \
+              5   19  32  40
+             /    / \
+             1   17 23
+            */
+            KClosestBstValues.TreeNode n1 = new KClosestBstValues.TreeNode(25);
+            n1.left = new KClosestBstValues.TreeNode(14);
+            n1.right = new KClosestBstValues.TreeNode(35);
+            n1.left.left = new KClosestBstValues.TreeNode(5);
+            n1.left.right = new KClosestBstValues.TreeNode(19);
+            n1.right.left = new KClosestBstValues.TreeNode(32);
+            n1.right.right = new KClosestBstValues.TreeNode(40);
+            n1.left.left.left = new KClosestBstValues.TreeNode(1);
+            n1.left.right.left = new KClosestBstValues.TreeNode(17);
+            n1.left.right.right = new KClosestBstValues.TreeNode(23);
+            KClosestBstValues kClosest = new KClosestBstValues();
+            Console.WriteLine("Expected: [17]. Actual: " + GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 1)));
+            Console.WriteLine("Expected: [17,14]. Actual: "+ GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 2)));
+            Console.WriteLine("Expected: [17,14,19]. Actual: "+ GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 3)));
+            Console.WriteLine("Expected: [17,14,19,23,25,5]. Actual: "+ GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 6)));
         }
     }
 }

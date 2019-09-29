@@ -124,8 +124,9 @@ namespace LC_FB_Easy
             // TestIsValidPalindrome();
             // TestRepeatedStringMatch();
             // TestMajorityElememt();
-            TestMeetingRooms();
-            TestInvertBinaryTree();
+            // TestMeetingRooms();
+            // TestInvertBinaryTree();
+            TestClosestBSTValue();
         }
 
         public static void TestSingleRowKeyboard()
@@ -185,6 +186,15 @@ namespace LC_FB_Easy
         public static void TestBinaryTreePathSum() 
         {
             // placeholder
+        }
+
+        public static void TestClosestBSTValue()
+        {
+            ClosestBSTValue bst = new ClosestBSTValue();
+            ClosestBSTValue.TreeNode n1 = new ClosestBSTValue.TreeNode(1500000000);
+            ClosestBSTValue.TreeNode n2 = new ClosestBSTValue.TreeNode(1400000000);
+            n1.left = n2;
+            Console.WriteLine(bst.ClosestValue(n1, -1500000000.0));
         }
     }
 }
