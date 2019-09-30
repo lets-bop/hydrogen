@@ -12,7 +12,7 @@ namespace LC_FB_Hard
 
             // TestRegexMatching(); //1
             // TestMinWindowSubstring(); //2
-            // TestMaximalRectangle(); //3
+            TestMaximalRectangle(); //3
             // TestLRUCache(); //4
             // TestBinarySearchWithTwist(); //5
             // TestMinPQ_FixedSize(); //6
@@ -31,7 +31,7 @@ namespace LC_FB_Hard
             // TestInsertInterval(); //19
             // TestDeque(); //20
             // TestSlidingWindowMax(); //21
-            TestRemoveInvalidParentheses(); //22
+            // TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
             // TestRecoverBST(); //24
             // TestFrogJump(); //25
@@ -133,37 +133,48 @@ namespace LC_FB_Hard
 
         public static void TestMaximalRectangle()
         {
-            char[,] rectangle = new char[,] {{'1'}};
-            Console.WriteLine(MaximalRectangle.Execute(rectangle));
+            char[][] rectangle = new char[][] {new char[]{'1'}};
+            Console.WriteLine("Expected: 1. Actual: " + MaximalRectangle.Execute(rectangle));
 
-            rectangle = new char[,] {{'1', '0'}};
-            Console.WriteLine(MaximalRectangle.Execute(rectangle));            
+            rectangle = new char[][] {new char[]{'1', '0'}};
+            Console.WriteLine("Expected: 1. Actual: " + MaximalRectangle.Execute(rectangle));
 
-            rectangle = new char[,] {{'1','0','1','0','0'}, {'1','0','1','1','1'}, {'1','1','1','1','1'}, {'1','0','0','1','0'}};
-            Console.WriteLine(MaximalRectangle.Execute(rectangle));
+            rectangle = new char[][] {new char[]{'0', '1'}, new char[]{'1', '0'}};
+            Console.WriteLine("Expected: 1. Actual: " + MaximalRectangle.Execute(rectangle));
 
-            rectangle = new char[,] {{'1','0','1','0'}, {'1','0','1','1'}, {'1','0','1','1'}, {'1','1','1','1'}};
-            Console.WriteLine(MaximalRectangle.Execute(rectangle));
+            rectangle = new char[][] {
+                new char[]{'1','0','1','0','0'}, 
+                new char[] {'1','0','1','1','1'},
+                new char[]{'1','1','1','1','1'},
+                new char[] {'1','0','0','1','0'}};
+            Console.WriteLine("Expected: 6. Actual: " + MaximalRectangle.Execute(rectangle));
 
-            rectangle = new char[,] {
-                {'1','1','1','1','0','0'},
-                {'0','1','1','1','0','0'},
-                {'0','1','1','1','0','0'},
-                {'0','1','1','1','0','0'},
-                {'0','1','1','1','0','0'},
-                {'0','0','1','1','1','1'},
-                {'0','0','0','1','1','1'}};
-            Console.WriteLine(MaximalRectangle.Execute(rectangle));
+            rectangle = new char[][] {
+                new char[]{'1','0','1','0'},
+                new char[]{'1','0','1','1'},
+                new char[]{'1','0','1','1'},
+                new char[]{'1','1','1','1'}};
+            Console.WriteLine("Expected: 6. Actual: " + MaximalRectangle.Execute(rectangle));
 
-            rectangle = new char[,] {
-                {'1','1','1','1','1','1'},
-                {'0','1','1','1','1','1'},
-                {'0','0','1','1','1','1'},
-                {'0','0','0','1','1','1'},
-                {'0','0','0','0','1','1'},
-                {'0','0','0','0','0','1'},
-                {'0','0','0','0','0','0'},};
-            Console.WriteLine(MaximalRectangle.Execute(rectangle));                            
+            rectangle = new char[][] {
+                new char[]{'1','1','1','1','0','0'},
+                new char[]{'0','1','1','1','0','0'},
+                new char[]{'0','1','1','1','0','0'},
+                new char[]{'0','1','1','1','0','0'},
+                new char[]{'0','1','1','1','0','0'},
+                new char[]{'0','0','1','1','1','1'},
+                new char[]{'0','0','0','1','1','1'}};
+            Console.WriteLine("Expected: 15. Actual: " + MaximalRectangle.Execute(rectangle));
+
+            rectangle = new char[][] {
+                new char[]{'1','1','1','1','1','1'},
+                new char[]{'0','1','1','1','1','1'},
+                new char[]{'0','0','1','1','1','1'},
+                new char[]{'0','0','0','1','1','1'},
+                new char[]{'0','0','0','0','1','1'},
+                new char[]{'0','0','0','0','0','1'},
+                new char[]{'0','0','0','0','0','0'},};
+            Console.WriteLine("Expected: 12. Actual: " + MaximalRectangle.Execute(rectangle));                            
         }
 
         public static void TestLRUCache()

@@ -21,65 +21,31 @@ namespace LC_FB_Hard
 {
     public class MaximalRectangle
     {
-        public static int Execute(char[,] rectangle)
+        public static int Execute(char[][] rectangle)
         {
-            int rows = rectangle.GetLength(0);
-            int cols = rectangle.GetLength(1);
+            int rows = rectangle.Length;
+            int cols = rectangle[0].Length;
 
-            int[,] histogram = new int[rows,cols];
+            int[] histogram = new int[cols];
             int maxArea = 0;
 
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
                 {
-                    if(rectangle[i,j] == '1') histogram[i,j] = 1;
-
-                    if (i > 0)
-                    {
-                        if(rectangle[i,j] == '1') histogram[i,j] += histogram[i - 1, j];
-                    }
+                    if(rectangle[i][j] == '1') histogram[j] += 1;
+                    else histogram[j] = 0;
                 }
                 
-                maxArea = Math.Max(maxArea, MaxAreaOfHistogram(histogram, i));
+                maxArea = Math.Max(maxArea, MaxAreaOfHistogram(histogram));
             }
 
             return maxArea;
         }
 
-        private static int MaxAreaOfHistogram(int[,] histogram, int rowIndex)
+        private static int MaxAreaOfHistogram(int[] histogram)
         {
-            int cols = histogram.GetLength(1);
-            Stack<int> stack = new Stack<int>();
-            int maxArea = 0;
-            for (int i = 0; i < cols; i++)
-            {
-                if (stack.Count == 0 || histogram[rowIndex, i] >= histogram[rowIndex, stack.Peek()]) stack.Push(i);
-                else
-                {
-                    while(stack.Count != 0 && histogram[rowIndex, stack.Peek()] > histogram[rowIndex, i])
-                    {
-                        int pop_index = stack.Pop(); 
-                        int temp_area = stack.Count == 0 ? 
-                            histogram[rowIndex, pop_index] * (i) : 
-                            histogram[rowIndex, pop_index] * (i - 1 - stack.Peek());
-                        maxArea = Math.Max(maxArea, temp_area);
-                    }
-
-                    stack.Push(i);
-                }
-            }
-
-            while(stack.Count != 0)
-            {
-                int pop_index = stack.Pop();
-                int temp_area = stack.Count == 0 ? 
-                    histogram[rowIndex, pop_index] * (cols) : 
-                    histogram[rowIndex, pop_index] * (cols - 1 - stack.Peek());
-                maxArea = Math.Max(maxArea, temp_area);
-            }
-
-            return maxArea;
+            return LargestRectangleInHist.Execute(histogram);
         }
     }
 }
