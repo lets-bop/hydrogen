@@ -28,15 +28,10 @@ namespace LC_FB_Medium
         public int Calculate(string s) {
             Stack<int> operandStack = new Stack<int>();
             Stack<char> operatorStack = new Stack<char>();
-            int num = -1;
+            int num = 0, i = 0;
             
-            for (int i = 0; i < s.Length; i++){
-                if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
-                    if (num != -1){
-                        operandStack.Push(num);
-                        num = -1;    
-                    }
-
+            while (i < s.Length) {
+                if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/') {
                     while(operatorStack.Count != 0 && this.GetOpPriority(s[i]) <= this.GetOpPriority(operatorStack.Peek())){
                         // evaluate and push result back
                         char op = operatorStack.Pop();
@@ -47,20 +42,18 @@ namespace LC_FB_Medium
                     }
                     
                     operatorStack.Push(s[i]);
-                }
-                else{
-                    int operand = s[i] - '0';
-                    if (operand >= 0 && operand <= 9) {
-                        if (num == -1) num = operand;
-                        else num = num * 10 + operand;
+                    i++;
+                } else if (s[i] == ' ') i++;
+                else {
+                    num = 0;
+                    while (i < s.Length && s[i] - '0' >= 0 && s[i] - '0' <= 9) {
+                        num = num * 10 + (s[i] - '0');
+                        i++;
                     }
+
+                    operandStack.Push(num);
                 }
             }
-
-            if (num != -1){
-                operandStack.Push(num);
-                num = -1;    
-            }        
 
             while(operatorStack.Count != 0){
                 // evaluate and push result back
@@ -69,30 +62,30 @@ namespace LC_FB_Medium
                 int operand1 = operandStack.Pop();
                 int result = this.Evaluate(operand1, operand2, op);
                 operandStack.Push(result);
-            }            
+            }
 
             if (operandStack.Count == 1) return operandStack.Peek();
             else return 0;
         }
         
-        private int GetOpPriority(char op){
+        private int GetOpPriority(char op) {
             switch(op){
                 case '+': return 1;
                 case '-': return 1;
                 case '*': return 2;
-                case '/': return 2;                
-                default: throw new Exception("Not supported");    
+                case '/': return 2;
+                default: throw new Exception("Not supported");
             }
         }
         
-        private int Evaluate(int operand1, int operand2, char op){
+        private int Evaluate(int operand1, int operand2, char op) {
             switch(op){
                 case '+': return operand1 + operand2;
                 case '-': return operand1 - operand2;
                 case '*': return operand1 * operand2;
                 case '/': return operand1 / operand2;
                 default: throw new Exception("Not supported");
-            }        
-        }        
+            }
+        }
     }
 }

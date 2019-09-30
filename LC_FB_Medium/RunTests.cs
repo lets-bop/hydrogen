@@ -257,7 +257,7 @@ namespace LC_FB_Medium
             intervals[4] = int1;
             int1 = new MinMeetingRooms.Interval(3,19);
             intervals[5] = int1;
-            Console.WriteLine("Expected: 4. Actual " + mr.FindMinimum(intervals));            
+            Console.WriteLine("Expected: 4. Actual " + mr.FindMinimum(intervals));
         }
 
         public static void MergeIntervalsTest(){
@@ -296,7 +296,7 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 7. Actual " + bc.Calculate("3 + 2 * 2"));
             Console.WriteLine("Expected: 10. Actual " + bc.Calculate(" 2 + 2 + 2 * 3"));
             Console.WriteLine("Expected: 5. Actual " + bc.Calculate(" 3+5 / 2 "));
-            Console.WriteLine("Expected: 28. Actual: " + bc.Calculate("1*2-3/4+5*6-7*8+9/10"));
+            Console.WriteLine("Expected: -24. Actual: " + bc.Calculate("1*2-3/4+5*6-7*8+9/10"));
             Console.WriteLine("Expected: 27. Actual: " + bc.Calculate("100000000/1/2/3/4/5/6/7/8/9/10"));
         }
 
@@ -439,7 +439,7 @@ namespace LC_FB_Medium
                     / \  /
                     4  5 6
 
-                Output: 6             
+                Output: 6
             */
             CountCompleteBinaryTreeNodes.TreeNode t1 = new CountCompleteBinaryTreeNodes.TreeNode(1);
             t1.left = new CountCompleteBinaryTreeNodes.TreeNode(2);
