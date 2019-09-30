@@ -28,33 +28,30 @@ namespace LC_FB_Hard
             Dictionary<double, int> slopeCount = new Dictionary<double, int>();
             int x1, y1, x2, y2;
             double slope;
-            int maxPoints = 0;
+            int max = 0;
 
             for (int i = 0; i < points.Length; i++) {
-                int localMax = 0;
-                int samePoints = 1; //1 is to include itself
+                int duplicate = 1; //1 is to include itself
+                int vertical = 0; // x1 == x2
 
                 for (int j = i + 1; j < points.Length; j++) {
                     x1 = points[i][0]; y1 = points[i][1];
                     x2 = points[j][0]; y2 = points[j][1];
-                    if (x1 == x2 && y1 == y2) samePoints++;
-                    else if (x1 == x2) {
-                        slopeCount[double.NaN] = slopeCount.GetValueOrDefault(double.NaN, 0) + 1;
-                        localMax = Math.Max(localMax, slopeCount[double.NaN]);
-                    }
+                    if (x1 == x2 && y1 == y2) duplicate++;
+                    else if (x1 == x2) vertical++;
                     else {
-                        slope = (double) (y2 - y1) / (double) (x2 - x1);
+                        if (y2 == y1) slope = 0.0;
+                        else slope = (double) 1.0 * (y2 - y1) / (x2 - x1);
                         slopeCount[slope] = slopeCount.GetValueOrDefault(slope, 0) + 1;
-                        localMax = Math.Max(localMax, slopeCount[slope]);
                     }
                 }
 
-                localMax += samePoints;
-                maxPoints = Math.Max(maxPoints, localMax);
+                foreach (int count in slopeCount.Values) max = Math.Max(max, count + duplicate);
+                max = Math.Max(vertical + duplicate, max);
                 slopeCount.Clear();
             }
 
-            return maxPoints;
+            return max;
         }
     }
 }

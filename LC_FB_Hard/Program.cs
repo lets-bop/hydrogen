@@ -12,7 +12,7 @@ namespace LC_FB_Hard
 
             // TestRegexMatching(); //1
             // TestMinWindowSubstring(); //2
-            TestMaximalRectangle(); //3
+            // TestMaximalRectangle(); //3
             // TestLRUCache(); //4
             // TestBinarySearchWithTwist(); //5
             // TestMinPQ_FixedSize(); //6
@@ -46,7 +46,7 @@ namespace LC_FB_Hard
             // TestSurroundedRegion(); //35
             // TestInterleavingString(); //36
             // TestRangeSumQuery();  //37
-            // TestMaxPointsOnLine(); //38
+            TestMaxPointsOnLine(); //38
             // TestShortestSubArraySumAtleastK(); //39
             // TestLongestDuplicateString(); //40
             // TestIntegerToEnglish(); //41
@@ -848,8 +848,6 @@ namespace LC_FB_Hard
 
             input = new int[][] {new int[] {0,0}, new int[] {94911151,94911150}, new int[] {94911152,94911151}};
             Console.WriteLine("Expected: 2. Actual: "+ max.MaxPoints(input));
-            //0.99999998946383029
-            //0.99999998946383029
         }
 
         public static void TestShortestSubArraySumAtleastK()
