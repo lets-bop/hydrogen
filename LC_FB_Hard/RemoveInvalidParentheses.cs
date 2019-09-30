@@ -29,6 +29,13 @@ namespace LC_FB_Hard
         int maxLengthSoFar = -1;
 
         public IList<string> Remove(string input) {
+            // DFS based approach. 
+            // Beginning with the string given to us, if the string is not valid,
+            // we drop a parenthesis at each index of the string and add it to a queue.
+            // For a string of length n, we generate n - 1 strings.
+            // And repeat the process until we find the first valid string. 
+            // Any succeeding string will be considered for further processing only if its length is
+            // at least as long as the first valid string.
             IList<string> result = new List<string>();
             Queue<string> q = new Queue<string>();
             HashSet<string> visisted = new HashSet<string>();
@@ -60,18 +67,16 @@ namespace LC_FB_Hard
 
         private bool IsValidParantheses(string s)
         {
-            if (s == null || s.Length < 1) return true;
+            if (s == null || s.Length == 0) return true;
 
             int cnt = 0;
-
             for (int i = 0; i < s.Length; i++){
                 if (s[i] == '(') cnt++;
                 if (s[i] == ')') cnt--;
-
                 if (cnt < 0) return false;
             }
 
             return cnt == 0 ? true : false;
-        }                     
+        }
     }    
 }

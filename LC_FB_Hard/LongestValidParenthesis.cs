@@ -21,6 +21,37 @@ namespace LC_FB_Hard
 {
     public class LongestValidParenthesis
     {
+        public int FindWithoutExtraSpace(string s)
+        {
+            // We need to do 2 passes of the string for this. 
+            // In the first pass from left to right, discard extra right parenthesis
+            // In the second pass from right to left, discard extra left parenthesis
+            if (s == null || s.Length == 0) return 0;
+
+            int longest = 0;
+            int left = 0;
+            int right = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(') left++;
+                else if (s[i] == ')') right++;
+                if (left == right) longest = Math.Max(longest, 2 * right);
+                if (right > left) left = right = 0;
+            }
+
+            left = right = 0;
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (s[i] == '(') left++;
+                else if (s[i] == ')') right++;
+                if (left == right) longest = Math.Max(longest, 2 * left);
+                if (left > right) left = right = 0;
+            }
+
+            return longest;
+        }
+
         public int Find(string s)
         {
             int longest = 0;
@@ -37,40 +68,7 @@ namespace LC_FB_Hard
                 }
             }
 
-            return longest;            
-        }
-
-        public int FindWithoutExtraSpace(string s)
-        {
-            // We need to do 2 passes of the string for this. 
-            // In the first pass from left to right, discard extra right parenthesis
-            // In the second pass from right to left, discard extra left parenthesis
-            if (s == null || s.Length == 0) return 0;
-
-            int longest = 0;
-            int left = 0;
-            int right = 0;            
-
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] == '(') left++;
-                else if (s[i] == ')') right++;
-                if (left == right) longest = Math.Max(longest, 2 * right);
-
-                if (right > left) left = right = 0;
-            }
-
-            left = right = 0;
-            for (int i = s.Length - 1; i >= 0; i--)
-            {
-                if (s[i] == '(') left++;
-                else if (s[i] == ')') right++;
-                if (left == right) longest = Math.Max(longest, 2 * left);
-
-                if (left > right) left = right = 0;
-            }
-
-            return longest;          
+            return longest;
         }
     }
 }

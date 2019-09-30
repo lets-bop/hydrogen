@@ -126,7 +126,8 @@ namespace LC_FB_Easy
             // TestMajorityElememt();
             // TestMeetingRooms();
             // TestInvertBinaryTree();
-            TestClosestBSTValue();
+            // TestClosestBSTValue();
+            TestRemoveOuterMostParenthesis();
         }
 
         public static void TestSingleRowKeyboard()
@@ -195,6 +196,14 @@ namespace LC_FB_Easy
             ClosestBSTValue.TreeNode n2 = new ClosestBSTValue.TreeNode(1400000000);
             n1.left = n2;
             Console.WriteLine(bst.ClosestValue(n1, -1500000000.0));
+        }
+
+        public static void TestRemoveOuterMostParenthesis()
+        {
+            RemoveOuterMostParenthesis r = new RemoveOuterMostParenthesis();
+            Console.WriteLine("Expected: ()()(). Actual: " + r.RemoveOuterParentheses("(()())(())"));
+            Console.WriteLine("Expected: ()()()()(()). Actual: " + r.RemoveOuterParentheses("(()())(())(()(()))"));
+            Console.WriteLine("Expected: . Actual: " + r.RemoveOuterParentheses("()()"));
         }
     }
 }

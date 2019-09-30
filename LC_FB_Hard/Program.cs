@@ -31,9 +31,9 @@ namespace LC_FB_Hard
             // TestInsertInterval(); //19
             // TestDeque(); //20
             // TestSlidingWindowMax(); //21
-            // TestRemoveInvalidParentheses(); //22
+            TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
-            TestRecoverBST(); //24
+            // TestRecoverBST(); //24
             // TestFrogJump(); //25
             // TestNumberOfIslands2(); //27
             // TestSplitArrayWithSameAverage(); //29

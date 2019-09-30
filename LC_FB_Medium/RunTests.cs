@@ -101,6 +101,8 @@ namespace LC_FB_Medium
             // TestBinaryTreePathSum2(); // 89
             // TestBstInorderSuccessor(); // 90
             // TestBstInorderSuccessor2(); // 91
+            // TestScoreParentheses(); // 92
+            TestValidParenthesisString(); // 93
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1232,6 +1234,26 @@ namespace LC_FB_Medium
         public static void TestBstInorderSuccessor2()
         {
             // placeholder
+        }
+
+        public static void TestScoreParentheses()
+        {
+            ScoreParentheses s = new ScoreParentheses();
+            Console.WriteLine("Expected: 1. Actual " + s.ScoreOfParentheses("()"));
+            Console.WriteLine("Expected: 4. Actual " + s.ScoreOfParentheses("((()))"));
+            Console.WriteLine("Expected: 6. Actual " + s.ScoreOfParentheses("(()(()))"));
+        }
+
+        public static void TestValidParenthesisString()
+        {
+            ValidParenthesisString v = new ValidParenthesisString();
+            Console.WriteLine("Expected: False. Actual: " + v.CheckValidString(")"));
+            Console.WriteLine("Expected: True. Actual: " + v.CheckValidString("*)"));
+            Console.WriteLine("Expected: False. Actual: " + v.CheckValidString("*)("));
+            Console.WriteLine("Expected: False. Actual: " + v.CheckValidString("**)("));
+            Console.WriteLine("Expected: True. Actual: " + v.CheckValidString("(*)"));
+            Console.WriteLine("Expected: True. Actual: " + v.CheckValidString("(*))"));
+            Console.WriteLine("Expected: False. Actual: " + v.CheckValidString("(())((())()()(*)(*()(())())())()()((()())((()))(*"));
         }
     }
 }
