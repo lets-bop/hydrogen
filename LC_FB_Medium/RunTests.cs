@@ -102,7 +102,8 @@ namespace LC_FB_Medium
             // TestBstInorderSuccessor(); // 90
             // TestBstInorderSuccessor2(); // 91
             // TestScoreParentheses(); // 92
-            TestValidParenthesisString(); // 93
+            // TestValidParenthesisString(); // 93
+            TestBinaryTreeDistributeCoins(); // 94
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1254,6 +1255,19 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: True. Actual: " + v.CheckValidString("(*)"));
             Console.WriteLine("Expected: True. Actual: " + v.CheckValidString("(*))"));
             Console.WriteLine("Expected: False. Actual: " + v.CheckValidString("(())((())()()(*)(*()(())())())()()((()())((()))(*"));
+        }
+
+        public static void TestBinaryTreeDistributeCoins()
+        {
+            BinaryTreeDistributeCoins coins = new BinaryTreeDistributeCoins();
+            BinaryTreeDistributeCoins.TreeNode r = new BinaryTreeDistributeCoins.TreeNode(0);
+            r.left = new BinaryTreeDistributeCoins.TreeNode(2);
+            r.left.left = new BinaryTreeDistributeCoins.TreeNode(2);
+            r.left.left.left = new BinaryTreeDistributeCoins.TreeNode(1);
+            r.left.left.left.left = new BinaryTreeDistributeCoins.TreeNode(1);
+            r.left.left.left.left.left = new BinaryTreeDistributeCoins.TreeNode(0);
+            r.left.left.left.left.left.left = new BinaryTreeDistributeCoins.TreeNode(0);
+            Console.WriteLine("Expected: 8. Actual: " + coins.DistributeCoins(r));
         }
     }
 }

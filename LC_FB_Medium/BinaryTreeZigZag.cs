@@ -1,17 +1,30 @@
 using System;
 using System.Collections.Generic;
 
+/*
+Given a binary tree, return the zigzag level order traversal of its nodes' values. 
+(ie, from left to right, then right to left for the next level and alternate between).
+
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its zigzag level order traversal as:
+
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+*/
 namespace LC_FB_Medium
 {
     class BinaryTreeZigZag
     {
-        public class TreeNode {
-            public int val;
-            public TreeNode left;
-            public TreeNode right;
-            public TreeNode(int x) { val = x; }
-        }
-
         Stack<TreeNode> rlStack = new Stack<TreeNode>();
         Stack<TreeNode> lrStack = new Stack<TreeNode>();
 
@@ -39,7 +52,7 @@ namespace LC_FB_Medium
                     list.Add(node.val);
                     if(node.left != null) lrStack.Push(node.left);
                     if(node.right != null) lrStack.Push(node.right);
-                }                
+                }
             } else {
                 while (lrStack.Count > 0) {
                     node = lrStack.Pop();
@@ -50,6 +63,13 @@ namespace LC_FB_Medium
             }
 
             return list;
+        }
+
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int x) { val = x; }
         }
     }
 }
