@@ -13,9 +13,9 @@ namespace LC_FB_Medium
 
         For example, starting with "hello", we could do an extension on the group "o" to get "hellooo", 
         but we cannot get "helloo" since the group "oo" has size less than 3. 
-         Also, we could do another extension like "ll" -> "lllll" to get "helllllooo".  
-         If S = "helllllooo", then the query word "hello" would be stretchy because of these 
-         two extension operations: query = "hello" -> "hellooo" -> "helllllooo" = S.
+        Also, we could do another extension like "ll" -> "lllll" to get "helllllooo".  
+        If S = "helllllooo", then the query word "hello" would be stretchy because of these 
+        two extension operations: query = "hello" -> "hellooo" -> "helllllooo" = S.
         Given a list of query words, return the number of words that are stretchy.
 
         Example:
@@ -65,19 +65,16 @@ namespace LC_FB_Medium
             StringBuilder sb = new StringBuilder();
             char prevChar = ' ';
             while (i < s.Length) {
-                if (sb.Length == 0) {
+                if (sb.Length == 0 || s[i] == prevChar) {
                     prevChar = s[i];
                     sb.Append(s[i]);
-                }
-                else if (s[i] == prevChar) {
-                    sb.Append(s[i]);
-                }
-                else {
+                } else {
                     prevChar = s[i];
                     groups.Add((sb.ToString(), sb.Length));
                     sb.Clear();
                     sb.Append(s[i]);
                 }
+                
                 i++;
             }
 
