@@ -103,7 +103,7 @@ namespace LC_FB_Medium
             // TestBstInorderSuccessor2(); // 91
             // TestScoreParentheses(); // 92
             // TestValidParenthesisString(); // 93
-            TestBinaryTreeDistributeCoins(); // 94
+            // TestBinaryTreeDistributeCoins(); // 94
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -882,6 +882,7 @@ namespace LC_FB_Medium
         {
             SubarraySumDivisibleByK div = new SubarraySumDivisibleByK();
             Console.WriteLine("Expected: 7. Actual: " + div.Calculate(new int[] {4,5,0,-2,-3,1}, 5));
+            Console.WriteLine("Expected: 1. Actual: " + div.Calculate(new int[] {-4,3,4,2}, 5));
         }
 
         public static void TestLinkedListCycle()
