@@ -66,10 +66,13 @@ namespace LC_FB_Medium
             Dictionary<int, int> workersWithBikes = new Dictionary<int, int>();
 
             foreach (WorkerBike workerBike in list) {
+                // worker is already assigned a bike
                 if (workersWithBikes.ContainsKey(workerBike.workerIndex)) continue;
                 
-                // we need to assign a bike to this worker
+                // bike is already assigned
                 if (assignedBikes.Contains(workerBike.bikeIndex)) continue;
+
+                // we need to assign a bike to this worker
                 workersWithBikes[workerBike.workerIndex] = workerBike.bikeIndex;
                 assignedBikes.Add(workerBike.bikeIndex);
             }
@@ -80,7 +83,7 @@ namespace LC_FB_Medium
             }
 
             return result.ToArray();
-        }        
+        }
 
         public static int CompareWokerBikes(WorkerBike wb1, WorkerBike wb2) {
             if (wb1.manhattanDistance != wb2.manhattanDistance) {
