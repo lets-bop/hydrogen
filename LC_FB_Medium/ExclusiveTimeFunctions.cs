@@ -36,11 +36,17 @@ namespace LC_FB_Medium
     {
         public int[] ExclusiveTime(int n, IList<string> logs)
         {
+            // The logs are already sorted by time.
+            // We will use a stack to keep track of the functions that we are processing.
+            // If we are processing a start log, we update the running for the function  at the top of the stack
+            // since that was last running function and it was running until the current function was called
+            // and push the current function on to the stack.
+            // If we are the processing the end log, then we need to update the time for the current function.
             Stack<int> stack = new Stack<int>();
             int[] result = new int[n];
             int prev = 0;
 
-            foreach(string log in logs){
+            foreach(string log in logs) {
                 string[] logSplits = log.Split(':'); // "0:start:0"
                 if(logSplits.Length != 3) throw new Exception("Incorrect format.");
 
@@ -63,7 +69,7 @@ namespace LC_FB_Medium
                 }
             }
 
-            return result;                    
-        }        
+            return result;
+        }
     }
 }

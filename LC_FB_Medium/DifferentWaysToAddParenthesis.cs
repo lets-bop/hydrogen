@@ -73,7 +73,5 @@ namespace LC_FB_Medium
 
             return result;
         }
-
-
     }
 }
