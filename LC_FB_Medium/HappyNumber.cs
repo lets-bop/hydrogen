@@ -24,6 +24,18 @@ namespace LC_FB_Medium
     class HappyNumber
     {
         public bool IsHappy(int n) {
+            HashSet<int> set = new HashSet<int>();
+        
+            while(!set.Contains(n)){
+                set.Add(n);
+                n = DigitSquareSum(n);
+                if(n == 1) return true;
+            }
+        
+            return false;
+        }
+
+        public bool IsHappy2(int n) {
             // similar to the floyd cycle detection algorithm used in linked list
             int slow = n;
             int fast = n;
@@ -47,28 +59,6 @@ namespace LC_FB_Medium
                 num /= 10;
             }
 
-            return sum;
-        }
-
-        public bool IsHappy2(int n) {
-            HashSet<int> set = new HashSet<int>();
-        
-            while(!set.contains(n)){
-                set.Add(n);
-                n = GetSum(n);
-                if(n == 1) return true;
-            }
-        
-            return false;
-        }
-        
-        public int GetSum(int n){
-            int sum =0;
-            while(n > 0) {
-                sum+=(n%10)*(n%10);
-                n=n/10;
-            }
-            
             return sum;
         }
     }
