@@ -68,7 +68,7 @@ namespace LC_FB_Medium
             // TestSubArrayProductLessThanK(); // 56
             // TestSubarraySubDivisibleByK(); // 57
             // TestLinkedListCycle(); //58
-            // TestHappyNumber(); //59
+            TestHappyNumber(); //59
             // TestNonoverlappingIntervals(); // 60
             // TestDuplicateNumber(); // 61
             // TestReverseLinkedList2(); // 62
