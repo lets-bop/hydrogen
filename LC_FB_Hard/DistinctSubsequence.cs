@@ -46,7 +46,6 @@ namespace LC_FB_Hard
     class DistinctSubsequence
     {
         public int NumDistinct(string s, string t) {
-            int count = 0;
             // We can solve this using DP.
             // We build the dp array with s.Length cols and t.Length rows
             // S[0] col and T[0] rows represent empty strings.

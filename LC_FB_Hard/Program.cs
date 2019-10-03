@@ -30,7 +30,7 @@ namespace LC_FB_Hard
             // TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
-            // TestSlidingWindowMax(); //21
+            TestSlidingWindowMax(); //21
             // TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
             // TestRecoverBST(); //24
@@ -46,7 +46,7 @@ namespace LC_FB_Hard
             // TestSurroundedRegion(); //35
             // TestInterleavingString(); //36
             // TestRangeSumQuery();  //37
-            TestMaxPointsOnLine(); //38
+            // TestMaxPointsOnLine(); //38
             // TestShortestSubArraySumAtleastK(); //39
             // TestLongestDuplicateString(); //40
             // TestIntegerToEnglish(); //41
@@ -501,16 +501,13 @@ namespace LC_FB_Hard
         {
             SlidingWindowMax swm = new SlidingWindowMax();
             int[] result = swm.MaxSlidingWindow(new int[] {1,3,-1,-3,5,3,6,7}, 3);
-            foreach (int r in result) Console.Write(r + ",");
-            Console.WriteLine();
+            Console.WriteLine("Expected [3,3,5,5,6,7]. Actual: " + GetListOfIntAsString(result));
 
             result = swm.MaxSlidingWindow(new int[] {7,2,4}, 2);
-            foreach (int r in result) Console.Write(r + ",");
-            Console.WriteLine();       
+            Console.WriteLine("Expected [7,4]. Actual: " + GetListOfIntAsString(result));
 
             result = swm.MaxSlidingWindow(new int[] {7,10,20,65,-18,7,4,3}, 3);
-            foreach (int r in result) Console.Write(r + ",");
-            Console.WriteLine();            
+            Console.WriteLine("Expected [20,65,65,65,7,7]. Actual: " + GetListOfIntAsString(result));
         }
 
         private static void TestRemoveInvalidParentheses()

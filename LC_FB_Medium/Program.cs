@@ -7,9 +7,6 @@ namespace LC_FB_Medium
     {
         static void Main(string[] args)
         {
-            // ---- Group anagrams ----
-            // GroupAnagrams.Process(new string[] {"bat","iceman","are","ear","tab","cinema","era"});
-
             // // ---- Calculate pow(x,n) ----
             // Console.WriteLine("Pow(4,11) = {0}", Pow.Calculate(4, 11));
             // Console.WriteLine("Pow(2.1,3) = {0}", Pow.Calculate((float)2.1, 3));

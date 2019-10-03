@@ -50,13 +50,12 @@ namespace LC_FB_Medium
             int b = 0; // Let b represent the start index of the 2nd most recently seen element
             int b_count = 1;
 
-            for (int i = 1; i < tree.Length && tree[i] == tree[b]; i++) {
-                ++b_count;
-            }
+            // count all elements adjacent to tree[0] which are equal to tree[0]
+            for (int i = 1; i < tree.Length && tree[i] == tree[b]; i++) b_count++;
 
             if (b_count == tree.Length) return b_count;
 
-            int a = b_count; // Let a represent the start index of the most recently seen element
+            int a = b_count; // Lets initialize a to the element right after b. a = index of most recenly seen element
             int a_count = 1;
             int countinuous_a_count = 1;
             
@@ -77,6 +76,9 @@ namespace LC_FB_Medium
                     ++countinuous_a_count;
                 }
                 else {
+                    b_count++;
+                    countinuous_a_count = 1;
+
                     // swap a and b
                     int temp = a;
                     a = b;
@@ -86,8 +88,6 @@ namespace LC_FB_Medium
                     temp = a_count;
                     a_count = b_count;
                     b_count = temp;
-                    countinuous_a_count = 1;
-                    ++a_count;
                 }
             }
 

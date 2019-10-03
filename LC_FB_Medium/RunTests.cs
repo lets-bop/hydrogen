@@ -104,6 +104,7 @@ namespace LC_FB_Medium
             // TestScoreParentheses(); // 92
             // TestValidParenthesisString(); // 93
             // TestBinaryTreeDistributeCoins(); // 94
+            // TestGroupAnagrams(); // 95
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1269,6 +1270,14 @@ namespace LC_FB_Medium
             r.left.left.left.left.left = new BinaryTreeDistributeCoins.TreeNode(0);
             r.left.left.left.left.left.left = new BinaryTreeDistributeCoins.TreeNode(0);
             Console.WriteLine("Expected: 8. Actual: " + coins.DistributeCoins(r));
+        }
+
+        public static void TestGroupAnagrams()
+        {
+            // ---- Group anagrams ----
+            GroupAnagrams g = new GroupAnagrams();
+            g.Group(new string[] {"eat", "tea", "tan", "ate", "nat", "bat"});
+            g.Group(new string[] {"bat","iceman","are","ear","tab","cinema","era"});
         }
     }
 }

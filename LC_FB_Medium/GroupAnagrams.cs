@@ -1,37 +1,39 @@
 using System;
 using System.Collections.Generic;
 
+/*
+Given an array of strings, group anagrams together.
+Example: 
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+Note:
+    All inputs will be in lowercase.
+    The order of your output does not matter.
+*/
 namespace LC_FB_Medium
 {
     class GroupAnagrams
     {
-        public static void Process(string[] words)
-        {
-            Dictionary<string, HashSet<string>> map = new Dictionary<string, HashSet<string>>();
-            foreach (string word in words)
-            {
-                char[] chWord = word.ToCharArray();
-                Array.Sort(chWord);
-                string sortedWord = new string(chWord);
-                if (map.ContainsKey(sortedWord))
-                    map[sortedWord].Add(word);
-                else 
-                {
-                    HashSet<string> set = new HashSet<string>();
-                    set.Add(word);
-                    map.Add(sortedWord, set);
-                }
+        public IList<IList<string>> Group(string[] strs) {
+            IList<IList<string>> ret = new List<IList<string>>();
+            if (strs == null || strs.Length == 0) return ret;
+            
+            Dictionary<string, List<string>> anagrams = new Dictionary<string, List<string>>();
+            foreach (string s in strs) {
+                char[] arr = s.ToCharArray();
+                Array.Sort(arr);
+                string str = new string(arr);
+                if (anagrams.ContainsKey(str)) anagrams[str].Add(s);
+                else anagrams[str] = new List<string>() {s};
             }
-
-            foreach (KeyValuePair<string, HashSet<string>> kv in map)
-            {
-                Console.Write("Key:{0}\t\t Values:", kv.Key);
-                foreach (string anagram in kv.Value)
-                {
-                    Console.Write("{0}\t", anagram);
-                }
-                Console.WriteLine();
-            }
+            
+            foreach (List<string> list in anagrams.Values) ret.Add(list);
+            return ret;
         }
     }
 }

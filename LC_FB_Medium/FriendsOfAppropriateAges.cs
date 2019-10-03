@@ -30,8 +30,8 @@ namespace LC_FB_Medium
     class FriendsOfAppropriateAges
     {
         public int NumFriendRequests(int[] ages) {
-            int[] numInAge = new int[121];
-            int[] sumInAge = new int[121];
+            int[] numInAge = new int[121]; // max age is 120
+            int[] sumInAge = new int[121]; // prefix sum of numInAge
 
             foreach (int age in ages) numInAge[age]++;
             for (int i = 1; i < sumInAge.Length; i++) sumInAge[i] = sumInAge[i - 1] + numInAge[i];
@@ -39,7 +39,7 @@ namespace LC_FB_Medium
             int requests = 0;
             int count;
 
-            for (int i = 15; i <= 120; i++) {
+            for (int i = 15; i <= 120; i++) { // we start at 15 as a person upto the age of 14 cannot friend request anyone
                 if(numInAge[i] == 0) continue;
                 count = sumInAge[i] - sumInAge[i / 2 + 7];
                 requests += (numInAge[i]) * count - numInAge[i];    // subtract to exclude yourself. '- numInAge[i]'
