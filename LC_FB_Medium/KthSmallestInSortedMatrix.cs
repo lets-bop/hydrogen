@@ -31,6 +31,7 @@ namespace LC_FB_Medium
 
             int i = 0;
             int kthSmallest = 0;
+            
             while (i < k) {
                 Container container = minHeap.Poll();
                 if (container == null) return kthSmallest;

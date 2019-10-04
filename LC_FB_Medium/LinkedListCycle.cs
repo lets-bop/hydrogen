@@ -42,7 +42,7 @@ namespace LC_FB_Medium
                 slow = slow.next;
                 fast = fast.next.next;
                 if (slow == fast) {
-                    // found cycle
+                    // found cycle. Now find the starting point
                     slow = head;
                     while (slow != fast) {
                         slow = slow.next;

@@ -54,8 +54,8 @@ namespace LC_FB_Medium
             Array.Sort(citations);
             int result = 0;
             for(int i = citations.Length - 1; i >= 0; i--) {
-                int count = citations.Length - i;
-                if (citations[i] >= count) result = count;
+                int count = citations.Length - i; // count of citations that have at least citations[i] citations
+                if (citations[i] >= count) result = count; // we need to find the maximum count, keep looking
                 else return result;
             }
 

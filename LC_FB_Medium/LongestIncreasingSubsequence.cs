@@ -48,10 +48,16 @@ namespace LC_FB_Medium
         {
             if (nums == null || nums.Length < 1) return 0;
 
+            // Idea is to maintain a list of numbers that are increasing
+            // If the element at the end of the array less than the current element,
+            // then we simply add the current element to the list
+            // Else we perform a binary search to find the smallest # larger than the current element
+            // and we replace that element with the current element. 
+            // In this way we have an inreasing list that is as minimal as possible.
             List<int> lis = new List<int>();
             for(int i = 0; i < nums.Length; i++){
                 if(lis.Count == 0 || lis[lis.Count - 1] < nums[i]) lis.Add(nums[i]);
-                else{
+                else {
                     // binary search and remove the smallest num larger than or equal to nums[i]
                     int low = 0, high = lis.Count - 1, mid = 0;
                     while(low < high) {

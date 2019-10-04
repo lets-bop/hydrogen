@@ -33,6 +33,7 @@ namespace LC_FB_Medium
             Dictionary<char, List<string>> numberToLettersMap, 
             List<string> finalList)
         {
+            // Normal DFS using recursion
             if (startIndex == number.Length)
             {
                 finalList.Add(sb.ToString());
@@ -69,6 +70,6 @@ namespace LC_FB_Medium
             numberToLettersMap.Add('8', new List<string>() {"t","u","v"});
             numberToLettersMap.Add('9', new List<string>() {"w","x","y","z"});
             return numberToLettersMap;
-        }        
+        }
     }
 }
