@@ -127,7 +127,8 @@ namespace LC_FB_Easy
             // TestMeetingRooms();
             // TestInvertBinaryTree();
             // TestClosestBSTValue();
-            TestRemoveOuterMostParenthesis();
+            // TestRemoveOuterMostParenthesis();
+            TestRectangleOverlap();
         }
 
         public static void TestSingleRowKeyboard()
@@ -204,6 +205,13 @@ namespace LC_FB_Easy
             Console.WriteLine("Expected: ()()(). Actual: " + r.RemoveOuterParentheses("(()())(())"));
             Console.WriteLine("Expected: ()()()()(()). Actual: " + r.RemoveOuterParentheses("(()())(())(()(()))"));
             Console.WriteLine("Expected: . Actual: " + r.RemoveOuterParentheses("()()"));
+        }
+
+        public static void TestRectangleOverlap()
+        {
+            RectangleOverlap rec = new RectangleOverlap();
+            Console.WriteLine("Expected: True. Actual: " + rec.IsRectangleOverlap(new int[] {0,0,2,2}, new int[] {1,1,3,3}));
+            Console.WriteLine("Expected: False. Actual: " + rec.IsRectangleOverlap(new int[] {0,0,1,1}, new int[] {1,0,2,1}));
         }
     }
 }
