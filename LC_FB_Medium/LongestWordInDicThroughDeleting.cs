@@ -29,7 +29,7 @@ namespace LC_FB_Medium
             string longestWord = string.Empty;
             int wordInDicIter;
 
-            // The key to decreasing the time to solve the problem faster,
+            // The key to reducing the time complexity 
             // is to sort the list by length descending order and then lexicographically.
             foreach (string wordInDic in d.OrderByDescending(x => x.Length).ThenBy(x => x)) {
                 if (wordInDic.Length == 0) continue;

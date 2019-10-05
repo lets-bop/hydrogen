@@ -56,7 +56,7 @@ namespace LC_FB_Medium
             // TestTopKFrequent(); // 44
             // TestBinaryTreeRightSideView(); // 45
             // TestAccountsMerge(); // 46
-            // TestLongestSubstringKDistinctChars(); // 47
+            TestLongestSubstringKDistinctChars(); // 47
             // TestLongestRepeatingChar(); // 48
             // TestLongestWithoutRepeatingChars(); //49
             // TestMaxOnes(); // 50
@@ -68,7 +68,7 @@ namespace LC_FB_Medium
             // TestSubArrayProductLessThanK(); // 56
             // TestSubarraySubDivisibleByK(); // 57
             // TestLinkedListCycle(); //58
-            TestHappyNumber(); //59
+            // TestHappyNumber(); //59
             // TestNonoverlappingIntervals(); // 60
             // TestDuplicateNumber(); // 61
             // TestReverseLinkedList2(); // 62
@@ -788,6 +788,7 @@ namespace LC_FB_Medium
         public static void TestLongestSubstringKDistinctChars()
         {
             LongestSubstringKDistinctChars l = new LongestSubstringKDistinctChars();
+            Console.WriteLine("Expected 5. Actual: " + l.LengthOfLongestSubstringKDistinct("aabcaacab", 2));
             Console.WriteLine("Expected 16. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabbbbbbaaaaacccccaa", 2));
             Console.WriteLine("Expected 12. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabaaaaacccccaa", 2));
             Console.WriteLine("Expected 11. Actual: " + l.LengthOfLongestSubstringKDistinct("aaaaabaaaaacccccbb", 2));

@@ -21,41 +21,29 @@ namespace LC_FB_Medium
     {
         public int LengthOfLongestSubstringKDistinct(string s, int k) {
             if (s == null || s.Length == 0) return 0;
-
             if (k == 0) return 0;
 
-            Dictionary<char, int> dict = new Dictionary<char, int>();
-            int start = 0;
-            int end = 0;
-            int distinctCount = 0;  // keeps the count of the distinct chars in the window
-            int maxLength = 0;
-
-            dict[s[start]] = 1;
-            distinctCount++;
+            Dictionary<char, int> check = new Dictionary<char, int>();
+            int start = 0, end = 0, maxLength = 1, tempK = k;
 
             while (end < s.Length) {
-                if (distinctCount <= k) {
-                    maxLength = Math.Max(maxLength, end - start + 1);
-                    end++;
-                    if (end >= s.Length) break;
-                    if (dict.ContainsKey(s[end])) dict[s[end]]++;
-                    else {
-                        dict[s[end]] = 1;
-                        distinctCount++;
-                    }
-                } else {
-                    while (distinctCount > k) {
-                        // keep reducing the size of the window
-                        dict[s[start]]--;
-                        if (dict[s[start]] == 0){
-                            distinctCount--;
-                            dict.Remove(s[start]);
-                        }
-                        start++;
-                    }
+                char c = s[end];
+                if (!check.ContainsKey(c) || check[c] == 0) {
+                    tempK--;
+                    check[c] = 1;
+                } else check[c]++;
+
+                if (tempK < 0) maxLength = Math.Max(maxLength, end - start);
+                while (tempK < 0) {
+                    check[s[start]]--;
+                    if (check[s[start]] == 0) tempK++;
+                    start++;
                 }
+
+                end++;
             }
 
+            maxLength = Math.Max(maxLength, end - start);
             return maxLength;
         }
     }

@@ -30,7 +30,7 @@ namespace LC_FB_Hard
             // TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
-            TestSlidingWindowMax(); //21
+            // TestSlidingWindowMax(); //21
             // TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
             // TestRecoverBST(); //24
@@ -66,6 +66,7 @@ namespace LC_FB_Hard
             //TestShortestDistanceFromAllBuildings(); // 55
             // TestReverseNodesInKGroup(); // 56
             // TestKClosestBstValues(); // 57
+            TestBuyAndSellStock(); // 58
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1337,6 +1338,32 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: [17,14]. Actual: "+ GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 2)));
             Console.WriteLine("Expected: [17,14,19]. Actual: "+ GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 3)));
             Console.WriteLine("Expected: [17,14,19,23,25,5]. Actual: "+ GetListOfIntAsString(kClosest.ClosestKValues(n1, 16, 6)));
+        }
+
+        public static void TestBuyAndSellStock()
+        {
+            string[] prices = new string[] {
+                "1559990001,GOOG,104.25",
+                "1559990001,FB,100.00",
+                "1559990002,AAPL,100.00",
+                "1559990003,GOOG,105.00",
+                "1559990004,FB,99.00",
+                "1559990007,GOOG,99.50",
+                "1559990008,GOOG,102.75",
+                "1559990010,AAPL,101.00",
+                "1559990010,GOOG,103.50",
+                "1559990011,GOOG,99.00",
+                "1559990013,AAPL,102.00",
+                "1559990013,GOOG,102.50",
+                "1559990014,GOOG,102.50",
+                "1559990014,FB,97.00",
+                "1559990017,GOOG,102.75",
+                "1559990018,GOOG,102.00",
+                "1559990019,FB,95.00",
+            };
+
+            BuyAndSellStocks buy = new BuyAndSellStocks();
+            buy.CalculateMaxProfit(prices);
         }
     }
 }

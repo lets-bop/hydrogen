@@ -39,28 +39,25 @@ namespace LC_FB_Medium
             int maxLength = 0;
 
             while (end < s.Length && s.Length - start >= maxLength) {
-                if (charCount.ContainsKey(s[end])) charCount[s[end]]++;
-                else charCount[s[end]] = 1;
+                charCount[s[end]] = charCount.GetValueOrDefault(s[end], 0) + 1;
                 maxOccuringCharCount = Math.Max(maxOccuringCharCount, charCount[s[end]]);
 
-                if (end - start + 1 - maxOccuringCharCount <= k){
-                    maxLength = Math.Max(maxLength, end - start + 1);
-                    end++;
-                }
-                else {
-                    while (end - start + 1 - maxOccuringCharCount > k) {
-                        // keep reducing the window size
-                        charCount[s[start]]--;
-                        start++;
-                        
-                        // need to recaculate maxOccuringCharCount
-                        maxOccuringCharCount = 0;
-                        foreach (var entry in charCount){
-                            maxOccuringCharCount = Math.Max(entry.Value, maxOccuringCharCount);
-                        }
+                int windowSize = end - start + 1;
+                while (windowSize - maxOccuringCharCount > k) {
+                    // keep reducing the window size
+                    charCount[s[start]]--;
+                    start++;
+                    windowSize = end - start + 1;
+                    
+                    // need to recaculate maxOccuringCharCount
+                    maxOccuringCharCount = 0;
+                    foreach (var entry in charCount){
+                        maxOccuringCharCount = Math.Max(entry.Value, maxOccuringCharCount);
                     }
-                    end++;
                 }
+
+                maxLength = Math.Max(maxLength, windowSize);
+                end++;
             }
 
             return maxLength;
