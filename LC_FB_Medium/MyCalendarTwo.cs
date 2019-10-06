@@ -5,10 +5,13 @@ using System.Text;
 namespace LC_FB_Medium
 {
     /*
-        Implement a MyCalendarTwo class to store your events. A new event can be added if adding the event will not cause a triple booking.
-        Your class will have one method, book(int start, int end). Formally, this represents a booking on the half open interval [start, end), the range of real numbers x such that start <= x < end.
-        A triple booking happens when three events have some non-empty intersection (ie., there is some time that is common to all 3 events.)
-        For each call to the method MyCalendar.book, return true if the event can be added to the calendar successfully without causing a triple booking. Otherwise, return false and do not add the event to the calendar.
+        Implement a MyCalendarTwo class to store your events. A new event can be added if adding the event 
+        will not cause a triple booking. Your class will have one method, book(int start, int end). 
+        Formally, this represents a booking on the half open interval [start, end), the range of real numbers x 
+        such that start <= x < end. A triple booking happens when three events have some non-empty intersection 
+        (ie., there is some time that is common to all 3 events.)
+        For each call to the method MyCalendar.book, return true if the event can be added to the calendar 
+        successfully without causing a triple booking. Otherwise, return false and do not add the event to the calendar.
         Your class will be called like this: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
 
         Example 1:
@@ -43,6 +46,7 @@ namespace LC_FB_Medium
 
         public bool Book(int start, int end) 
         {
+            // Check if there is an overlap with already overlapping intervals
             // NOTE: Overlap between 2 intervals exist if max(starts) < min(ends)
             foreach(Booking booking in overlaps) {
                 if (Math.Max(booking.start, start) < Math.Min(booking.end, end)) {
@@ -52,10 +56,9 @@ namespace LC_FB_Medium
 
             // No overlaps. Determine if there are overlaps with any interval
             // and add to overlaps. Finally add to bookings.
-
             foreach(Booking booking in bookings) {
                 if (Math.Max(booking.start, start) < Math.Min(booking.end, end)) {
-                    // Update overlaps
+                    // add overlapping interval to overlaps
                     overlaps.Add(new Booking(Math.Max(start, booking.start), Math.Min(end, booking.end)));
                 }
             }

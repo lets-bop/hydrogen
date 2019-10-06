@@ -10,7 +10,7 @@ namespace LC_FB_Medium
         {
             DateTime startTime = DateTime.Now;
 
-            // MinSizeSubarraySumTest(); // 1
+            MinSizeSubarraySumTest(); // 1
             // TaskSchedulerTest(); // 2
             // ExclusiveTimeFunctionsTest(); // 3
             // NumberOfIslandsTest(); // 4
@@ -56,7 +56,7 @@ namespace LC_FB_Medium
             // TestTopKFrequent(); // 44
             // TestBinaryTreeRightSideView(); // 45
             // TestAccountsMerge(); // 46
-            TestLongestSubstringKDistinctChars(); // 47
+            // TestLongestSubstringKDistinctChars(); // 47
             // TestLongestRepeatingChar(); // 48
             // TestLongestWithoutRepeatingChars(); //49
             // TestMaxOnes(); // 50
@@ -128,7 +128,7 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 2. Actual: " + MinSizeSubarraySum.Find(arr, 7));
 
             arr = new int[] {1,2,3,4,5};
-            Console.WriteLine("Expected: 3. Actual: " + MinSizeSubarraySum.Find(arr, 11));        
+            Console.WriteLine("Expected: 3. Actual: " + MinSizeSubarraySum.Find(arr, 12));
 
             arr = new int[] {0,0,0,0,0};
             Console.WriteLine("Expected: 1. Actual: " + MinSizeSubarraySum.Find(arr, 0));
