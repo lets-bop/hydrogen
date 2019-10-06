@@ -10,7 +10,7 @@ namespace LC_FB_Medium
         {
             DateTime startTime = DateTime.Now;
 
-            MinSizeSubarraySumTest(); // 1
+            // MinSizeSubarraySumTest(); // 1
             // TaskSchedulerTest(); // 2
             // ExclusiveTimeFunctionsTest(); // 3
             // NumberOfIslandsTest(); // 4
@@ -24,7 +24,7 @@ namespace LC_FB_Medium
             // ReorganizeStringTest(); // 12
             // PartitionToKEqualSumSubsetsTest(); // 13
             // DailyTemperaturesTest(); // 14
-            // QueueReconstructionTest(); // 15
+            QueueReconstructionTest(); // 15
             // WordBreakTest(); // 16
             // SpiralOrderTest(); // 17
             // SummaryRangesTest(); // 18
@@ -367,6 +367,7 @@ namespace LC_FB_Medium
         {
             QueueReconstruction qr = new QueueReconstruction();
             int[][] result = qr.ReconstructQueue(new int[][] { new int[] { 7,0 }, new int[] { 4, 4 }, new int[] { 7, 1 }, new int[] { 5, 0 }, new int[] { 6, 1 }, new int[] { 5, 2 } });
+            Console.WriteLine("Expected: [[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]].");
             foreach (int[] arr in result)
             {
                 foreach (int k in arr) Console.Write(k + "\t");
