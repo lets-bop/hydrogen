@@ -11,19 +11,18 @@ AB has score A + B, where A and B are balanced parentheses strings.
  
 
 Example 1:
-
 Input: "()"
 Output: 1
-Example 2:
 
+Example 2:
 Input: "(())"
 Output: 2
-Example 3:
 
+Example 3:
 Input: "()()"
 Output: 2
-Example 4:
 
+Example 4:
 Input: "(()(()))"
 Output: 6
 */
@@ -33,7 +32,8 @@ namespace LC_FB_Medium
     {
         public int ScoreOfParentheses(string S) {
             // return this.ScoreWithStack(S);
-            return this.ScoreWithCount(S);
+            // return this.ScoreWithCount(S);
+            return this.ScoreWithStack2(S);
         }
 
         private int ScoreWithStack(string s) {
@@ -55,6 +55,9 @@ namespace LC_FB_Medium
             return 0;
         }
 
+        // Keep track of the open parenthesis of the string. 
+        // For every ) that immediately follows a (, the answer is 1 << count of open parenthesis
+        //  as count of open parenthesis is the number of exterior set of parentheses that contains this core.
         private int ScoreWithCount(string s) {
             int result = 0;
             int parenthesisOpenCount = 0;
@@ -69,6 +72,33 @@ namespace LC_FB_Medium
             }
             
             return result;
+        }
+
+        private int ScoreWithStack2(string s) {
+            if (s == null || s.Length == 0) return 0;
+
+            Stack<string> stack = new Stack<string>();
+            int sum = 0;
+            string pop1;
+            for (int i = 0; i < s.Length; i++) {
+                if (s[i] == '(') stack.Push("(");
+                else {
+                    pop1 = stack.Pop();
+                    if (pop1 == "(") stack.Push("1");
+                    else {
+                        sum = 0;
+                        while (pop1 != "(") {
+                            int num = int.Parse(pop1);
+                            sum += num;
+                            pop1 = stack.Pop();
+                        }
+                        stack.Push((2 * sum).ToString());
+                    }
+                }
+            }
+
+            if (stack.Count == 0) return 0;
+            return int.Parse(stack.Pop());
         }
     }
 }
