@@ -24,7 +24,7 @@ namespace LC_FB_Medium
             // ReorganizeStringTest(); // 12
             // PartitionToKEqualSumSubsetsTest(); // 13
             // DailyTemperaturesTest(); // 14
-            QueueReconstructionTest(); // 15
+            // QueueReconstructionTest(); // 15
             // WordBreakTest(); // 16
             // SpiralOrderTest(); // 17
             // SummaryRangesTest(); // 18
@@ -101,7 +101,7 @@ namespace LC_FB_Medium
             // TestBinaryTreePathSum2(); // 89
             // TestBstInorderSuccessor(); // 90
             // TestBstInorderSuccessor2(); // 91
-            // TestScoreParentheses(); // 92
+            TestScoreParentheses(); // 92
             // TestValidParenthesisString(); // 93
             // TestBinaryTreeDistributeCoins(); // 94
             // TestGroupAnagrams(); // 95
@@ -1247,6 +1247,7 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 1. Actual " + s.ScoreOfParentheses("()"));
             Console.WriteLine("Expected: 4. Actual " + s.ScoreOfParentheses("((()))"));
             Console.WriteLine("Expected: 6. Actual " + s.ScoreOfParentheses("(()(()))"));
+            Console.WriteLine("Expected: 10. Actual " + s.ScoreOfParentheses("(()(())()())"));
         }
 
         public static void TestValidParenthesisString()

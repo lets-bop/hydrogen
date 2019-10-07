@@ -23,6 +23,33 @@ namespace LC_FB_Medium
 {
     public class ReorganizeString
     {
+        public string Reorganize(string s) {
+            if (s == null || s.Length == 0) return string.Empty;
+            Dictionary<char, int> charCount = new Dictionary<char, int>();
+            for(int i = 0; i < s.Length; i++) charCount[s[i]] = charCount.GetValueOrDefault(s[i], 0) + 1;
+            
+            if (charCount.Count == 1) {
+                foreach(char key in charCount.Keys) if (charCount[key] > 1) return "";
+                else return key.ToString();
+            }
+
+            MaxPQ pq = new MaxPQ(charCount.Count);
+            foreach(char key in charCount.Keys) pq.Add(charCount[key], key);
+
+            StringBuilder sb = new StringBuilder();
+            while(pq.PeekMax().Item1 > 0){
+                Tuple<int, char> e1 = pq.DeleteMax();
+                Tuple<int, char> e2 = pq.DeleteMax();
+                if (e1.Item1 > 1 && e2.Item1 < 1) return "";
+                if (e1.Item1 > 0) sb.Append(e1.Item2);
+                if (e2.Item1 > 0) sb.Append(e2.Item2);
+                pq.Add(e1.Item1 - 1, e1.Item2);
+                pq.Add(e2.Item1 - 1, e2.Item2);
+            }
+
+            return sb.ToString();
+        }
+
         internal class MaxPQ
         {
             internal class Node{
@@ -60,7 +87,7 @@ namespace LC_FB_Medium
                 this.Sink();
                 this.pq[this.currentLength] = null;
                 if (!this.IsMaxHeap()) 
-                    throw new Exception("MaxHeapPropertyFailed in deletemax");                
+                    throw new Exception("MaxHeapPropertyFailed in deletemax");
                 return tup;
             }
 
@@ -109,42 +136,6 @@ namespace LC_FB_Medium
 
                 return true;
             }
-
         }
-
-        public string Reorganize(string s) {
-            Dictionary<char, int> charCount = new Dictionary<char, int>();
-            for(int i = 0; i < s.Length; i++){
-                if(charCount.ContainsKey(s[i])) charCount[s[i]]++;
-                else charCount[s[i]] = 1;
-            }
-
-            if(charCount.Count == 0) return "";
-            if (charCount.Count == 1){
-                foreach(char key in charCount.Keys){
-                    if (charCount[key] > 1) return "";
-                }
-            }
-
-            MaxPQ pq = new MaxPQ(charCount.Count);
-
-            foreach(char key in charCount.Keys){
-                pq.Add(charCount[key], key);
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-            while(pq.PeekMax().Item1 > 0){
-                Tuple<int, char> e1 = pq.DeleteMax();
-                Tuple<int, char> e2 = pq.DeleteMax();
-                if (e1.Item1 > 1 && e2.Item1 < 1) return "";
-                if (e1.Item1 > 0) sb.Append(e1.Item2);
-                if (e2.Item1 > 0) sb.Append(e2.Item2);
-                pq.Add(e1.Item1 - 1, e1.Item2);
-                pq.Add(e2.Item1 - 1, e2.Item2);
-            }
-
-            return sb.ToString();
-        }        
     }
 }

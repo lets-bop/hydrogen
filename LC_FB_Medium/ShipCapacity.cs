@@ -47,9 +47,7 @@ Explanation:
     {
         /*
             The largest capacity (high) we may even need is the sum of weights of all packages.
-            The smallest capacity (low) is the weight of the largest package.
-            Optimization: the smallest capacity cannot be less than r / D, 
-            which reduces the search interval if we have a lot of small packages (and D is small).
+            The smallest capacity (low) is the Max(weight of the largest package, sumOfAllPkgs / D)
             We use binary search to find the minimum capacity. For each capacity we analyze, 
             we count the number of days required to ship all packages.
             We decrease the capacity if it takes less days than D, and increase otherwise. 
@@ -67,7 +65,6 @@ Explanation:
                 high += w;
             }
 
-            // optimize low in case there are a lots of low weight packages
             low = Math.Max(low, high / D);
 
             int mid;
