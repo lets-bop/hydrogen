@@ -128,7 +128,8 @@ namespace LC_FB_Easy
             // TestInvertBinaryTree();
             // TestClosestBSTValue();
             // TestRemoveOuterMostParenthesis();
-            TestRectangleOverlap();
+            // TestRectangleOverlap();
+            TestRottingOranges();
         }
 
         public static void TestSingleRowKeyboard()
@@ -212,6 +213,19 @@ namespace LC_FB_Easy
             RectangleOverlap rec = new RectangleOverlap();
             Console.WriteLine("Expected: True. Actual: " + rec.IsRectangleOverlap(new int[] {0,0,2,2}, new int[] {1,1,3,3}));
             Console.WriteLine("Expected: False. Actual: " + rec.IsRectangleOverlap(new int[] {0,0,1,1}, new int[] {1,0,2,1}));
+        }
+
+        public static void TestRottingOranges()
+        {
+            RottingOranges o = new RottingOranges();
+            int[][] grid = new int[][] {new int[] {2,1,1},new int[] {1,1,0}, new int[]{0,1,1}};
+            Console.WriteLine("Expected: 4. Actual: " + o.OrangesRotting(grid));
+            grid = new int[][] {new int[] {2,1,1},new int[] {0,1,1}, new int[]{1,0,1}};
+            Console.WriteLine("Expected: -1. Actual: " + o.OrangesRotting(grid));
+            grid = new int[][] {new int[] {0,2}};
+            Console.WriteLine("Expected: 0. Actual: " + o.OrangesRotting(grid));
+            grid = new int[][] {new int[] {2},new int[] {1},new int[] {1},new int[] {1},new int[] {2},new int[] {1},new int[] {1}};
+            Console.WriteLine("Expected: 2. Actual: " + o.OrangesRotting(grid));
         }
     }
 }

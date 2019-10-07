@@ -50,7 +50,7 @@ namespace LC_FB_Medium
                 int nr = this.dr[k] + r; //neighboring row
                 int nc = this.dc[k] + c; //neighboring col
                 
-                if (nr >=0 && nc >= 0 && nr < rows && nc < cols && rooms[nr][nc] > rooms[r][c]) {
+                if (nr >=0 && nc >= 0 && nr < rows && nc < cols && rooms[nr][nc] > rooms[r][c] + 1) {
                     this.DFS(rooms, nr, nc, rows, cols, distance + 1);
                 }
             }
