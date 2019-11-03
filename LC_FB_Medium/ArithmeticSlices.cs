@@ -16,8 +16,8 @@ namespace LC_FB_Medium
 
         1, 1, 2, 5, 7
 
-        A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) s
-        uch that 0 <= P < Q < N.
+        A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q)
+        such that 0 <= P < Q < N.
 
         A slice (P, Q) of array A is called arithmetic if the sequence:
         A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 < Q.
@@ -37,6 +37,8 @@ namespace LC_FB_Medium
 
         private int CountSlicesNaive(int[] A){
             // O(n^2) time, O(1) space
+            // Example: Console.WriteLine("Expected: 10. Actual: " + ar.CountSlices(new int[] {1,2,3,4,5,6}));
+            // [1,2,3],[1,2,4],[1,2,5],[1,2,6],[2,3,4],[2,3,5],[2,3,6],[3,4,5],[3,4,6],[4,5,6]
             int count = 0;
             for (int s = 0; s < A.Length - 2; s++) {
                 int d = A[s + 1] - A[s];

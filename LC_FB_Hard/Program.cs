@@ -23,7 +23,7 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence(); //11
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
-            // TestAlientDictionary(); //14
+            TestAlienDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
@@ -66,7 +66,7 @@ namespace LC_FB_Hard
             //TestShortestDistanceFromAllBuildings(); // 55
             // TestReverseNodesInKGroup(); // 56
             // TestKClosestBstValues(); // 57
-            TestBuyAndSellStock(); // 58
+            // TestBuyAndSellStock(); // 58
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -353,15 +353,15 @@ namespace LC_FB_Hard
             sub.FindSubstring("aaaaaa", new string[] {"aa","aa"});  
         }
 
-        private static void TestAlientDictionary()
+        private static void TestAlienDictionary()
         {
             AlienDictionary dic = new AlienDictionary();
-            // Console.WriteLine("Expected: wertf. Actual: " + dic.AlienOrder(new string[] {  "wrt", "wrf", "er", "ett", "rftt"}));
-            // Console.WriteLine("Expected: wars. Actual: " + dic.AlienOrder(new string[] {  "war", "was", "ar", "raw", "saw"}));
-            // Console.WriteLine("Expected: z. Actual: " + dic.AlienOrder(new string[] {  "z", "z"}));
-            // Console.WriteLine("Expected: zx. Actual: " + dic.AlienOrder(new string[] {  "z", "x"}));
-            // Console.WriteLine("Expected: . Actual: " + dic.AlienOrder(new string[] {  "z", "x", "z"}));
-            // Console.WriteLine("Expected: . Actual: " + dic.AlienOrder(new string[] {  "war", "was", "saw", "raw"}));
+            Console.WriteLine("Expected: wertf. Actual: " + dic.AlienOrder(new string[] {  "wrt", "wrf", "er", "ett", "rftt"}));
+            Console.WriteLine("Expected: wars. Actual: " + dic.AlienOrder(new string[] {  "war", "was", "ar", "raw", "saw"}));
+            Console.WriteLine("Expected: z. Actual: " + dic.AlienOrder(new string[] {  "z", "z"}));
+            Console.WriteLine("Expected: zx. Actual: " + dic.AlienOrder(new string[] {  "z", "x"}));
+            Console.WriteLine("Expected: . Actual: " + dic.AlienOrder(new string[] {  "z", "x", "z"}));
+            Console.WriteLine("Expected: . Actual: " + dic.AlienOrder(new string[] {  "war", "was", "saw", "raw"}));
             Console.WriteLine("Expected: vlxpwiqbsgc. Actual: " + dic.AlienOrder(new string[] {"vlxpwiqbsg","cpwqwqcd"}));
         }
 

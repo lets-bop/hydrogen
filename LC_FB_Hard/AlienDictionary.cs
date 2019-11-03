@@ -1,6 +1,6 @@
 /*
-There is a new alien language which uses the latin alphabet. H
-owever, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, 
+There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. 
+You receive a list of non-empty words from the dictionary, 
 where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.
 
 Example 1:
@@ -61,7 +61,7 @@ namespace LC_FB_Hard
             1. We need to compare the letters across 2 consecutive words only 
             2. Order of letters in a given word alone doesn't mean anything
             
-            We'll proceed by building a graph (Dictionary where key is the letter and value are the letters that come after it).
+            We'll proceed by building a graph (Dictionary where key is the letter and value are the neighboring letters).
             We'll also maintain a dictionary called inDegree which holds the number of incoming edges.
             Naturally, the first char will have no letters pointing to it and will have an inDegree of 0.
             Once the graph is built, we'll just use a topological sort to find the right order.
@@ -104,6 +104,7 @@ namespace LC_FB_Hard
             int c1Index = cIndex;
             int c2Index = cIndex;
 
+            // Set the inDegree for the remainder of the characters in words(i) and words(i+1) to 0
             while (c1Index < words[i].Length) {
               c1 = words[i][c1Index];
               if (!inDegree.ContainsKey(c1)) inDegree[c1] = 0;
@@ -136,6 +137,7 @@ namespace LC_FB_Hard
             }
           }
 
+          // inDegree contains characters present in all words
           if (sb.Length != inDegree.Count) return string.Empty;
           return sb.ToString();
         }
