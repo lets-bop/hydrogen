@@ -21,6 +21,13 @@ namespace LC_FB_Hard
 
         Input: "(1+(4+5+2)-3)+(6+8)"
         Output: 23
+
+        Input: 2*(5+5*2)/3+(6/2+8)
+        Output 21
+
+        Input: 1 - (-7)
+        Output: 8
+
         Note:
         You may assume that the given expression is always valid.
         Do not use the eval built-in library function.
@@ -77,7 +84,7 @@ namespace LC_FB_Hard
                                     int num1;
                                     if (numStack.Count == 0 && popC == '-') num1 = 0;
                                     else num1 = numStack.Pop();
-                                    numStack.Push(this.ApplyOperator(num1, num2, popC));                                  
+                                    numStack.Push(this.ApplyOperator(num1, num2, popC));
                                 }
 
                                 opStack.Push(c);
@@ -98,7 +105,7 @@ namespace LC_FB_Hard
                 char popC = opStack.Pop();
                 int num2 = numStack.Pop();
                 int num1 = numStack.Pop();
-                numStack.Push(this.ApplyOperator(num1, num2, popC));                   
+                numStack.Push(this.ApplyOperator(num1, num2, popC));
             }
 
             if (numStack.Count != 1) Console.WriteLine("!!!!!!!!!Something has gone wrong!!!!!!!. Stack count is " + numStack.Count);
