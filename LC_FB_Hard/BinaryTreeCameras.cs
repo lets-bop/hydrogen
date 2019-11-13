@@ -45,7 +45,7 @@ namespace LC_FB_Hard
         
         public int MinCameraCover(TreeNode root) {
             minCamera = 0;
-            covered = new HashSet<TreeNode>();
+            covered = new HashSet<TreeNode>(); // the default implementation of GetHashCode() based on instance is sufficient
             this.DoDFS(root, null);
             return minCamera;
         }

@@ -101,10 +101,9 @@ namespace LC_FB_Hard
               cIndex++;
             }
 
+            // Set the inDegree for the remainder of the characters in words(i) and words(i+1) to 0
             int c1Index = cIndex;
             int c2Index = cIndex;
-
-            // Set the inDegree for the remainder of the characters in words(i) and words(i+1) to 0
             while (c1Index < words[i].Length) {
               c1 = words[i][c1Index];
               if (!inDegree.ContainsKey(c1)) inDegree[c1] = 0;

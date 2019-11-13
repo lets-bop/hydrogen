@@ -52,8 +52,8 @@ namespace LC_FB_Hard
             foreach (int i in cols){
                 // for each 1 in the col, calculate how far it is from the median
                 // we only need to sort the cols, as we are scanning the matrix by the row
-                // and 1 can appear only any col. So we need to find the median by ordering the cols
-                // across all rows
+                // and 1 can appear in any col and hence not ordered. 
+                // So we need to find the median by ordering the cols across all rows
                 sum += Math.Abs(i - cols[cols.Count/2]);
             }
         

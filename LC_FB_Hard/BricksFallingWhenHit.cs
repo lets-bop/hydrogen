@@ -36,15 +36,16 @@ namespace LC_FB_Hard
             /*
                 1. Mark all the hits on the grid before starting to find the connected component (i.e. the bricks connected to the roof)
                 We need to be able to differentiate if the hit had a 1 or 0 in the initial grid. 
-                We will use -1 if the hit on the grid had a 0 and 0 if the hit on the grid had a 1.
+                We will just subtract 1 from each hit in the grid. 
+                Hence each hit point in the grid will result in 0 if the grid had 1 and -1 if it had 0.
 
-                2. Find the connected component (i.e. the bricks connected to the roof). For this we only need to do a DFS from every 
-                point on the first row of the grid. We will use '2' to indicate the connected component
+                2. Find all the bricks connected to the roof. Do a DFS from every 
+                point on the first row of the grid == 1. We will use '2' to indicate this connected component
 
                 3. Going in the reverse order of the hits, we start placing the bricks in the hits back in the grid.
                  If the hit point in the grid had a 0, we have nothing to do.
-                 If hit point had a 1, then we need to see if the hit point is connected to the connected component (roof).
-                 If it is connected, then we need to mark that brick to be connected to the roof.
+                 If hit point had a 1 is connected to the roof, then we need to find the count of all cells with 1 that can be reached 
+                 from this grid and add them to a connected component (mark with 2) just as in step 2.
                  Else, we'll leave that cell as is with 1 and could get cleaned up (hit) by other earlier hits.
             */
 
@@ -85,6 +86,7 @@ namespace LC_FB_Hard
         }
 
         private bool IsConnected(int[][] grid, int i, int j) {
+            // returns true if any of the neighbors has a 2 (connected to the roof)
             if (i < 0 || i >= grid.Length || j < 0 || j >= grid[0].Length) return false;
             if (i == 0) return true;
             if (i - 1 >=0 && grid[i - 1][j] == 2) return true;
