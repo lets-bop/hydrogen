@@ -47,9 +47,10 @@ namespace LC_FB_Hard
     {
         public int NumDistinct(string s, string t) {
             // We can solve this using DP.
-            // We build the dp array with s.Length cols and t.Length rows
+            // We build the dp array with s.Length+1 cols and t.Length+1 rows
             // S[0] col and T[0] rows represent empty strings.
-            // If T is empty, then dp[0][0] = 1 and all subsequent cols dp[0][j] = 1
+            // If T is empty, then dp[0][0] = 1 and all subsequent cols dp[0][j] = 1.
+            // i.e. best of whatever we have found so far = 1.
             // For all other T, if S is empty, then we wont have a matching subsequence hence length = 0
             // Now if the char at T and S match, we just take subsequences found so far in (i.e. without the current char in T) 
             // and add to it the subsequences found without considering char in S or T

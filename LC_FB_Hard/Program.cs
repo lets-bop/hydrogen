@@ -23,7 +23,7 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence(); //11
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
-            TestAlienDictionary(); //14
+            // TestAlienDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
@@ -52,7 +52,7 @@ namespace LC_FB_Hard
             // TestIntegerToEnglish(); //41
             // TestTextJustification(); //42
             // TestArithmeticSlices2(); // 43
-            // TestDistinctSubsequence(); // 44
+            TestDistinctSubsequence(); // 44
             // TestBestMeetingPoint(); //45
             // TestBinaryTreeMaximumPathSum(); // 46
             // TestBinaryTreeCameras(); // 47
@@ -917,9 +917,10 @@ namespace LC_FB_Hard
         public static void TestDistinctSubsequence()
         {
             DistinctSubsequence ds = new DistinctSubsequence();
-            Console.WriteLine("Expected: 3. Actual: " + ds.NumDistinct("rabbbit", "rabbit"));
-            Console.WriteLine("Expected: 1. Actual: " + ds.NumDistinct("rabbit", ""));
-            Console.WriteLine("Expected: 0. Actual: " + ds.NumDistinct("", "rabbit"));
+            // Console.WriteLine("Expected: 3. Actual: " + ds.NumDistinct("rabbbit", "rabbit"));
+            // Console.WriteLine("Expected: 1. Actual: " + ds.NumDistinct("rabbit", ""));
+            // Console.WriteLine("Expected: 0. Actual: " + ds.NumDistinct("", "rabbit"));
+            Console.WriteLine("Expected: 5. Actual: " + ds.NumDistinct("babgbag", "bag"));
         }
 
         public static void TestBestMeetingPoint()
