@@ -47,12 +47,19 @@ namespace LC_FB_Hard
 
             // assign candies to the descending slopes (reverse order of descending values, becomes ascending)
             // so follow the same ascending logic as earlier
-            for (int i = ratings.Length - 1; i >= 1; i--){
-                if (ratings[i - 1] > ratings[i] && candies[i - 1] <= candies[i]) {
-                    int diff = (candies[i] + 1) - candies[i - 1] ;
-                    candies[i - 1] += diff;
-                    sum += diff;
-                } 
+            // for (int i = ratings.Length - 1; i >= 1; i--){
+            //     if (ratings[i - 1] > ratings[i] && candies[i - 1] <= candies[i]) {
+            //         int diff = (candies[i] + 1) - candies[i - 1] ;
+            //         candies[i - 1] += diff;
+            //         sum += diff;
+            //     } 
+            // }
+            for (int i = ratings.Length - 2; i >= 0; i--) {
+                if (ratings[i] > ratings[i + 1]) {
+                    int originalCandyVal = candies[i];
+                    candies[i] = Math.Max(candies[i], candies[i + 1] + 1);
+                    sum += Math.Abs(originalCandyVal - candies[i]);
+                }
             }
 
 

@@ -40,6 +40,10 @@ namespace LC_FB_Hard
             }
         }
         public IList<Interval> FindFreeTime(IList<IList<Interval>> schedule) {
+            // add the working intervals of all employees into list and sort it
+            // merge the working intervals
+            // find gaps between merged intervals = free time intervals
+            
             List<Interval> result = new List<Interval>();
             List<Interval> all = new List<Interval>();
 

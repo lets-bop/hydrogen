@@ -32,30 +32,26 @@ namespace LC_FB_Hard
         // and either of its neighbors is k, we can return it
 
         // Since C# doesn't have a TreeSet equivalent, here is the Java version
+        // public int kEmptySlots(int[] bulbs, int K) {
+            
+        //     TreeSet<Integer> set = new TreeSet<>();
 
-        /*
-            public int kEmptySlots(int[] bulbs, int K) {
-                
-                TreeSet<Integer> set = new TreeSet<>();
+        //     for (int i = 0; i < bulbs.length; i++) {
+        //         Integer higher = set.higher(bulbs[i]);
+        //         Integer lower = set.lower(bulbs[i]);
 
-                for (int i = 0; i < bulbs.length; i++) {
-                    Integer higher = set.higher(bulbs[i]);
-                    Integer lower = set.lower(bulbs[i]);
+        //         if (lower != null && bulbs[i] - K - 1 == lower) {
+        //             return i + 1;
+        //         }
 
-                    if (lower != null && bulbs[i] - K - 1 == lower) {
-                        return i + 1;
-                    }
+        //         if (higher != null && bulbs[i] + K + 1 == higher) {
+        //             return i + 1;
+        //         }
 
-                    if (higher != null && bulbs[i] + K + 1 == higher) {
-                        return i + 1;
-                    }
+        //         set.add(bulbs[i]);
+        //     }
 
-                    set.add(bulbs[i]);
-                }
-
-                return -1;
-            }
-        */ 
-
+        //     return -1;
+        // }
     }
 }

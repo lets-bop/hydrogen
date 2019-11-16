@@ -67,6 +67,9 @@ namespace LC_FB_Hard
             Once the graph is built, we'll just use a topological sort to find the right order.
             Topological sort will begin by selecting the letters that have no incoming edges,
             and proceed by reducing the inDegree of its adjacent letters and adding them to the queue if their inDegree = 0.
+            
+            Topological ordering of a directed graph is a linear ordering of its vertices such that for every directed edge uv 
+            ßfrom vertex u to vertex v, u comes before v in the ordering
           */
           if (words!= null && words.Length == 1) return words[0];
           this.BuildGraph(words);

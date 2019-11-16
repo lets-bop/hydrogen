@@ -37,7 +37,7 @@ namespace LC_FB_Hard
             // TestFrogJump(); //25
             // TestNumberOfIslands2(); //27
             // TestSplitArrayWithSameAverage(); //29
-            // TestCandyProblem(); //30
+            TestCandyProblem(); //30
             // TestBasicCalculator(); //31
             // TestFirstMissingPositiveNum(); //32
             // TestLongestIncreasingSubsequence(); //33
@@ -52,7 +52,7 @@ namespace LC_FB_Hard
             // TestIntegerToEnglish(); //41
             // TestTextJustification(); //42
             // TestArithmeticSlices2(); // 43
-            TestDistinctSubsequence(); // 44
+            // TestDistinctSubsequence(); // 44
             // TestBestMeetingPoint(); //45
             // TestBinaryTreeMaximumPathSum(); // 46
             // TestBinaryTreeCameras(); // 47
@@ -264,6 +264,8 @@ namespace LC_FB_Hard
         private static void TestLargestRectangleInHist()
         {
             Console.WriteLine("Expected: 10. Actual: " + LargestRectangleInHist.Execute(new int[] {2,1,5,6,2,3}));
+            Console.WriteLine("Expected: 3. Actual: " + LargestRectangleInHist.Execute(new int[] {2,1,2}));
+            Console.WriteLine("Expected: 6. Actual: " + LargestRectangleInHist.Execute(new int[] {4,2,0,3,2,5}));
         }
 
         private static void TestWildcardMatching()
@@ -603,6 +605,7 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 5. Output: " + cp.Candy(new int[]{1,0,2}));
             Console.WriteLine("Expected: 4. Output: " + cp.Candy(new int[]{1,2,2}));
             Console.WriteLine("Expected: 13. Output: " + cp.Candy(new int[]{1,2,87,87,87,2,1}));
+            Console.WriteLine("Expected: 90. Output: " + cp.Candy(new int[]{10,12,14,16,18,20,22,20,18,16,14,18,22,24,26,28,30,26,22,26,24,22,20,18,16,14}));
         }
 
         public static void TestBasicCalculator()
@@ -910,7 +913,8 @@ namespace LC_FB_Hard
         {
             ArithmeticSlices2 ar = new ArithmeticSlices2();
             Console.WriteLine("Expected: 7. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,4,6,8,10}));
-            Console.WriteLine("Expected: 16. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,2,2,2,4,4,4,6}));
+            Console.WriteLine("Expected: 4. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,2,2,4,6}));
+            Console.WriteLine("Expected: 18. Actual: " + ar.NumberOfArithmeticSlices(new int[] {2,2,2,2,4,4,4,6}));
             Console.WriteLine("Expected: 0. Actual: " + ar.NumberOfArithmeticSlices(new int[] {0,2000000000,-294967296}));
         }
 

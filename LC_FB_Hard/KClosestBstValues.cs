@@ -47,11 +47,11 @@ namespace LC_FB_Hard
                 if (pred.Count == 0 || (succ.Count > 0 && succ.Peek().val - target < target - pred.Peek().val)) {
                     TreeNode node = succ.Pop();
                     result.Add(node.val);
-                    this.GetSuccessors(node.right, target, succ);
+                    this.GetSuccessors(node.right, target, succ); // pop successor and go right
                 } else {
                     TreeNode node = pred.Pop();
                     result.Add(node.val);
-                    this.GetPredecessors(node.left, target, pred);
+                    this.GetPredecessors(node.left, target, pred); // pop the predecessor and go left
                 }
             }
 

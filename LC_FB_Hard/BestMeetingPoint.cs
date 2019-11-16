@@ -23,6 +23,14 @@ namespace LC_FB_Hard
     */
     class BestMeetingPoint
     {
+        /*
+            The best meeting point is the median of the x and y coordinates of all the points.
+            Hence we'll collect the x and y coordinates of the all the points in 2 separate lists
+            and then determine the median point.
+
+            Since manhattan distance (total) = |TotalX| + |TotalY|
+            where TotalX += |point.X - median.X| and TotalY += |point.Y - median.Y| for each point
+        */
         public int MinTotalDistance(int[][] grid) {
             int m = grid.Length;
             int n = grid[0].Length;
