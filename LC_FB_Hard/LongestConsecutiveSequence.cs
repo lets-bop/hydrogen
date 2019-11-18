@@ -38,7 +38,7 @@ namespace LC_FB_Hard
                 {
                     dic.Remove(value);
                     value++;
-                    currentLongest++;                      
+                    currentLongest++;
                 }
 
                 value = key;
@@ -47,7 +47,7 @@ namespace LC_FB_Hard
                 {
                     dic.Remove(value);
                     value--;
-                    currentLongest++;                      
+                    currentLongest++;
                 }      
 
                 if (currentLongest > longest) this.longest = currentLongest;      

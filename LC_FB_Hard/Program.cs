@@ -24,7 +24,7 @@ namespace LC_FB_Hard
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
             // TestAlienDictionary(); //14
-            // TestLongestValidParenthesis(); //15
+            TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
             // TestWordSearch2(); //18
@@ -37,7 +37,7 @@ namespace LC_FB_Hard
             // TestFrogJump(); //25
             // TestNumberOfIslands2(); //27
             // TestSplitArrayWithSameAverage(); //29
-            TestCandyProblem(); //30
+            // TestCandyProblem(); //30
             // TestBasicCalculator(); //31
             // TestFirstMissingPositiveNum(); //32
             // TestLongestIncreasingSubsequence(); //33
@@ -605,7 +605,7 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: 5. Output: " + cp.Candy(new int[]{1,0,2}));
             Console.WriteLine("Expected: 4. Output: " + cp.Candy(new int[]{1,2,2}));
             Console.WriteLine("Expected: 13. Output: " + cp.Candy(new int[]{1,2,87,87,87,2,1}));
-            Console.WriteLine("Expected: 90. Output: " + cp.Candy(new int[]{10,12,14,16,18,20,22,20,18,16,14,18,22,24,26,28,30,26,22,26,24,22,20,18,16,14}));
+            Console.WriteLine("Expected: 96. Output: " + cp.Candy(new int[]{10,12,14,16,18,20,22,20,18,16,14,18,22,24,26,28,30,26,22,26,24,22,20,18,16,14}));
         }
 
         public static void TestBasicCalculator()

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 /*
 Given a string S and a string T, count the number of distinct subsequences of S which equals T.
 
-A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) 
+of the characters without disturbing the relative positions of the remaining characters. 
+(ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
 
 Example 1:
 
@@ -49,12 +51,14 @@ namespace LC_FB_Hard
             // We can solve this using DP.
             // We build the dp array with s.Length+1 cols and t.Length+1 rows
             // S[0] col and T[0] rows represent empty strings.
-            // If T is empty, then dp[0][0] = 1 and all subsequent cols dp[0][j] = 1.
-            // i.e. best of whatever we have found so far = 1.
-            // For all other T, if S is empty, then we wont have a matching subsequence hence length = 0
-            // Now if the char at T and S match, we just take subsequences found so far in (i.e. without the current char in T) 
+            // If T is empty, then dp[0][0] = 1 and all subsequent cols dp[0][j] = 1 because
+            // an empty string is a subsequence of any other string. To get an empty string, just dont select anything.
+            // For all other T, if S is empty, then we cannot form any other non-empty string in T.
+            // Hence dp[i][0] = 0 for all i > 0
+            // If the char at T and S match, we just take subsequences found so far in (i.e. without the current char in T) 
             // and add to it the subsequences found without considering char in S or T
-            // If the chars do not match, keep whatever we have found so far.
+            // If the chars do not match, keep whatever we have found so far because 
+            // we have the same number of distinct subsequences as we had without the new character.
             int[,] dp = new int[t.Length + 1,s.Length + 1];
             for (int i = 0; i < dp.GetLength(1); i++) dp[0, i] = 1; // cols of row 0
 

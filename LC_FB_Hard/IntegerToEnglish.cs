@@ -22,59 +22,51 @@ namespace LC_FB_Hard
     class IntegerToEnglish
     {
         string[] ones = new string[] {"","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"};
-        string[] tens_zero_in_ones = new string[] {"","Ten","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
-        string[] tens_non_zero_in_ones = new string[] {"","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
+        string[] tens = new string[] {"","Ten","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
+        string[] tens_and_non_zero_in_ones = new string[] {"","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
 
         public string NumberToWords(int num) {
             // 2,147,483,647 - max is 2 billion something
             if (num == 0) return "Zero";
 
-            string s = string.Empty;
-            string keyword;
+            string res = string.Empty;
+            string keyword = string.Empty;
             int iter = 0;
-            do {
-                switch (iter) {
-                    case 0: keyword = string.Empty; break;
-                    case 1: keyword = "Thousand"; break;
-                    case 2: keyword = "Million"; break;
-                    case 3: keyword = "Billion"; break;
-                    default: keyword = string.Empty; break;
-                }
 
-                s = this.NumberToWords3Digits(num % 1000, keyword) + " " + s;
-                iter++;
+            while (num != 0) {
+                if (iter == 1) keyword = "Thousand";
+                if (iter == 2) keyword = "Million";
+                if (iter == 3) keyword = "Billion";
+                res = this.NumberToWords3Digits(num % 1000, keyword) + res;
                 num /= 1000;
-                s = s.Trim(); // for online judge as spacing matters
-            } while (num != 0);
+                iter++;
+            }
 
-            return s.Trim();
+            return res.Trim();
         }
 
         private string NumberToWords3Digits(int num, string keyword) {
             if (num == 0) return string.Empty;
             string s = string.Empty;
-            int ones_digit = -1, tens_digit = -1, hundreds_digit = -1;
-            ones_digit = num % 10;
-            num /= 10;
-            if (num != 0) {
-                tens_digit = num % 10;
+            int ones_d = -1, tens_d = -1, hun_d = -1;
+
+            // Figure out the 1s, 10s and 100s digits
+            int iter = 0;
+            while (num != 0) {
+                if (iter == 0) ones_d = num % 10;
+                if (iter == 1) tens_d = num % 10;
+                if (iter == 2) hun_d = num %10;
+                iter++;
                 num /= 10;
-                if (num != 0) hundreds_digit = num % 10;
             }
 
-            if (hundreds_digit != -1) s += ones[hundreds_digit] + " Hundred ";
-            if (tens_digit != -1) {
-                if (tens_digit == 0 && ones_digit != 0) s += ones[ones_digit] + " "; // important case (like 101, 304 etc)
-                else if (tens_digit != 0) {
-                    if (ones_digit == 0) s += tens_zero_in_ones[tens_digit] + " ";
-                    else {
-                        if (tens_digit == 1) s += tens_non_zero_in_ones[ones_digit] + " ";
-                        else s += tens_zero_in_ones[tens_digit] + " " + ones[ones_digit] + " ";
-                    }
-                }
-            }
-            if (hundreds_digit == -1 && tens_digit == -1) s += ones[ones_digit] + " ";
-            s += keyword;
+            if (hun_d > 0) s = ones[hun_d] + " Hundred ";
+            if (tens_d == 1 && ones_d > 0) s += tens_and_non_zero_in_ones[ones_d];
+            else if (tens_d > 0 && ones_d == 0) s += tens[tens_d];
+            else if (tens_d > 0) s += tens[tens_d] + " " + ones[ones_d];
+            else s += ones[ones_d]; // i.e. if tens_d == 0
+
+            s = s.Trim() + " " + keyword + " ";
             return s;
         }
     }

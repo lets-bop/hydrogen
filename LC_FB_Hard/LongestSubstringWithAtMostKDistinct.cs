@@ -18,6 +18,7 @@ namespace LC_FB_Hard
     */
     class LongestSubstringWithAtMostKDistinct
     {
+        // We will use a sliding window and a dictionary that keeps track of the char and its count
         public int Find(string s, int k) {
             if (k == 0 || s == null || s.Length == 0) return 0;
             
@@ -38,13 +39,14 @@ namespace LC_FB_Hard
                 } else {
                     // we have hit the limit k
                     longest = Math.Max(longest, end - start);
-                    while (distinctCount >= k) {
+                    bool loop = true;
+                    while (loop) {
                         charCount[s[start]]--;
                         if (charCount[s[start]] == 0) {
-                            charCount.Remove(s[start]); // optional
+                            charCount.Remove(s[start]);
                             distinctCount--;
+                            loop = false;
                         }
-
                         start++;
                     }
                 }
