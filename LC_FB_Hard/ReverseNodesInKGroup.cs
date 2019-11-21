@@ -36,11 +36,11 @@ namespace LC_FB_Hard
                 while (curr != null && i < k) {
                     i++;
                     if (start == null) start = curr;
-                    end = curr;
                     curr = curr.next;
+                    end = curr;
                 }
                 if (i == k) {
-                    var rev = this.Reverse(start, curr, currTail);
+                    var rev = this.Reverse(start, end, currTail);
                     ListNode h = rev.Item1;
                     currTail = rev.Item2;
                     if (prevTail != null) prevTail.next = h;
@@ -66,7 +66,7 @@ namespace LC_FB_Hard
             prev = null;
             curr = start;
             next = start.next;
-            while (next != end) {
+            while (next != end) { // we need to reverse element up until end, not including end.
                 if (currTail == null) currTail = curr;
                 next = curr.next;
                 curr.next = prev;

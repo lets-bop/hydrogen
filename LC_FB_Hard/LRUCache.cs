@@ -93,7 +93,7 @@ namespace LC_FB_Hard
                 {
                     // remove from tail
                     tail.Prev.Next = tail.Next;
-                    tail = tail.Prev;                    
+                    tail = tail.Prev;
                 }
             }
 
@@ -108,7 +108,7 @@ namespace LC_FB_Hard
                 newNode.Next = head;
                 head.Prev = newNode;
                 head = newNode;
-            }            
+            }
 
             cache.Add(key, newNode);
         }

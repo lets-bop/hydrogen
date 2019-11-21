@@ -1,18 +1,17 @@
 /*
-Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
-
+Remove the minimum number of invalid parentheses in order to make the input string valid. 
+Return all possible results.
 Note: The input string may contain letters other than the parentheses ( and ).
 
 Example 1:
-
 Input: "()())()"
 Output: ["()()()", "(())()"]
-Example 2:
 
+Example 2:
 Input: "(a)())()"
 Output: ["(a)()()", "(a())()"]
-Example 3:
 
+Example 3:
 Input: ")("
 Output: [""]
 
@@ -29,7 +28,7 @@ namespace LC_FB_Hard
         int maxLengthSoFar = -1;
 
         public IList<string> Remove(string input) {
-            // DFS based approach. 
+            // BFS based approach. 
             // Beginning with the string given to us, if the string is not valid,
             // we drop a parenthesis at each index of the string and add it to a queue.
             // For a string of length n, we generate n - 1 strings.
@@ -43,6 +42,7 @@ namespace LC_FB_Hard
 
             while (q.Count > 0){
                 string s = q.Dequeue();
+                if (s.Length < maxLengthSoFar) continue;
                 
                 if (this.IsValidParantheses(s)){
                     maxLengthSoFar = s.Length;
@@ -50,11 +50,13 @@ namespace LC_FB_Hard
                     continue;
                 }
 
-                for (int i = 0; i < s.Length; i++){
-                    if (s.Length < maxLengthSoFar) break;
-                    if (s[i] == '(' || s[i] == ')'){
+                // Parenthesis is not valid here.
+                for (int i = 0; i < s.Length; i++) {
+                    if (s[i] == '(' || s[i] == ')') {
+                        // drop char at i which is a parenthesis
                         string stringWithoutParenthesis = s.Substring(0, i) + s.Substring(i + 1);
-                        if (!visisted.Contains(stringWithoutParenthesis)){
+                        if (stringWithoutParenthesis.Length < maxLengthSoFar) continue;
+                        if (!visisted.Contains(stringWithoutParenthesis)) {
                             visisted.Add(stringWithoutParenthesis);
                             q.Enqueue(stringWithoutParenthesis);
                         }
@@ -62,7 +64,7 @@ namespace LC_FB_Hard
                 }
             }
 
-            return result;            
+            return result;
         }   
 
         private bool IsValidParantheses(string s)
@@ -78,5 +80,5 @@ namespace LC_FB_Hard
 
             return cnt == 0 ? true : false;
         }
-    }    
+    }
 }

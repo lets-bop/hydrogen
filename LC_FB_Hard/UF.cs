@@ -25,12 +25,12 @@ namespace LC_FB_Hard
             }
         }
 
-        public int Root(int i) {
-            while (id[i] != i) {
-                id[i] = id[id[i]]; // path compression. make every node point to its grandparent, thereby halving the path length
-                i = id[i];
+        public int Root(int p) {
+            while (id[p] != p) {
+                id[p] = id[id[p]]; // path compression. make every node point to its grandparent, thereby halving the path length
+                p = id[p];
             }
-            return i;
+            return p;
         }
 
         public bool Connected(int p, int q) {

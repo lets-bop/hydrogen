@@ -24,13 +24,13 @@ namespace LC_FB_Hard
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
             // TestAlienDictionary(); //14
-            TestLongestValidParenthesis(); //15
+            // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
             // TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
-            // TestSlidingWindowMax(); //21
+            TestSlidingWindowMax(); //21
             // TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
             // TestRecoverBST(); //24
@@ -67,6 +67,7 @@ namespace LC_FB_Hard
             // TestReverseNodesInKGroup(); // 56
             // TestKClosestBstValues(); // 57
             // TestBuyAndSellStock(); // 58
+            // TestExpressionAddOperators(); // 59
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -855,6 +856,7 @@ namespace LC_FB_Hard
         {
             ShortestSubArraySumAtleastK shortest= new ShortestSubArraySumAtleastK();
             Console.WriteLine("Expected: 3. Actual: " + shortest.ShortestSubarray(new int[] {-28,81,-20,28,-29}, 89));
+            Console.WriteLine("Expected: 1. Actual: " + shortest.ShortestSubarray(new int[] {0,-2,-5,-1}, -5));
         }
 
         public static void TestLongestDuplicateString()
@@ -1369,6 +1371,16 @@ namespace LC_FB_Hard
 
             BuyAndSellStocks buy = new BuyAndSellStocks();
             buy.CalculateMaxProfit(prices);
+        }
+
+        public static void TestExpressionAddOperators()
+        {
+            ExpressionAddOperators exp = new ExpressionAddOperators();
+            Console.WriteLine("Expected: [0+0,0-0,0*0]. Actual: " + GetListOfStringsAsString(exp.AddOperators("00", 0)));
+            Console.WriteLine("Expected: [1+2+3, 1*2*3]. Actual: " + GetListOfStringsAsString(exp.AddOperators("123", 6)));
+            Console.WriteLine("Expected: [2+3+2, 2+3*2]. Actual: " + GetListOfStringsAsString(exp.AddOperators("232", 8)));
+            Console.WriteLine("Expected: [1*0*5, 10-5]. Actual: " + GetListOfStringsAsString(exp.AddOperators("105", 5)));
+            Console.WriteLine("Expected: []. Actual: " + GetListOfStringsAsString(exp.AddOperators("3456237490", 9191)));
         }
     }
 }

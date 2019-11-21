@@ -6,6 +6,10 @@ namespace LC_FB_Hard
     /*
         Return the length of the shortest, non-empty, contiguous subarray of A with sum at least K.
         If there is no non-empty subarray with sum at least K, return -1.
+        Note: 
+            1 <= A.length <= 50000
+            -10 ^ 5 <= A[i] <= 10 ^ 5
+            1 <= K <= 10 ^ 9 (K is positive)
 
         Example 1:
         Input: A = [1], K = 1
@@ -40,6 +44,7 @@ namespace LC_FB_Hard
                 
                 while (d.Count > 0 && prefixSum[i] - prefixSum[d[0]] >=  K) {
                     res = Math.Min(res, i - d[0]);
+                    if (res == 1) break;
                     d.RemoveAt(0);
                 }
 

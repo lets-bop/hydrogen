@@ -6,7 +6,8 @@ namespace LC_FB_Hard
     class MergeKSortedArrays
     {
         // This problem can be solved by using a heap. 
-        // The time complexity is O(nlog(k)), where n is the total number of elements and k is the number of arrays.
+        // The time complexity is O(nlog(k)), 
+        //where n is the total number of elements and k is the number of arrays.
         public int[] Merge(int[][] arrays) {
             if (arrays == null || arrays.Length == 0) return new int[] {};
 

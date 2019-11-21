@@ -84,9 +84,11 @@ namespace LC_FB_Hard
             {
                 for (int col = 1; col < pattern.Length + 1; col++)
                 {
-                    if (row > 0 && (pattern[col - 1] == str[row - 1] || pattern[col - 1] == '.'))
+                    char pChar = pattern[col - 1];
+                    char sChar = row > 0 ? str[row - 1] : ' ';
+                    if (row > 0 && (pChar == sChar || pChar == '.'))
                         dp[row, col] = dp[row - 1, col - 1];
-                    else if (pattern[col - 1] == '*')
+                    else if (pChar == '*')
                     {
                         if (row == 0) dp[row, col] = dp[row, col - 2];
                         else

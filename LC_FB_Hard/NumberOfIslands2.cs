@@ -64,10 +64,10 @@ namespace LC_FB_Hard
                 landIds.Add(id);
 
                 for(int k = 0; k < 4; k++) {
-                    int r =  dr[k] + row;
-                    int c =  dc[k] + col;
-                    int neighbor_id = r * n + c;
-                    if (r >= 0 && c >=0 && r < m && c < n && landIds.Contains(neighbor_id)) {
+                    int nr =  dr[k] + row;
+                    int nc =  dc[k] + col;
+                    int neighbor_id = nr * n + nc;
+                    if (nr >= 0 && nc >=0 && nr < m && nc < n && landIds.Contains(neighbor_id)) {
                         if (uf.Root(id) != uf.Root(neighbor_id)) {
                             count--;
                             uf.Union(id, neighbor_id);

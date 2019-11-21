@@ -1,23 +1,16 @@
 /*
 There are two sorted arrays nums1 and nums2 of size m and n respectively.
-
 Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
-
 You may assume nums1 and nums2 cannot be both empty.
 
- 
-
 Example 1:
-
 nums1 = [1, 3]
 nums2 = [2]
-
 The median is 2.0
-Example 2:
 
+Example 2:
 nums1 = [1, 2]
 nums2 = [3, 4]
-
 The median is (2 + 3)/2 = 2.5
 
 */
@@ -26,26 +19,6 @@ using System.Collections.Generic;
 
 namespace LC_FB_Hard
 {
-    /*
-        There are two sorted arrays nums1 and nums2 of size m and n respectively.
-
-        Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
-
-        You may assume nums1 and nums2 cannot be both empty.
-
-        Example 1:
-
-        nums1 = [1, 3]
-        nums2 = [2]
-
-        The median is 2.0
-        Example 2:
-
-        nums1 = [1, 2]
-        nums2 = [3, 4]
-
-        The median is (2 + 3)/2 = 2.5
-    */
     public class MedianOfTwoSortedArrays
     {
         public double Find(int[] nums1, int[] nums2) {
@@ -58,6 +31,7 @@ namespace LC_FB_Hard
         }
 
         //k is the index starting from 0
+        // Recursive procedure
         private int getKth(int[] nums1, int start1, int end1, int[] nums2, int start2, int end2, int k) {
             if(end1 < start1) return nums2[start2 + k];
             if(end2 < start2) return nums1[start1 + k];
@@ -72,14 +46,14 @@ namespace LC_FB_Hard
             m1 += start1;
             m2 += start2;
         
-            if(nums1[m1]<nums2[m2]){
-                    k = k-(m1-start1+1); // subtract the size of elements between m1 and start1 from k
+            if(nums1[m1]<nums2[m2]) {
+                    k = k - (m1 - start1 + 1); // subtract the size of elements between m1 and start1 from k
                     end2 = m2;
-                    start1 = m1+1;
+                    start1 = m1 + 1;
             } else {
-                    k = k-(m2-start2+1); // subtract the size of elements between m2 and start2 from k
+                    k = k - (m2 - start2 + 1); // subtract the size of elements between m2 and start2 from k
                     end1 = m1;
-                    start2 = m2+1;
+                    start2 = m2 + 1;
             }
         
             return getKth(nums1, start1, end1, nums2, start2, end2, k);
