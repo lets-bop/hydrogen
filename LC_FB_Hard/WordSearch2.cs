@@ -1,7 +1,9 @@
 /*
 Given a 2D board and a list of words from the dictionary, find all words in the board.
 
-Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+Each word must be constructed from letters of sequentially adjacent cell, 
+where "adjacent" cells are those horizontally or vertically neighboring. 
+The same letter cell may not be used more than once in a word.
 
 Example:
 
@@ -42,12 +44,11 @@ namespace LC_FB_Hard
             HashSet<string> wordsFound = new HashSet<string>();
             foreach (string word in words) trie.AddWord(word);
 
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < cols; c++)
-                {
-                    if (trie.Root.Children[board[r][c]] != null)
-                        this.DoDFS(r, c, trie.Root.Children[board[r][c]], wordsFound, board[r][c].ToString());
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    char currentChar = board[r][c];
+                    if (trie.Root.Children[currentChar - 'a'] != null)
+                        this.DoDFS(r, c, trie.Root.Children[currentChar - 'a'], wordsFound, currentChar.ToString());
                 }
             }
 
@@ -71,8 +72,8 @@ namespace LC_FB_Hard
                 int nc = c + dc[k]; //neighboring col
                 if (nr < 0 || nc < 0 || nr >= rows || nc >= cols || board[nr][nc] == '#') continue;
                 char neighborChar = board[nr][nc];
-                if (node.Children[neighborChar] == null) continue;
-                this.DoDFS(nr, nc, node.Children[board[nr][nc]], wordsFound, wordSoFar + neighborChar);
+                if (node.Children[neighborChar - 'a'] == null) continue;
+                this.DoDFS(nr, nc, node.Children[neighborChar - 'a'], wordsFound, wordSoFar + neighborChar);
             }
 
             board[r][c] = currentChar;
@@ -84,27 +85,23 @@ namespace LC_FB_Hard
 
             internal class TrieNode
             {
-                internal TrieNode[] Children = new TrieNode[128];
+                internal TrieNode[] Children = new TrieNode[26];
                 internal bool IsTerminal = false;
             }
 
             public void AddWord(string s)
             {
-                this.AddWord(s, this.Root, 0);
-            }
+                // this.AddWord(s, this.Root, 0);
+                if (s == null || s.Length == 0) return;
 
-            private void AddWord(string s, TrieNode root, int index)
-            {
-                if (s == null || index > s.Length) return;
-                if (index == s.Length){ 
-                    root.IsTerminal = true;
-                    return;
+                TrieNode node = this.Root;
+                int idx = 0;
+                for (int i = 0; i < s.Length; i++) {
+                    idx = s[i] - 'a';
+                    if (node.Children[idx] == null) node.Children[idx] = new TrieNode();
+                    node = node.Children[idx];
+                    if (i == s.Length - 1) node.IsTerminal = true;
                 }
-
-                char currentChar = s[index];
-                int ascii = currentChar;
-                if (root.Children[ascii] == null) root.Children[ascii] = new TrieNode();
-                this.AddWord(s, root.Children[ascii], index + 1);
             }
         }
     }

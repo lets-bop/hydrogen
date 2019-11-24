@@ -42,33 +42,31 @@ namespace LC_FB_Hard
                 // 2       4       5       7       10      14
                 // 6       7       9       11      12      14      15      17      16      18      19      21      24
                 // 11      13      14      16      17      19      21      22      20      23      25      26      28      29      31                                                
-                List<HashSet<int>> subSetSum = new List<HashSet<int>>();
+                List<HashSet<int>> subsetSum = new List<HashSet<int>>();
 
                 // Prepoulate first row
                 HashSet<int> set = new HashSet<int>();
                 set.Add(0);
-                subSetSum.Add(set);
+                subsetSum.Add(set);
 
                 // The smaller of the 2 subsets will have at most n/2 elements.
                 // Hence we will only find the subset with at most n/2 elements (instead of n).
                 for(int i = 0; i < A.Length; i++){
                     for (int j = Math.Min(i+1, A.Length / 2); j > 0; j--){
-                        if (j >= subSetSum.Count) subSetSum.Add(new HashSet<int>());
-                        foreach (int element in subSetSum[j - 1]){
-                            if (subSetSum[j] == null) subSetSum[j] = new HashSet<int>();
-                            subSetSum[j].Add(element + A[i]);
+                        if (j >= subsetSum.Count) subsetSum.Add(new HashSet<int>());
+                        foreach (int element in subsetSum[j - 1]){
+                            if (subsetSum[j] == null) subsetSum[j] = new HashSet<int>();
+                            subsetSum[j].Add(element + A[i]);
                         }
                     }
                 }
 
-                for(int i = 1; i < subSetSum.Count; i++){
-                    if ((sum * i) % A.Length == 0 && subSetSum[i].Contains((sum * i) / A.Length)) return true;
-                    // foreach (int e in subSetSum[i]) Console.Write(e + "\t");
-                    // Console.WriteLine();
+                for(int i = 1; i < subsetSum.Count; i++){
+                    if ((sum * i) % A.Length == 0 && subsetSum[i].Contains((sum * i) / A.Length)) return true;
                 }
             }
             
-            return false;            
+            return false;
         }
 
         private bool Prune(int[] a, int sum)
@@ -78,6 +76,6 @@ namespace LC_FB_Hard
             }
 
             return false;
-        }        
+        }
     }
 }

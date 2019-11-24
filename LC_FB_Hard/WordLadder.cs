@@ -79,21 +79,17 @@ namespace LC_FB_Hard
             int prevDepth = 0;
             HashSet<string> wordsToRemoveFromWordList = new HashSet<string>();
 
-            while(queue.Count > 0)
-            {
+            while(queue.Count > 0) {
                 Node node = queue.Dequeue();
-                if (node.Depth != prevDepth)
-                {
+                if (node.Depth != prevDepth) {
                     prevDepth = node.Depth;
                     foreach (string s in wordsToRemoveFromWordList) wordList.Remove(s);
                     wordsToRemoveFromWordList.Clear();
                 }
 
                 string word = node.Word;
-                if (word == endWord)
-                {
-                    if (node.Depth <= this.minDepthSoFar)
-                    {
+                if (word == endWord) {
+                    if (node.Depth <= this.minDepthSoFar) {
                         finalList.Add(node.Ladder);
                         this.minDepthSoFar = node.Depth;
                     }
@@ -101,17 +97,16 @@ namespace LC_FB_Hard
                     continue;
                 }
 
-                char[] wordArray = word.ToCharArray();
-                for (int i = 0; i < wordArray.Length; i++)
-                {
-                    char currentChar = wordArray[i];
+                if (node.Depth == this.minDepthSoFar) continue;
+                if (node.Depth > this.minDepthSoFar) break;
 
-                    for (char c = 'a'; c <= 'z'; c++)
-                    {
+                char[] wordArray = word.ToCharArray();
+                for (int i = 0; i < wordArray.Length; i++) {
+                    char currentChar = wordArray[i];
+                    for (char c = 'a'; c <= 'z'; c++) {
                         wordArray[i] = c;
                         string s = new string(wordArray);
-                        if (wordList.Contains(s))
-                        {
+                        if (wordList.Contains(s)) {
                             if (node.Depth > this.minDepthSoFar) continue;
                             wordsToRemoveFromWordList.Add(s);
                             Node newNode = new Node(s, node.Ladder, node.Depth + 1);

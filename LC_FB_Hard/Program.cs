@@ -27,10 +27,10 @@ namespace LC_FB_Hard
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
-            // TestWordSearch2(); //18
+            TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
-            TestSlidingWindowMax(); //21
+            // TestSlidingWindowMax(); //21
             // TestRemoveInvalidParentheses(); //22
             // TestTrappingRainWater(); //23
             // TestRecoverBST(); //24
@@ -345,15 +345,30 @@ namespace LC_FB_Hard
         private static void TestSubstringWithConcat()
         {
             SubstringWithConcat sub = new SubstringWithConcat();
-            sub.FindSubstring("foosbarfoo", new string[] {"bar", "foo", "foo"});
-            sub.FindSubstring("barfoofoo", new string[] {"bar", "foo", "foo"});
-            sub.FindSubstring("foofoobar", new string[] {"bar", "foo", "foo"});
-            sub.FindSubstring("barfoothefoobarman", new string[] {"foo", "bar"});
-            sub.FindSubstring("wordgoodstudentgoodword", new string[] {"word", "student"});
-            sub.FindSubstring("barfoofoobarthefoobarman", new string[] {"bar","foo","the"});
-            sub.FindSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", new string[] {"fooo","barr","wing","ding","wing"});
-            sub.FindSubstring("ababaab", new string[] {"ab","ba","ba"});
-            sub.FindSubstring("aaaaaa", new string[] {"aa","aa"});  
+            IList<int> list;
+            list = sub.FindSubstring("foosbarfoo", new string[] {"bar", "foo", "foo"});
+            Console.WriteLine("Input word: foosbarfoo. Words: [bar, foo, foo]. Expected: []. Actual: {0}", GetListOfIntAsString(list));
+
+            list = sub.FindSubstring("barfoofoo", new string[] {"bar", "foo", "foo"});
+            Console.WriteLine("Input word: barfoofoo. Words: [bar, foo, foo]. Expected: [0]. Actual: {0}", GetListOfIntAsString(list));
+
+            list = sub.FindSubstring("foofoobar", new string[] {"bar", "foo", "foo"});
+            Console.WriteLine("Input word: foofoobar. Words: [bar, foo, foo]. Expected: [0]. Actual: {0}", GetListOfIntAsString(list));
+
+            list = sub.FindSubstring("barfoothefoobarman", new string[] {"foo", "bar"});
+            Console.WriteLine("Input word: barfoothefoobarman. Words: [foo, bar]. Expected: [0,9]. Actual: {0}", GetListOfIntAsString(list));
+
+            list = sub.FindSubstring("wordgoodstudentgoodword", new string[] {"word", "student"});
+            Console.WriteLine("Input word: wordgoodstudentgoodword. Words: word, student. Expected: []. Actual: {0}", GetListOfIntAsString(list));
+
+            list = sub.FindSubstring("barfoofoobarthefoobarman", new string[] {"bar","foo","the"});
+            Console.WriteLine("Input word: barfoofoobarthefoobarman. Words: bar, foo, the. Expected: [6,9,12]. Actual: {0}", GetListOfIntAsString(list));
+
+            list = sub.FindSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", new string[] {"fooo","barr","wing","ding","wing"});
+
+            list = sub.FindSubstring("ababaab", new string[] {"ab","ba","ba"});
+
+            list = sub.FindSubstring("aaaaaa", new string[] {"aa","aa"});  
         }
 
         private static void TestAlienDictionary()
@@ -725,24 +740,49 @@ namespace LC_FB_Hard
 
         public static void TestSurroundedRegion()
         {
-            char[,] matrix = new char[,] {{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
+            Console.WriteLine("Expected: [[X,X,X,X],[X,X,X,X],[X,X,X,X],[X,O,X,X]]");
+            char[][] matrix1 = new char[][] {
+                new char [] {'X','X','X','X'},
+                new char [] {'X','O','O','X'},
+                new char []{'X','X','O','X'},
+                new char [] {'X','O','X','X'}};
             SurroundedRegion sr = new SurroundedRegion();
-            sr.Solve(matrix);
-            for(int i = 0; i < matrix.GetLength(0); i++){
-                for (int j = 0; j < matrix.GetLength(1); j++){
-                    Console.Write(matrix[i,j]);
+            sr.Solve(matrix1);
+            for(int i = 0; i < matrix1.Length; i++){
+                for (int j = 0; j < matrix1[0].Length; j++){
+                    Console.Write(matrix1[i][j]);
                 }
                 Console.WriteLine();
             }
 
-            matrix = new char[,] {{'O','X','O'},{'X','O','X'},{'O','X','O'}};
-            sr.Solve(matrix);
-            for(int i = 0; i < matrix.GetLength(0); i++){
-                for (int j = 0; j < matrix.GetLength(1); j++){
-                    Console.Write(matrix[i,j]);
+            Console.WriteLine("Expected: [[O,X,O],[X,X,X],[O,X,O]]");
+            matrix1 = new char[][] {
+                new char [] {'O','X','O'},
+                new char [] {'X','O','X'},
+                new char [] {'O','X','O'}};
+            sr.Solve(matrix1);
+            for(int i = 0; i < matrix1.Length; i++){
+                for (int j = 0; j < matrix1[0].Length; j++){
+                    Console.Write(matrix1[i][j]);
                 }
                 Console.WriteLine();
-            }            
+            }
+
+            Console.WriteLine("Expected: [[O,O,O,O,X,X],[O,O,O,O,O,O],[O,X,O,X,O,O],[O,X,O,O,X,O],[O,X,O,X,O,O],[O,X,O,O,O,O]]");
+            matrix1 = new char[][] {
+                new char [] {'O','O','O','O','X','X'},
+                new char [] {'O','O','O','O','O','O'},
+                new char [] {'O','X','O','X','O','O'},
+                new char [] {'O','X','O','O','X','O'},
+                new char [] {'O','X','O','X','O','O'},
+                new char [] {'O','X','O','O','O','O'}};
+            sr.Solve(matrix1);
+            for(int i = 0; i < matrix1.Length; i++){
+                for (int j = 0; j < matrix1[0].Length; j++){
+                    Console.Write(matrix1[i][j]);
+                }
+                Console.WriteLine();
+            }
 
             // matrix = new char[,] {{'O','X','X','O','X'},{'X','O','O','X','O'},{'X','O','X','O','X'},{'O','X','O','O','O'},{'X','X','O','X','O'}};
             // sr.Solve(matrix);
@@ -780,24 +820,54 @@ namespace LC_FB_Hard
             //     Console.WriteLine();
             // }
 
-            matrix = new char[,] {{'X','O','X','O','X','O','O','O','X','O'},{'X','O','O','X','X','X','O','O','O','X'},{'O','O','O','O','O','O','O','O','X','X'},{'O','O','O','O','O','O','X','O','O','X'},{'O','O','X','X','O','X','X','O','O','O'},{'X','O','O','X','X','X','O','X','X','O'},{'X','O','X','O','O','X','X','O','X','O'},{'X','X','O','X','X','O','X','O','O','X'},{'O','O','O','O','X','O','X','O','X','O'},{'X','X','O','X','X','X','X','O','O','O'}};
-            sr.Solve(matrix);
-            for(int i = 0; i < matrix.GetLength(0); i++){
-                for (int j = 0; j < matrix.GetLength(1); j++){
-                    Console.Write(matrix[i,j]);
+            matrix1 = new char[][] {
+                new char [] {'X','O','X','O','X','O','O','O','X','O'},
+                new char [] {'X','O','O','X','X','X','O','O','O','X'},
+                new char [] {'O','O','O','O','O','O','O','O','X','X'},
+                new char [] {'O','O','O','O','O','O','X','O','O','X'},
+                new char [] {'O','O','X','X','O','X','X','O','O','O'},
+                new char [] {'X','O','O','X','X','X','O','X','X','O'},
+                new char [] {'X','O','X','O','O','X','X','O','X','O'},
+                new char [] {'X','X','O','X','X','O','X','O','O','X'},
+                new char [] {'O','O','O','O','X','O','X','O','X','O'},
+                new char [] {'X','X','O','X','X','X','X','O','O','O'}};
+            sr.Solve(matrix1);
+            for(int i = 0; i < matrix1.Length; i++){
+                for (int j = 0; j < matrix1[0].Length; j++){
+                    Console.Write(matrix1[i][j]);
                 }
                 Console.WriteLine();
             }
 
-            // matrix = new char[,] {{'X','X','X','X','O','O','X','X','O'},{'O','O','O','O','X','X','O','O','X'},{'X','O','X','O','O','X','X','O','X'},{'O','O','X','X','X','O','O','O','O'},{'X','O','O','X','X','X','X','X','O'},{'O','O','X','O','X','O','X','O','X'},{'O','O','O','X','X','O','X','O','X'},{'O','O','O','X','O','O','O','X','O'},{'O','X','O','O','O','X','O','X','O'}};
-            // sr.Solve(matrix);
-            // for(int i = 0; i < matrix.GetLength(0); i++){
-            //     for (int j = 0; j < matrix.GetLength(1); j++){
-            //         Console.Write(matrix[i,j]);
-            //     }
-            //     Console.WriteLine();
-            // }
+            Console.WriteLine("Expected: [[X,O,X,O,X,O],[O,X,X,X,X,X],[X,X,X,X,X,O],[O,X,O,X,O,X]]");
+            matrix1 = new char[][] {
+                new char [] {'X','O','X','O','X','O'},
+                new char [] {'O','X','O','X','O','X'},
+                new char [] {'X','O','X','O','X','O'},
+                new char [] {'O','X','O','X','O','X'}};
+            sr.Solve(matrix1);
+            for(int i = 0; i < matrix1.Length; i++){
+                for (int j = 0; j < matrix1[0].Length; j++){
+                    Console.Write(matrix1[i][j]);
+                }
+                Console.WriteLine();
+            }
 
+            Console.WriteLine("Expected: [[X,O,X,X],[O,X,X,X],[X,X,X,O],[O,X,X,X],[X,X,X,O],[O,X,O,X]]");
+            matrix1 = new char[][] {
+                new char [] {'X','O','X','X'},
+                new char [] {'O','X','O','X'},
+                new char [] {'X','O','X','O'},
+                new char [] {'O','X','O','X'},
+                new char [] {'X','O','X','O'},
+                new char [] {'O','X','O','X'}};
+            sr.Solve(matrix1);
+            for(int i = 0; i < matrix1.Length; i++){
+                for (int j = 0; j < matrix1[0].Length; j++){
+                    Console.Write(matrix1[i][j]);
+                }
+                Console.WriteLine();
+            }
         }
 
         public static void TestInterleavingString()

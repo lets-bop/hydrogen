@@ -1,4 +1,24 @@
 /*
+You are given a string, s, and a list of words, words, that are all of the same length. 
+Find all starting indices of substring(s) in s that is a concatenation of each word 
+in words exactly once and without any intervening characters.
+
+ 
+
+Example 1:
+Input:
+  s = "barfoothefoobarman",
+  words = ["foo","bar"]
+Output: [0,9]
+Explanation: Substrings starting at index 0 and 9 are "barfoo" and "foobar" respectively.
+The output order does not matter, returning [9,0] is fine too.
+
+Example 2:
+Input:
+  s = "wordgoodgoodgoodbestword",
+  words = ["word","good","best","word"]
+Output: []
+
 foo bar foo
 
 foofoobar
@@ -18,71 +38,30 @@ namespace LC_FB_Hard
         public IList<int> FindSubstring(string s, string[] words)
         {
             IList<int> result = new List<int>();
-            if (s == null || s.Length == 0 || words == null || words.Length == 0) return result;            
+            if (s == null || s.Length == 0 || words == null || words.Length == 0) return result;
 
+            // create a dictionary words and its count from the list of words given.
+            // Its given that words are all of the same length. This eases the substring finding part.
+            // We keep running track of the words seen so far.
             Dictionary<string, int> dic = new Dictionary<string, int>();
-            foreach(string word in words)
-            {
-                if (dic.ContainsKey(word)) dic[word]++;
-                else dic[word] = 1;
-            }
+            foreach(string word in words) dic[word] = dic.GetValueOrDefault(word, 0) + 1;
 
-            Dictionary<string, int> windowCount = new Dictionary<string, int>();
-            int wordCount = 0;
-            int windowStart = 0;
-            int windowIter = 0;
             int wordLength = words[0].Length;
-            for (  ; windowIter <= s.Length - wordLength ; )
-            {
-                string sub = s.Substring(windowIter, wordLength);
-                if (dic.ContainsKey(sub))
-                {
-                    if (windowCount.ContainsKey(sub)) windowCount[sub]++;
-                    else windowCount[sub] = 1;
-
-                    wordCount++;
-
-                    if (windowCount[sub] <= dic[sub])
-                    {
-                        if (wordCount == words.Length)
-                        {
-                            result.Add(windowStart);
-                            windowStart += 1;
-                            windowIter = windowStart;
-                            windowCount.Clear();
-                            wordCount = 0;
-                            continue;                        
-                        } 
-                    }
-                    else 
-                    {
-                        windowCount.Clear();
-                        wordCount = 0;
-                        windowStart += 1;
-                        windowIter = windowStart;
-                        continue;                      
-                    }
-
-                    windowIter = windowIter + wordLength;
+            for (int i = 0; i < s.Length - (words.Length * wordLength) + 1; i++) {
+                Dictionary<string, int> seen = new Dictionary<string, int>();
+                int matchedWords = 0;
+                while (matchedWords < words.Length) {
+                    string sub = s.Substring(i + matchedWords * wordLength, wordLength);
+                    if (!dic.ContainsKey(sub)) break;
+                    if (seen.ContainsKey(sub) && seen[sub] >= dic[sub]) break;
+                    seen[sub] = seen.GetValueOrDefault(sub, 0) + 1;
+                    matchedWords++;
                 }
-                else
-                {
-                    // reset all counters
-                    windowCount.Clear();
-                    wordCount = 0;
-                    windowStart += 1;
-                    windowIter = windowStart;
-                }
-            }         
 
-            foreach (int r in result)
-            {
-                Console.Write(r + "\t");
+                if (matchedWords == words.Length) result.Add(i);
             }
-            Console.WriteLine();
 
             return result;
-
         }
     }
 }

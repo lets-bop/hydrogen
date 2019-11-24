@@ -26,62 +26,45 @@ namespace LC_FB_Hard
         Two cells are connected if they are adjacent cells connected horizontally or vertically.
     */
     public class SurroundedRegion
-    {    
-        HashSet<int> processed = new HashSet<int>();
-        public void Solve(char[,] board) {
-            processed.Clear();
-            int rows = board.GetLength(0);
-            int cols = board.GetLength(1);
+    {
+        // 1st iteration: From all the border cells that contains 'O', perform a DFS to merged the cells
+        // 2nd iteration: For all 'O' that weren't merged post iteration 1 are safe to marked 'X'
+        public void Solve(char[][] board) {
+            if (board == null || board.Length == 0) return;
 
-            // mark all the 'O' in the borders with '#' (processed) as they cannot be surrounded by 'X'
-            for (int i = 0; i < rows; i++){
-                for (int j = 0; j < cols; j++){
-                    if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1){
-                        if (board[i,j] == 'O') board[i,j] = '#';
+            int rows = board.Length, cols = board[0].Length;
+            HashSet<int> merged = new HashSet<int>();
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1) {
+                        if (board[r][c] == 'O') this.DFS(board, r, c, rows, cols, merged);
                     }
                 }
             }
 
-            // Any 0 connected to a 0 on the border cannot be surrounded either.
-            // So we merge all the 0 connected to a 0 on the border
-            for (int i = 0; i < rows; i++){
-                for (int j = 0; j < cols; j++){
-                    if (board[i,j] == '#'){
-                        this.Merge(board, rows, cols, i, j);
-                    }
-                }
-            }
-
-            // The remainder of all 0 can be marked as surrounded
-            for (int i = 0; i < rows; i++){
-                for (int j = 0; j < cols; j++){
-                    if (board[i,j] == 'O') board[i,j] = 'X';
-                }
-            }
-            
-            // Remark 0s on borders and connected 0's with 0
-            for (int i = 0; i < rows; i++){
-                for (int j = 0; j < cols; j++){
-                    if (board[i,j] == '#') board[i,j] = 'O';
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    if (board[r][c] == 'O' && !merged.Contains(r * cols + c)) board[r][c] = 'X';
                 }
             }
         }
-        
-        private void Merge(char[,] board, int rows, int cols, int row, int col){
-            if (row >= 0 && row < rows && col >= 0 && col < cols){
-                if (this.processed.Contains(row * cols + col)) 
-                    return;
 
-                this.processed.Add(row * cols + col);
-                if (board[row, col] == 'X') 
-                    return;
+        private void DFS(char[][] board, int r, int c, int rows, int cols, HashSet<int> merged) {
+            if (merged.Contains(r * cols + c)) return;
+            merged.Add(r * cols + c);
 
-                board[row, col] = '#';
-                this.Merge(board, rows, cols, row + 1, col);
-                this.Merge(board, rows, cols, row - 1, col);
-                this.Merge(board, rows, cols, row, col + 1);
-                this.Merge(board, rows, cols, row, col - 1);
+            int[] dr = new int[] {-1,1,0,0};
+            int[] dc = new int[] {0,0,-1,1};
+
+            for(int i = 0; i < 4; i++) {
+                int nr = dr[i] + r;
+                int nc = dc[i] + c;
+
+                if (nr < 0 || nr >= rows || nc < 0 || nc >= cols || board[nr][nc] != 'O') continue;
+                if (!merged.Contains(nr * cols + nc)) {
+                    this.DFS(board, nr, nc, rows, cols, merged);
+                }
             }
-        }        
+        }
     }
 }

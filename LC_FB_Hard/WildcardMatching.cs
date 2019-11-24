@@ -57,35 +57,26 @@ namespace LC_FB_Hard
         public static bool IsMatch(string s, string p)
         {
             if (s == null || p == null) return false;
-            if (s.Length == 0 && p.Length == 0) return true;
 
             int starIndex = -1;
             int sIndexAtStar = -1;
             int sIndex = 0, pIndex = 0;
 
-            while(sIndex < s.Length && pIndex <= p.Length)
-            {
-                if ((pIndex < p.Length) && (s[sIndex] == p[pIndex] || p[pIndex] == '?'))
-                {
+            while(sIndex < s.Length && pIndex <= p.Length) {
+                if ((pIndex < p.Length) && (s[sIndex] == p[pIndex] || p[pIndex] == '?')) {
                     sIndex++;
                     pIndex++;
-                }
-                else if (pIndex < p.Length && p[pIndex] == '*')
-                {
+                } else if (pIndex < p.Length && p[pIndex] == '*') {
+                    // continue matching other chars without considering the '*' in the pattern. 
+                    // So we will only increment the pattern index.
                     starIndex = pIndex;
                     sIndexAtStar = sIndex;
                     pIndex++;
-                }
-                else
-                {
-                    if (starIndex != -1)
-                    {
-                        pIndex = starIndex + 1;
-                        sIndex = sIndexAtStar + 1;
-                        sIndexAtStar++;
-                    }
-                    else return false;
-                }
+                } else if (starIndex != -1) {
+                    sIndexAtStar++;
+                    sIndex = sIndexAtStar;
+                    pIndex = starIndex + 1;
+                } else return false;
             }
 
             // To handle s = "" and p="*"

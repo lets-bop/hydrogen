@@ -62,6 +62,7 @@ namespace LC_FB_Hard
                 IList<IList<string>> finalList = new List<IList<string>>();
                 int depthToProcess = 0;
 
+                // level by level processing
                 while (queue.Count > 0 && finalList.Count == 0) {
                     finalList = this.Find(new HashSet<string>() {endWord}, set, queue, depthToProcess);
                     depthToProcess++;
@@ -82,7 +83,6 @@ namespace LC_FB_Hard
             while(queue.Count > 0 && queue.Peek().Item2 <= depthToProcess)
             {
                 var node = queue.Dequeue();
-
                 string word = node.Item1;
                 char[] wordArray = word.ToCharArray();
                 for (int i = 0; i < wordArray.Length; i++)
