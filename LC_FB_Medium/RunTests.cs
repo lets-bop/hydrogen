@@ -101,10 +101,11 @@ namespace LC_FB_Medium
             // TestBinaryTreePathSum2(); // 89
             // TestBstInorderSuccessor(); // 90
             // TestBstInorderSuccessor2(); // 91
-            TestScoreParentheses(); // 92
+            // TestScoreParentheses(); // 92
             // TestValidParenthesisString(); // 93
             // TestBinaryTreeDistributeCoins(); // 94
             // TestGroupAnagrams(); // 95
+            TestFindAllAnagramsInString(); // 96
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1281,6 +1282,14 @@ namespace LC_FB_Medium
             GroupAnagrams g = new GroupAnagrams();
             g.Group(new string[] {"eat", "tea", "tan", "ate", "nat", "bat"});
             g.Group(new string[] {"bat","iceman","are","ear","tab","cinema","era"});
+        }
+
+        public static void TestFindAllAnagramsInString()
+        {
+            FindAllAnagramsInString find = new FindAllAnagramsInString();
+            Console.WriteLine("Expected: [0,6]. Actual: {0}", GetListOfIntAsString(find.FindAnagrams("cbaebabacd", "abc")));
+            Console.WriteLine("Expected: [0,1,2,3]. Actual: {0}", GetListOfIntAsString(find.FindAnagrams("ccccc", "cc")));
+            Console.WriteLine("Expected: [0,1,2]. Actual: {0}", GetListOfIntAsString(find.FindAnagrams("abab", "ab")));
         }
     }
 }

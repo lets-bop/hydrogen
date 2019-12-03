@@ -13,7 +13,7 @@ namespace LC_FB_Medium
         Both the left and right subtrees must also be binary search trees.
     */
     class ValidateBST
-            {
+    {
         public class TreeNode {
             public int val;
             public TreeNode left;
@@ -22,9 +22,23 @@ namespace LC_FB_Medium
         }
 
     public bool IsValidBST(TreeNode root) {
-            BSTInfo info = this.Validate(root);
-            if (info == null) return true;
-            return info.valid;
+            return this.Validate1(root, long.MinValue, long.MaxValue);
+            // BSTInfo info = this.Validate1(root);
+            // if (info == null) return true;
+            // return info.valid;
+        }
+
+        private bool Validate1(TreeNode node, long min, long max) {
+            if (node == null) return true;
+            
+            if (node.val <= min || node.val >= max) return false;
+            
+            bool isValid = this.Validate1(node.left, min, node.val);
+            if (isValid) {
+                isValid = this.Validate1(node.right, node.val, max);
+            }
+            
+            return isValid;
         }
     
         class BSTInfo
@@ -38,7 +52,7 @@ namespace LC_FB_Medium
                 this.max = max;
                 this.valid = valid;
             }
-        }    
+        }
 
         private BSTInfo Validate(TreeNode node) {
             if (node == null) return null;

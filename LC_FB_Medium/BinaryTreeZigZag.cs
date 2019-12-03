@@ -28,7 +28,7 @@ namespace LC_FB_Medium
         Stack<TreeNode> rlStack = new Stack<TreeNode>();
         Stack<TreeNode> lrStack = new Stack<TreeNode>();
 
-        public IList<IList<int>> ZigzagLevelOrder(TreeNode root) {
+        public IList<IList<int>> ZigzagLevelOrder1(TreeNode root) {
             IList<IList<int>> result = new List<IList<int>>();
             if (root == null) return result;
             rlStack.Push(root);
@@ -37,6 +37,45 @@ namespace LC_FB_Medium
             while (rlStack.Count > 0 || lrStack.Count > 0) {
                 result.Add(this.ProcessLevel(level));
                 level++;
+            }
+
+            return result;
+        }
+
+        public IList<IList<int>> ZigzagLevelOrder(TreeNode root) {
+            IList<IList<int>> result = new List<IList<int>>();
+            if (root == null) return result;
+
+            int level = 0;
+            Stack<TreeNode> from = new Stack<TreeNode>();
+            Stack<TreeNode> to = new Stack<TreeNode>();
+            Stack<TreeNode> temp;
+            from.Push(root);
+
+            while (from.Count > 0) {
+                bool rightFirst = true;
+                if (level == 0 || level % 2 == 0) rightFirst = false;
+                IList<int> list = new List<int>();
+                level++;
+
+                while (from.Count > 0) {
+                    TreeNode node = from.Pop();
+                    list.Add(node.val);
+                    if (rightFirst) {
+                        if (node.right != null) to.Push(node.right);
+                        if (node.left != null) to.Push(node.left);
+                    } else {
+                        if (node.left != null) to.Push(node.left);
+                        if (node.right != null) to.Push(node.right);
+                    }
+                }
+
+                result.Add(list);
+
+                // swap from and to
+                temp = from;
+                from = to;
+                to = temp;
             }
 
             return result;

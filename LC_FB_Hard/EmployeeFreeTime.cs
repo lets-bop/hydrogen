@@ -51,21 +51,7 @@ namespace LC_FB_Hard
             all.Sort(CompareIntervals);
 
             // merge the intervals
-            List<Interval> merged = new List<Interval>();
-            Interval prev = null;
-            
-            foreach (Interval i in all) {
-                if (prev == null) prev = new Interval(i.start, i.end);
-                else {
-                    if (prev.end > i.start) prev.end = Math.Max(prev.end, i.end);
-                    else {
-                        merged.Add(prev);
-                        prev = new Interval(i.start, i.end);
-                    }
-                }
-            }
-
-            if (prev != null) merged.Add(prev);
+            List<Interval> merged = this.Merge(all);
 
             // lets find the free times
             for (int i = 0; i < merged.Count - 1; i++) {
@@ -78,6 +64,26 @@ namespace LC_FB_Hard
         public static int CompareIntervals(Interval i1, Interval i2) {
             if (i1.start != i2.start) return i1.start - i2.start;
             else return i1.end - i2.end;
+        }
+
+        private List<Interval> Merge(IList<Interval> intervals) {
+
+            List<Interval> merged = new List<Interval>();
+            Interval prev = null;
+            
+            foreach (Interval i in intervals) {
+                if (prev == null) prev = new Interval(i.start, i.end);
+                else {
+                    if (prev.end > i.start) prev.end = Math.Max(prev.end, i.end);
+                    else {
+                        merged.Add(prev);
+                        prev = new Interval(i.start, i.end);
+                    }
+                }
+            }
+
+            if (prev != null) merged.Add(prev);
+            return merged;
         }
     }
 }

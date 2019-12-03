@@ -36,11 +36,13 @@ namespace LC_FB_Medium
 
             this.Inorder(root.left);
 
+            if (this.firstSeen == null) {
+                this.firstSeen = root;
+            }
+            
             if (this.lastSeen != null) {
                 this.lastSeen.right = root;
                 root.left = this.lastSeen;
-            } else {
-                this.firstSeen = root;
             }
             
             this.lastSeen = root;

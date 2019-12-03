@@ -48,6 +48,6 @@ public class InsertInterval {
 
         newList.Add(prevInterval);
 
-        return newList;        
+        return newList;
     }
 }

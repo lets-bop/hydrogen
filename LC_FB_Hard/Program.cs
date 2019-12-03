@@ -11,7 +11,7 @@ namespace LC_FB_Hard
             DateTime startTime = DateTime.Now;
 
             // TestRegexMatching(); //1
-            // TestMinWindowSubstring(); //2
+            TestMinWindowSubstring(); //2
             // TestMaximalRectangle(); //3
             // TestLRUCache(); //4
             // TestBinarySearchWithTwist(); //5
@@ -27,7 +27,7 @@ namespace LC_FB_Hard
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
-            TestWordSearch2(); //18
+            // TestWordSearch2(); //18
             // TestInsertInterval(); //19
             // TestDeque(); //20
             // TestSlidingWindowMax(); //21
@@ -124,13 +124,13 @@ namespace LC_FB_Hard
 
         public static void TestMinWindowSubstring()
         {
-            Console.WriteLine("s = dddaaababaca, t = abc. Expected: bac. Actual: {0}", MinWindowSubstring.Execute("dddaaababaca", "abc"));
-            Console.WriteLine("s = dddaaababbcac, t = abc. Expected: bca. Actual: {0}", MinWindowSubstring.Execute("dddaaababbcac", "abc"));
-            Console.WriteLine("s = dddaaababbcac, t = aabc. Expected: abbca. Actual: {0}", MinWindowSubstring.Execute("dddaaababbcac", "aabc"));
-            Console.WriteLine("s = dddaaababbcac, t = aaabc. Expected: aababbc. Actual: {0}", MinWindowSubstring.Execute("dddaaababbcac", "aaabc"));
-            Console.WriteLine("s = dddaaababbcac, t = aaaa. Expected: aaaba. Actual: {0}", MinWindowSubstring.Execute("dddaaababbcac", "aaaa"));
-            Console.WriteLine("s = ADOBECODEBANC, t = ABC. Expected: BANC. Actual: {0}", MinWindowSubstring.Execute("ADOBECODEBANC", "ABC"));
-            Console.WriteLine("s = a, t = b. Expected: ''. Actual: {0}", MinWindowSubstring.Execute("a", "b"));
+            Console.WriteLine("s = dddaaababaca, t = abc. Expected: bac. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("dddaaababaca", "abc"));
+            Console.WriteLine("s = dddaaababbcac, t = abc. Expected: bca. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("dddaaababbcac", "abc"));
+            Console.WriteLine("s = dddaaababbcac, t = aabc. Expected: abbca. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("dddaaababbcac", "aabc"));
+            Console.WriteLine("s = dddaaababbcac, t = aaabc. Expected: aababbc. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("dddaaababbcac", "aaabc"));
+            Console.WriteLine("s = dddaaababbcac, t = aaaa. Expected: aaaba. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("dddaaababbcac", "aaaa"));
+            Console.WriteLine("s = ADOBECODEBANC, t = ABC. Expected: BANC. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("ADOBECODEBANC", "ABC"));
+            Console.WriteLine("s = a, t = b. Expected: ''. Actual: {0}", MinWindowSubstring.ExecuteSlidingWindow("a", "b"));
         }
 
         public static void TestMaximalRectangle()
