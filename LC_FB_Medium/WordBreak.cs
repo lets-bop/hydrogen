@@ -32,6 +32,30 @@ namespace LC_FB_Medium
 {
     public class WordBreak
     {
+        // O(n^2) time and O(n) space
+        public bool CanBreak(String s, List<String> wordDict) {
+            HashSet<string> wordDictSet = new HashSet<string>(wordDict);
+            Queue<int> queue = new Queue<int>();
+            HashSet<int> visited = new HashSet<int>();
+            queue.Enqueue(0);
+
+            while (queue.Count > 0) {
+                int start = queue.Dequeue();
+                if (!visited.Contains(start)) {
+                    visited.Add(start);
+                    for (int end = start + 1; end <= s.Length; end++) {
+                        if (wordDictSet.Contains(s.Substring(start, end))) {
+                            queue.Enqueue(end);
+                            if (end == s.Length) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         public class MatchedWord
         {
             public string word; // the matching word

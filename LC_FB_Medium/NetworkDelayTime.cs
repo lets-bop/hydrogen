@@ -90,7 +90,8 @@ namespace LC_FB_Medium
                 }
             }
 
-            if (visited.Count < N) return -1;
+            if (visited.Count < N) return -1; // signal has not reached all ndoes.
+            // find the max delay to any node
             int delay = 0;
             foreach (int d in minDelayToNode) delay = Math.Max(delay, d);
             return delay;

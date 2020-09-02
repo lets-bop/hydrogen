@@ -31,7 +31,8 @@ namespace LC_FB_Medium
             /*
             For example, if we have string '(***)', then as we parse each symbol, 
             the set of possible values for the balance is [1] for '('; 
-            [0, 1, 2] for '(*'; [0, 1, 2, 3] for '(**'; [0, 1, 2, 3, 4] for '(***', 
+            [0, 1, 2] for '(*'; i.e. 0 open left braces if * were ), 1 left brace if * were empty and 2 left braces if * were (
+            Similarly, [0, 1, 2, 3] for '(**'; [0, 1, 2, 3, 4] for '(***', 
             and [0, 1, 2, 3] for '(***)'.
 
             Let lo, hi respectively be the smallest and largest possible number of open 

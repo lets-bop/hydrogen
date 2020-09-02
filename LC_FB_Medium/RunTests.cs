@@ -23,7 +23,7 @@ namespace LC_FB_Medium
             // LetterComboOfPhoneTest(); // 11
             // ReorganizeStringTest(); // 12
             // PartitionToKEqualSumSubsetsTest(); // 13
-            // DailyTemperaturesTest(); // 14
+            DailyTemperaturesTest(); // 14
             // QueueReconstructionTest(); // 15
             // WordBreakTest(); // 16
             // SpiralOrderTest(); // 17
@@ -105,7 +105,7 @@ namespace LC_FB_Medium
             // TestValidParenthesisString(); // 93
             // TestBinaryTreeDistributeCoins(); // 94
             // TestGroupAnagrams(); // 95
-            TestFindAllAnagramsInString(); // 96
+            // TestFindAllAnagramsInString(); // 96
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -359,9 +359,8 @@ namespace LC_FB_Medium
         public static void DailyTemperaturesTest()
         {
             DailyTemperatures dt = new DailyTemperatures();
-            int[] result = dt.CalculateDailyTemperatures(new int[] { 74, 69, 70, 70, 75});
-            foreach (int i in result) Console.Write(i + "\t");
-            Console.WriteLine();
+            Console.WriteLine("Expected: [4,3,2,1,0]. Actual: {0}", GetListOfIntAsString(dt.CalculateDailyTemperatures(new int[] { 74, 69, 70, 70, 75})));
+            Console.WriteLine("Expected: [8,1,5,4,3,2,1,1,0,0]. Actual: {0}", GetListOfIntAsString(dt.CalculateDailyTemperatures(new int[] {89,62,70,58,47,47,46,76,100,70})));
         }
 
         public static void QueueReconstructionTest()

@@ -25,15 +25,11 @@ namespace LC_FB_Medium
 
             for (int i = T.Length - 1; i >= 0; i--)
             {
-                while(stack.Count > 0)
-                {
-                    if (T[i] < T[stack.Peek()])
-                    {
+                while(stack.Count > 0) {
+                    if (T[i] < T[stack.Peek()]) {
                         result[i] = stack.Peek() - i;
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         // We've found a smaller index which has a warmer temperature that current index.
                         // Pop out all the smaller values as they are not needed anymore.
                         stack.Pop();
@@ -43,7 +39,7 @@ namespace LC_FB_Medium
                 stack.Push(i);
             }
 
-            return result;
+            return result; 
         }
     }
 }

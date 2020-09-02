@@ -53,6 +53,21 @@ namespace LC_FB_Hard
 {
     public class RegexMatching
     {
+
+        // space and time complexity is ~2^(str.length + pattern.length)
+        public static bool Execute(string str, string pattern) {
+            if (pattern.Length == 0) return str.Length == 0;
+            bool first_match = (str.Length > 0 &&
+                                (pattern[0] == str[0]|| pattern[0] == '.'));
+
+            if (pattern.Length > 1 && pattern[1] == '*') {
+                return (Execute(str, pattern.Substring(2)) ||
+                        (first_match && Execute(str.Substring(1), pattern)));
+            } else {
+                return first_match && Execute(str.Substring(1), pattern.Substring(1));
+            }
+        }
+
         /*
             Logic: Uses dynamic programming (2D array). 
             Time complexity is O(n * m), n & m are lengths of string and pattern.
@@ -72,7 +87,7 @@ namespace LC_FB_Hard
                     Special case: if row == 0, it is a empty string. So we dont need to consider the char prior to current char.
 
         */
-        public static bool Execute(string str, string pattern)
+        public static bool Execute1(string str, string pattern)
         {
             if (str == null || pattern == null) return false;
             if (pattern.Length > 0 && pattern[0] == '*') throw new Exception("Invalid regex");

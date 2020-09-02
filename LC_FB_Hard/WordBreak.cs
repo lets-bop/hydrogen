@@ -61,36 +61,10 @@ namespace LC_FB_Hard
             if (s == null || s.Length == 0) return new List<string>();
             Dictionary<string, string> dict = new Dictionary<string, string>();
             foreach (string word in wordDict) dict[word] = word;
-            // ExecuteWithMemo(s, dict, 0);
             this.stack.Push(new Node(0, 1));
             this.ExecuteWithMemoAndStack1(s, dict);
             if (this.lookup.ContainsKey(0) && this.lookup[0] != null) return this.lookup[0];
             else return new List<string>();
-        }
-
-        private void AddToLookup(string strToAdd, int currentIndex, int indexToAdd)
-        {
-            if (this.lookup.ContainsKey(indexToAdd) && this.lookup[indexToAdd] != null)
-            {
-                if (this.lookup[indexToAdd].Count == 0){
-                    if (this.lookup.ContainsKey(currentIndex)) {
-                        if (this.lookup[currentIndex] == null) this.lookup[currentIndex] = new List<string>() {strToAdd};
-                        else this.lookup[currentIndex].Add(strToAdd);
-                    }
-                    else this.lookup[currentIndex] = new List<string>() {strToAdd};
-                }
-                else{
-                    List<string> list = new List<string>();
-                    foreach (string str in this.lookup[indexToAdd]) list.Add(strToAdd + " " + str);
-                    if (this.lookup.ContainsKey(currentIndex))
-                    {
-                        if (this.lookup[currentIndex] == null) this.lookup[currentIndex] = list;
-                        else this.lookup[currentIndex].AddRange(list);
-                    }
-                    else this.lookup[currentIndex] = list;
-                }
-            }
-            else if (!this.lookup.ContainsKey(currentIndex)) this.lookup[currentIndex] = null;
         }
 
         private void ExecuteWithMemoAndStack1(string s, Dictionary<string, string> dict)
@@ -125,6 +99,31 @@ namespace LC_FB_Hard
                     if(!this.lookup.ContainsKey(startIndex)) this.lookup[startIndex] = null;
                 }
             }
-        }        
+        }
+
+        private void AddToLookup(string strToAdd, int currentIndex, int indexToAdd)
+        {
+            if (this.lookup.ContainsKey(indexToAdd) && this.lookup[indexToAdd] != null)
+            {
+                if (this.lookup[indexToAdd].Count == 0){
+                    if (this.lookup.ContainsKey(currentIndex)) {
+                        if (this.lookup[currentIndex] == null) this.lookup[currentIndex] = new List<string>() {strToAdd};
+                        else this.lookup[currentIndex].Add(strToAdd);
+                    }
+                    else this.lookup[currentIndex] = new List<string>() {strToAdd};
+                }
+                else{
+                    List<string> list = new List<string>();
+                    foreach (string str in this.lookup[indexToAdd]) list.Add(strToAdd + " " + str);
+                    if (this.lookup.ContainsKey(currentIndex))
+                    {
+                        if (this.lookup[currentIndex] == null) this.lookup[currentIndex] = list;
+                        else this.lookup[currentIndex].AddRange(list);
+                    }
+                    else this.lookup[currentIndex] = list;
+                }
+            }
+            else if (!this.lookup.ContainsKey(currentIndex)) this.lookup[currentIndex] = null;
+        }
     }
 }

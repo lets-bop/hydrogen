@@ -22,8 +22,9 @@ namespace LC_FB_Medium
             int area = int.MaxValue;
             bool foundArea = false;
 
+            // for every point (x,y) create a dictionary where x is key and valeu is a hashset containing y.
+            // this allow easy look up of points later on
             Dictionary<int, HashSet<int>> dict = new Dictionary<int, HashSet<int>>();
-
             foreach (int[] point in points) {
                 HashSet<int> set = dict.GetValueOrDefault(point[0], new HashSet<int>());
                 set.Add(point[1]);
