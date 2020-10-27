@@ -129,7 +129,8 @@ namespace LC_FB_Easy
             // TestClosestBSTValue();
             // TestRemoveOuterMostParenthesis();
             // TestRectangleOverlap();
-            TestRottingOranges();
+            // TestRottingOranges();
+            TestTreeAverageByLevel();
         }
 
         public static void TestSingleRowKeyboard()
@@ -226,6 +227,45 @@ namespace LC_FB_Easy
             Console.WriteLine("Expected: 0. Actual: " + o.OrangesRotting(grid));
             grid = new int[][] {new int[] {2},new int[] {1},new int[] {1},new int[] {1},new int[] {2},new int[] {1},new int[] {1}};
             Console.WriteLine("Expected: 2. Actual: " + o.OrangesRotting(grid));
+        }
+
+        public static void TestTreeAverageByLevel()
+        {
+            TreeAverageByLevel tabl = new TreeAverageByLevel();
+            /*
+                    4
+                  /   \
+                7       9
+              /   \      \
+             10    2      6
+                    \
+                     6
+                    /
+                  2
+
+            Output: [4, 8, 6, 6, 2]
+            */
+
+            TreeAverageByLevel.TreeNode root = new TreeAverageByLevel.TreeNode(4);
+            TreeAverageByLevel.TreeNode l11 = new TreeAverageByLevel.TreeNode(7);
+            TreeAverageByLevel.TreeNode l12 = new TreeAverageByLevel.TreeNode(9);
+            root.left = l11; root.right = l12;
+            TreeAverageByLevel.TreeNode l21 = new TreeAverageByLevel.TreeNode(10);
+            TreeAverageByLevel.TreeNode l22 = new TreeAverageByLevel.TreeNode(2);
+            l11.left = l21; l11.right = l22;
+            TreeAverageByLevel.TreeNode l23 = new TreeAverageByLevel.TreeNode(6);
+            l12.right = l23;
+            TreeAverageByLevel.TreeNode l31 = new TreeAverageByLevel.TreeNode(6);
+            l22.right = l31;
+            TreeAverageByLevel.TreeNode l41 = new TreeAverageByLevel.TreeNode(2);
+            l31.left = l41;
+            List<int> result = tabl.Calculate(root);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (int r in result)
+                sb.Append(r + " ");
+
+            Console.WriteLine("Expected result: [4, 8, 6, 6, 2]. Actual is: " + sb.ToString());
         }
     }
 }
