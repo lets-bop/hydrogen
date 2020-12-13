@@ -41,21 +41,18 @@ namespace LC_FB_Easy
         private int GetPerimeterOfCell(int[][] grid, int cellRow, int cellCol, int rows, int cols)
         {
             int perimeter = 0;
+            if (cellRow < 0 || cellCol < 0 || cellRow > rows - 1 || cellCol > cols - 1) return 0;
 
             if (grid[cellRow][cellCol] == 1)
             {
                 // Check cell above
-                if ((cellRow - 1 >= 0 && grid[cellRow - 1][cellCol] == 0) || cellRow - 1 < 0)
-                    ++perimeter;
+                if (cellRow == 0 || grid[cellRow - 1][cellCol] == 0) ++perimeter;
                 // Check cell below
-                if ((cellRow + 1 < rows && grid[cellRow + 1][cellCol] == 0) || cellRow + 1 >= rows)
-                    ++perimeter;
+                if (cellRow == rows - 1 || grid[cellRow + 1][cellCol] == 0) ++perimeter;
                 // Check cell to left
-                if ((cellCol - 1 >= 0 && grid[cellRow][cellCol - 1] == 0) || cellCol - 1 < 0)
-                    ++perimeter;
+                if (cellCol == 0 || grid[cellRow][cellCol - 1] == 0) ++perimeter;
                 // Check cell to right
-                if ((cellCol + 1 < cols && grid[cellRow][cellCol + 1] == 0) || cellCol + 1 >= cols)
-                    ++perimeter;
+                if (cellCol == cols - 1 || grid[cellRow][cellCol + 1] == 0) ++perimeter;
             }
 
             return perimeter;

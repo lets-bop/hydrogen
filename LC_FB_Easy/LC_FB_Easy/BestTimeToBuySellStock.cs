@@ -26,15 +26,12 @@ namespace LC_FB_Easy
 
             for (int i = 0; i < prices.Length; i++)
             {
-                if (prices[i] < smallestSoFar)
-                {
+                if (prices[i] < smallestSoFar) {
                     smallestSoFar = prices[i];
                     continue;
                 }
 
-                int tempMax = prices[i] - smallestSoFar;
-                if (tempMax > max)
-                    max = tempMax;
+                max = Math.Max(max, prices[i] - smallestSoFar);
             }
 
             return max;

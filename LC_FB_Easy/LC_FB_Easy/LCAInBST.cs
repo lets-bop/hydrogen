@@ -20,6 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+/*
+The lowest common ancestor is defined between two nodes p and q as the lowest node in T 
+that has both p and q as descendants (where we allow a node to be a descendant of itself).
+*/
 namespace LC_FB_Easy
 {
     class LCAInBST
@@ -40,8 +44,7 @@ namespace LC_FB_Easy
         
         private TreeNode Find(TreeNode node, int small, int big) {
             if (node == null) return null;
-            if (node.val > small && node.val < big) return node;
-            if (node.val == small || node.val == big) return node;
+            if (node.val >= small && node.val <= big) return node;
             if (node.val < small) return this.Find(node.right, small, big);
             return this.Find(node.left, small, big);
         }

@@ -17,10 +17,11 @@ namespace LC_FB_Easy
     */
     class IsValidPalindrome
     {
-        public bool IsPalindrome(string s) {
-            if (s == null) return false;
-            if (s.Length == 0) return true;
+        public bool IsPalindrome(string s1) {
+            if (s1 == null) return false;
+            if (s1.Length == 0) return true;
             
+            string s = s1.ToLowerInvariant(); // ingore case
             int i = 0, j = s.Length - 1;
             bool isAlpha1;
             bool isAlpha2;
@@ -34,38 +35,21 @@ namespace LC_FB_Easy
                     if (!isAlpha2) j--;
                     continue;
                 }
-                
-                if (this.IsSameCharsIgnoreCase(s[i], s[j])) {
-                    i++;
-                    j--;
-                } else return false;
+
+                if (s[i] != s[j]) return false;
+                i++; j--;
             }
             
             return true;
         }
         
         private bool IsAlphaNumeric(char c) {
-            if ((c >= 65 && c <= 90) || 
-                (c >= 97 && c <= 122) || 
-                (c >= 48 && c <= 57)) {
+            if ((c >= 'A' && c <= 'Z') || 
+                (c >= 'a' && c <= 'z') || 
+                (c >= '0' && c <= '9')) {
                 return true;
             }
-            
-            return false;
-        }
-        
-        private bool IsSameCharsIgnoreCase(char c1, char c2) {
-            if (c1 == c2) return true;
-            
-            // handle special cases like "0P"
-            if ((c1 >= 48 && c1 <= 57) || (c2 >= 48 && c2 <= 57)) {
-                if (c1 - 48 == c2 - 48) return true;
-                return false;
-            }
 
-            if (c1 - 65 == c2 - 65 || c1 - 65 == c2 - 97) return true;
-            if (c1 - 97 == c2 - 65 || c1 - 97 == c2 - 97) return true;
-            if (c1 - 48 == c2 - 48) return true;
             return false;
         }
     }

@@ -43,7 +43,28 @@ namespace LC_FB_Easy
             if (stair > n) return 0;
             if (stair == n) return 1;
             if (memo[stair] > 0) return memo[stair];
-            return ClimbStairsBrute(stair + 1, n) + ClimbStairsBrute(stair + 2, n);
+
+            memo[stair] = ClimbStairsBrute(stair + 1, n) + ClimbStairsBrute(stair + 2, n);
+            return memo[stair];
+        }
+
+        public int ClimbStairsDp(int n)
+        {
+            // The number of ways to get to step i is to either take 1 step from step (i-1) or
+            // taking 2 steps from (i-2). Apply the same logic to step (i-1) and (i-2) to get a recursive sol
+            // O(n) time and space.
+            if (n <= 0) return 0;
+            if (n <= 2) return n;
+
+            int[] dp = new int[n+1];
+            dp[1] = 1;
+            dp[2] = 2;
+
+            for (int i = 3; i <= n; i++) {
+                dp[i] = dp[i - 1] + dp [i - 2];
+            }
+
+            return dp[n];
         }
 
         public int ClimbStairsLikeFib(int n) {
