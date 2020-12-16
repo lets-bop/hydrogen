@@ -31,10 +31,7 @@ namespace LC_FB_Easy
             
             foreach (char currChar in input.ToCharArray())
             {
-                if (currChar == '{' || currChar == '[' || currChar == '(')
-                {
-                    stack.Push(currChar);
-                }
+                if (currChar == '{' || currChar == '[' || currChar == '(') stack.Push(currChar);
                 else if (currChar == '}' || currChar == ']' || currChar == ')')
                 {
                     if (stack.Count == 0) {
@@ -43,26 +40,13 @@ namespace LC_FB_Easy
 
                     char prevChar = stack.Pop();
 
-                    if (currChar == '}' && prevChar != '{')
-                    {
-                        return false;
-                    }
-                    if (currChar == ']' && prevChar != '[')
-                    {
-                        return false;
-                    }
-                    if (currChar == ')' && prevChar != '(')
-                    {
-                        return false;
-                    }                                        
+                    if (currChar == '}' && prevChar != '{') return false;
+                    if (currChar == ']' && prevChar != '[') return false;
+                    if (currChar == ')' && prevChar != '(') return false;
                 }
             }
 
-            if (stack.Count > 0)
-            {
-                return false;
-            }
-
+            if (stack.Count > 0) return false;
             return true;
         }
     }

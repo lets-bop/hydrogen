@@ -49,7 +49,7 @@ namespace LC_FB_Easy
                     {
                         patternIndex = starIndex + 1;
                         strIndex++;
-                    }                        
+                    }
                 }
             }
 
