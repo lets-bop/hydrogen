@@ -7,7 +7,7 @@ and there are N coins total. In one move, we may choose two adjacent nodes and m
 coin from one node to another.  (The move may be from parent to child, or from child to parent.)
 Return the number of moves required to make every node have exactly one coin.
 
-           2                        3
+           2                        2
           /                       /
          2                       5
         /                       / \
@@ -34,7 +34,7 @@ namespace LC_FB_Medium
         }
 
         // The key to the problem is that the tree has only n coins. 
-        // Hence f a leaf node doesnt have any coins, it has to receive coins from its parent.
+        // Hence if a leaf node doesnt have any coins, it has to receive coins from its parent.
         // Extra coins will be offered up to the parent.
         // Hence the value received by a node's left or right child will be positive (offer up)
         // or negative (request coins) depending on the available coins at the respective child.

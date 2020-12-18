@@ -23,30 +23,30 @@ namespace LC_FB_Medium
 {
     class BSTDoublyList
     {
-        Node firstSeen, lastSeen;
+        Node head, tail;
         public Node TreeToDoublyList(Node root) {
+            if (root == null) return root;
+
             this.Inorder(root);
-            if (this.firstSeen != null) this.firstSeen.left = this.lastSeen;
-            if (this.lastSeen != null) this.lastSeen.right = this.firstSeen;
-            return this.firstSeen;
+            if (head != null) {
+                head.left = tail;
+                tail.right = head;
+            }
+            
+            return head;
         }
 
-        private void Inorder(Node root) {
-            if (root == null) return;
-
-            this.Inorder(root.left);
-
-            if (this.firstSeen == null) {
-                this.firstSeen = root;
+        private void Inorder(Node n) {
+            if (n == null) return;
+            Inorder(n.left);
+            if (head == null) head = n;
+            if (tail != null) {
+                tail.right = n;
+                n.left = tail;
             }
-            
-            if (this.lastSeen != null) {
-                this.lastSeen.right = root;
-                root.left = this.lastSeen;
-            }
-            
-            this.lastSeen = root;
-            this.Inorder(root.right);
+
+            tail = n;
+            Inorder(n.right);
         }
 
         public class Node {

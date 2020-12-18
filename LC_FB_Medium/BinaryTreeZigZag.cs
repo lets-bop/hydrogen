@@ -28,6 +28,37 @@ namespace LC_FB_Medium
         Stack<TreeNode> rlStack = new Stack<TreeNode>();
         Stack<TreeNode> lrStack = new Stack<TreeNode>();
 
+        public IList<IList<int>> ZigzagLevelOrder(TreeNode root) {
+            IList<IList<int>> res = new List<IList<int>>();
+            if (root == null) return res;
+
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            stack.Push(root);
+            this.Traverse(stack, res, 0);
+            return res;
+        }
+        
+        private void Traverse(Stack<TreeNode> stack, IList<IList<int>> res, int level) {
+            Stack<TreeNode> tempStack = new Stack<TreeNode>();
+            List<int> levelNodes = new List<int>();
+            
+            while (stack.Count > 0) {
+                TreeNode node = stack.Pop();
+                levelNodes.Add(node.val);
+                
+                if (level % 2 == 0) {
+                    if (node.left != null) tempStack.Push(node.left);
+                    if (node.right != null) tempStack.Push(node.right);
+                } else {
+                    if (node.right != null) tempStack.Push(node.right);
+                    if (node.left != null) tempStack.Push(node.left);
+                }
+            }
+            
+            if (levelNodes.Count > 0) res.Add(levelNodes);
+            if (tempStack.Count > 0) this.Traverse(tempStack, res, level + 1);
+        }
+
         public IList<IList<int>> ZigzagLevelOrder1(TreeNode root) {
             IList<IList<int>> result = new List<IList<int>>();
             if (root == null) return result;
@@ -42,7 +73,7 @@ namespace LC_FB_Medium
             return result;
         }
 
-        public IList<IList<int>> ZigzagLevelOrder(TreeNode root) {
+        public IList<IList<int>> ZigzagLevelOrder2(TreeNode root) {
             IList<IList<int>> result = new List<IList<int>>();
             if (root == null) return result;
 

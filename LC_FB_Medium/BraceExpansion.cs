@@ -28,9 +28,18 @@ namespace LC_FB_Medium
         {
             List<List<char>> parsedString = this.ParseString(s);
             List<string> result = new List<string>();
-            result = this.ExpandParsedString(parsedString, 0, result);
-            foreach (string s1 in result) Console.WriteLine(s1);
+            if (parsedString == null) return result.ToArray();
+            this.Expand1(parsedString, 0, string.Empty, result);
             return result.ToArray();
+        }
+
+        private void Expand1(List<List<char>> parsedString, int index, string strSoFar, List<string> res) {
+            if (index >= parsedString.Count) return;
+
+            foreach (char s in parsedString[index]) {
+                if (index == parsedString.Count - 1) res.Add(strSoFar + s);
+                else this.Expand1(parsedString, index + 1, strSoFar + s, res);
+            }
         }
 
         private List<string> ExpandParsedString(List<List<char>> parsedString, int listIndex, List<string> result)

@@ -30,7 +30,7 @@ namespace LC_FB_Medium
     */
     class CampusBikes
     {
-        public class WorkerBike
+        public class WorkerBike : IComparable
         {
             public int manhattanDistance;
             public int workerIndex;
@@ -42,61 +42,43 @@ namespace LC_FB_Medium
                 this.workerIndex = workerIndex;
                 this.bikeIndex = bikeIndex;
             }
+
+            public int CompareTo(object other) {
+                // The below sort logic will sort the results based on the requirement:
+                // manhattan distance in ascending. 
+                // If manhattan distance is same, sort by worker index ascending. 
+                // And if worker index is the same, sort by bike index (ascending)
+                WorkerBike wb2 = (WorkerBike) other;
+                if (this.manhattanDistance != wb2.manhattanDistance) return this.manhattanDistance - wb2.manhattanDistance;
+                else if (this.workerIndex != wb2.workerIndex) return this.workerIndex - wb2.workerIndex;
+                else return this.bikeIndex - wb2.bikeIndex;
+            }
         }
 
         public int[] AssignBikes(int[][] workers, int[][] bikes) {
-
             List<WorkerBike> list = new List<WorkerBike>();
-
             for (int i = 0; i < workers.Length; i++) {
                 for (int j = 0; j < bikes.Length; j++) {
                     list.Add(new WorkerBike(workers[i], bikes[j], i, j));
                 }
             }
 
-            // The below sort logic will sort the results based on the requirement:
-            // manhattan distance in ascending. 
-            // If manhattan distance is same, sort by worker index ascending. 
-            // And if worker index is the same, sort by bike index (ascending)
-            list.Sort(CompareWokerBikes);
+            list.Sort();
 
-            // Use hashset to quickly lookup which workers have been assigned bikes and also 
-            // lookup which bikes have been assigned.
             HashSet<int> assignedBikes = new HashSet<int>();
-            Dictionary<int, int> workersWithBikes = new Dictionary<int, int>();
+            int[] result = new int[workers.Length];
+            Array.Fill(result, -1);
 
-            foreach (WorkerBike workerBike in list) {
-                // worker is already assigned a bike
-                if (workersWithBikes.ContainsKey(workerBike.workerIndex)) continue;
-                
-                // bike is already assigned
-                if (assignedBikes.Contains(workerBike.bikeIndex)) continue;
-
-                // we need to assign a bike to this worker
-                workersWithBikes[workerBike.workerIndex] = workerBike.bikeIndex;
-                assignedBikes.Add(workerBike.bikeIndex);
+            foreach (WorkerBike wb in list) {
+                if (result[wb.workerIndex] == -1 && !assignedBikes.Contains(wb.bikeIndex)) {
+                    // worker is not assigned a bike and bike is free
+                    assignedBikes.Add(wb.bikeIndex);
+                    result[wb.workerIndex] = wb.bikeIndex;
+                    if (assignedBikes.Count == result.Length) break;
+                }
             }
 
-            List<int> result = new List<int>();
-            for (int i = 0; i < workers.Length; i++) {
-                result.Add(workersWithBikes[i]);
-            }
-
-            return result.ToArray();
-        }
-
-        public static int CompareWokerBikes(WorkerBike wb1, WorkerBike wb2) {
-            if (wb1.manhattanDistance != wb2.manhattanDistance) {
-                // order by manhattan distance ascending 
-                return wb1.manhattanDistance - wb2.manhattanDistance;
-            }
-            else if (wb1.workerIndex != wb2.workerIndex) {
-                // order by worker index ascending
-                return wb1.workerIndex - wb2.workerIndex;
-            } else {
-                // order by bike index ascending
-                return wb1.bikeIndex - wb2.bikeIndex;
-            }
+            return result;
         }
     }
 }

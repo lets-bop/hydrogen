@@ -23,7 +23,7 @@ namespace LC_FB_Medium
             // LetterComboOfPhoneTest(); // 11
             // ReorganizeStringTest(); // 12
             // PartitionToKEqualSumSubsetsTest(); // 13
-            DailyTemperaturesTest(); // 14
+            // DailyTemperaturesTest(); // 14
             // QueueReconstructionTest(); // 15
             // WordBreakTest(); // 16
             // SpiralOrderTest(); // 17
@@ -106,6 +106,7 @@ namespace LC_FB_Medium
             // TestBinaryTreeDistributeCoins(); // 94
             // TestGroupAnagrams(); // 95
             // TestFindAllAnagramsInString(); // 96
+            // TestCampusBikes(); // 97
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -359,7 +360,7 @@ namespace LC_FB_Medium
         public static void DailyTemperaturesTest()
         {
             DailyTemperatures dt = new DailyTemperatures();
-            Console.WriteLine("Expected: [4,3,2,1,0]. Actual: {0}", GetListOfIntAsString(dt.CalculateDailyTemperatures(new int[] { 74, 69, 70, 70, 75})));
+            Console.WriteLine("Expected: [4,1,2,1,0]. Actual: {0}", GetListOfIntAsString(dt.CalculateDailyTemperatures(new int[] { 74, 69, 70, 70, 75})));
             Console.WriteLine("Expected: [8,1,5,4,3,2,1,1,0,0]. Actual: {0}", GetListOfIntAsString(dt.CalculateDailyTemperatures(new int[] {89,62,70,58,47,47,46,76,100,70})));
         }
 
@@ -1289,6 +1290,30 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: [0,6]. Actual: {0}", GetListOfIntAsString(find.FindAnagrams("cbaebabacd", "abc")));
             Console.WriteLine("Expected: [0,1,2,3]. Actual: {0}", GetListOfIntAsString(find.FindAnagrams("ccccc", "cc")));
             Console.WriteLine("Expected: [0,1,2]. Actual: {0}", GetListOfIntAsString(find.FindAnagrams("abab", "ab")));
+        }
+
+        public static void TestCampusBikes()
+        {
+            CampusBikes cb = new CampusBikes();
+            /*
+                [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0]]
+                [[0,999],[1,999],[2,999],[3,999],[4,999],[5,999],[6,999],[7,999],[8,999]]
+            */
+            int[][] workers = new int[][] {new int[] {0,0}, new int[] {1,0}, new int[] {2,0}, new int[] {3,0}, new int[] {4,0}, new int[] {5,0}, new int[] {6,0}, new int[] {7,0}};
+            int[][] bikes = new int[][] {new int[] {0,999}, new int[] {1,999}, new int[] {2,999}, new int[] {3,999}, new int[] {4,999}, new int[] {5,999}, new int[] {6,999}, new int[] {7,999}, new int[] {8,999}};
+
+            int[] result = cb.AssignBikes(workers, bikes);
+            Console.WriteLine("Expected [0,1,2,3,4,5,6,7]. Actual is {0}", GetListOfIntAsString(result));
+
+            /*
+            [[240,446],[745,948],[345,136],[341,68],[990,165],[165,580],[133,454],[113,527]]
+            [[696,140],[95,393],[935,185],[767,205],[387,767],[214,960],[804,710],[956,307]]
+            */
+            workers = new int[][] {new int[] {240,446}, new int[] {745,948}, new int[] {345,136}, new int[] {341,68}, new int[] {990,165}, new int[] {165,580}, new int[] {133,454}, new int[] {113,527}};
+            bikes = new int[][] {new int[] {696,140}, new int[] {95,393}, new int[] {935,185}, new int[] {767,205}, new int[] {387,767}, new int[] {214,960}, new int[] {804,710}, new int[] {956,307}};
+
+            result = cb.AssignBikes(workers, bikes);
+            Console.WriteLine("Expected [7,6,0,3,2,4,1,5]. Actual is {0}", GetListOfIntAsString(result));
         }
     }
 }

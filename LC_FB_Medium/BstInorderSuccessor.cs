@@ -10,30 +10,25 @@ namespace LC_FB_Medium
 {
     class BstInorderSuccessor
     {
-        public TreeNode InorderSuccessor(TreeNode root, TreeNode p) {
-            // the inorder successor is either the node's parent if the node doesnt have a right subtree
-            // or if the node has a right subtree, then its the smallest element of its right subtree
+        public TreeNode InorderSuccessor(TreeNode node, TreeNode p) {
+            if (node == null || p == null) return null;
             
             TreeNode parent = null;
-            
-            // It's guaranteed that the values of the tree are unique.
-            while (root != null) {
-                if (root.val == p.val) break;
-                if (root.val > p.val) {
-                    //reassign the parent
-                    parent = root;
-                    root = root.left;
+            while (node != null) {
+                if (node.val > p.val) {
+                    parent = node;
+                    node = node.left;
+                } else if (node.val < p.val) {
+                    node = node.right;
+                } else {
+                    node = node.right;
+                    while (node != null) {
+                        parent = node;
+                        node = node.left;
+                    }
                 }
-                else root = root.right;
             }
-            
-            // check if the node has a right subtree
-            if (root != null && root.right != null) {
-                root = root.right;
-                while (root.left != null) root = root.left;
-                return root;
-            }
-            
+
             return parent;
         }
 

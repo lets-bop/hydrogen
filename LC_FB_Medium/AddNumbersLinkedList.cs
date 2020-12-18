@@ -21,46 +21,44 @@ namespace LC_FB_Medium
         public class ListNode {
             public int val;
             public ListNode next;
-            public ListNode(int x) { val = x; }
+            public ListNode(int x = 0) { val = x; }
         }
                 
         public ListNode AddTwoNumbers(ListNode l1, ListNode l2) 
         {
-            int sum;
-            int carry = 0;
-            ListNode head = null;
+            if (l1 == null) return l2;
+            if (l2 == null) return l1;
+            
+            int num1 = 0, num2 = 0, sum = 0, carry = 0;
+            ListNode head = new ListNode();
             ListNode last = null;
-            while (l1 != null && l2 != null) {
-                sum = l1.val + l2.val + carry;
-                ListNode node = new ListNode(sum % 10);
-                carry = sum / 10;
-                if (last != null) {
-                    last.next = node;
+            
+            while (l1 != null || l2 != null) {
+                num1 = 0; num2 = 0;
+                if (l1 != null) {
+                    num1 = l1.val;
+                    l1 = l1.next;
+                }
+                if (l2 != null) {
+                    num2 = l2.val;
+                    l2 = l2.next;
+                }
+                
+                sum = num1 + num2 + carry;
+                if (sum >= 10) carry = 1;
+                else carry = 0;
+                
+                if (last == null) {
+                    last = head;
+                    last.val = sum % 10;
+                } else {
+                    last.next = new ListNode(sum % 10);
                     last = last.next;
                 }
-                else {
-                    last = node;
-                    head = node;
-                }
-
-                l1 = l1.next;
-                l2 = l2.next;
             }
-
-            ListNode iter = l1 == null ? l2 : l1;
-            while (carry != 0 && iter != null) {
-                last.next = new ListNode((iter.val + carry) % 10);
-                carry = (iter.val + carry) / 10;
-                last = last.next;
-                iter = iter.next;
-            }
-
-            if (carry == 0 && iter != null) last.next = iter;
-            else if (carry == 1 && iter == null) { // iter should always be null here
-                last.next = new ListNode(carry);
-            }
-
+            
+            if (carry > 0) last.next = new ListNode(carry);
             return head;
-        }        
+        }
     }
 }

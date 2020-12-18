@@ -61,8 +61,7 @@ namespace LC_FB_Medium
                     prev = time;
                 }
                 else {
-                    // end. note that the end time includes the # and hence we need to 
-                    // add 1.
+                    // note that the end time includes the # and hence we need to add 1.
                     result[function_id] += time - prev + 1;
                     prev = time + 1;
                     stack.Pop();

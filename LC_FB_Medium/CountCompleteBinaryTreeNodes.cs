@@ -64,7 +64,7 @@ namespace LC_FB_Medium
             int high = iindexOfMaxNodesPossibleInLastLevel;
             int mid;
 
-            for (int i = 0; i < depth; i++) { // its important that we only go upto the last level, not including it.
+            for (int i = 0; i < depth; i++) {
                 mid = low + (high - low) / 2;
                 if (nodeIndex <= mid) { // the <= check is important as indices start with 0.
                     root = root.left;

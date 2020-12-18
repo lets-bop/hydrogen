@@ -22,27 +22,25 @@ namespace LC_FB_Medium
             public TreeNode(int x) { val = x; }
         }
 
-        IList<int> list;
-        int levelSeen;
+        int lastSeenLevel = -1;
  
         public IList<int> RightSideView(TreeNode root) {
-            this.list = new List<int>();
-            this.levelSeen = -1;
-            this.Traverse(root, 0);
-            return this.list;
+            List<int> result = new List<int>();
+            this.Traverse(root, result, 0);
+            return result;
         }
 
-        private void Traverse(TreeNode node, int level) {
+        private void Traverse(TreeNode node, List<int> result, int currentLevel) {
             if (node == null) return;
             
             // We are seeing the first node in this level. Add it to the list.
-            if (this.levelSeen < level) {
-                this.levelSeen = level;
-                this.list.Add(node.val);
+            if (lastSeenLevel < currentLevel) {
+                lastSeenLevel = currentLevel;
+                result.Add(node.val);
             }
 
             // Since we need all right nodes first, we traverse right child before left.
-            this.Traverse(node.right, level + 1);
-            this.Traverse(node.left, level + 1);
+            this.Traverse(node.right, result, currentLevel + 1);
+            this.Traverse(node.left, result, currentLevel + 1);
         }
     }

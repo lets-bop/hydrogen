@@ -31,40 +31,42 @@ namespace LC_FB_Medium
 {
     class FindAllAnagramsInString
     {
+        /*
+            Store the char count of p in a dictionary.
+            Use a 2 pointer technique to look for the anagram in s.
+        */
         public IList<int> FindAnagrams(string s, string p) {
-            List<int> result = new List<int>();
-            if (p == null || s == null || p.Length > s.Length) return result;
-
-            // create a dictionary of the chars in p and count
-            Dictionary<char, int> charCount = new Dictionary<char, int>();
-            for (int i = 0; i < p.Length; i++) {
-                char c = p[i];
-                charCount[c] = charCount.GetValueOrDefault(c, 0) + 1;
+            List<int> res = new List<int>();
+            if (p == null || p.Length == 0 || s == null || s.Length == 0) return res;
+            
+            int i = 0, j = 0;
+            Dictionary<char, int> pCount = new Dictionary<char, int>();
+            for (int k = 0; k < p.Length; k++) {
+                pCount[p[k]] = pCount.GetValueOrDefault(p[k], 0) + 1;
             }
-
-            int start = 0, end = 0, charsToMatch = charCount.Count;
-            while (end < s.Length) {
-                char c = s[end];
-                if (charCount.ContainsKey(c)) {
-                    charCount[c]--;
-                    if (charCount[c] == 0) charsToMatch--;
-                }
-
-                end++;
-
-                while(charsToMatch == 0) {
-                    c = s[start];
-                    if (charCount.ContainsKey(c)) {
-                        charCount[c]++;
-                        if(charCount[c] > 0) charsToMatch++;
+            
+            int charsToMatch = pCount.Count;
+            while (i <= j && j < s.Length) {
+                while (j < s.Length) {
+                    if (pCount.ContainsKey(s[j])) {
+                        pCount[s[j]]--;
+                        if (pCount[s[j]] == 0) charsToMatch--;
+                        if (charsToMatch == 0) { j++; break; }
                     }
-
-                    if (end - start == p.Length) result.Add(start);
-                    start++;
+                    j++;
+                }
+                
+                while (charsToMatch == 0) {
+                    if (j - i == p.Length) res.Add(i);
+                    if (pCount.ContainsKey(s[i])) { 
+                        pCount[s[i]]++;
+                        if (pCount[s[i]] > 0) charsToMatch++;
+                    }
+                    i++;
                 }
             }
-
-            return result;
+            
+            return res;
         }
     }
 }
