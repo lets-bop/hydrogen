@@ -19,43 +19,25 @@ namespace LC_FB_Medium
         public IList<string> LetterCombinations(string number)
         {
             Dictionary<char, List<string>> numberToLettersMap = this.GetMap();
-            List<string> finalList = new List<string>();
-            if (string.IsNullOrEmpty(number)) return finalList;
-            StringBuilder sb = new StringBuilder();
-            this.RecHelper(number, sb, 0, numberToLettersMap, finalList);
-            return finalList;
+
+            List<List<string>> letterList = new List<List<string>>();
+            foreach (char c in number) letterList.Add(numberToLettersMap[c]);
+            List<string> combo = this.FindCombo(letterList, 0);
+            return combo;
         }
 
-        public void RecHelper(
-            string number, 
-            StringBuilder sb, 
-            int startIndex, 
-            Dictionary<char, List<string>> numberToLettersMap, 
-            List<string> finalList)
-        {
-            // Normal DFS using recursion
-            if (startIndex == number.Length)
-            {
-                finalList.Add(sb.ToString());
-                return;
+        List<string> FindCombo(List<List<string>> letterList, int listIndex) {
+            if (listIndex >= letterList.Count) return new List<string>();
+            if (listIndex == letterList.Count - 1) return letterList[listIndex];
+
+            List<string> retList = new List<string>();
+            List<string> list = FindCombo(letterList, listIndex + 1);
+            
+            foreach (string l in letterList[listIndex]) {
+                foreach (string s in list) retList.Add(l + s);
             }
 
-            char c = number[startIndex];
-            if (numberToLettersMap.ContainsKey(c))
-            {
-                List<string> letterList = numberToLettersMap[c];
-                foreach (string letter in letterList)
-                {
-                    sb.AppendFormat("{0}", letter);
-                    RecHelper(number, sb, startIndex + 1, numberToLettersMap, finalList);
-                    sb.Remove(sb.Length - 1, 1);
-                }
-            }
-            else 
-            {
-                sb.AppendFormat("{0}", c);
-                RecHelper(number, sb, startIndex + 1, numberToLettersMap, finalList);
-            }     
+            return retList;
         }
 
         private Dictionary<char, List<string>> GetMap()

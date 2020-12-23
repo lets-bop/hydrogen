@@ -34,7 +34,7 @@ namespace LC_FB_Medium
         public ListNode CycleStart(ListNode head) {
             if (head == null) return head;
 
-            // determine if there is a cycle
+            // determine if there is a cycle. Floyd's algorithm.
             ListNode slow = head;
             ListNode fast = head;
 
@@ -42,7 +42,7 @@ namespace LC_FB_Medium
                 slow = slow.next;
                 fast = fast.next.next;
                 if (slow == fast) {
-                    // found cycle. Now find the starting point
+                    // found cycle. Now find the starting point. 
                     slow = head;
                     while (slow != fast) {
                         slow = slow.next;

@@ -48,16 +48,16 @@ namespace LC_FB_Medium
             */
             for (int r = 0; r < rows; r++) {
                 for (int c = 0; c < cols; c++) {
-                    Queue<int> queue = new Queue<int>();
                     if (grid[r][c] == '1') {
                         islands++;
+                        Queue<int> queue = new Queue<int>();
                         queue.Enqueue(r * cols + c);
                         this.BFS(grid, queue, rows, cols);
                     }
                 }
             }
 
-            return islands; 
+            return islands;
         }
 
         // time complexity is O(M*N). Space is O(Min(M,N))

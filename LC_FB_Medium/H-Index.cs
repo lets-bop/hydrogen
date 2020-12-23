@@ -50,7 +50,7 @@ namespace LC_FB_Medium
             return citations.Length - j;
         }
 
-        public int FindNaive(int[] citations) { // O(n)
+        public int FindNaive(int[] citations) { // O(n lg n)
             Array.Sort(citations);
             int result = 0;
             for(int i = citations.Length - 1; i >= 0; i--) {

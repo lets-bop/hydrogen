@@ -59,7 +59,7 @@ namespace LC_FB_Medium
 
             int left = 1;
             for (int i = 0; i < nums.Length; i++) {
-                result[i] *= left; 
+                result[i] *= left;
                 left *= nums[i];
             }
 

@@ -39,6 +39,7 @@ namespace LC_FB_Medium
             
             for (int r = 0; r < rows; r++) {
                 for (int c = 0; c < cols; c++) {
+                    // do a dfs from every gate
                     if (rooms[r][c] == 0) this.DFS(rooms, r, c, rows, cols, 0);
                 }
             }
@@ -51,6 +52,7 @@ namespace LC_FB_Medium
                 int nc = this.dc[k] + c; //neighboring col
                 
                 if (nr >=0 && nc >= 0 && nr < rows && nc < cols && rooms[nr][nc] > rooms[r][c] + 1) {
+                    // the above condition will not be satisfied for obstacles as its are negative
                     this.DFS(rooms, nr, nc, rows, cols, distance + 1);
                 }
             }

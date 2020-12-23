@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LC_FB_Medium
 {
@@ -107,6 +108,8 @@ namespace LC_FB_Medium
             // TestGroupAnagrams(); // 95
             // TestFindAllAnagramsInString(); // 96
             // TestCampusBikes(); // 97
+            // TestFrequencySort(); // 98
+            // TestLongestPalindromicSubstring(); // 99
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -335,26 +338,30 @@ namespace LC_FB_Medium
             PartitionToKEqualSumSubsets part = new PartitionToKEqualSumSubsets();
             Console.WriteLine(part.CanPartitionKSubsets(input, 4));
         }
+
         public static void WordBreakTest()
         {
             WordBreak wordBreak = new WordBreak();
             bool result = wordBreak.Check2("catsanddog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
-            Console.WriteLine("Expected: True. Actual: " + result);
+            Console.WriteLine("1. Expected: True. Actual: " + result);
+
+            result = wordBreak.Check2("catsandog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
+            Console.WriteLine("2. Expected: False. Actual: " + result);
 
             result = wordBreak.Check2(
                 "leetcode",
                 new List<string>() {"leet","code"});
-            Console.WriteLine("Expected: True. Actual: " + result);            
+            Console.WriteLine("3. Expected: True. Actual: " + result);
 
             result = wordBreak.Check2(
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
-            Console.WriteLine("Expected: True. Actual: " + result);
+            Console.WriteLine("4. Expected: True. Actual: " + result);
 
             result = wordBreak.Check2(
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
                 new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
-            Console.WriteLine("Expected: False. Actual: " + result);            
+            Console.WriteLine("5. Expected: False. Actual: " + result);
         }
 
         public static void DailyTemperaturesTest()
@@ -462,12 +469,14 @@ namespace LC_FB_Medium
             Console.WriteLine("Expected: 3. Output: " + fib.TotalFruit(new int[] {1,2,1}));
             Console.WriteLine("Expected: 3. Output: " +fib.TotalFruit(new int[] {0,1,2,2}));
             Console.WriteLine("Expected: 4. Output: " +fib.TotalFruit(new int[] {1,2,3,2,2}));
+            Console.WriteLine("Expected: 5. Output: " +fib.TotalFruit(new int[] {3,3,3,1,2,1,1,2,3,3,4}));
             Console.WriteLine("Expected: 19. Output: " +fib.TotalFruit(new int[] {1,2,1,2,1,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3}));
             Console.WriteLine("Expected: 5. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1}));
-            Console.WriteLine("Expected: 6. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1,2}));            
+            Console.WriteLine("Expected: 6. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1,2}));
             Console.WriteLine("Expected: 7. Output: " +fib.TotalFruit(new int[] {1,1,1,1,1,2,2}));
             Console.WriteLine("Expected: 12. Output: " +fib.TotalFruit(new int[] {1,0,29,29,29,29,29,29,0,0,29,8,8,29,8,29,8,8,15,8,8,15,15,8,15,15,8,8,7,5}));
             Console.WriteLine("Expected: 3. Output: " + fib.TotalFruit(new int[] {6,2,1,1,3,6,6}));
+            Console.WriteLine("Expected: 3. Output: " + fib.TotalFruit(new int[] {1,0,3,4,3}));
         }
 
         public static void TestNetworkDelayTime()
@@ -679,15 +688,14 @@ namespace LC_FB_Medium
             Console.Write("Actual");
             kClosest = new KClosestToOrigin();
             result = kClosest.KClosest(input, 8);
-            foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);            
+            foreach (int[] r in result) Console.Write("[{0}, {1}],", r[0], r[1]);
         }
 
         public static void TestProductExceptSelf()
         {
             ProductExceptSelf product = new ProductExceptSelf();
-            int[] nums = product.Calculate(new int[] {1,2,3,4});
-            foreach (int n in nums) Console.Write(n + "\t");
-            Console.WriteLine();
+            int[] nums = product.Product(new int[] {1,2,3,4});
+            Console.WriteLine("Expected: [24,12,8,6]. Actual: {0}", GetListOfIntAsString(nums));
         }
 
         public static void TestBSTDoublyList()
@@ -1314,6 +1322,38 @@ namespace LC_FB_Medium
 
             result = cb.AssignBikes(workers, bikes);
             Console.WriteLine("Expected [7,6,0,3,2,4,1,5]. Actual is {0}", GetListOfIntAsString(result));
+        }
+
+        public static void TestFrequencySort()
+        {
+            FrequencySort fs = new FrequencySort();
+            string s = fs.FreqSort("tree");
+            Console.WriteLine("Expected {0}. Actual {1}.", "eetr or eert", s);
+
+            int[] fruits = new int[] {1,2,3,2,2,2};
+            int a = fruits[0];
+            int b = fruits[1];
+            int i = 0, j = 2, count = 2, tempCount = 2;
+            while (i <= j && j < fruits.Length) {
+                while (j < fruits.Length && (fruits[j] == a || fruits[j] == b)) {
+                    tempCount++; j++;
+                }
+                j++;
+                count = Math.Max(count, tempCount);
+                if (j >= fruits.Length) break;
+                while (i < j && fruits[i] == a) i++;
+                a = b;
+                b = fruits[j];
+            }
+
+            Console.WriteLine(count);
+        }
+
+        public static void TestLongestPalindromicSubstring() {
+            string input = "babam";
+            LongestPalindromicSubstring lps = new LongestPalindromicSubstring();
+            Console.WriteLine("Expected: bab. Actual: {0}", lps.LongestPalindrome(input));
+
         }
     }
 }

@@ -32,53 +32,44 @@ namespace LC_FB_Medium
 {
     public class WordBreak
     {
-        // O(n^2) time and O(n) space
-        public bool CanBreak(String s, List<String> wordDict) {
-            HashSet<string> wordDictSet = new HashSet<string>(wordDict);
-            Queue<int> queue = new Queue<int>();
-            HashSet<int> visited = new HashSet<int>();
-            queue.Enqueue(0);
+        Dictionary<int, bool> memo = new Dictionary<int, bool>();
 
-            while (queue.Count > 0) {
-                int start = queue.Dequeue();
-                if (!visited.Contains(start)) {
-                    visited.Add(start);
-                    for (int end = start + 1; end <= s.Length; end++) {
-                        if (wordDictSet.Contains(s.Substring(start, end))) {
-                            queue.Enqueue(end);
-                            if (end == s.Length) {
-                                return true;
-                            }
-                        }
+        // O(n^2). Leetcode accepted with memo.
+        public bool Check2(string s, IList<string> wordDict) {
+            if (s == null || s.Length == 0 || wordDict == null || wordDict.Count == 0) return false;
+            this.memo.Clear();
+            HashSet<string> set = new HashSet<string>();
+            foreach(string w in wordDict) set.Add(w);
+            return this.WordBreak2Rec(s, set, 0);
+        }
+
+        private bool WordBreak2Rec(string s, HashSet<string> words, int startIndex) {
+            if (s == null || startIndex >= s.Length) return false;
+
+            if (this.memo.ContainsKey(startIndex)) return this.memo[startIndex];
+            List<string> list = new List<string>();
+            for (int l = 1; l <= s.Length - startIndex; l++) {
+                if (words.Contains(s.Substring(startIndex, l))) {
+                    if (startIndex + l == s.Length) return true;
+                    if (this.WordBreak2Rec(s, words, startIndex + l)) {
+                        this.memo[startIndex] = true;
+                        return true;
                     }
                 }
             }
+
+            this.memo[startIndex] = false;
             return false;
         }
 
-        public class MatchedWord
-        {
-            public string word; // the matching word
-            public int start; // the start index in the provided word
-            public int end;   // the end index in the provided word
-
-            public MatchedWord(string word, int start, int end)
-            {
-                this.word = word;
-                this.start = start;
-                this.end = end;
-            }
-        }
-
-        public bool Check2(string word, IList<string> wordDict)
+        public bool Check3(string word, IList<string> wordDict)
         {
             HashSet<string> dict = new HashSet<string>(wordDict);
             Stack<MatchedWord> stack = new Stack<MatchedWord>();
             Dictionary<int, bool> mem = new Dictionary<int, bool>();
             int maxWordLengthInDic = 0;
 
-            foreach (string w in wordDict)
-            {
+            foreach (string w in wordDict) {
                 if (w.Length > maxWordLengthInDic) maxWordLengthInDic = w.Length;
             }
 
@@ -86,40 +77,31 @@ namespace LC_FB_Medium
             int end = word.Length - 1;
 
             // Find the first match
-            do
-            {
+            do {
                 StringBuilder sb = new StringBuilder();
                 Queue<MatchedWord> queue = new Queue<MatchedWord>(); // collect the words that could lead to the split.
-                for (int i = start; i <= end && i < start + maxWordLengthInDic; i++)
-                {
+                for (int i = start; i <= end && i < start + maxWordLengthInDic; i++) {
                     sb.Append(word[i]);
-                    if (wordDict.Contains(sb.ToString()))
-                    {
-                        if (i <= end)
-                        {
+                    if (wordDict.Contains(sb.ToString())) {
+                        if (i <= end) {
+                            // we can short circuit here as we'd be here only if the word prior to this was found.
                             if (i == end) {
-                                // we can short circuit here as we'd be here only if the word prior to this was found. 
                                 return true;
                             }
 
                             // Collect the word in the queue only if we can satisfy the split from the end of this word
                             // or we don't know as yet if we can satisfy the split.
-                            if (!mem.ContainsKey(i + 1) || (mem.ContainsKey(i+1) && mem[i+1]))
-                            {
+                            if (!mem.ContainsKey(i + 1) || (mem.ContainsKey(i+1) && mem[i+1])) {
                                 queue.Enqueue(new MatchedWord(sb.ToString(), start, i));
                             }
                         }
                     }
                 }
 
-                if (queue.Count > 0)
-                {
-                    foreach (MatchedWord item in queue)
-                    {
+                if (queue.Count > 0) {
+                    foreach (MatchedWord item in queue) {
                         stack.Push(item);
-                        if (item.end < end && mem.ContainsKey(item.end + 1) && mem[item.end + 1]) {
-                            mem[item.start] = true;
-                        }
+                        if (item.end < end && mem.ContainsKey(item.end + 1) && mem[item.end + 1]) mem[item.start] = true;
                     }
                 }
                 else {
@@ -137,6 +119,20 @@ namespace LC_FB_Medium
             } while (stack.Count >= 0);
 
             return false;
+        }
+
+        public class MatchedWord
+        {
+            public string word; // the matching word
+            public int start; // the start index in the provided word
+            public int end;   // the end index in the provided word
+
+            public MatchedWord(string word, int start, int end)
+            {
+                this.word = word;
+                this.start = start;
+                this.end = end;
+            }
         }
     }
 }

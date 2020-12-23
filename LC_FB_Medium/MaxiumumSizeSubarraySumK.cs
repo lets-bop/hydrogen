@@ -31,10 +31,7 @@ namespace LC_FB_Medium
             int prefixSum = 0;
             for (int i = 0; i < nums.Length; i++) {
                 prefixSum += nums[i];
-                if (sumToIndex.ContainsKey(prefixSum - k)) {
-                    // we have found a subarray that sums to k.
-                    result = Math.Max(result, i - sumToIndex[prefixSum-k]);
-                }
+                if (sumToIndex.ContainsKey(prefixSum - k)) result = Math.Max(result, i - sumToIndex[prefixSum-k]); // found
 
                 // since we need to find max length, we will add the sum to the dictionary only if sum wasn't found so far.
                 if (!sumToIndex.ContainsKey(prefixSum)) sumToIndex[prefixSum] = i;

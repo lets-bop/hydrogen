@@ -37,30 +37,27 @@ namespace LC_FB_Medium
             intervals.Sort(CompareIntervals);
 
             Interval prevInterval = null;
-            foreach (Interval interval in intervals)
-            {
-                if (prevInterval == null)
-                {
+            foreach (Interval interval in intervals) {
+                if (prevInterval == null) {
                     prevInterval = interval;
                     continue;
                 }
 
-                if(prevInterval.end >= interval.start){
+                if(prevInterval.end >= interval.start) {
+                    // intervals overlap, check and update end times.
                     if (prevInterval.end < interval.end) prevInterval.end = interval.end;
-                }
-                else
-                {
+                } else {
+                    // no overlap, add prevInterval into result
                     merged.Add(prevInterval);
                     prevInterval = interval;
                 }
             }
 
-            merged.Add(prevInterval);
-
+            merged.Add(prevInterval); // since list count > 1, prevInterval will be present.
             return merged;
         }
 
-        public static int CompareIntervals(Interval i1, Interval i2){
+        public static int CompareIntervals(Interval i1, Interval i2) {
             if (i1.start != i2.start) return i1.start - i2.start;
             return i1.end - i2.end;
         }

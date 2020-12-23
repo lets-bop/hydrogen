@@ -26,6 +26,7 @@ namespace LC_FB_Medium
     */
     class NonoverlappingIntervals
     {
+        // If there is overlap, drop the interval that has the longer end.
         public int EraseOverlapIntervals(int[][] intervals) {
             int result = 0;
             Array.Sort(intervals, CompareIntervals);
@@ -38,24 +39,18 @@ namespace LC_FB_Medium
                 }
 
                 if (prev[1] > interval[0]) {
-                    result++;
                     // there is overlap. If prev's end > interval's end, drop prev. Else drop current interval
-                    if (prev[1] > interval[1]) {
-                        prev = interval;
-                    }
-                } else {
-                    prev = interval;
-                }
+                    if (prev[1] > interval[1]) prev = interval;
+                    result++;
+                } else prev = interval; // no overlap
             }
             
             return result;
         }
 
         public static int CompareIntervals(int[] int1, int[] int2) {
-            if (int1[0] != int2[0]) {
-                // int1 start and int2 start are different
-                return int1[0] - int2[0];
-            } else return int1[1] - int2[1]; // starts are the same, sort by end
+            if (int1[0] != int2[0]) return int1[0] - int2[0]; // starts are different
+            else return int1[1] - int2[1]; // starts are the same, sort by end
         }
     }
 }

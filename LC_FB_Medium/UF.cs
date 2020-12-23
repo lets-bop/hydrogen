@@ -56,7 +56,7 @@ namespace LC_FB_Medium
             }
             else {
                 this.id[rootq] = rootp;
-                this.sz[rootq] += this.sz[rootp];
+                this.sz[rootp] += this.sz[rootq];
             }
         }
     }

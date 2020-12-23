@@ -34,64 +34,33 @@ namespace LC_FB_Medium
     {
         public int TotalFruit(int[] tree) 
         {
-            // Let a represent the start index of the most recently seen element
-            // Let b represent the start index of the 2nd most recently seen element
-            // If the element being read != element at a or b, then we need to reset the max fruit count
-            // to being that of only a + 1 (count of the element being read currently). We shift a to b.
-            // And a becomes the index of the element being read.
-            // Else if the element being read == either a or b, we continue adding 1 to max fruit count
-            // and adjust a and b accordingly such that a corresponds to the index of the most recently
-            // read element
-            // If a's and b's come alternating, though their total counts respectively can be incremented,
-            // we also need to keep track of the continuous counts of a.
+            // Let a hold the first seen value and b the second.
+            // We need to keep track of the lastSeen value and its count
+            // to be able to account of repeating values but out of order like (1,2,1,1,3,3,3,3)
+            // In the example, though 1 appears 3 times when paired with 2, but when paired with 3, 
+            // we can only count 2.
             if (tree == null || tree.Length == 0) return 0;
             if (tree.Length <= 2) return tree.Length;
 
-            int b = 0; // Let b represent the start index of the 2nd most recently seen element
-            int b_count = 1;
-
-            // count all elements adjacent to tree[0] which are equal to tree[0]
-            for (int i = 1; i < tree.Length && tree[i] == tree[b]; i++) b_count++;
-
-            if (b_count == tree.Length) return b_count;
-
-            int a = b_count; // Lets initialize a to the element right after b. a = index of most recenly seen element
-            int a_count = 1;
-            int countinuous_a_count = 1;
-            
-            int maxFruitCount = a_count + b_count;
-
-            for (int i = a + 1; i < tree.Length; i++) {
-                if (tree[i] != tree[a] && tree[i] != tree[b]) {
-                    maxFruitCount = Math.Max(maxFruitCount, a_count + b_count);
-                    b = a;
-                    b_count = countinuous_a_count;
-                    countinuous_a_count = 1;
-                    a_count = 1;
-                    a = i;
-                }
-                else if (tree[i] == tree[a]) {
-                    // no need to reset anything. just increment count
-                    ++a_count;
-                    ++countinuous_a_count;
-                }
+            int a = tree[0], aCt = 1, b = -1, bCt = 0, lastSeen = a, lastSeenCt = 1, count = 0;
+            for (int i = 1; i < tree.Length; i++) {
+                if (tree[i] == a) aCt++;
+                else if (b == -1) { b = tree[i]; bCt = 1;}
+                else if (tree[i] == b) bCt++;
                 else {
-                    b_count++;
-                    countinuous_a_count = 1;
-
-                    // swap a and b
-                    int temp = a;
-                    a = b;
-                    b = temp;
-                    
-                    // swap the counts
-                    temp = a_count;
-                    a_count = b_count;
-                    b_count = temp;
+                    count = Math.Max(count, aCt + bCt);
+                    a = lastSeen; aCt = lastSeenCt;
+                    b = tree[i]; bCt = 1;
+                    lastSeen = b; lastSeenCt = 1;
+                    continue;
                 }
+
+                if (tree[i] == lastSeen) lastSeenCt++;
+                else { lastSeen = tree[i]; lastSeenCt = 1; }
+                count = Math.Max(count, aCt + bCt);
             }
 
-            return Math.Max(maxFruitCount, a_count + b_count);
+            return count;
         }
     }
 }

@@ -27,23 +27,21 @@ namespace LC_FB_Medium
             int start = 0, end = 0, maxLength = 1, tempK = k;
 
             while (end < s.Length) {
-                char c = s[end];
-                if (!check.ContainsKey(c) || check[c] == 0) {
-                    tempK--;
-                    check[c] = 1;
-                } else check[c]++;
+                char c = s[end++];
+                if (check.ContainsKey(c)) check[c]++;
+                else {
+                    while (check.Count >= k) {
+                        char sc = s[start];
+                        if (--check[sc] == 0) check.Remove(sc);
+                        start++;
+                    }
 
-                if (tempK < 0) maxLength = Math.Max(maxLength, end - start);
-                while (tempK < 0) {
-                    check[s[start]]--;
-                    if (check[s[start]] == 0) tempK++;
-                    start++;
+                    check[c] = 1;
                 }
 
-                end++;
+                maxLength = Math.Max(maxLength, end - start);
             }
 
-            maxLength = Math.Max(maxLength, end - start);
             return maxLength;
         }
     }

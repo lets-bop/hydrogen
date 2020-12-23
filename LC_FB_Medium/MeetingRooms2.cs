@@ -48,6 +48,11 @@ namespace LC_FB_Medium
             return pq.currentItemCount;
         }
 
+        public static int CompareInts(Interval s1, Interval s2)
+        {
+            return s1.start - s2.start;
+        }
+
         internal class MinPQ
         {
             int[] pq;
@@ -82,40 +87,28 @@ namespace LC_FB_Medium
                     this.pq[index] = this.pq[parentIndex];
                     this.pq[parentIndex] = temp;
                     index = parentIndex;
-                    parentIndex = Math.Max(0, index / 2 - 1);
+                    parentIndex = index / 2 - 1;
                 }
             }
 
             internal void Sink(){
                 int index = 0;
 
-                while(2 * index < this.currentItemCount){
+                while(2 * index < this.currentItemCount) {
                     int childIndex = -1;
                     int child1 = index * 2 + 1;
                     int child2 = index * 2 + 2;
 
-                    if(child1 < this.currentItemCount){
-                        childIndex = child1;
+                    if(child1 < this.currentItemCount) childIndex = child1;
+                    if(child2 < this.currentItemCount && this.pq[child1] > this.pq[child2]) childIndex = child2;
+                    if (childIndex < 0 || this.pq[childIndex] >= this.pq[index]) break;
 
-                        if(child2< this.currentItemCount && this.pq[child1] > this.pq[child2]){
-                            childIndex = child2;
-                        }
-                    }
-
-                    if(childIndex != -1 && this.pq[childIndex] < this.pq[index]){
-                        int temp = this.pq[index];
-                        this.pq[index] = this.pq[childIndex];
-                        this.pq[childIndex] = temp;
-                        index = childIndex;
-                    }
-                    else break;
+                    int temp = this.pq[index];
+                    this.pq[index] = this.pq[childIndex];
+                    this.pq[childIndex] = temp;
+                    index = childIndex;
                 }
             }
-        }
-
-        public static int CompareInts(Interval s1, Interval s2)
-        {
-            return s1.start - s2.start;
         }
     }
 }
