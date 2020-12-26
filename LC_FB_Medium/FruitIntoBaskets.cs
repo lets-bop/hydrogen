@@ -28,7 +28,7 @@ namespace LC_FB_Medium
         Example 3:
         Input: [1,2,3,2,2]
         Output: 4
-        Explanation: We can collect [2,3,2,2]. If we started at the first tree, we would only collect [1, 2].        
+        Explanation: We can collect [2,3,2,2]. If we started at the first tree, we would only collect [1, 2].
     */
     class FruitIntoBaskets
     {
@@ -36,7 +36,7 @@ namespace LC_FB_Medium
         {
             // Let a hold the first seen value and b the second.
             // We need to keep track of the lastSeen value and its count
-            // to be able to account of repeating values but out of order like (1,2,1,1,3,3,3,3)
+            // to be able to account for repeating values but out of order like (1,2,1,1,3,3,3,3)
             // In the example, though 1 appears 3 times when paired with 2, but when paired with 3, 
             // we can only count 2.
             if (tree == null || tree.Length == 0) return 0;
@@ -50,8 +50,7 @@ namespace LC_FB_Medium
                 else {
                     count = Math.Max(count, aCt + bCt);
                     a = lastSeen; aCt = lastSeenCt;
-                    b = tree[i]; bCt = 1;
-                    lastSeen = b; lastSeenCt = 1;
+                    b = lastSeen = tree[i]; bCt = lastSeenCt = 1;
                     continue;
                 }
 

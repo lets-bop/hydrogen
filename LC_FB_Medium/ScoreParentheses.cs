@@ -36,25 +36,6 @@ namespace LC_FB_Medium
             return this.ScoreWithStack2(S);
         }
 
-        private int ScoreWithStack(string s) {
-            int result = 0;
-            if (s == null || s.Length == 0) return result;
-
-            Stack<int> stack = new Stack<int>();
-            stack.Push(0);
-            for (int i = 0; i < s.Length; i++) {
-                if (s[i] == '(') stack.Push(0);
-                else {
-                    int pop1 = stack.Pop();
-                    int pop2 = stack.Pop();
-                    stack.Push(pop2 + Math.Max(pop1 * 2, 1));
-                }
-            }
-
-            if (stack.Count > 0) return stack.Pop();
-            return 0;
-        }
-
         // Keep track of the open parenthesis of the string. 
         // For every ) that immediately follows a (, the answer is 1 << count of open parenthesis
         //  as count of open parenthesis is the number of exterior set of parentheses that contains this core.
@@ -77,28 +58,39 @@ namespace LC_FB_Medium
         private int ScoreWithStack2(string s) {
             if (s == null || s.Length == 0) return 0;
 
-            Stack<string> stack = new Stack<string>();
-            int sum = 0;
-            string pop1;
+            Stack<int> stack = new Stack<int>();
             for (int i = 0; i < s.Length; i++) {
-                if (s[i] == '(') stack.Push("(");
+                if (s[i] == '(') stack.Push(s[i]);
                 else {
-                    pop1 = stack.Pop();
-                    if (pop1 == "(") stack.Push("1");
-                    else {
-                        sum = 0;
-                        while (pop1 != "(") {
-                            int num = int.Parse(pop1);
-                            sum += num;
-                            pop1 = stack.Pop();
-                        }
-                        stack.Push((2 * sum).ToString());
-                    }
+                    int sum = 0;
+                    while (stack.Peek() != '(') sum += stack.Pop();
+                    stack.Pop(); // pop '('
+                    if (sum == 0) stack.Push(1);
+                    else stack.Push(sum * 2);
                 }
             }
 
             if (stack.Count == 0) return 0;
-            return int.Parse(stack.Pop());
+            return stack.Peek();
+        }
+
+        private int ScoreWithStack(string s) {
+            int result = 0;
+            if (s == null || s.Length == 0) return result;
+
+            Stack<int> stack = new Stack<int>();
+            stack.Push(0);
+            for (int i = 0; i < s.Length; i++) {
+                if (s[i] == '(') stack.Push(0);
+                else {
+                    int pop1 = stack.Pop();
+                    int pop2 = stack.Pop();
+                    stack.Push(pop2 + Math.Max(pop1 * 2, 1));
+                }
+            }
+
+            if (stack.Count > 0) return stack.Pop();
+            return 0;
         }
     }
 }

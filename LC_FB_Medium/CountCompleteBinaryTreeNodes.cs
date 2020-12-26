@@ -48,11 +48,8 @@ namespace LC_FB_Medium
             int mid;
             while (low <= high) {
                 mid = low + (high - low) / 2;
-                if (this.NodeExists(root, mid, totalNodesUptoLastLevel, depth)) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
+                if (this.NodeExists(root, mid, totalNodesUptoLastLevel, depth)) low = mid + 1;
+                else high = mid - 1;
             }
 
             return totalNodesUptoLastLevel + low;

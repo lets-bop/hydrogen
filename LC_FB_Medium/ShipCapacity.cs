@@ -47,6 +47,7 @@ Explanation:
     {
         /*
             The largest capacity (high) we may even need is the sum of weights of all packages.
+            Ex: high = sum of weights when D = 1.
             The smallest capacity (low) is the Max(weight of the largest package, sumOfAllPkgs / D)
             We use binary search to find the minimum capacity. For each capacity we analyze, 
             we count the number of days required to ship all packages.
@@ -56,26 +57,20 @@ Explanation:
         */
         public int ShipWithinDays(int[] weights, int D)
         {
-            int high = 0;
-            int low = 0;
             if (weights == null || weights.Length == 0) return 0;
 
+            int low = 0, high = 0, mid = 0;
             foreach (int w in weights) {
-                if (w > low) low = w;
+                low = Math.Min(low, w);
                 high += w;
             }
 
             low = Math.Max(low, high / D);
 
-            int mid;
             while (low + 1 < high) {
                 mid = low + (high - low) / 2;
-                if (this.CountDays(weights, mid, D) > D) {
-                    // we need more capacity
-                    low = mid;
-                } else {
-                    high = mid;
-                }
+                if (this.CountDays(weights, mid, D) > D) low = mid; // we need more capacity
+                else high = mid;
             }
 
             if (this.CountDays(weights, low, D) < D) return low;

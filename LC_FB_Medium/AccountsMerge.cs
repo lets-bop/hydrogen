@@ -59,6 +59,14 @@ We could return these lists in any order, for example the answer [['Mary', 'mary
             return result;
         }
 
+        private void Dfs(string email, List<string> connectedEmails) {
+            this.visited.Add(email);
+            connectedEmails.Add(email);
+            foreach (string neighbor in this.graph[email]) {
+                if (!this.visited.Contains(neighbor)) this.Dfs(neighbor, connectedEmails);
+            }
+        }
+
         Dictionary<string, HashSet<string>> graph;
         HashSet<string> visited;
         Dictionary<string, string> emailToName;
@@ -82,14 +90,6 @@ We could return these lists in any order, for example the answer [['Mary', 'mary
                     if (!this.graph.ContainsKey(account[i])) this.graph[account[i]] = new HashSet<string>();
                     this.graph[account[i]].Add(firstEmail);
                 }
-            }
-        }
-
-        private void Dfs(string email, List<string> connectedEmails) {
-            this.visited.Add(email);
-            connectedEmails.Add(email);
-            foreach (string neighbor in this.graph[email]) {
-                if (!this.visited.Contains(neighbor)) this.Dfs(neighbor, connectedEmails);
             }
         }
     }

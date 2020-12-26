@@ -63,11 +63,9 @@ namespace LC_FB_Medium
         {
             int count = 0;
             int sum = 0;
-            for (int start = 0; start < nums.Length; start++)
-            {
+            for (int start = 0; start < nums.Length; start++) {
                 sum = 0;
-                for (int end = start; end < nums.Length; end++)
-                {
+                for (int end = start; end < nums.Length; end++) {
                     sum += nums[end];
                     if (sum == k) count++;
                 }

@@ -39,6 +39,7 @@ namespace LC_FB_Medium
             bool foundOps = false;
             IList<int> result = new List<int>();
 
+            // for i = low .. high, split at the operator and recurse.
             for (int i = low; i <= high; i++) {
                 if (input[i] == '+' || input[i] == '-' || input[i] == '*') {
                     foundOps = true;

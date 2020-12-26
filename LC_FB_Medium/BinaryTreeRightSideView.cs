@@ -26,11 +26,11 @@ namespace LC_FB_Medium
  
         public IList<int> RightSideView(TreeNode root) {
             List<int> result = new List<int>();
-            this.Traverse(root, result, 0);
+            this.Dfs(root, result, 0);
             return result;
         }
 
-        private void Traverse(TreeNode node, List<int> result, int currentLevel) {
+        private void Dfs(TreeNode node, List<int> result, int currentLevel) {
             if (node == null) return;
             
             // We are seeing the first node in this level. Add it to the list.
@@ -40,7 +40,7 @@ namespace LC_FB_Medium
             }
 
             // Since we need all right nodes first, we traverse right child before left.
-            this.Traverse(node.right, result, currentLevel + 1);
-            this.Traverse(node.left, result, currentLevel + 1);
+            this.Dfs(node.right, result, currentLevel + 1);
+            this.Dfs(node.left, result, currentLevel + 1);
         }
     }

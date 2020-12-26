@@ -34,11 +34,11 @@ namespace LC_FB_Medium
 
             Stack<TreeNode> stack = new Stack<TreeNode>();
             stack.Push(root);
-            this.Traverse(stack, res, 0);
+            this.Bfs(stack, res, 0);
             return res;
         }
         
-        private void Traverse(Stack<TreeNode> stack, IList<IList<int>> res, int level) {
+        private void Bfs(Stack<TreeNode> stack, IList<IList<int>> res, int level) {
             Stack<TreeNode> tempStack = new Stack<TreeNode>();
             List<int> levelNodes = new List<int>();
             
@@ -56,7 +56,7 @@ namespace LC_FB_Medium
             }
             
             if (levelNodes.Count > 0) res.Add(levelNodes);
-            if (tempStack.Count > 0) this.Traverse(tempStack, res, level + 1);
+            if (tempStack.Count > 0) this.Bfs(tempStack, res, level + 1);
         }
 
         public IList<IList<int>> ZigzagLevelOrder1(TreeNode root) {

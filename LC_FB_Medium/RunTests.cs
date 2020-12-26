@@ -110,6 +110,7 @@ namespace LC_FB_Medium
             // TestCampusBikes(); // 97
             // TestFrequencySort(); // 98
             // TestLongestPalindromicSubstring(); // 99
+            TestSortedCollections();
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1254,8 +1255,11 @@ namespace LC_FB_Medium
         {
             ScoreParentheses s = new ScoreParentheses();
             Console.WriteLine("Expected: 1. Actual " + s.ScoreOfParentheses("()"));
+            Console.WriteLine("Expected: 2. Actual " + s.ScoreOfParentheses("(())"));
+            Console.WriteLine("Expected: 4. Actual " + s.ScoreOfParentheses("(()())"));
             Console.WriteLine("Expected: 4. Actual " + s.ScoreOfParentheses("((()))"));
             Console.WriteLine("Expected: 6. Actual " + s.ScoreOfParentheses("(()(()))"));
+            Console.WriteLine("Expected: 8. Actual " + s.ScoreOfParentheses("((()()))"));
             Console.WriteLine("Expected: 10. Actual " + s.ScoreOfParentheses("(()(())()())"));
         }
 
@@ -1354,6 +1358,21 @@ namespace LC_FB_Medium
             LongestPalindromicSubstring lps = new LongestPalindromicSubstring();
             Console.WriteLine("Expected: bab. Actual: {0}", lps.LongestPalindrome(input));
 
+        }
+
+        public static void TestSortedCollections() {
+            SortedSet<string> set = new SortedSet<string>();
+            set.Add("C"); set.Add("C"); set.Add("Z"); set.Add("F"); set.Add("B"); set.Add("A"); set.Add("D"); set.Add("E"); set.Add("G");
+            foreach (string s in set) Console.Write(s + "\t"); Console.WriteLine();
+
+            SortedDictionary<string, string> dic = new SortedDictionary<string, string>();
+            dic.Add("bzb", "45"); dic.Add("zzb", "5"); dic.Add("azb", "55"); dic.Add("ab", "100"); dic.Add("art", "451");
+            foreach(string k in dic.Keys) Console.Write("{0}:{1} \t", k, dic[k]); Console.WriteLine();
+
+            SortedList<string, string> list = new SortedList<string, string>();
+            list.Add("bzz", "45"); list.Add("zzb", "5"); list.Add("azb", "55"); list.Add("ab", "100"); list.Add("art", "451");
+            foreach(string k in list.Keys) Console.Write("{0}:{1} \t", k, list[k]); Console.WriteLine();
+            for (int i = 0; i < list.Count; i++) Console.WriteLine("key: {0}, value: {1}", list.Keys[i], list.Values[i]);
         }
     }
 }

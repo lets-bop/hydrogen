@@ -25,21 +25,7 @@ namespace LC_FB_Medium
     */
     class FlattenMultiLevelLinkedList
     {
-        public class Node {
-            public int val;
-            public Node prev;
-            public Node next;
-            public Node child;
-
-            public Node(){}
-            public Node(int _val,Node _prev,Node _next,Node _child) {
-                val = _val;
-                prev = _prev;
-                next = _next;
-                child = _child;
-            }
-        }
-
+        // Its like doing a DFS when a node has child. So use recursion. Or use a stack.
         public Node Flatten(Node head) {
             this.FlattenList(head);
             return head;
@@ -65,6 +51,21 @@ namespace LC_FB_Medium
             }
             
             return prev;
+        }
+
+        public class Node {
+            public int val;
+            public Node prev;
+            public Node next;
+            public Node child;
+
+            public Node(){}
+            public Node(int _val,Node _prev,Node _next,Node _child) {
+                val = _val;
+                prev = _prev;
+                next = _next;
+                child = _child;
+            }
         }
     }
 }
