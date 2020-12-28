@@ -26,8 +26,7 @@ namespace LC_FB_Medium
      */
      public class MatrixSearch
      {
-         public bool SearchUsingBinSearch(int[,] matrix, int target)
-         {
+         public bool SearchUsingBinSearch(int[,] matrix, int target) {
              if (matrix == null || matrix.Length == 0) return false;
              int minDim = Math.Min(matrix.GetLength(0), matrix.GetLength(1));
 
@@ -42,31 +41,25 @@ namespace LC_FB_Medium
                 = O(n lg n)
               */
              // Hence the algorithm is dominated by the size of of the smallest dimension
-             for (int i = 0; i < minDim; i++)
-             {
+             for (int i = 0; i < minDim; i++) {
                  if (BinSearch(matrix, i, true, target) || BinSearch(matrix, i, false, target)) return true;
              }
 
              return false;
          }
 
-         private bool BinSearch(int[,] matrix, int start, bool vertical, int target)
-         {
+         private bool BinSearch(int[,] matrix, int start, bool isColSearch, int target) {
              int low = start;
-             int high = vertical ? matrix.GetLength(1) - 1 : matrix.GetLength(0) - 1;
+             int high = isColSearch ? matrix.GetLength(1) - 1 : matrix.GetLength(0) - 1;
 
-             while (low <= high)
-             {
+             while (low <= high) {
                  int mid = low + (high - low) / 2;
-                 if (vertical)
-                 {
+                 if (isColSearch) {
                      // we are searching the cols and hence the row must be a constant.
                      if (target > matrix[start, mid]) low = mid + 1;
                      else if (target < matrix[start, mid]) high = mid -1;
                      else return true;
-                 }
-                 else
-                 {
+                 } else {
                      // we are searching rows and hence the col will be a constant
                      if (target > matrix[mid, start]) low = mid + 1;
                      else if (target < matrix[mid, start]) high = mid - 1;
@@ -87,8 +80,8 @@ namespace LC_FB_Medium
              int cols = matrix.GetLength(1);
              int r = rows - 1;
              int c = 0;
-             while (r >= 0 && c >= 0 && r <= rows - 1 && c <= cols -1)
-             {
+
+             while (r >= 0 && c >= 0 && r <= rows - 1 && c <= cols -1) {
                  if (matrix[r, c] > target) r--;
                  else if (matrix[r, c] < target) c++;
                  else return true;

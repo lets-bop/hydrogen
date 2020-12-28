@@ -29,13 +29,12 @@ namespace LC_FB_Medium
             if (nums == null || nums.Length < 1) return 0;
             int[] lis = new int[nums.Length]; // lis[i] represent the LIS so far
             int maxLength = 1;
+            lis[0] = 1;
 
-            for(int i = 0; i < nums.Length; i++){
-                lis[i] = 1;
-                for (int j = 0; j < i; j++){
-                    if (nums[i] > nums[j]){
-                        lis[i] = Math.Max(lis[i], lis[j] + 1);
-                    }
+            for(int i = 1; i < nums.Length; i++) {
+                lis[i] = 1; // minimum length possible
+                for (int j = 0; j < i; j++) {
+                    if (nums[i] > nums[j]) lis[i] = Math.Max(lis[i], lis[j] + 1);
                 }
 
                 maxLength = Math.Max(maxLength, lis[i]);
@@ -49,8 +48,8 @@ namespace LC_FB_Medium
             if (nums == null || nums.Length < 1) return 0;
 
             // Idea is to maintain a list of numbers that are increasing
-            // If the element at the end of the array less than the current element,
-            // then we simply add the current element to the list
+            // If the element at the end of the list is less than the current element,
+            // then we simply add the current element to the list.
             // Else we perform a binary search to find the smallest # larger than the current element
             // and we replace that element with the current element. 
             // In this way we have an inreasing list that is as minimal as possible.

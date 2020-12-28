@@ -1,24 +1,19 @@
-/*
-Given a collection of intervals, merge all overlapping intervals.
-
-Example 1:
-
-Input: [[1,3],[2,6],[8,10],[15,18]]
-Output: [[1,6],[8,10],[15,18]]
-Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
-Example 2:
-
-Input: [[1,4],[4,5]]
-Output: [[1,5]]
-Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
-
-*/
-
 using System;
 using System.Collections.Generic;
 
 namespace LC_FB_Medium
 {
+    /*
+    Given a collection of intervals, merge all overlapping intervals.
+
+    Example 1:
+    Input: [[1,3],[2,6],[8,10],[15,18]] Output: [[1,6],[8,10],[15,18]]
+    Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+
+    Example 2:
+    Input: [[1,4],[4,5]] Output: [[1,5]]
+    Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
+    */
     public class Interval {
         public int start;
         public int end;
@@ -36,20 +31,14 @@ namespace LC_FB_Medium
             List<Interval> intervals = new List<Interval>(intervals1);
             intervals.Sort(CompareIntervals);
 
-            Interval prevInterval = null;
-            foreach (Interval interval in intervals) {
-                if (prevInterval == null) {
-                    prevInterval = interval;
-                    continue;
-                }
-
-                if(prevInterval.end >= interval.start) {
-                    // intervals overlap, check and update end times.
-                    if (prevInterval.end < interval.end) prevInterval.end = interval.end;
-                } else {
+            Interval prevInterval = intervals[0];
+            for (int i = 1; i < intervals.Count; i++) {
+                // check if current interval overlaps with previous
+                if(prevInterval.end >= intervals[i].start) prevInterval.end = Math.Max(prevInterval.end, intervals[i].end);
+                else {
                     // no overlap, add prevInterval into result
                     merged.Add(prevInterval);
-                    prevInterval = interval;
+                    prevInterval = intervals[i];
                 }
             }
 

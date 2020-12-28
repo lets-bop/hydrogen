@@ -31,20 +31,10 @@ namespace LC_FB_Medium
             HashSet<char> set = new HashSet<char>();
 
             while (end < s.Length) {
-                if (!set.Contains(s[end])) {
-                    set.Add(s[end]);
-                    maxLength = Math.Max(maxLength, end - start + 1);
-                    end++;
-                } else {
-                    // repeating
-                    while (s[start] != s[end]) {
-                        set.Remove(s[start]);
-                        start++;
-                    }
-                    // s[start] == s[end]. increment start
-                    set.Remove(s[start]);
-                    start++;
-                }
+                char c = s[end++];
+                while(set.Contains(c)) set.Remove(s[start++]);
+                set.Add(c);
+                maxLength = Math.Max(maxLength, end - start);
             }
 
             return maxLength;

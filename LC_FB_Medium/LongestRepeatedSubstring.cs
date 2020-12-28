@@ -3,13 +3,34 @@ using System.Collections.Generic;
 
 namespace LC_FB_Medium
 {
+    /*
+    Given a string S, find out the length of the longest repeating substring(s). 
+    Return 0 if no repeating substring exists.
+
+    Example 1:
+    Input: S = "abcd" Output: 0
+    Explanation: There is no repeating substring.
+
+    Example 2:
+    Input: S = "abbaba" Output: 2
+    Explanation: The longest repeating substrings are "ab" and "ba", each of which occurs twice.
+
+    Example 3:
+    Input: S = "aabcaabdaab" Output: 3
+    Explanation: The longest repeating substring is "aab", which occurs 3 times.
+
+    Example 4:
+    Input: S = "aaaaa" Output: 4
+    Explanation: The longest repeating substring is "aaaa", which occurs twice.
+    */
+
     class LongestRepeatedSubstring
     {
         public int LongestRepeatingSubstring(string S) {
             int longest = int.MinValue;
             List<string> suffixes = new List<string>();
 
-            // Idea: generate suffix arrays and sort them and run lcp on adjacent pairs.
+            // Idea: generate suffix arrays and sort them and run Longest common prefix (LCP) on adjacent pairs.
             // suffix array of a string starting at index 0 is all characters of the string
             // suffix array of a string starting at index 1, is the all characters except the first char and so on.
             // Max of N substring calls and N lcp calls

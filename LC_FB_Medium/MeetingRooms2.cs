@@ -33,16 +33,13 @@ namespace LC_FB_Medium
         // allocation. So we just update the end time value in the MinPQ.
         // If not (i.e. new interval's start  time < min end time), we need to allocate a new room
         // and we add its end time to the MinPQ.
-        public int FindMinimum(Interval[] intervals)
-        {
+        public int FindMinimum(Interval[] intervals) {
             Array.Sort(intervals, CompareInts);
             MinPQ pq = new MinPQ(intervals.Length);
 
             foreach(Interval interval in intervals){
-                if(pq.currentItemCount == 0 || interval.start < pq.GetMin())
-                    pq.Add(interval.end);
-                else 
-                    pq.UpdateMin(interval.end);
+                if(pq.currentItemCount == 0 || interval.start < pq.GetMin()) pq.Add(interval.end);
+                else pq.UpdateMin(interval.end);
             }
 
             return pq.currentItemCount;
@@ -59,13 +56,13 @@ namespace LC_FB_Medium
             internal int currentItemCount;
             int size;
 
-            internal MinPQ(int size){
+            internal MinPQ(int size) {
                 this.size = size;
                 this.pq = new int[size];
                 this.currentItemCount = 0;
             }
 
-            internal int GetMin(){
+            internal int GetMin() {
                 return this.pq[0];
             }
 
