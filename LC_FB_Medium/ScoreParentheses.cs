@@ -58,20 +58,22 @@ namespace LC_FB_Medium
         private int ScoreWithStack2(string s) {
             if (s == null || s.Length == 0) return 0;
 
+            int sum;
             Stack<int> stack = new Stack<int>();
             for (int i = 0; i < s.Length; i++) {
                 if (s[i] == '(') stack.Push(s[i]);
                 else {
-                    int sum = 0;
+                    sum = 0;
                     while (stack.Peek() != '(') sum += stack.Pop();
                     stack.Pop(); // pop '('
                     if (sum == 0) stack.Push(1);
                     else stack.Push(sum * 2);
                 }
             }
-
-            if (stack.Count == 0) return 0;
-            return stack.Peek();
+            
+            sum = 0;
+            while (stack.Count > 0) sum += stack.Pop();
+            return sum;
         }
 
         private int ScoreWithStack(string s) {

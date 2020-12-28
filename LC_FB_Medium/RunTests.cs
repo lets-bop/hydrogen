@@ -102,7 +102,7 @@ namespace LC_FB_Medium
             // TestBinaryTreePathSum2(); // 89
             // TestBstInorderSuccessor(); // 90
             // TestBstInorderSuccessor2(); // 91
-            // TestScoreParentheses(); // 92
+            TestScoreParentheses(); // 92
             // TestValidParenthesisString(); // 93
             // TestBinaryTreeDistributeCoins(); // 94
             // TestGroupAnagrams(); // 95
@@ -110,7 +110,7 @@ namespace LC_FB_Medium
             // TestCampusBikes(); // 97
             // TestFrequencySort(); // 98
             // TestLongestPalindromicSubstring(); // 99
-            TestSortedCollections();
+            // TestSortedCollections();
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1256,10 +1256,12 @@ namespace LC_FB_Medium
             ScoreParentheses s = new ScoreParentheses();
             Console.WriteLine("Expected: 1. Actual " + s.ScoreOfParentheses("()"));
             Console.WriteLine("Expected: 2. Actual " + s.ScoreOfParentheses("(())"));
+            Console.WriteLine("Expected: 3. Actual " + s.ScoreOfParentheses("()()()"));
             Console.WriteLine("Expected: 4. Actual " + s.ScoreOfParentheses("(()())"));
             Console.WriteLine("Expected: 4. Actual " + s.ScoreOfParentheses("((()))"));
             Console.WriteLine("Expected: 6. Actual " + s.ScoreOfParentheses("(()(()))"));
             Console.WriteLine("Expected: 8. Actual " + s.ScoreOfParentheses("((()()))"));
+            Console.WriteLine("Expected: 8. Actual " + s.ScoreOfParentheses("(((())))"));
             Console.WriteLine("Expected: 10. Actual " + s.ScoreOfParentheses("(()(())()())"));
         }
 

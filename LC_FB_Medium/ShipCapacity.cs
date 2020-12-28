@@ -46,8 +46,7 @@ Explanation:
     class ShipCapacity
     {
         /*
-            The largest capacity (high) we may even need is the sum of weights of all packages.
-            Ex: high = sum of weights when D = 1.
+            The largest capacity (high) we may even need is the sum of weights of all packages. Ex: high = sum of weights when D = 1.
             The smallest capacity (low) is the Max(weight of the largest package, sumOfAllPkgs / D)
             We use binary search to find the minimum capacity. For each capacity we analyze, 
             we count the number of days required to ship all packages.
@@ -59,7 +58,7 @@ Explanation:
         {
             if (weights == null || weights.Length == 0) return 0;
 
-            int low = 0, high = 0, mid = 0;
+            int low = int.MaxValue, high = 0, mid = 0;
             foreach (int w in weights) {
                 low = Math.Min(low, w);
                 high += w;
