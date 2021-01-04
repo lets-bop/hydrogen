@@ -81,9 +81,10 @@ namespace LC_FB_Hard
           inDegree = new Dictionary<char, int>();
 
           for (int i = 0; i < words.Length - 1; i++) {
-            int cIndex = 0;
+            int cIndex = 0, maxCIndex = Math.Min(words[i].Length, words[i + 1].Length);
             char c1, c2;
-            while (cIndex < words[i].Length && cIndex < words[i+1].Length) {
+
+            while (cIndex < maxCIndex) {
               c1 = words[i][cIndex];
               c2 = words[i + 1][cIndex];
               if (!inDegree.ContainsKey(c1)) inDegree[c1] = 0;
@@ -129,10 +130,10 @@ namespace LC_FB_Hard
           foreach (var kv in inDegree) if (kv.Value == 0) queue.Enqueue(kv.Key);
 
           while (queue.Count > 0) {
-            char poppedChar = queue.Dequeue();
-            sb.Append(poppedChar);
-            if (graph.ContainsKey(poppedChar)) {
-              foreach (char c in graph[poppedChar]) {
+            char ch = queue.Dequeue();
+            sb.Append(ch);
+            if (graph.ContainsKey(ch)) {
+              foreach (char c in graph[ch]) {
                 inDegree[c]--;
                 if (inDegree[c] == 0) queue.Enqueue(c);
               }

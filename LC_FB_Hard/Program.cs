@@ -11,7 +11,7 @@ namespace LC_FB_Hard
             DateTime startTime = DateTime.Now;
 
             // TestRegexMatching(); //1
-            TestMinWindowSubstring(); //2
+            // TestMinWindowSubstring(); //2
             // TestMaximalRectangle(); //3
             // TestLRUCache(); //4
             // TestBinarySearchWithTwist(); //5
@@ -23,7 +23,7 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence(); //11
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
-            // TestAlienDictionary(); //14
+            TestAlienDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
