@@ -29,39 +29,29 @@ namespace LC_FB_Medium
             List<List<char>> parsedString = this.ParseString(s);
             List<string> result = new List<string>();
             if (parsedString == null) return result.ToArray();
-            this.Expand1(parsedString, 0, string.Empty, result);
+            // this.Expand1(parsedString, 0, string.Empty, result);
+            result = this.ExpandParsedString(parsedString, 0);
             return result.ToArray();
         }
 
+        private List<string> ExpandParsedString(List<List<char>> parsedString, int index) {
+            if (index >= parsedString.Count) return new List<string>() {""};
+            List<string> tokens = this.ExpandParsedString(parsedString, index + 1);
+            List<string> ret = new List<string>();
+
+            foreach (char c in parsedString[index]) {
+                foreach (string s in tokens) ret.Add(s + c);
+            }
+
+            return ret;
+        }
+        
         private void Expand1(List<List<char>> parsedString, int index, string strSoFar, List<string> res) {
             if (index >= parsedString.Count) return;
 
             foreach (char s in parsedString[index]) {
                 if (index == parsedString.Count - 1) res.Add(strSoFar + s);
                 else this.Expand1(parsedString, index + 1, strSoFar + s, res);
-            }
-        }
-
-        private List<string> ExpandParsedString(List<List<char>> parsedString, int listIndex, List<string> result)
-        {
-            if (listIndex >= parsedString.Count) return result;
-            List<string> newResult = new List<string>();
-
-            if (listIndex == 0) {
-                foreach (char c in parsedString[0]) {
-                    newResult.Add(c.ToString());
-                }
-
-                return this.ExpandParsedString(parsedString, listIndex + 1, newResult);
-            }
-            else {
-                foreach (string r in result) {
-                    foreach (char c in parsedString[listIndex]) {
-                        newResult.Add(r + c.ToString());
-                    }
-                }
-
-                return this.ExpandParsedString(parsedString, listIndex + 1, newResult);
             }
         }
 

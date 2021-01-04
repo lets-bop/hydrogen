@@ -1,0 +1,143 @@
+# Accounts (email) merge: 
+    # Graph, DFS
+# Arithmetic slice count (continuous #s of length 3 or more having same diff):
+    # Use DP for O(n). Naive solution considering all subarrays with O(n^2) time
+# BinaryTreeDistributeCoins: 
+    # DFS postorder. each node returns left + right + node.val - 1. moves += abs(left) + abs(right)
+# TestBinaryTreeRightSideView: 
+    # BFS, but add right then left element to the queue. Each queue item is a tuple of node, level. If level is seen first time, print.
+# Brace expansion:
+    # Use bottom-up recursion approach
+# BSTDoublyList: 
+    # DFS Inorder. Use class variables to track tail, head.
+# BSTInorderSuccessor: 
+    # Find the node given. Set/reset parent when moving left only. 
+    # Once node is found, move to right child and find the left most element. Keep updating parent. Return parent at the end.
+# CampusBike:
+    # Store all bike-worker combinations to a list and sort them according to the conditions given.
+    #  Walk the list and allocate bikes to each unallocated worker
+# ContainerWithMostWater:
+    # Window approach with i = 0, j = list.Count - 1. Calculate water held = (j - i) * Min(heights[i], heights[j])
+    # i++ iff heights[i] < heights[j] else j--
+# ContinuousSubarraySum: continuous subarray of size at least 2 that sums up to a multiple of k
+    # O(n^2) naive by considering all subarrays.
+    # O(n) time by using a dic, keep track of rolling sum += num[i] and then mod with k. sum = sum % k.
+    # If the dic contains the sum, return true. 
+# Daily temperature: 
+    # stack, walk temps backwards. Add to stack iff stacktop < temp, else pop
+# DifferentWaysToAddParenthesis: "2-1-1" Output: [0, 2] Explanation: ((2-1)-1) = 0 & (2-(1-1)) = 2
+    # At every operator, split the string as left and right and recursively invoke method with left and right substrings.
+    # calculate results by applying the operator on the returned left & right #s and return result
+# ExclusiveTimeFunctions: ["0:start:0", "1:start:2", "1:end:5", "0:end:6"] Output:[3, 4]
+    # Use a stack. For function starts, iff the stack is not empty, nested function call, so update the running time for the stack.Peek
+    # Else just add entry into stack. For function ends, pop from stack (will be corresponding func start) and update its running time.
+    # Note: "0:start:0" means function 0 starts from the very beginning of time 0. "0:end:0" means function 0 ends to the very end of time 0.
+# FindAllAnagramsInString: s: "cbaebabacd" p: "abc" Output: [0, 6]
+    # Count the chars in pattern 'p' and store in dictionary
+    # Using a window technique, keep reducing the count of the chars in dictionary until # of unique chars to match = 0
+    # Iff the size of window == length of 'p', then record the start index
+    # Else keep reducing the window until # of chars to match > 0 & repeat
+# FlattenBinaryTree:
+    # Use stack. If node has a right child, push to stack
+    # If node has a left child, move it to right
+    # Else pop from stack (not empty) & set current node's right child that
+    # move to node.right and repeat
+# FlattenMultiLevelLinkedList:
+    # Use recursion. i.e. do a DFS. If node has child, recurse with node.child
+# FriendCircles: Count # of friend circle. Note friendship is transitive.
+    # Use union find
+# FriendsOfAppropriateAges:
+    # Given that max <=120, create an array of size 121 to maintain the count of people of a particular age
+    # and another array to maintain a prefix sum of the counts
+    # Use the prefix count array to calculate the # of people in particular age range & calculate 
+    # the # of friend requests that will be sent for each age
+# FruitIntoBaskets: 
+    # To handle cases like 1,2,1,2,2,2,3,2,3,2,3,3,3
+    # maintain most recently seen fruit, its continuous count & index first seen 
+    # This is useful when its time to update the window to include a fruit != first or the second fruit
+# KClosestToOrigin: Given a set of points (unordered), find the first k points closest to origin (0,0)
+    # Use QuickSelect
+# LongestArithmeticSequence: [20,1,15,2,10,5,3] Output: 4. Explanation: 20,15,10,5
+    # O(n^2) time. Array of dic which holds the diff of itself with every # prior to it and its length as value.
+    # If the diff'ed value is present in the dic, then use the length from dic and add 1.
+    # Else add a new entry for the diff'ed value in the current index's dictionary.
+# LongestIncreasingSubsequence:
+    # Naive solution is O(n^2). For each #, consider all #s prior to it
+    # O(n lg n) solution. Use a list to store #s in increasing order.
+    # Walk the numbers, If the number is smaller than last element in the list, use BinSearch
+    # to find the smallest # larger than the current # and repalce it with current
+# LongestPalindromicSubstring:
+            # for (int i = 0; i < s.Length; i++) {
+            #     int l1 = this.ExpandFromMiddle(s, i, i); // to handle odd length palindrome. Ex: bab & i = 1.
+            #     int l2 = this.ExpandFromMiddle(s, i, i + 1); // to handle even length pandrome. Ex: baab & i = 1.
+# LongestRepeatingChar: abacbbbb, k = 2, output: 7.
+    # use a window technique but keep track of the maxOccuringCharCount (agnostic of the actual char)
+    # Once windowSize - maxOccuringCharCount > k, then we need to keep reducing the window windowSize
+    # until windowSize - maxOccuringCharCount <= k. Note that maxOccuringCharCount must be re-caclulated
+    # every time window is modified
+# LongestSubstringKDistinctChars:
+    # Window technique. Use a dictionary (char, int) to keep track of the char to count mapping. 
+    # Keep increasing the window size until dictionary.Count <= k and reduce windowSize when condition is not true
+# MaximumSizeSubarraySumK: Find the max sized subarray that sums to k (has -ve #s)
+    # O(n^2) naive. Consider all subarrays.
+    # O(n) using prefixSum and a dictionary to store the prefixSum at first index it was seen 
+    # (don't add to dic If entry already present as you want to find the max size)
+# Median of a data stream:
+    # Two priority queues: A max-heap lo to store the smaller half of the numbers 
+    # A min-heap hi to store the larger half of the numbers
+    # The max-heap lo is allowed to store, at worst, one more element more than the min-heap hi. 
+# MeetingsRooms2: Given an array of meeting rooms, calculate the # of meeting rooms required.
+    # Sort the intervals by their start times (end times dont matter)
+    # Use a MinPQ. Walk the intervals in the sorted array, If the
+    # interval's end time > top of MinPQ's end time, invoke UpdateMin.
+    # else add the interval's end time to the MinPQ
+# MinDominoRotations: Min # of rotations such that all values in domino A or B are the same
+    # Basically the problem is to find the min rotations to make all of domino A or B = A[0]
+    # or all of A or B = B[0].
+# MinimumAreaRectangle: Determine the minimum area of a rectangle formed from a given set of points 
+    # Create a dictionary where x is key and value is a hashset containing y
+    # For every point (x,y), find another point (a, b) where x != a and y != b
+    # Then look for points (a, y) & (x, b). If both are present, 
+    # calculate the area of the rectangle and track min.
+# MyCalendarTwo: Prevent triple booking. Note that the intervals are not coming in sorted.
+    # Maintain an overlap list and a interval list (both unsorted)
+    # Overlap list will contain overlapping intervals seen so far
+    # and the interval list will contain all the intervals.
+    # If the new booking interval overlaps with any interval in the overlapping, dont allow that booking
+    # Else, check look for overlaps with any interval in the interval list and add overlapping part to the overlap list.
+    # Else just add to interval list
+# NetworkDelayTime:
+    # DoDjikstras
+# NonoverlappingIntervals: Find min # of intervals to be removed to make the rest of the intervals non-overlapping
+    # Sort the intervals by start time and end time.
+    # For each interval, compare prevInterval with the currentInterval and 
+    # discard the interval with a later end time when there is overlap
+# NumberOfConnectedComponentsUG: Given the edges and # of nodes in a graph, count the # of connected components
+    # Use union find. Walk the edges and keep unioning them.
+# NumberOfIslands: 
+    # Use BFS or DFS
+# OneEditDistance: Given two strings s and t, determine if they are both one edit distance apart.
+    # Use 2 indices for the 2 strings. If chars are same, increment the 2 indices
+    # If the chars are different:
+        # If the length of the 2 strings are same, increase both indices
+        # Else increase the index on the string with the longer length
+        # Continue comparing
+# PartitionLabels:
+    # Run through the entire string and map the largest occuring index for each char in the label
+    # Re-walk the string left to right and keep track of the max index seen so far including the current char.
+    # If the maxIndexSoFar = current index, then partition ends at the current index
+# PartitionToKEqualSumSubsets: Given an array of integers nums and a positive integer k
+    # Find the total sum of the nums and it must be divisible by k
+    # Sort the elements
+    # Ensure that no element > sum / k (just check the last element)
+    # If any element == sum / k, put them in separate arrays.
+    # Use backtracking through recursion to put the remaining elements in arrays
+# Pow: x ^ n
+    # For example, x^8 = ((x^2)^2)^2 and x^10 = (((x^2)^2)^2)*x*x
+    #       while(n != 0) {
+    #           // if n is not divisible by 2
+    #           if ((n & 1) != 0) result = result * x;
+    #           x *= x;
+    #           n = n >> 1; // divide n / 2 by rotating right
+    #       }
+

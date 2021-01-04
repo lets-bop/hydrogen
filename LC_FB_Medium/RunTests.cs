@@ -102,7 +102,7 @@ namespace LC_FB_Medium
             // TestBinaryTreePathSum2(); // 89
             // TestBstInorderSuccessor(); // 90
             // TestBstInorderSuccessor2(); // 91
-            TestScoreParentheses(); // 92
+            // TestScoreParentheses(); // 92
             // TestValidParenthesisString(); // 93
             // TestBinaryTreeDistributeCoins(); // 94
             // TestGroupAnagrams(); // 95
@@ -111,6 +111,10 @@ namespace LC_FB_Medium
             // TestFrequencySort(); // 98
             // TestLongestPalindromicSubstring(); // 99
             // TestSortedCollections();
+            // TestReverseEvenList(); // 100
+            // TestEncryptedWord(); // 101
+            // TestForeignCurrencyChange(); // 102
+            TestRotationalCipher();
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -160,10 +164,7 @@ namespace LC_FB_Medium
         {
             ExclusiveTimeFunctions etf = new ExclusiveTimeFunctions();
             int[] result = etf.ExclusiveTime(2, new List<string>() {"0:start:0","1:start:2","1:end:5","0:end:6"});
-            Console.WriteLine("Expected [3,4]. Actual is ");
-
-            foreach(int r in result) Console.Write("{0} ", r);
-            Console.WriteLine();
+            Console.WriteLine("Expected [3,4]. Actual is {0}", GetListOfIntAsString(result));
         }
 
         public static void NumberOfIslandsTest()
@@ -1375,6 +1376,45 @@ namespace LC_FB_Medium
             list.Add("bzz", "45"); list.Add("zzb", "5"); list.Add("azb", "55"); list.Add("ab", "100"); list.Add("art", "451");
             foreach(string k in list.Keys) Console.Write("{0}:{1} \t", k, list[k]); Console.WriteLine();
             for (int i = 0; i < list.Count; i++) Console.WriteLine("key: {0}, value: {1}", list.Keys[i], list.Values[i]);
+        }
+
+        public static void TestReverseEvenList() {
+            ReverseEvenList rel = new ReverseEvenList();
+
+            int[] nums = new int[] {1, 2, 8, 9, 12, 16};
+            Console.WriteLine("Expected: 1,8,2,9,16,12. Actual: {0}", GetListOfIntAsString(rel.ConvertToList(rel.Reverse(rel.CreateList(nums)))));
+
+            nums = new int[] {2, 8, 9, 12, 16};
+            Console.WriteLine("Expected: 8,2,9,16,12. Actual: {0}", GetListOfIntAsString(rel.ConvertToList(rel.Reverse(rel.CreateList(nums)))));
+
+            nums = new int[] {1, 3, 2, 8, 12, 16};
+            Console.WriteLine("Expected: 1,3,16,12,8,2. Actual: {0}", GetListOfIntAsString(rel.ConvertToList(rel.Reverse(rel.CreateList(nums)))));
+
+            nums = new int[] {1,3,4,5};
+            Console.WriteLine("Expected: 1,3,4,5. Actual: {0}", GetListOfIntAsString(rel.ConvertToList(rel.Reverse(rel.CreateList(nums)))));
+        }
+
+        public static void TestEncryptedWord() {
+            EncryptedWords ew = new EncryptedWords();
+            Console.WriteLine("Input: abc. Expected: bac. Actual: {0}.", ew.FindEncryptedWord("abc"));
+            Console.WriteLine("Input: abcd. Expected: bacd. Actual: {0}.", ew.FindEncryptedWord("abcd"));
+            Console.WriteLine("Input: abcxcba. Expected: xbacbca. Actual: {0}.", ew.FindEncryptedWord("abcxcba"));
+            Console.WriteLine("Input: facebook. Expected: eafcobok. Actual: {0}.", ew.FindEncryptedWord("facebook"));
+        }
+
+        public static void TestForeignCurrencyChange()
+        {
+            ForeignCurrencyChange fcc = new ForeignCurrencyChange();
+            Console.WriteLine("Expected: False. Actual: {0}", fcc.CanMakeExactChange(94, new int[] {5,10,25,100,200}));
+            Console.WriteLine("Expected: True. Actual: {0}", fcc.CanMakeExactChange(300, new int[] {5,10,25,100,200}));
+            Console.WriteLine("Expected: True. Actual: {0}", fcc.CanMakeExactChange(75, new int[] {4,17,29}));
+        }
+
+        public static void TestRotationalCipher()
+        {
+            RotationalCipher rc = new RotationalCipher();
+            Console.WriteLine("Expected: Cheud-726. Actual: {0}", rc.Rotate("Zebra-493", 3));
+            Console.WriteLine("Expected: nopqrstuvwxyzABCDEFGHIJKLM9012345678. Actual: {0}", rc.Rotate("abcdefghijklmNOPQRSTUVWXYZ0123456789", 39));
         }
     }
 }

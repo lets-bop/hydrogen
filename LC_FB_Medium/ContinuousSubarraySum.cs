@@ -51,14 +51,10 @@ namespace LC_FB_Medium
             Dictionary<int, int> dict = new Dictionary<int, int>();
             dict[0] = -1;
 
-            for (int i = 0; i < nums.Length; i++) 
-            {
+            for (int i = 0; i < nums.Length; i++)  {
                 sum += nums[i];
                 if (k != 0) sum = sum % k;
-                if (dict.ContainsKey(sum)) {
-                    if (i - dict[sum] > 1) return true;
-                }
-                
+                if (dict.ContainsKey(sum) && (i - dict[sum] > 1)) return true;
                 dict[sum] = i;
             }
 

@@ -54,9 +54,7 @@ namespace LC_FB_Medium
                 int time = int.Parse(logSplits[2]);
 
                 if (logSplits[1] == "start"){
-                    if(stack.Count != 0)
-                        result[stack.Peek()] += time - prev;
-
+                    if(stack.Count != 0) result[stack.Peek()] += time - prev;
                     stack.Push(function_id);
                     prev = time;
                 }

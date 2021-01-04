@@ -32,11 +32,7 @@ namespace LC_FB_Medium
     {
         public int CountComponents(int n, int[][] edges) {
             UF uf = new UF(n);
-
-            foreach (int[] edge in edges){
-                uf.Union(edge[0], edge[1]);
-            }
-
+            foreach (int[] edge in edges) uf.Union(edge[0], edge[1]);
             return uf.cc;
         }
     }
