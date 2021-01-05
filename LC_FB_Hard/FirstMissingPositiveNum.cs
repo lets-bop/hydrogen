@@ -2,18 +2,13 @@
 Given an unsorted integer array, find the smallest missing positive integer.
 
 Example 1:
+Input: [1,2,0] Output: 3
 
-Input: [1,2,0]
-Output: 3
 Example 2:
+Input: [3,4,-1,1] Output: 2
 
-Input: [3,4,-1,1]
-Output: 2
 Example 3:
-
-Input: [7,8,9,11,12]
-Output: 1
-
+Input: [7,8,9,11,12] Output: 1
 */
 
 using System;
@@ -39,12 +34,10 @@ namespace LC_FB_Hard
             }
 
             // Corner case.
-            if (nums.Length == 1 && nums[0] == 1) return 2;            
+            if (nums.Length == 1 && nums[0] == 1) return 2;
             
             for(i = 0; i < nums.Length; i++){
-                if (nums[i] != i+1){
-                    return i+1;
-                }
+                if (nums[i] != i+1) return i+1;
             }
             
             return nums.Length + 1;

@@ -33,44 +33,14 @@ namespace LC_FB_Hard
     */
     class BinaryTreeCameras
     {
-        public class TreeNode {
-            public int val;
-            public TreeNode left;
-            public TreeNode right;
-            public TreeNode(int x) { val = x; }
-        }
-
         int minCamera;
 
         public int MinCameraCover(TreeNode root) {
             minCamera = 0;
             HashSet<TreeNode> covered = new HashSet<TreeNode>(); // the default implementation of GetHashCode() based on instance is sufficient
-            // this.DoDFS(root, null);
             this.DFS(root, null, covered);
             return minCamera;
         }
-        
-        // private void DoDFS(TreeNode node, TreeNode parent) {
-        //     // do a post order traversal
-        //     if (node == null) return;
-        //     if (node.left != null) this.DoDFS(node.left, node);
-        //     if (node.right != null) this.DoDFS(node.right, node);
-
-        //     // we need a camera if the parent is null and we are not yet covered or 
-        //     // if either the left child or the right child is not yet covered.
-        //     bool needCamera = false;
-        //     if (parent == null && !this.covered.Contains(node)) needCamera = true;
-        //     else if (node.left != null && !this.covered.Contains(node.left)) needCamera = true;
-        //     else if (node.right != null && !this.covered.Contains(node.right)) needCamera = true;
-
-        //     if (needCamera) {
-        //             if (parent != null) this.covered.Add(parent);
-        //             this.covered.Add(node);
-        //             if (node.left != null) this.covered.Add(node.left);
-        //             if (node.right != null) this.covered.Add(node.right);
-        //             this.minCamera++;
-        //     }
-        // }
 
         private bool DFS(TreeNode node, TreeNode parent, HashSet<TreeNode> covered) {
             // do a post order traversal
@@ -94,6 +64,13 @@ namespace LC_FB_Hard
         private static void Add(TreeNode node, HashSet<TreeNode> covered) {
             if (node == null || covered.Contains(node)) return;
             covered.Add(node);
+        }
+
+        public class TreeNode {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int x) { val = x; }
         }
     }
 }

@@ -34,6 +34,10 @@ namespace LC_FB_Hard
             int[] result = new int[hits.Length];
 
             /*
+                A simple approach is for each hit, denote the bricks connected to the 
+                top row by performing a DFS from every brick on the top row, and 
+                count the bricks that are not connected to the top row. But this exceeds time limit.
+
                 1. Mark all the hits on the grid before starting to find the connected component (i.e. the bricks connected to the roof)
                 We need to be able to differentiate if the hit had a 1 or 0 in the initial grid. 
                 We will just subtract 1 from each hit in the grid. 

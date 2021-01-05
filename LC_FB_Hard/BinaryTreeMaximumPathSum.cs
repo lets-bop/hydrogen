@@ -52,14 +52,14 @@ namespace LC_FB_Hard
             if (node.right != null) right = this.DoDFS(node.right);
             
             // At the node, take the max of node.val, node.val + left, node.val + right, node.val + left + right
-            int sum = node.val + left + right;
-            if (sum < node.val) sum = node.val;
-            if (sum < node.val + left) sum = node.val + left;
-            if (sum < node.val + right) sum = node.val + right;
-            this.maxSum = Math.Max(sum, this.maxSum);
+            int totalSum = node.val + left + right;
+            int leftSum = node.val + left;
+            int rightSum = node.val + right;
+            int max = Math.Max(Math.Max(left, right), totalSum);
+            this.maxSum = Math.Max(this.maxSum, max);
 
             // But we will return only the max of node.val, node.val + left, node.val + right
-            return Math.Max(Math.Max(node.val, node.val + left), node.val + right); // this is the key!!
+            return Math.Max(Math.Max(node.val, leftSum), rightSum); // this is the key!!
         }
     }
 }

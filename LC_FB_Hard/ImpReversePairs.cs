@@ -46,7 +46,7 @@ namespace LC_FB_Hard
             else
             {
                 node.SubTreeSizeWithEqualOrHigherValue++;
-                node.Right = ImpReversePairs.Insert(node.Right, data);   
+                node.Right = ImpReversePairs.Insert(node.Right, data);
             }
             
             return node;
@@ -98,8 +98,8 @@ namespace LC_FB_Hard
             for (int i = lo; i <= mid; i++){
                 int j = mid + 1;
                 while(j <= hi){
-                    if ((long)nums[i] > (long)2 * nums[j]) j++;   
-                    else break;              
+                    if ((long)nums[i] > (long)2 * nums[j]) j++;
+                    else break;
                 }
 
                 count += (j - mid - 1);

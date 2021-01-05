@@ -43,77 +43,58 @@ namespace LC_FB_Hard
 {
     class BuyAndSellStocks
     {
-        internal class Stock
-        {
-            internal string sym;
-            internal long ts;
-            internal double price;
-            
-            internal Stock(string sym, long ts, double price) {
-                this.sym = sym;
-                this.ts = ts;
-                this.price = price;
-            }
-        }
-        
-        
         public void CalculateMaxProfit(string[] pricelines)
         {
             if (pricelines == null || pricelines.Length == 0) return;
-            
-            // 
-            Dictionary<string, Stock> symToMinPrice = new Dictionary<string, Stock>();
-            
-            // buyts, sellts, sym, maxprofit
-            (long, long, string, double) bestStock = (long.MinValue, long.MinValue, null, double.MinValue);
+            Dictionary<string, List<(string, double)>> symToPrice = new Dictionary<string, List<(string, double)>>();
 
             foreach (string line in pricelines) {
                 // (ts, sym, price)
-                Stock stock = this.ExtractValue(line);
-                
-                if (!symToMinPrice.ContainsKey(stock.sym)) {
-                    // insert the value
-                    symToMinPrice[stock.sym] = stock;
-                } else {
-                    if (symToMinPrice[stock.sym].price < stock.price) {
-                        // calculate profit
-                        double profit = stock.price - symToMinPrice[stock.sym].price;
-                        
-                        // check if this profit is the best
-                        if (bestStock.Item3 == null || (bestStock.Item3 != null && profit > bestStock.Item4)) {
-                            // replace best stock values
-                            bestStock = (symToMinPrice[stock.sym].ts, // min price ts
-                                        stock.ts, // current ts, sell time
-                                        stock.sym, // current stock sym
-                                        profit); // profit
-                        }
-                    } else if (symToMinPrice[stock.sym].price > stock.price) {
-                        // found a new min
-                        symToMinPrice[stock.sym] = stock;
-                    }
+                string[] splits = line.Split(',');
+                string time = splits[0];
+                string stockName = splits[1];
+                double price = double.Parse(splits[2]);
+                if (!symToPrice.ContainsKey(stockName)) symToPrice[stockName] = new List<(string, double)>();
+                symToPrice[stockName].Add((time, price));
+            }
+
+            (string, string, string, double) max = (string.Empty, string.Empty, string.Empty, 0.0);
+            foreach (string key in symToPrice.Keys) {
+                (string, string, double) currMax = this.GetMaxProfit(symToPrice[key]);
+                if (currMax.Item3 > max.Item4) {
+                    max.Item1 = key;
+                    max.Item2 = currMax.Item1;
+                    max.Item3 = currMax.Item2;
+                    max.Item4 = currMax.Item3;
                 }
             }
             
-            if (bestStock.Item3 != null) {
+            if (!string.IsNullOrEmpty(max.Item1)) {
                 Console.WriteLine("{0}: buytime={1}, selltime={2}, profit={3}", 
-                                bestStock.Item3,
-                                bestStock.Item1,
-                                bestStock.Item2,
-                                bestStock.Item4);
+                                max.Item1,
+                                max.Item2,
+                                max.Item3,
+                                max.Item4);
             }
         }
-        
-        private Stock ExtractValue(string line)
-        {
-            if (line == null) throw new Exception("Invalid input");
-            
-            string[] values = line.Split(",");
-            if (values.Length != 3) throw new Exception("Invalid input");
-            
-            long ts = long.Parse(values[0]);
-            string sym = values[1];
-            double price = double.Parse(values[2]);
-            return new Stock(sym, ts, price);
+
+        private (string, string, double) GetMaxProfit(List<(string, double)> prices) {
+            double max = double.MinValue;
+            double profit = double.MinValue;
+            string sellTime = string.Empty;
+            string buyTime = string.Empty;
+
+            for (int i = prices.Count - 1; i >= 0; i--) {
+                if (max <= prices[i].Item2) {
+                    sellTime = prices[i].Item1;
+                    max = prices[i].Item2;
+                } else {
+                    buyTime = prices[i].Item1;
+                    profit = Math.Max(profit, max - prices[i].Item2);
+                }
+            }
+
+            return (buyTime, sellTime, profit);
         }
     }
 }

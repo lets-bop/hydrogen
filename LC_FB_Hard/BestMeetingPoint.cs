@@ -39,9 +39,9 @@ namespace LC_FB_Hard
             List<int> rows = new List<int>();
 
             // record the row and col for each 1 in the grid
-            for(int i = 0; i < m; i++){
-                for(int j = 0; j < n; j++){
-                    if(grid[i][j]==1){
+            for(int i = 0; i < m; i++) {
+                for(int j = 0; j < n; j++) {
+                    if(grid[i][j]==1) {
                         cols.Add(j);
                         rows.Add(i);
                     }
@@ -49,21 +49,18 @@ namespace LC_FB_Hard
             }
         
             int sum=0;
+            int rowMedian = rows[rows.Count/2];
+            int colMedian = cols[cols.Count/2];
         
-            foreach(int i in rows){
-                // for each 1 in the row, calculate how far it is from the median
-                sum += Math.Abs(i - rows[rows.Count/2]);
-            }
+            // for each 1 in the row, calculate how far it is from the median
+            foreach(int i in rows) sum += Math.Abs(i - rowMedian);
         
+            // for each 1 in the col, calculate how far it is from the median
+            // we only need to sort the cols, as we are scanning the matrix by the row
+            // and 1 can appear in any col and hence not ordered. 
+            // So we need to find the median by ordering the cols across all rows
             cols.Sort();
-        
-            foreach (int i in cols){
-                // for each 1 in the col, calculate how far it is from the median
-                // we only need to sort the cols, as we are scanning the matrix by the row
-                // and 1 can appear in any col and hence not ordered. 
-                // So we need to find the median by ordering the cols across all rows
-                sum += Math.Abs(i - cols[cols.Count/2]);
-            }
+            foreach (int i in cols) sum += Math.Abs(i - colMedian);
         
             return sum;
         }

@@ -23,7 +23,7 @@ namespace LC_FB_Hard
             // TestLongestConsecutiveSequence(); //11
             // TestNumberToEnglish(); //12
             // TestSubstringWithConcat(); //13
-            TestAlienDictionary(); //14
+            // TestAlienDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
             // TestWordBreak(); //17
@@ -66,7 +66,7 @@ namespace LC_FB_Hard
             //TestShortestDistanceFromAllBuildings(); // 55
             // TestReverseNodesInKGroup(); // 56
             // TestKClosestBstValues(); // 57
-            // TestBuyAndSellStock(); // 58
+            TestBuyAndSellStock(); // 58
             // TestExpressionAddOperators(); // 59
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
@@ -176,7 +176,7 @@ namespace LC_FB_Hard
                 new char[]{'0','0','0','0','1','1'},
                 new char[]{'0','0','0','0','0','1'},
                 new char[]{'0','0','0','0','0','0'},};
-            Console.WriteLine("Expected: 12. Actual: " + MaximalRectangle.Execute(rectangle));                            
+            Console.WriteLine("Expected: 12. Actual: " + MaximalRectangle.Execute(rectangle));
         }
 
         public static void TestLRUCache()
@@ -1182,19 +1182,18 @@ namespace LC_FB_Hard
             grid = new int[][] {new int[] {1,0,0,0}, new int[] {1,1,1,0}};
             hits = new int[][] {new int[] {1,0}};
             result = bricks.HitBricks(grid, hits);
-            sb.Append("[");
-            foreach (int r in result) sb.Append(r.ToString() + ",");
-            sb.Append("]");
-            Console.WriteLine("Expected: [2]. Actual: " + sb.ToString());
+            Console.WriteLine("Expected: [2]. Actual: " + GetListOfIntAsString(result));
             sb.Clear();
 
             grid = new int[][] {new int[] {1,0,0,0}, new int[] {1,1,0,0}};
             hits = new int[][] {new int[] {1,1}, new int[] {1,0}};
             result = bricks.HitBricks(grid, hits);
-            sb.Append("[");
-            foreach (int r in result) sb.Append(r.ToString() + ",");
-            sb.Append("]");
-            Console.WriteLine("Expected: [2]. Actual: " + sb.ToString());
+            Console.WriteLine("Expected: [0,0]. Actual: " + GetListOfIntAsString(result));
+
+            grid = new int[][] {new int[] {1,0,1,1}, new int[] {1,1,1,1}, new int[] {0,1,1,0}, new int[] {1,1,0,0}};
+            hits = new int[][] {new int[] {2,2}, new int[] {1,2}, new int[] {1,1}, new int[] {2,3}};
+            result = bricks.HitBricks(grid, hits);
+            Console.WriteLine("Expected: [0,0,3,0]. Actual: " + GetListOfIntAsString(result));
             sb.Clear();
         }
 
