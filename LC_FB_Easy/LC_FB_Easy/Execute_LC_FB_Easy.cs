@@ -130,7 +130,37 @@ namespace LC_FB_Easy
             // TestRemoveOuterMostParenthesis();
             // TestRectangleOverlap();
             // TestRottingOranges();
-            TestTreeAverageByLevel();
+            // TestTreeAverageByLevel();
+            TestDistributeColors();
+        }
+
+        public static string GetListOfIntAsString(IList<int> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
+        }
+
+        public static string GetListOfStringAsString(IList<string> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i]);
+            }
+
+            sb.Append("]");
+            return sb.ToString();
+        }
+
+        public static void TestDistributeColors() {
+            DistributeColors dc = new DistributeColors();
+            Console.WriteLine(GetListOfStringAsString(dc.Distribute("RRRGGB", 3)));
         }
 
         public static void TestSingleRowKeyboard()
