@@ -114,7 +114,11 @@ namespace LC_FB_Medium
             // TestReverseEvenList(); // 100
             // TestEncryptedWord(); // 101
             // TestForeignCurrencyChange(); // 102
-            TestRotationalCipher();
+            // TestRotationalCipher(); // 103
+            // TestLargestTripleProduct(); // 104
+            // TestMagicalCandyBags(); // 105
+            // TestAnswerQuery(); // 106
+            TextAboveAverageSubarrays(); // 107
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1402,19 +1406,43 @@ namespace LC_FB_Medium
             Console.WriteLine("Input: facebook. Expected: eafcobok. Actual: {0}.", ew.FindEncryptedWord("facebook"));
         }
 
-        public static void TestForeignCurrencyChange()
-        {
+        public static void TestForeignCurrencyChange() {
             ForeignCurrencyChange fcc = new ForeignCurrencyChange();
             Console.WriteLine("Expected: False. Actual: {0}", fcc.CanMakeExactChange(94, new int[] {5,10,25,100,200}));
             Console.WriteLine("Expected: True. Actual: {0}", fcc.CanMakeExactChange(300, new int[] {5,10,25,100,200}));
             Console.WriteLine("Expected: True. Actual: {0}", fcc.CanMakeExactChange(75, new int[] {4,17,29}));
         }
 
-        public static void TestRotationalCipher()
-        {
+        public static void TestRotationalCipher() {
             RotationalCipher rc = new RotationalCipher();
             Console.WriteLine("Expected: Cheud-726. Actual: {0}", rc.Rotate("Zebra-493", 3));
             Console.WriteLine("Expected: nopqrstuvwxyzABCDEFGHIJKLM9012345678. Actual: {0}", rc.Rotate("abcdefghijklmNOPQRSTUVWXYZ0123456789", 39));
+        }
+
+        public static void TestLargestTripleProduct() {
+            LargestTripleProduct ltp = new LargestTripleProduct();
+            int [] result = ltp.FindMaxProduct(new int[] {2, 1, 2, 1, 2});
+            Console.WriteLine("Expected: [-1,-1,4,4,8]. Actual: {0}", GetListOfIntAsString(result));
+
+            result = ltp.FindMaxProduct(new int[] {-2, -11, 2, -1, -9});
+            Console.WriteLine("Expected: [-1,-1,44,4,4]. Actual: {0}", GetListOfIntAsString(result));
+        }
+
+        public static void TestMagicalCandyBags() {
+            MagicalCandyBags mcb = new MagicalCandyBags();
+            int result = mcb.MaxCandies(new int[] {2,1,7,4,2}, 3);
+            Console.WriteLine("Expected: 14. Actual: {0}", result);
+        }
+
+        public static void TestAnswerQuery() {
+            AnswerQuery aq = new AnswerQuery();
+            int[] output = aq.Answer(new int[][] {new int[] {2,3}, new int[] {1,2}, new int[] {2,1}, new int[] {2,3}, new int[] {2,2}});
+            Console.WriteLine("Expected: [-1,2,-1,2]. Actual: {0}", GetListOfIntAsString(output));
+        }
+
+        public static void TextAboveAverageSubarrays() {
+            AboveAverageSubarrays aas = new AboveAverageSubarrays();
+            aas.Calculate(new int[] {3, 4, 2});
         }
     }
 }
