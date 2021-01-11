@@ -118,7 +118,15 @@ namespace LC_FB_Medium
             // TestLargestTripleProduct(); // 104
             // TestMagicalCandyBags(); // 105
             // TestAnswerQuery(); // 106
-            TextAboveAverageSubarrays(); // 107
+            // TextAboveAverageSubarrays(); // 107
+            // TestBeautifulArrangements(); // 108
+            // TestRotateArray(); // 109
+            // TestLongestCommonPrefix(); // 110
+            // TestValidateBST(); // 111
+            // TestBinaryTreeLevelOrderTraversal(); //112
+            // TestSortedArrayToBST(); // 113
+            // TestMultiplyStrings(); // 114
+            JumpGameTest(); // 115
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -436,14 +444,18 @@ namespace LC_FB_Medium
 
         public static void ThreeSumTest()
         {
-            ThreeSum sum = new ThreeSum();
-            IList<IList<int>> result = sum.Calculate(new int[] {-1, 0, 1, 2, -1, -4});
-            foreach (IList<int> r in result){
-                foreach (int n in r){
-                    Console.Write(n + ",");
-                }
-                Console.WriteLine();
-            }
+            ThreeSum threeSum = new ThreeSum();
+            IList<IList<int>> result = threeSum.Calculate(new int[] {-1,0,1,2,-1,-4});
+            Console.WriteLine("Expected: [[-1,1,0],[-1,2,-1]]. Actual: ");
+            foreach (IList<int> list in result) Console.Write("{0},", GetListOfIntAsString(list));
+
+            result = threeSum.Calculate(new int[] {-1,0,-5,5,1,4,4,4,1,1,42,-1,-4});
+            Console.WriteLine("Expected: [-5,0,5],[-5,1,4],[-4,-1,5],[-4,0,4],[-1,0,1]. Actual: ");
+            foreach (IList<int> list in result) Console.Write("{0},", GetListOfIntAsString(list));
+
+            result = threeSum.Calculate(new int[] {-2,0,1,1,2});
+            Console.WriteLine("Expected: [-2,0,2],[-2,1,1]. Actual: ");
+            foreach (IList<int> list in result) Console.Write("{0},", GetListOfIntAsString(list));
         }
 
         public static void TestCountCompleteBinaryTreeNodes()
@@ -1443,6 +1455,89 @@ namespace LC_FB_Medium
         public static void TextAboveAverageSubarrays() {
             AboveAverageSubarrays aas = new AboveAverageSubarrays();
             aas.Calculate(new int[] {3, 4, 2});
+        }
+
+        public static void TestBeautifulArrangements() {
+            BeautifulArrangements ba = new BeautifulArrangements();
+            Console.WriteLine("Expected: 3. Actual: {0}", ba.CountArrangement(3)); // 123, 213, 321
+        }
+
+        public static void TestRotateArray() {
+            RotateArray ra = new RotateArray();
+            int[] input = new int[] {1,2,3,4,5,6,7};
+            ra.Rotate(input, 3);
+            Console.WriteLine("Expected: [5,6,7,1,2,3,4]. Actual: {0}", GetListOfIntAsString(input));
+        }
+
+        public static void TestLongestCommonPrefix() {
+            LongestCommonPrefix lcp = new LongestCommonPrefix();
+            Console.WriteLine("Expected: flow. Actual: {0}", lcp.Find(new string[] {"flowers", "flow", "flowing"}));
+            Console.WriteLine("Expected: flo. Actual: {0}", lcp.Find(new string[] {"flowers", "flow", "floss"}));
+            Console.WriteLine("Expected: c. Actual: {0}", lcp.Find(new string[] {"car", "cir"}));
+            Console.WriteLine("Expected: a. Actual: {0}", lcp.Find(new string[] {"a"}));
+        }
+
+        public static void TestValidateBST() {
+            // placeholder
+            ValidateBST vBST = new ValidateBST();
+        }
+
+        // public static void TestBinaryTreeLevelOrderTraversal() { }
+
+        public static void TestSortedArrayToBST() {
+            SortedArrayToBST bst = new SortedArrayToBST();
+            // placeholder
+        }
+
+        public static void TestMultiplyStrings() {
+            MultiplyStrings ms = new MultiplyStrings();
+            Console.WriteLine("Expected: 21978. Actual: {0}", ms.Multiply("999", "22"));
+        }
+
+        public static void JumpGameTest() {
+            // JumpGame jg = new JumpGame();
+            // Console.WriteLine("Expected: False. Actual: {0}", jg.CanJump(new int[] {3,2,1,0,4}));
+
+            string s = "ADOBECODEBANC";
+            string t = "ABC";
+            
+            Dictionary<char, int> tCount = new Dictionary<char, int>();
+            foreach(char c in t.ToCharArray()) tCount[c] = tCount.GetValueOrDefault(c) + 1;
+            
+            int start = 0, end = 0;
+            Dictionary<char, int> sCount = new Dictionary<char, int>();
+            int charsToMatch = tCount.Count();
+            HashSet<char> matchedChars = new HashSet<char>();
+            int minStart = 0, minWindow = int.MaxValue;
+            
+            while (end < s.Length) {
+                while (charsToMatch > 0 && end < s.Length) {
+                    char c = s[end];
+                    sCount[c] = sCount.GetValueOrDefault(c) + 1;
+                    if (tCount.ContainsKey(c) && sCount[c] >= tCount[c] && !matchedChars.Contains(c)) {
+                        matchedChars.Add(c);
+                        charsToMatch--;
+                    }
+                    
+                    end++;
+                }
+                
+                while (charsToMatch == 0 && start < end) {
+                    if (charsToMatch == 0 && (end - start) < minWindow) {
+                        minStart = start;
+                        minWindow = end - start;
+                    }
+
+                    char c = s[start++];
+                    sCount[c]--;
+                    if (tCount.ContainsKey(c) && sCount[c] < tCount[c]) {
+                        charsToMatch++;
+                        matchedChars.Remove(c);
+                    }
+                }
+            }
+            
+            if (minWindow != int.MaxValue) Console.WriteLine(s.Substring(minStart, minWindow));
         }
     }
 }

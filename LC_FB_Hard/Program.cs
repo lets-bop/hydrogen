@@ -66,8 +66,9 @@ namespace LC_FB_Hard
             //TestShortestDistanceFromAllBuildings(); // 55
             // TestReverseNodesInKGroup(); // 56
             // TestKClosestBstValues(); // 57
-            TestBuyAndSellStock(); // 58
+            // TestBuyAndSellStock(); // 58
             // TestExpressionAddOperators(); // 59
+            MaxDistanceToClosestPersonTest(); // 60
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -1450,6 +1451,15 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: [2+3+2, 2+3*2]. Actual: " + GetListOfStringsAsString(exp.AddOperators("232", 8)));
             Console.WriteLine("Expected: [1*0*5, 10-5]. Actual: " + GetListOfStringsAsString(exp.AddOperators("105", 5)));
             Console.WriteLine("Expected: []. Actual: " + GetListOfStringsAsString(exp.AddOperators("3456237490", 9191)));
+        }
+
+        public static void MaxDistanceToClosestPersonTest() {
+            MaxDistanceToClosestPerson max = new MaxDistanceToClosestPerson();
+            Console.WriteLine("Expected: 2. Actual: {0}", max.MaxDistToClosest(new int[] {1,0,0,0,1,0,1}));
+            Console.WriteLine("Expected: 3. Actual: {0}", max.MaxDistToClosest(new int[] {1,0,0,0}));
+            Console.WriteLine("Expected: 3. Actual: {0}", max.MaxDistToClosest(new int[] {0,0,0,1}));
+            Console.WriteLine("Expected: 3. Actual: {0}", max.MaxDistToClosest(new int[] {0,1,0,0,0,0,0,0,1,1,0,1,1}));
+            Console.WriteLine("Expected: 2. Actual: {0}", max.MaxDistToClosest(new int[] {0,0,1}));
         }
     }
 }

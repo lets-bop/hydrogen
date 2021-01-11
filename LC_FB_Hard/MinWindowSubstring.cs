@@ -22,42 +22,45 @@ namespace LC_FB_Hard
     {
         public static string ExecuteSlidingWindow(string t, string s) {
             if (s == null || t == null || s.Length > t.Length) return string.Empty;
-            string result = string.Empty;
-            int minLength = int.MaxValue;
 
-            // Dictionary with all chars in s along with count
-            Dictionary<char, int> charCount = new Dictionary<char, int>();
-            for (int i = 0; i < s.Length; i++) {
-                char c = s[i];
-                charCount[c] = charCount.GetValueOrDefault(c, 0) + 1;
-            }
+            Dictionary<char, int> tCount = new Dictionary<char, int>();
+            foreach(char c in t.ToCharArray()) tCount[c] = tCount.GetValueOrDefault(c) + 1;
 
-            int start = 0, end = 0, charsToMatch = charCount.Count;
+            int start = 0, end = 0;
+            Dictionary<char, int> sCount = new Dictionary<char, int>();
+            int charsToMatch = tCount.Count;
+            HashSet<char> matchedChars = new HashSet<char>();
+            int minStart = 0, minWindow = int.MaxValue;
 
-            while (end < t.Length) {
-                char c = t[end];
-                if (charCount.ContainsKey(c)) {
-                    charCount[c]--;
-                    if (charCount[c] == 0) charsToMatch--;
-                }
-
-                end++;
-                while (charsToMatch == 0) {
-                    if (minLength > end - start) {
-                        result = t.Substring(start, end - start);
-                        minLength = end - start;
+            while (end < s.Length) {
+                while (charsToMatch > 0 && end < s.Length) {
+                    char c = s[end];
+                    sCount[c] = sCount.GetValueOrDefault(c) + 1;
+                    if (tCount.ContainsKey(c) && sCount[c] >= tCount[c] && !matchedChars.Contains(c)) {
+                        matchedChars.Add(c);
+                        charsToMatch--;
                     }
 
-                    c = t[start];
-                    if (charCount.ContainsKey(c)) {
-                        charCount[c]++;
-                        if (charCount[c] > 0) charsToMatch++;
+                    end++;
+                }
+
+                while (charsToMatch == 0 && start < end) {
+                    if (charsToMatch == 0 && (end - start) < minWindow) {
+                        minStart = start;
+                        minWindow = end - start;
                     }
-                    start++;
+
+                    char c = s[start++];
+                    sCount[c]--;
+                    if (tCount.ContainsKey(c) && sCount[c] < tCount[c]) {
+                        charsToMatch++;
+                        matchedChars.Remove(c);
+                    }
                 }
             }
 
-            return result;
+            if (minWindow != int.MaxValue) return s.Substring(minStart, minWindow);
+            return string.Empty;
         }
     }
 }
