@@ -20,32 +20,29 @@ namespace LC_FB_Hard
     public class InterleavingString
     {
         public bool IsInterleave(string s1, string s2, string s3) {
-            int s1Index = 0, s1MatchSoFar = -1;
-            int s2Index = 0, s2MatchSoFar = -1;
-            int s3Index = 0;
+            if (s1.Length + s2.Length != s3.Length) return false;
+            if (s1.Length == 0) return s3 == s2;
+            if (s2.Length == 0) return s3 == s1;
+            return this.IsInterleave(
+                s1.ToCharArray(), 
+                s2.ToCharArray(), 
+                s3.ToCharArray(), 0, 0, 0, new bool[s1.Length + 1, s2.Length + 1]);
+        }
 
-            while(s3Index < s3.Length){
-                if (s1Index < s1.Length && s2Index < s2.Length && s3[s3Index] == s1[s1Index] && s3[s3Index] == s2[s2Index]){
-                    s1Index++;
-                    s2Index++;
-                }
-                else if (s1Index < s1.Length && s3[s3Index] == s1[s1Index]){
-                    if (s2MatchSoFar != s2Index - 1) s2Index = s2MatchSoFar + 1;
-                    s1MatchSoFar = s1Index;
-                    s1Index++;
-                }
-                else if (s2Index < s2.Length && s3[s3Index] == s2[s2Index]){
-                    if (s1MatchSoFar != s1Index - 1) s1Index = s1MatchSoFar + 1;
-                    s2MatchSoFar = s2Index;
-                    s2Index++;
-                }
-                else return false;
+        private bool IsInterleave(char[] c1, char[] c2, char[] c3, int i, int j, int k, bool[,] invalid) {
+            if (k == c3.Length) return true;
+            if (invalid[i,j]) return false;
 
-                s3Index++;   
+            bool isValid = false;
+            if (i < c1.Length && c1[i] == c3[k]) {
+                isValid = this.IsInterleave(c1, c2, c3, i+1, j, k+1, invalid);
+            }
+            if (!isValid && j < c2.Length && c2[j] == c3[k]) {
+                isValid = this.IsInterleave(c1, c2, c3, i, j+1, k+1, invalid);
             }
 
-            if (s1Index == s1.Length && s2Index == s2.Length) return true;
-            return false;
-        }        
+            if (!isValid) invalid[i,j] = true;
+            return isValid;
+        }
     }
 }

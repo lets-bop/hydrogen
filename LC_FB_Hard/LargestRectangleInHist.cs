@@ -18,21 +18,17 @@ namespace LC_FB_Hard
 {
     public class LargestRectangleInHist
     {
-        public static int Execute(int[] heights)
-        {
+        public static int Execute(int[] heights) {
             if (heights == null || heights.Length == 0) return 0;
             if (heights.Length == 1) return heights[0];
 
             Stack<int> stack = new Stack<int>();
             int max = 0;
             int i;
-            for (i = 0; i < heights.Length; i++)
-            {
+            for (i = 0; i < heights.Length; i++) {
                 if (stack.Count == 0 || heights[i] >= heights[stack.Peek()]) stack.Push(i);
-                else
-                {
-                    while (stack.Count > 0 && heights[stack.Peek()] > heights[i])
-                    {
+                else {
+                    while (stack.Count > 0 && heights[stack.Peek()] > heights[i]) {
                         int popIndex = stack.Pop();
                         if (stack.Count == 0) max = Math.Max(max, heights[popIndex] * i);
                         else max = Math.Max(max, heights[popIndex] * (i - stack.Peek() - 1));
@@ -42,8 +38,7 @@ namespace LC_FB_Hard
                 stack.Push(i);
             }
 
-            while (stack.Count > 0)
-            {
+            while (stack.Count > 0) {
                 int popIndex = stack.Pop();
                 if (stack.Count == 0) max = Math.Max(max, heights[popIndex] * i);
                 else max = Math.Max(max, heights[popIndex] * (i - stack.Peek() - 1));

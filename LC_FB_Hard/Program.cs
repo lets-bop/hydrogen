@@ -20,9 +20,8 @@ namespace LC_FB_Hard
             // TestWildcardMatching(); //8
             // TestImportantReversePairs(); //9
             // TestWordLadder(); //10
-            // TestLongestConsecutiveSequence(); //11
-            // TestNumberToEnglish(); //12
-            // TestSubstringWithConcat(); //13
+            TestLongestConsecutiveSequence(); //11
+            // TestSubstringWithConcat(); //12
             // TestAlienDictionary(); //14
             // TestLongestValidParenthesis(); //15
             // TestMedianOfSortedArrays(); //16
@@ -68,7 +67,7 @@ namespace LC_FB_Hard
             // TestKClosestBstValues(); // 57
             // TestBuyAndSellStock(); // 58
             // TestExpressionAddOperators(); // 59
-            MaxDistanceToClosestPersonTest(); // 60
+            // MaxDistanceToClosestPersonTest(); // 60
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -334,13 +333,7 @@ namespace LC_FB_Hard
         private static void TestLongestConsecutiveSequence()
         {
             LongestConsecutiveSequence lcs = new LongestConsecutiveSequence();
-            Console.WriteLine(lcs.LongestConsecutive(new int[] {100, 4, 200, 1, 3, 2}));
-        }
-
-        private static void TestNumberToEnglish()
-        {
-            NumberToEnglish n = new NumberToEnglish();
-            n.NumberToWords(99);
+            Console.WriteLine("Expected: 4. Actual: {0}", lcs.LongestConsecutive(new int[] {100, 4, 200, 1, 3, 2}));
         }
 
         private static void TestSubstringWithConcat()
@@ -419,48 +412,15 @@ namespace LC_FB_Hard
         private static void TestWordBreak()
         {
             WordBreak wb = new WordBreak();
-            IList<string> list = wb.Execute("catsanddog", new List<string>() {"cat", "sand", "dog", "and", "cats"});
-            foreach (string s in list) Console.WriteLine(s);
+            wb.WordBreak1("catsanddog", new List<string>() {"cat", "sand", "dog", "and", "cats"});
+            wb.WordBreak1("pineapplepenapple", new List<string>() {"apple","pen","applepen","pine","pineapple"});
+            wb.WordBreak1("catsandog", new List<string>() {"cat", "sand", "dog", "and", "cats"});
+            wb.WordBreak1("cofjdnfdnjbejdhbkhechoeindgmkeloaibeffoacbieekebbfimhdehmncdcajhknidl", new List<string>() {"khjhhagijlickgjob","ajhknidl","khech","kjigndmcl","mbmodglgbahcmdcdoea","lnllaflae","enhakibofef","gjhegnfhlibiog","ajlfkmccbahbbggn","inbanhdomnnghdj","ghigcndibhmeojchbbogkgb","cdebhjjifcnmmmccoj","majcemhhdg","ccfhclceoh","ljfjlaghjehk","mljn","anifljijkdhociken","fogabkbbd","cjahcbienajcgakjjig","kkfffg","jchelakgio","mkkaklj","obehecobkolile","eejne","ndoeic","fbfnkehm","e","mam","hdbibbfijcnlomabemombog","lo","egbklbihgangemjb","jmckjbkbodfknffbchfgie","hldlkfclidhfalmlonfj","diabnkcbadjfmncenihfhk","lamnnbhbaak","cgjmekgfkogclha","nifaifhkbl","eimgallmelmi","mchglmn","fladoo","admmdklfogkafedhnkikell","nfceebenebjgffillm","bacnnmhilkfkffflhdjkhb","fdmbgmckefhenhn","cofjdnfdnjbej","lcmooada","iikimdf","aoloadmajamljdcbfeo","jhoebchekagjlellllm","dh","agk","nlgb","ldihehjafnkcakofebgloam","cbgkafkljdaea","jillnbnglddhdjaf","bjnhobhaalaanijcblhfjfj","difdoaj","mfmcgmaekia","dofkioedciimljhdeehd","kegnobengjbbiko","aamlocelnmib","oeemgcnfamlmdljfdmflfjj","eff","klblolckacndmangjm","kieec","ldljcjchn","blbeg","minibhaoegameolbchfdmd","aahofmcngcdle","lgihd","mmmkj","eoajcgncdafj","ehgkknkefkgkmfbnkfgn","jnniindkohgjdnbjj","mjgkooiklknbnohbn","cddhoglffhikhf","hkojnkclkfjdkno","bhamagfa","cclfechbhkkbikjnfiam","caihcen","ddo","cndgo","mmecggd","k","cnccdoiflnincgacakdoffkdg","eadblmgaioccedaabjfli","jielegjn","kmcnckacoifjamh","ljladkigjjcklnfjagdbbm","na","nblkbmcmmlible","aobkbkeljbhm","jinalibnjhghkdegejfkhojmb","eahacl","chefiggjndcnmlhfelbffea","nbekmjcgjhbnm","hkgabejjogecnlnollhdmc","kc","lhifcackehclg","c","fcna","docgijgankik","b","kfmnoenngjhbkjdbbdb","fmajfjg","imaalcbeibmondaen","loaibeffoacbieekebhmncdc","mchdeedmhmimjeg","oebgcilngjfalebeonbgjmhb","igaieibkhklncikm","lkmhimcj","ahfehlfbimgbgc","hemaimhfnigmfnabco","l","jahkbcdonia","i","bfimhde","ciekchnoolgkjnijekjehcagl","iob","gjldfmnaldnclofg","bbghhfbmknflddiabgj","gholddmbmnhii","iodn","cckkmijgcdjkglfd","njmdahlgbloimibfdco","cjdekg","oeindgmke","mbdcgebgdk","jlddkmoe","oegbiannddkmhibjokkm","loaejecbcondlgaeenbjlokjg","dlchahdimcdjobkfoce","haamgab","fkbj","aggodojjglicnf","gahadoafofdbeieihklfg","aembllfaiggee","ljnjfhknfjf","lhkobdkmnkmaf","ilgcde","nghclbilaiombcidj","igamidcjibblokkmjkhnha","ceiikahhicgbdlhlo","hdcfnig","fbbignkajdjgn","ogjkbcccdldmea","ihnoenlokk","blk","aifhjmimhnggogajflkgc","jfoiif"});
+            wb.WordBreak1("aaaaaaa", new List<string>() {"aaaa","aaa"});
+            wb.WordBreak1("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new List<string>() {"a", "aa", "aaa", "aaaa", "aaaaa"});
+            wb.WordBreak1("abcd", new List<string>() {"a", "abc", "b", "cd"});
+            wb.WordBreak1("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
 
-            wb = new WordBreak();
-            list = wb.Execute("pineapplepenapple", new List<string>() {"apple","pen","applepen","pine","pineapple"});
-            foreach (string s in list) Console.WriteLine(s);             
-
-            wb = new WordBreak();
-            list = wb.Execute("catsandog", new List<string>() {"cat", "sand", "dog", "and", "cats"});
-            foreach (string s in list) Console.WriteLine(s);
-
-            wb = new WordBreak();
-            list = wb.Execute("cofjdnfdnjbejdhbkhechoeindgmkeloaibeffoacbieekebbfimhdehmncdcajhknidl", new List<string>() {"khjhhagijlickgjob","ajhknidl","khech","kjigndmcl","mbmodglgbahcmdcdoea","lnllaflae","enhakibofef","gjhegnfhlibiog","ajlfkmccbahbbggn","inbanhdomnnghdj","ghigcndibhmeojchbbogkgb","cdebhjjifcnmmmccoj","majcemhhdg","ccfhclceoh","ljfjlaghjehk","mljn","anifljijkdhociken","fogabkbbd","cjahcbienajcgakjjig","kkfffg","jchelakgio","mkkaklj","obehecobkolile","eejne","ndoeic","fbfnkehm","e","mam","hdbibbfijcnlomabemombog","lo","egbklbihgangemjb","jmckjbkbodfknffbchfgie","hldlkfclidhfalmlonfj","diabnkcbadjfmncenihfhk","lamnnbhbaak","cgjmekgfkogclha","nifaifhkbl","eimgallmelmi","mchglmn","fladoo","admmdklfogkafedhnkikell","nfceebenebjgffillm","bacnnmhilkfkffflhdjkhb","fdmbgmckefhenhn","cofjdnfdnjbej","lcmooada","iikimdf","aoloadmajamljdcbfeo","jhoebchekagjlellllm","dh","agk","nlgb","ldihehjafnkcakofebgloam","cbgkafkljdaea","jillnbnglddhdjaf","bjnhobhaalaanijcblhfjfj","difdoaj","mfmcgmaekia","dofkioedciimljhdeehd","kegnobengjbbiko","aamlocelnmib","oeemgcnfamlmdljfdmflfjj","eff","klblolckacndmangjm","kieec","ldljcjchn","blbeg","minibhaoegameolbchfdmd","aahofmcngcdle","lgihd","mmmkj","eoajcgncdafj","ehgkknkefkgkmfbnkfgn","jnniindkohgjdnbjj","mjgkooiklknbnohbn","cddhoglffhikhf","hkojnkclkfjdkno","bhamagfa","cclfechbhkkbikjnfiam","caihcen","ddo","cndgo","mmecggd","k","cnccdoiflnincgacakdoffkdg","eadblmgaioccedaabjfli","jielegjn","kmcnckacoifjamh","ljladkigjjcklnfjagdbbm","na","nblkbmcmmlible","aobkbkeljbhm","jinalibnjhghkdegejfkhojmb","eahacl","chefiggjndcnmlhfelbffea","nbekmjcgjhbnm","hkgabejjogecnlnollhdmc","kc","lhifcackehclg","c","fcna","docgijgankik","b","kfmnoenngjhbkjdbbdb","fmajfjg","imaalcbeibmondaen","loaibeffoacbieekebhmncdc","mchdeedmhmimjeg","oebgcilngjfalebeonbgjmhb","igaieibkhklncikm","lkmhimcj","ahfehlfbimgbgc","hemaimhfnigmfnabco","l","jahkbcdonia","i","bfimhde","ciekchnoolgkjnijekjehcagl","iob","gjldfmnaldnclofg","bbghhfbmknflddiabgj","gholddmbmnhii","iodn","cckkmijgcdjkglfd","njmdahlgbloimibfdco","cjdekg","oeindgmke","mbdcgebgdk","jlddkmoe","oegbiannddkmhibjokkm","loaejecbcondlgaeenbjlokjg","dlchahdimcdjobkfoce","haamgab","fkbj","aggodojjglicnf","gahadoafofdbeieihklfg","aembllfaiggee","ljnjfhknfjf","lhkobdkmnkmaf","ilgcde","nghclbilaiombcidj","igamidcjibblokkmjkhnha","ceiikahhicgbdlhlo","hdcfnig","fbbignkajdjgn","ogjkbcccdldmea","ihnoenlokk","blk","aifhjmimhnggogajflkgc","jfoiif"});
-            foreach (string s in list) Console.WriteLine(s);
-
-            wb = new WordBreak();
-            list = wb.Execute("aaaaaaa", new List<string>() {"aaaa","aaa"});
-            foreach (string s in list) Console.WriteLine(s);
-
-            wb = new WordBreak();
-            list = wb.Execute("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new List<string>() {"a", "aa", "aaa", "aaaa", "aaaaa"});
-            foreach (string s in list) Console.WriteLine(s);
-
-            wb = new WordBreak();
-            list = wb.Execute("abcd", new List<string>() {"a", "abc", "b", "cd"});
-            foreach (string s in list) Console.WriteLine(s);            
-
-            // wb = new WordBreak();
-            // list = wb.Execute("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
-            // foreach (string s in list) Console.WriteLine(s);
-
-            wb = new WordBreak();
-            list = wb.Execute("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
-            foreach (string s in list) Console.WriteLine(s);
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append('k');
-            sb.Append('a');
-            sb.Append('r');
-            sb.Append('t');
-            sb.Remove(sb.Length - 1, 1);
-            Console.WriteLine(sb.ToString());
         }
 
         private static void TestWordSearch2()
@@ -880,6 +840,8 @@ namespace LC_FB_Hard
             Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aa","ab","aaba"));
             Console.WriteLine("Expected: True. Actual {0}", intS.IsInterleave("aab","axy","aaxaby"));
             Console.WriteLine("Expected: False. Actual {0}", intS.IsInterleave("aab","axy","abaaxy"));
+            Console.WriteLine("Expected: False. Actual {0}", intS.IsInterleave("a","","c"));
+            Console.WriteLine("Expected: False. Actual {0}", intS.IsInterleave("aabd","abdc","aabdbadc"));
         }
 
         public static void TestRangeSumQuery()
