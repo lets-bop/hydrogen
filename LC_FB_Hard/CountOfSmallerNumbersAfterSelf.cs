@@ -85,9 +85,8 @@ namespace LC_FB_Hard
             if (node.Val > val) {
                 node.LeftCount++;
                 node.Left = this.InsertNode(node.Left, val, smallerNodeCount, result);
-            }
-
-            else node.Right = this.InsertNode(node.Right, val, smallerNodeCount + node.Count + node.LeftCount, result);
+            } else node.Right = this.InsertNode(node.Right, val, smallerNodeCount + node.Count + node.LeftCount, result);
+            
             return node;
         }
     }
