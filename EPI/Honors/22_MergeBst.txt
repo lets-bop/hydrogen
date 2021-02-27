@@ -1,0 +1,24 @@
+There are several ways to solve this problem
+    1. Perform an inorder walk on each tree writing the results to an array
+       which will be sorted by default. Then get a union of the 2 arrays and
+       build the final BST from the union. O(n) space and time.
+    2. Remember that a list can be viewed as a tree in which every node's left 
+       child is empty. Just like what we did in BstToSortedDoubly, we can convert
+       each BST to a list and then merge the 2 sorted lists. This would give 
+       us O(n) time complexity but resulting tree will be completely unbalanced.
+    3. Use BstToSortedDoubly to get 2 lists. Merge the 2 lists. Use SortedDoublyToBst
+       to convert the merge list back to a BST which will be fully balanced.
+
+public Node MergeTwoBST(Node A, Node B)
+{
+   A = BstToSortedDoubly(A);
+   B = BstToSortedDoubly(B);
+   A.left.right = null; // convert the circular list to a normal list
+   B.left.right = null;
+   A.left = null;
+   B.left = null;
+   int a_len = GetListLength(A);
+   int b_len = GetListLength(B);
+   return BuildBst(MergeTwoSortedLists(A, B), a_Len + b_Len);
+}
+ 

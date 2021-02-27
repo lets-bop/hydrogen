@@ -1,0 +1,27 @@
+Given an integer array on length n, where each element except 1 appears twice, find the number that appears once.
+    1. You can use a hashmap and solve it with O(n) space and time
+    2. XOR all elements. Resulting value will the one that appears once. O(n) time and O(1) space.
+       // Works because a (xor) a = 0
+       int result = 0;
+       foreach (int i in arr) result ^= i;
+    
+Given an integer array on length n, where each element except 1 appears thrice, find the number that appears once.
+    Example array <2,4,2,5,2,5,5> expressed in binary <(010),(100),(010),(101),(010),(101),(101)>
+    The number of bits set to 1 in position 0 (LSB) across all 7 entries = 3
+    The number of bits set to 1 in position 1 (LSB) across all 7 entries = 3
+    The number of bits set to 1 in position 2 (MSB) across all 7 entries = 4
+
+    If you now find mod 3 for each of the counts, you'll get (100), which is the answer
+
+    int[] counts = new int[32];
+    for (int x in A) {
+        for (int i = 0; i < 32; i++) {
+            counts[i] += x & 1;
+            x = x >> 1;
+        }
+    }
+
+    int result = 0;
+    for (int i = 0; i < 32; i++) {
+        result |= (counts[i] % 3) << i;
+    }

@@ -1,0 +1,46 @@
+sorted doubly linked list to bst:
+    If we had an array, its easy to get the mid point and hence the problem can be solved in O(n).T(n) = O(1) + 2T(n/2) = O(n). 
+    But in a linkedlist, its not possible to find the mid point directly.
+    T(n) = O(n) + 2T(n/2) = O(n lg n). O(n) term comes from the traversal required to find the mid point.
+    So the key insight is to not traverse the list to the mid point in every iteration.
+    1 2 3 4 5
+                         3[s=0,e=5,m=2]
+        /                                         \
+       2[s=0,e=2,m=1]                             5[s=3,e=5,m=4] 
+    /             \                              /               \
+   1[s=0,e=1,m=0]  null[s=2,e=2]           4[s=3,e=4,m=3]        null [s=5,e=5]
+  /   \                                   /   \
+ null  null                             null  null
+
+    public class Node
+    {
+        int num;
+        Node next;
+        Node prev;
+
+        Node(int num, Node prev, Node next) {
+            this.num = num;
+            this.prev = prev;
+            this.next = next;
+        }
+    }
+
+    Node listHead = null;
+    public Node BuildBst(Node listHead, int length) {
+        this.listHead = listHead;
+        return this.BuildBst(0, length);
+    }
+
+    public TreeNode BuildBst(int start, int end) {
+        if (start >= end) return null;
+
+        int m = start + (end - start) / 2;
+        Node left = BuildBst(start, m);
+        Node currNode = new TreeNode(head.num,left);
+        listHead = listHead.next;
+        currNode.next = BuildBst(m + 1, end);
+        return currNode;
+    }
+
+
+
