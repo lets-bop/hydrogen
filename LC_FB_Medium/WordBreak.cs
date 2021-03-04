@@ -60,4 +60,5 @@ namespace LC_FB_Medium
             this.memo[startIndex] = false;
             return false;
         }
+    }
 }
