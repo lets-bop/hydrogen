@@ -18,7 +18,7 @@ namespace LC_FB_Medium
             // GenerateParenthesisTest(); // 5
             // MinMeetingRoomsTest(); // 6
             // MergeIntervalsTest(); // 7
-            // WordSearchTest(); // 8
+            WordSearchTest(); // 8
             // BasicCalculatorTest(); // 9
             // PalindromePermutationTest(); // 10
             // LetterComboOfPhoneTest(); // 11
@@ -126,7 +126,7 @@ namespace LC_FB_Medium
             // TestBinaryTreeLevelOrderTraversal(); //112
             // TestSortedArrayToBST(); // 113
             // TestMultiplyStrings(); // 114
-            JumpGameTest(); // 115
+            // JumpGameTest(); // 115
 
             Console.WriteLine("Time taken (ms): " + (DateTime.Now - startTime).TotalMilliseconds);
         }
@@ -305,7 +305,11 @@ namespace LC_FB_Medium
                     {new char[]{'A','B','C','E'},
                     new char[]{'S','F','C','S'},
                     new char[]{'A','D','E','E'}};
+            
             Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "ABCCED"));
+            Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "SEE"));
+            Console.WriteLine("Expected: False. Actual: " + wordSearch.Exist(board, "ABCB"));
+            
 
             board = new char[][] {new char[]{'C','A','A'},new char[]{'A','A','A'},new char[]{'B','C','D'}};
             Console.WriteLine("Expected: True. Actual: " + wordSearch.Exist(board, "AAB"));
