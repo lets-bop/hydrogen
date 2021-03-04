@@ -141,3 +141,21 @@
     #           n = n >> 1; // divide n / 2 by rotating right
     #       }
 
+# ValidateBST: 
+    # Define a structure that can will hold the validity result (isValidBst, minVal, maxVal)
+    # Do a post order traversal (left, right, node). Do so only if corresponding left or right child is non-null.
+    # If left and right are both valid BSTs and (node.val > left.min) and (node.val < right.min), continue traversing recursively.
+
+# ValidParenthesisString: Given a string containing only three types of characters: '(', ')' and '*', 
+    # where * can either be '(', ')' or '', validate if its a valid parenthesis string
+    # The idea is to count the parenthesis (pc) and asterisks (ac) and balance based on the counts. 
+    # If pc < 0, check if ac <= 0. If so, its invalid
+    # If pc < 0 && ac > 0, decrement ac and continue.
+    # Finally, if pc > ac, its invalid. Else, the string is valid.
+
+# WallsAndGate:
+    # Perform a recursive DFS from every gate. 
+    # Basic condition to continue recursion is that distance to the neighboring room > current distance + 1
+
+# WordBreak
+    # 

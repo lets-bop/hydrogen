@@ -356,23 +356,23 @@ namespace LC_FB_Medium
         public static void WordBreakTest()
         {
             WordBreak wordBreak = new WordBreak();
-            bool result = wordBreak.Check2("catsanddog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
+            bool result = wordBreak.Check("catsanddog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
             Console.WriteLine("1. Expected: True. Actual: " + result);
 
-            result = wordBreak.Check2("catsandog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
+            result = wordBreak.Check("catsandog", new List<string>(){"cat", "cats", "sand", "and", "dog"});
             Console.WriteLine("2. Expected: False. Actual: " + result);
 
-            result = wordBreak.Check2(
+            result = wordBreak.Check(
                 "leetcode",
                 new List<string>() {"leet","code"});
             Console.WriteLine("3. Expected: True. Actual: " + result);
 
-            result = wordBreak.Check2(
+            result = wordBreak.Check(
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
             Console.WriteLine("4. Expected: True. Actual: " + result);
 
-            result = wordBreak.Check2(
+            result = wordBreak.Check(
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
                 new List<string>() {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"});
             Console.WriteLine("5. Expected: False. Actual: " + result);
