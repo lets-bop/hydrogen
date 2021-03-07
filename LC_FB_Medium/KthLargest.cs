@@ -24,35 +24,35 @@ namespace LC_FB_Medium
             // finding kth largest is same as finding (n-k)th smallest
             int toFindIndex = nums.Length - k;
             int pivotIndex;
-            int i = 0;
-            int j = nums.Length - 1;
+            int low = 0;
+            int high = nums.Length - 1;
 
-            while (i <= j) {
-                pivotIndex = this.QuickSelect(nums, i, j);
+            while (low <= high) {
+                pivotIndex = this.QuickSelect(nums, low, high);
                 if (pivotIndex == toFindIndex) return nums[pivotIndex];
-                if (toFindIndex < pivotIndex) j = pivotIndex - 1;
-                else i = pivotIndex + 1;
+                if (toFindIndex < pivotIndex) high = pivotIndex - 1;
+                else low = pivotIndex + 1;
             }
 
             return -1;
         }
 
-        private int QuickSelect(int[] nums, int i, int j) {
-            int pivot = i;
+        private int QuickSelect(int[] nums, int low, int high) {
+            int pivot = low;
 
             // exchange pivot with any # between i and j
-            this.Swap(nums, i, random.Next(i, j + 1));
-            i++;
+            this.Swap(nums, low, random.Next(low, high + 1));
+            low++;
 
             while (true) {
-                while (i < j && nums[i] <= nums[pivot]) i++;
-                while (i <= j && nums[j] > nums[pivot]) j--;
-                if (i >= j) break;
-                this.Swap(nums, i, j);
+                while (low < high && nums[low] <= nums[pivot]) low++;
+                while (low <= high && nums[high] > nums[pivot]) high--;
+                if (low >= high) break;
+                this.Swap(nums, low, high);
             }
 
-            this.Swap(nums, pivot, j);
-            return j;
+            this.Swap(nums, pivot, high);
+            return high;
         }
 
         private void Swap(int[] nums, int i, int j) {
