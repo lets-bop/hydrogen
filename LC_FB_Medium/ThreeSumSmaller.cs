@@ -39,5 +39,31 @@ namespace LC_FB_Medium
 
             return result;
         }
+
+        public List<List<int>> SmallerWithoutDups(int[] nums, int target) {
+            Array.Sort(nums);
+            List<List<int>> result = new List<List<int>>();
+
+            for (int i = 0; i <= nums.Length - 3; i++) {
+                if (i > 0 && nums[i] == nums[i-1]) continue;
+                int left = i + 1, right = nums.Length - 1; 
+                while (left < right) {
+                    if (nums[i] + nums[left] + nums[right] < target) {
+                        // add all nums between left and right to result
+                        for (int j = right; j > left; j--) {
+                            if (j < right && nums[j] == nums[j+1])continue; // skip dups
+                            result.Add(new List<int>() {nums[i],nums[left],nums[j]});
+                        }
+                        left++;
+                        while (left < right && nums[left] == nums[left - 1]) left++;
+                    } else {
+                        right--;
+                        while (left < right && nums[right] == nums[right + 1]) right--;
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }

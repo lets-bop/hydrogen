@@ -22,6 +22,7 @@ The integer n is in the range [0, 100].
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace LC_FB_Medium
@@ -31,11 +32,7 @@ namespace LC_FB_Medium
         public int LeastInterval(char[] tasks, int n) 
         {
             int[] taskMap = new int[26];
-
-            foreach (char c in tasks){
-                taskMap[c - 'A']++;
-            }
-
+            foreach (char c in tasks) taskMap[c - 'A']++;
             Array.Sort(taskMap);
 
             int time = 0;
@@ -51,7 +48,10 @@ namespace LC_FB_Medium
                 Array.Sort(taskMap);
             }
 
+            // You could also use a dictionary
+            // Dictionary<char, int> taskCount = new Dictionary<char, int>();
+            // Dictionary<char, int> sortedTaskCount = taskCount.OrderByDescending(a => a.Value).ToDictionary(a => a.Key, a => a.Value);
             return time;
-        }        
+        }
     }
 }
