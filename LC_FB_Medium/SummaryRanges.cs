@@ -22,21 +22,20 @@ namespace LC_FB_Medium
         public IList<string> FindSummaryRanges(int[] nums) 
         {
             IList<string> result = new List<string>();
-            int i = 0;
-            int j = 1;
-
-            while (j < nums.Length) {
-                if (nums[j] != nums[j - 1] + 1) {
-                    if (j - i > 1) result.Add(nums[i].ToString() + "->" + nums[j - 1].ToString());
-                    else result.Add(nums[i].ToString());
-                    i = j;
+            int start = 0, end = 0;
+            
+            for (int i = 1; i < nums.Length; i++) {
+                if (nums[i] - nums[end] > 1) {
+                    if (start == end) result.Add(nums[start].ToString());
+                    else result.Add(nums[start] + "->" + nums[end]);
+                    start = i;
                 }
-                j++;
+
+                end = i;
             }
 
-            if (j - i > 1) result.Add(nums[i].ToString() + "->" + nums[j - 1].ToString());
-            else result.Add(nums[i].ToString());
-
+            if (start == end) result.Add(nums[start].ToString());
+            else result.Add(nums[start] + "->" + nums[end]);
             return result;
         }
     }

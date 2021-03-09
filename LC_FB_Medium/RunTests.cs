@@ -18,7 +18,7 @@ namespace LC_FB_Medium
             // GenerateParenthesisTest(); // 5
             // MinMeetingRoomsTest(); // 6
             // MergeIntervalsTest(); // 7
-            WordSearchTest(); // 8
+            // WordSearchTest(); // 8
             // BasicCalculatorTest(); // 9
             // PalindromePermutationTest(); // 10
             // LetterComboOfPhoneTest(); // 11
@@ -63,7 +63,7 @@ namespace LC_FB_Medium
             // TestMaxOnes(); // 50
             // TestDuctchFlag(); // 51
             // TestThreeSumClosest(); // 52
-            // TestSortedSquares(); // 53
+            TestSortedSquares(); // 53
             // TestThreeSumSmaller(); // 54
             // TestThreeSumMulti(); // 55
             // TestSubArrayProductLessThanK(); // 56
@@ -137,6 +137,18 @@ namespace LC_FB_Medium
             for(int i = 0; i < list.Count; i++){  
                 if (i != 0) sb.Append(","); 
                 sb.Append(list[i].ToString());
+            }
+
+            sb.Append("]");
+            return sb.ToString();
+        }
+
+        public static string GetListOfStringAsString(IList<string> list) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int i = 0; i < list.Count; i++){  
+                if (i != 0) sb.Append(","); 
+                sb.Append(list[i]);
             }
 
             sb.Append("]");
@@ -419,14 +431,16 @@ namespace LC_FB_Medium
         {
             SummaryRanges sr = new SummaryRanges();
             IList<string> result = sr.FindSummaryRanges(new int[] {0,1,2,4,5,7});
-            Console.WriteLine("Expected result 0->2, 4->5, 7");
-            foreach (string r in result) Console.Write(r + "\t");
-            Console.WriteLine();
+            Console.WriteLine("Expected result 0->2,4->5,7. Actual: {0}", GetListOfStringAsString(result));
 
             result = sr.FindSummaryRanges(new int[] {0,2,3,4,6,8,9});
-            Console.WriteLine("Expected result 0, 2->4, 6, 8->9");
-            foreach (string r in result) Console.Write(r + "\t");
-            Console.WriteLine();
+            Console.WriteLine("Expected result 0,2->4,6,8->9. Actual: {0}", GetListOfStringAsString(result));
+
+            result = sr.FindSummaryRanges(new int[] {0});
+            Console.WriteLine("Expected result 0. Actual: {0}", GetListOfStringAsString(result));
+
+            result = sr.FindSummaryRanges(new int[] {0,2,4,6});
+            Console.WriteLine("Expected result 0,2,4,6. Actual: {0}", GetListOfStringAsString(result));
         }
 
         public static void SubArraySumOfKTest()
@@ -884,9 +898,13 @@ namespace LC_FB_Medium
         {
             SortedSquares s = new SortedSquares();
             int[] result = s.Calculate(new int[] {-20, -5, -4, 0, 1, 2, 3 ,4 ,5, 6, 10});
-            foreach (int r in result) Console.Write(r + " "); Console.WriteLine();
+            Console.WriteLine("Expected: [0,1,4,9,16,16,25,25,36,100,400]. Actual: {0}", GetListOfIntAsString(result));
+            result = s.Calculate(new int[] {-4,-1,0,3,10});
+            Console.WriteLine("Expected: [0,1,9,16,100]. Actual: {0}", GetListOfIntAsString(result));
             result = s.Calculate(new int[] {-20});
-            foreach (int r in result) Console.Write(r + " "); Console.WriteLine();            
+            Console.WriteLine("Expected: [400]. Actual: {0}", GetListOfIntAsString(result));
+            result = s.Calculate(new int[] {-7,-3,2,3,11});
+            Console.WriteLine("Expected: [4,9,9,49,121]. Actual: {0}", GetListOfIntAsString(result));
         }
 
         public static void TestThreeSumSmaller()

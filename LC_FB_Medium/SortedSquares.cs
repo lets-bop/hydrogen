@@ -17,40 +17,22 @@ namespace LC_FB_Medium
     */
     class SortedSquares
     {
-        public int[] Calculate(int[] input) {
+        public int[] Calculate(int[] nums) {
             // The straight forward way is to simply square the numbers and sort the array thereafter.
             // This would take O(nlogn) time.
             // What if we can walk the numbers according to their magnitude?
-            // Walk the negative numbers from right to left and positve numbers from left to right,
-            // each time picking the smaller of the numbers (by magnitude) for squaring.
-            if (input == null || input.Length == 0) return new int[] {};
-            int[] result = new int[input.Length];
+            if (nums == null || nums.Length == 0) return new int[] {};
 
-            // Find the first non-negative #
-            int i = 0; // will keep track of the positive numbers and will move forward
-            int j = 0; // will keep track of the negative numbers and will back backward
-            int r = 0;
-            while (i < input.Length && input[i] < 0) i++;
-            j = i - 1;
-            while (j >= 0 || i < input.Length) {
-                if (j >= 0 && i < input.Length) {
-                    // pick the number with the smaller magnitude
-                    if (Math.Abs(input[j]) < Math.Abs(input[i])) {
-                        result[r++] = input[j] * input[j];
-                        j--;
-                    }
-                    else {
-                        result[r++] = input[i] * input[i];
-                        i++;
-                    }
-                }
-                else if (i < input.Length) {
-                    result[r++] = input[i] * input[i];
-                    i++;
-                }
-                else {
-                    result[r++] = input[j] * input[j];
-                    j--;
+            int[] result = new int[nums.Length];
+            int k = nums.Length - 1, left = 0, right = nums.Length - 1;
+
+            while (left <= right) {
+                if (Math.Abs(nums[left]) >= Math.Abs(nums[right])) {
+                    result[k--] = nums[left] * nums[left];
+                    left++;
+                } else {
+                    result[k--] = nums[right] * nums[right];
+                    right--;
                 }
             }
 
